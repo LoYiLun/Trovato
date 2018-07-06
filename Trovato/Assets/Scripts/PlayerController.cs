@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	private GameObject Player;
+	public GameObject Player;
 	private Vector3 MoveToTarget;
 	private Vector3 MoveDir;
 	private float MoveL;
 	private float MoveR;
 	private float TargetL;
 	private float TargetR;
-	private float MoveSpeed = 0.05f;
+	//private float MoveSpeed = 0.05f;
 
 	void Start () {
-		Player = GameObject.Find ("Player");
+		//Player = GameObject.Find ("Player");
 	}
 	
 
@@ -51,15 +51,19 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Mission") {
 			Global.MissionObj = other.gameObject;
 		}
+		if (other.gameObject.name == "Portal") {
+			Global.PlayerMove = false;
+			Player.transform.position = new Vector3(-16,6,16);
+		}
 	}
 
+	/*
 	void StartMove(){
 
 		MoveDir = MoveToTarget - Player.transform.position;
-
 		TargetL = MoveToTarget.z;
 		TargetR = MoveToTarget.x;
-		//Player.transform.position = Vector3.MoveTowards (Player.transform.position, MoveToTarget+new Vector3(TargetR,1,0), MoveSpeed*Time.deltaTime);
-	}
+		Player.transform.position = Vector3.MoveTowards (Player.transform.position, MoveToTarget+new Vector3(TargetR,1,0), MoveSpeed*Time.deltaTime);
+	}*/
 
 }

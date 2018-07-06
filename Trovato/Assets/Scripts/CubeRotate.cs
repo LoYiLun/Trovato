@@ -18,6 +18,7 @@ public class CubeRotate : MonoBehaviour {
 
 
 	public static void ClickRotate(){
+		
 		Global.SetCubeTeam = true;
 
 	}

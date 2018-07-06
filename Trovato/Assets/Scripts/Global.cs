@@ -10,6 +10,7 @@ public class Global : MonoBehaviour {
 	public static int RotateNum;
 	public static GameObject BeTouchedObj;
 	public static GameObject BeTouchedCube;
+	public static GameObject BePointedObj;
 	public static GameObject MissionObj;
 	public int P_RotateNum;
 
@@ -18,11 +19,12 @@ public class Global : MonoBehaviour {
 
 
 	void Start () {
-		BeTouchedObj = GameObject.Find ("Floor_Origin");
+		BeTouchedObj = GameObject.Find ("Floor_Origin_V3");
 	}
 	
 
 	void Update () {
 		//RotateNum = P_RotateNum;
+
 	}
 }
