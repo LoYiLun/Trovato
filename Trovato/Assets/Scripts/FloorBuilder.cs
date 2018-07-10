@@ -17,7 +17,7 @@ public class FloorBuilder : MonoBehaviour {
 					FloorClone.name = ("Floor_" + Count);
 				}
 			}
-		Floor.SetActive (false);
+		//Floor.SetActive (false);
 
 	
 	}
