@@ -12,7 +12,7 @@ public class FloorBuilder : MonoBehaviour {
 	public int FloorMode;
 
 	void Start () {
-<<<<<<< HEAD
+
 		Floor = GameObject.Find ("Floor_Origin");
 			for (int i = 0; i < 9; i++) {
 				for (int j = 0; j < 9; j++) {
@@ -22,10 +22,9 @@ public class FloorBuilder : MonoBehaviour {
 				}
 			}
 		//Floor.SetActive (false);
-=======
 
 		BuildFloor ();
->>>>>>> 3f492285745a327d01ce3b288851c160584185fb
+
 
 	
 	}
