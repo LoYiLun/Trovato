@@ -18,12 +18,18 @@ public class CubeController : MonoBehaviour {
 	public GameObject CubeHome;
 	public GameObject CubeLeader;
 	public int CubeMode;
+	public GameObject Player;
+	private int ExtraChild;
+	private float FixedP = 0.3f;
 
 
 
 	void Start () {
-		//CubeHome = GameObject.Find ("CubeHome_V3");
-		//CubeLeader = GameObject.Find ("CubeLeader");
+		if (CubeMode == 2) {
+			RotateSpeed = 60;
+		} else if (CubeMode == 3) {
+			RotateSpeed = 30;
+		}
 	}
 
 
@@ -32,23 +38,43 @@ public class CubeController : MonoBehaviour {
 
 			// 2*2*2 魔方
 			if (CubeMode == 2) {
-				if (this.CubeL == 1 && Global.RotateNum == 1) {
+				if (this.CubeL == 1 && Global.RotateNum == -1) {
+					if (Global.PlayerZ >= 5 - FixedP && Global.PlayerZ <= 7 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
+				}
+
+				if (this.CubeL == 0 && Global.RotateNum == -2) {
+					if (Global.PlayerZ >= 8 - FixedP && Global.PlayerZ <= 10 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
+				}
+
+				if (this.CubeD == 0 && Global.RotateNum == -3) {
 
 					if (StartRotate == false && FinishRotate == false)
-						Right_CubeL_Setting ();
+						Right_CubeD_Setting ();
 					this.transform.parent = CubeLeader.transform;
+
+					if (Global.OnCubeNum == 2) {
+						Player.transform.parent = CubeLeader.transform;
+						ExtraChild = 1;
+					}
+
 					StartRotate = true;
 				}
 
-				if (this.CubeL == 0 && Global.RotateNum == 2) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
-				}
-
-				if (this.CubeD == 0 && Global.RotateNum == 3) {
+				if (this.CubeD == 1 && Global.RotateNum == -4) {
 
 					if (StartRotate == false && FinishRotate == false)
 						Right_CubeD_Setting ();
@@ -56,47 +82,51 @@ public class CubeController : MonoBehaviour {
 					StartRotate = true;
 				}
 
-				if (this.CubeD == 1 && Global.RotateNum == 4) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeD_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+				if (this.CubeR == 1 && Global.RotateNum == -5) {
+					if (Global.PlayerX >= -11 - FixedP && Global.PlayerX <= -9 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
-				if (this.CubeR == 1 && Global.RotateNum == 5) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+				if (this.CubeR == 0 && Global.RotateNum == -6) {
+					if (Global.PlayerX >= -8 - FixedP && Global.PlayerX <= -6 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
-				if (this.CubeR == 0 && Global.RotateNum == 6) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+				if (this.CubeL == 0 && Global.RotateNum == -7) {
+					if (Global.PlayerZ >= 8 - FixedP && Global.PlayerZ <= 10 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
-				if (this.CubeL == 0 && Global.RotateNum == 7) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+				if (this.CubeL == 1 && Global.RotateNum == -8) {
+					if (Global.PlayerZ >= 5 - FixedP && Global.PlayerZ <= 7 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
-				if (this.CubeL == 1 && Global.RotateNum == 8) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
-				}
-
-				if (this.CubeD == 1 && Global.RotateNum == 9) {
+				if (this.CubeD == 1 && Global.RotateNum == -9) {
 
 					if (StartRotate == false && FinishRotate == false)
 						Left_CubeD_Setting ();
@@ -104,55 +134,76 @@ public class CubeController : MonoBehaviour {
 					StartRotate = true;
 				}
 
-				if (this.CubeD == 0 && Global.RotateNum == 10) {
+				if (this.CubeD == 0 && Global.RotateNum == -10) {
 
 					if (StartRotate == false && FinishRotate == false)
 						Left_CubeD_Setting ();
 					this.transform.parent = CubeLeader.transform;
+
+					if (Global.OnCubeNum == 2) {
+						Player.transform.parent = CubeLeader.transform;
+						ExtraChild = 1;
+					}
+
 					StartRotate = true;
 				}
 
-				if (this.CubeR == 0 && Global.RotateNum == 11) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+				if (this.CubeR == 0 && Global.RotateNum == -11) {
+					if (Global.PlayerX >= -8 - FixedP && Global.PlayerX <= -6 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
-				if (this.CubeR == 1 && Global.RotateNum == 12) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+				if (this.CubeR == 1 && Global.RotateNum == -12) {
+					if (Global.PlayerX >= -11 - FixedP && Global.PlayerX <= -9 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 			}
 
 			// 3*3*3 魔方
 			if (CubeMode == 3) {
 				if (this.CubeL == 2 && Global.RotateNum == 1) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerZ >= -4 - FixedP && Global.PlayerZ <= -2 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeL == 1 && Global.RotateNum == 2) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerZ >= -1 - FixedP && Global.PlayerZ <= 1 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeL == 0 && Global.RotateNum == 3) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerZ >= 2 - FixedP && Global.PlayerZ <= 4 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeD == 0 && Global.RotateNum == 4) {
@@ -160,6 +211,12 @@ public class CubeController : MonoBehaviour {
 					if (StartRotate == false && FinishRotate == false)
 						Right_CubeD_Setting ();
 					this.transform.parent = CubeLeader.transform;
+
+					if (Global.OnCubeNum == 1) {
+						Player.transform.parent = CubeLeader.transform;
+						ExtraChild = 1;
+					}
+
 					StartRotate = true;
 				}
 
@@ -180,51 +237,69 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 2 && Global.RotateNum == 7) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerX >= -4 - FixedP && Global.PlayerX <= -2 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeR == 1 && Global.RotateNum == 8) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerX >= -1 - FixedP && Global.PlayerX <= 1 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeR == 0 && Global.RotateNum == 9) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Right_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerX >= 2 - FixedP && Global.PlayerX <= 4 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Right_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeL == 0 && Global.RotateNum == 10) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerZ >= 2 - FixedP && Global.PlayerZ <= 4 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeL == 1 && Global.RotateNum == 11) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerZ >= -1 - FixedP && Global.PlayerZ <= 1 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeL == 2 && Global.RotateNum == 12) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeL_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerZ >= -4 - FixedP && Global.PlayerZ <= -2 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeL_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeD == 2 && Global.RotateNum == 13) {
@@ -248,31 +323,46 @@ public class CubeController : MonoBehaviour {
 					if (StartRotate == false && FinishRotate == false)
 						Left_CubeD_Setting ();
 					this.transform.parent = CubeLeader.transform;
+
+					if (Global.OnCubeNum == 1) {
+						Player.transform.parent = CubeLeader.transform;
+						ExtraChild = 1;
+					}
+
 					StartRotate = true;
 				}
 
 				if (this.CubeR == 0 && Global.RotateNum == 16) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerX >= 2 - FixedP && Global.PlayerX <= 4 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeR == 1 && Global.RotateNum == 17) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerX >= -1 - FixedP && Global.PlayerX <= 1 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 
 				if (this.CubeR == 2 && Global.RotateNum == 18) {
-
-					if (StartRotate == false && FinishRotate == false)
-						Left_CubeR_Setting ();
-					this.transform.parent = CubeLeader.transform;
-					StartRotate = true;
+					if (Global.PlayerX >= -4 - FixedP && Global.PlayerX <= -2 + FixedP) {
+						Global.RotateNum = 0;
+					} else {
+						if (StartRotate == false && FinishRotate == false)
+							Left_CubeR_Setting ();
+						this.transform.parent = CubeLeader.transform;
+						StartRotate = true;
+					}
 				}
 			}
 		}
@@ -284,9 +374,11 @@ public class CubeController : MonoBehaviour {
 
 	void FixedUpdate(){
 		if (StartRotate) {
+
 			Global.IsRotating = true;
-			if (CubeLeader.transform.childCount >= CubeMode * CubeMode) {
-				//GameObject.Find ("Player").transform.parent = CubeLeader.transform;
+			Player.GetComponent<Rigidbody> ().useGravity = false;
+			if (CubeLeader.transform.childCount >= (CubeMode * CubeMode + ExtraChild)) {
+
 				Global.SetCubeTeam = false;
 				CubeLeader.transform.Rotate (new Vector3 (DX * RotateSpeed * Time.deltaTime, DY * RotateSpeed * Time.deltaTime, DZ * RotateSpeed * Time.deltaTime));
 			}
@@ -298,7 +390,8 @@ public class CubeController : MonoBehaviour {
 			if (RotateTo90 >= 85 && RotateTo90 <= 95f) {
 				CubeLeader.transform.rotation = Quaternion.Euler (DX * 90, DY * 90, DZ * 90);
 				this.transform.parent = CubeHome.transform;
-				//GameObject.Find ("Player").transform.parent = null;
+				Player.transform.parent = null;
+				ExtraChild = 0;
 
 				if (CubeLeader.transform.childCount == 0 && FinishRotate == false) {
 					FinishRotate = true;
@@ -308,6 +401,8 @@ public class CubeController : MonoBehaviour {
 		} else if (FinishRotate) {
 			CubeLeader.transform.rotation = Quaternion.Euler (0, 0, 0);
 			Global.IsRotating = false;
+			Global.RotateNum = 0;
+			Player.GetComponent<Rigidbody> ().useGravity = true;
 			FinishRotate = false;
 		}
 	}

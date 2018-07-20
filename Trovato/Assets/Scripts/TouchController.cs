@@ -9,8 +9,12 @@ public class TouchController : MonoBehaviour {
 	//private float MouseTan;
 	public GameObject Arrow;
 	private GameObject TemptCube;
+	private Material OriginMaterial;
 
 	void Start () {
+		OriginMaterial = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+
+
 		//Arrow = GameObject.Find ("Arrow");
 	}
 
@@ -33,11 +37,12 @@ public class TouchController : MonoBehaviour {
 			Debug.DrawLine (Camera.main.transform.position, hitInfo.transform.position, Color.blue, 0.1f, true);
 			Global.BeTouchedCube = hitInfo.collider.gameObject;
 			Global.BePointedObj = hitInfo.collider.gameObject;
+
 			//CubeRotateDir = Input.mousePosition - CubeHeart;
 			//MouseTan = CubeRotateDir.y / CubeRotateDir.x;
 			//print (MouseTan);
 
-			if (Global.IsRotating != true) {
+			if (Global.IsRotating != true && Global.PlayerMove != true) {
 				if (Global.BeTouchedCube.name == "a1") {
 
 						if (TemptCube.name == "PL1") {
@@ -78,21 +83,21 @@ public class TouchController : MonoBehaviour {
 							Global.RotateNum = 6;
 
 					}else if (TemptCube.name == "V2_PL1") {
-							Global.RotateNum = 10;
+							Global.RotateNum = -10;
 						} else if (TemptCube.name == "V2_PL2") {
-							Global.RotateNum = 10;
+							Global.RotateNum = -10;
 						} else if (TemptCube.name == "V2_PL3") {
-							Global.RotateNum = 9;
+							Global.RotateNum = -9;
 						} else if (TemptCube.name == "V2_PL4") {
-							Global.RotateNum = 9;
+							Global.RotateNum = -9;
 						} else if (TemptCube.name == "V2_PR1") {
-							Global.RotateNum = 3;
+							Global.RotateNum = -3;
 						} else if (TemptCube.name == "V2_PR2") {
-							Global.RotateNum = 3;
+							Global.RotateNum = -3;
 						} else if (TemptCube.name == "V2_PR3") {
-							Global.RotateNum = 4;
+							Global.RotateNum = -4;
 						} else if (TemptCube.name == "V2_PR4") {
-							Global.RotateNum = 4;
+							Global.RotateNum = -4;
 						}
 
 
@@ -108,7 +113,7 @@ public class TouchController : MonoBehaviour {
 					} else if (TemptCube.name == "PD5") {
 						Global.RotateNum = 1;
 					}*/
-					CubeRotate.ClickRotate ();
+					Global.ClickRotate ();
 					Arrow.transform.position = new Vector3 (100, 100, 100);
 
 				} else if (Global.BeTouchedCube.name == "a2") {
@@ -152,21 +157,21 @@ public class TouchController : MonoBehaviour {
 					}
 
 					else if (TemptCube.name == "V2_PL1") {
-						Global.RotateNum = 3;
+						Global.RotateNum = -3;
 					} else if (TemptCube.name == "V2_PL2") {
-						Global.RotateNum = 3;
+						Global.RotateNum = -3;
 					} else if (TemptCube.name == "V2_PL3") {
-						Global.RotateNum = 4;
+						Global.RotateNum = -4;
 					} else if (TemptCube.name == "V2_PL4") {
-						Global.RotateNum = 4;
+						Global.RotateNum = -4;
 					} else if (TemptCube.name == "V2_PR1") {
-						Global.RotateNum = 10;
+						Global.RotateNum = -10;
 					} else if (TemptCube.name == "V2_PR2") {
-						Global.RotateNum = 10;
+						Global.RotateNum = -10;
 					} else if (TemptCube.name == "V2_PR3") {
-						Global.RotateNum = 9;
+						Global.RotateNum = -9;
 					} else if (TemptCube.name == "V2_PR4") {
-						Global.RotateNum = 9;
+						Global.RotateNum = -9;
 					}
 
 					/* else if (TemptCube.name == "PD1") {
@@ -180,7 +185,7 @@ public class TouchController : MonoBehaviour {
 				} else if (TemptCube.name == "PD5") {
 					Global.RotateNum = 12;
 				}*/
-					CubeRotate.ClickRotate ();
+					Global.ClickRotate ();
 					Arrow.transform.position = new Vector3 (100, 100, 100);
 
 				}
@@ -225,21 +230,21 @@ public class TouchController : MonoBehaviour {
 					}
 
 					else if (TemptCube.name == "V2_PL1") {
-						Global.RotateNum = 1;
+						Global.RotateNum = -1;
 					} else if (TemptCube.name == "V2_PL2") {
-						Global.RotateNum = 2;
+						Global.RotateNum = -2;
 					} else if (TemptCube.name == "V2_PL3") {
-						Global.RotateNum = 2;
+						Global.RotateNum = -2;
 					} else if (TemptCube.name == "V2_PL4") {
-						Global.RotateNum = 1;
+						Global.RotateNum = -1;
 					} else if (TemptCube.name == "V2_PR1") {
-						Global.RotateNum = 12;
+						Global.RotateNum = -12;
 					} else if (TemptCube.name == "V2_PR2") {
-						Global.RotateNum = 11;
+						Global.RotateNum = -11;
 					} else if (TemptCube.name == "V2_PR3") {
-						Global.RotateNum = 11;
+						Global.RotateNum = -11;
 					} else if (TemptCube.name == "V2_PR4") {
-						Global.RotateNum = 12;
+						Global.RotateNum = -12;
 					}
 
 					/* else if (TemptCube.name == "PD1") {
@@ -253,7 +258,7 @@ public class TouchController : MonoBehaviour {
 				} else if (TemptCube.name == "PD5") {
 					Global.RotateNum = 9;
 				}*/
-					CubeRotate.ClickRotate ();
+					Global.ClickRotate ();
 					Arrow.transform.position = new Vector3 (100, 100, 100);
 
 				}
@@ -298,21 +303,21 @@ public class TouchController : MonoBehaviour {
 					}
 
 					else if (TemptCube.name == "V2_PL1") {
-						Global.RotateNum = 8;
+						Global.RotateNum = -8;
 					} else if (TemptCube.name == "V2_PL2") {
-						Global.RotateNum = 7;
+						Global.RotateNum = -7;
 					} else if (TemptCube.name == "V2_PL3") {
-						Global.RotateNum = 7;
+						Global.RotateNum = -7;
 					} else if (TemptCube.name == "V2_PL4") {
-						Global.RotateNum = 8;
+						Global.RotateNum = -8;
 					} else if (TemptCube.name == "V2_PR1") {
-						Global.RotateNum = 5;
+						Global.RotateNum = -5;
 					} else if (TemptCube.name == "V2_PR2") {
-						Global.RotateNum = 6;
+						Global.RotateNum = -6;
 					} else if (TemptCube.name == "V2_PR3") {
-						Global.RotateNum = 6;
+						Global.RotateNum = -6;
 					} else if (TemptCube.name == "V2_PR4") {
-						Global.RotateNum = 5;
+						Global.RotateNum = -5;
 					}
 
 					/* else if (TemptCube.name == "PD1") {
@@ -326,7 +331,7 @@ public class TouchController : MonoBehaviour {
 				} else if (TemptCube.name == "PD5") {
 					Global.RotateNum = 16;
 				}*/
-					CubeRotate.ClickRotate ();
+					Global.ClickRotate ();
 					Arrow.transform.position = new Vector3 (100, 100, 100);
 
 				}
@@ -335,11 +340,14 @@ public class TouchController : MonoBehaviour {
 			//hitInfo.collider.gameObject.SetActive (false);
 		}
 
-		if (Input.GetMouseButtonDown (1) && Global.IsRotating != true) {
+		if (Input.GetMouseButtonDown (1) && Global.IsRotating != true && Global.PlayerMove != true) {
 			//CubeHeart = Input.mousePosition;
 				Arrow.transform.position = Global.BeTouchedCube.transform.position;
 				TemptCube = Global.BeTouchedCube;
+				Global.BeTouchedCube.GetComponent<Renderer> ().material = OriginMaterial;
 				Arrow.transform.rotation = Global.BeTouchedCube.transform.rotation;
+
+
 		}
 
 		if (Input.GetMouseButtonUp (1)) {
@@ -347,28 +355,6 @@ public class TouchController : MonoBehaviour {
 			Global.BeTouchedCube = GameObject.Find("VeryFarPosition");
 		}
 
-		/*if (Input.GetMouseButtonUp (1) && Global.IsRotating != true) {
-			if (Mathf.Abs (MouseTan) <= 0.3f) {
-				if(MouseTan < 0)
-					Global.RotateNum = 4;
-				if(MouseTan > 0)
-					Global.RotateNum = 15;
-				CubeRotate.ClickRotate ();
-			}else if (Mathf.Abs (MouseTan) <= 0.6f && Mathf.Abs (MouseTan) > 0.3f) {
-				if(MouseTan < 0)
-				Global.RotateNum = 3;
-				if(MouseTan > 0)
-					Global.RotateNum = 10;
-				CubeRotate.ClickRotate ();
-			}else if (Mathf.Abs (MouseTan) <= 1f && Mathf.Abs (MouseTan) > 0.6f) {
-				if(MouseTan < 0)
-				Global.RotateNum = 9;
-				if(MouseTan > 0)
-					Global.RotateNum = 16;
-				CubeRotate.ClickRotate ();
-			}  else{
-				Global.RotateNum = 0;
-			}
-		}*/
+
 	}
 }

@@ -11,16 +11,17 @@ public class FloorBuilder : MonoBehaviour {
 	public int CubeMode;
 	public int FloorMode;
 
+
 	void Start () {
 
-		Floor = GameObject.Find ("Floor_Origin");
+		/*
 			for (int i = 0; i < 9; i++) {
 				for (int j = 0; j < 9; j++) {
 					FloorClone = Instantiate (Floor, Floor.transform.position + new Vector3 (-i, 0, -j), Quaternion.identity);
 					Count++;
 					FloorClone.name = ("Floor_" + Count);
 				}
-			}
+			}*/
 		//Floor.SetActive (false);
 
 		BuildFloor ();
