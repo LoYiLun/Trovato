@@ -18,13 +18,15 @@ public class CubeController : MonoBehaviour {
 	public GameObject CubeHome;
 	public GameObject CubeLeader;
 	public int CubeMode;
-	public GameObject Player;
+	private GameObject Player;
 	private int ExtraChild;
 	private float FixedP = 0.3f;
 
 
 
+
 	void Start () {
+
 		if (CubeMode == 2) {
 			RotateSpeed = 60;
 		} else if (CubeMode == 3) {
@@ -34,6 +36,7 @@ public class CubeController : MonoBehaviour {
 
 
 	void Update () {
+		Player = Global.Player;
 		if (Global.SetCubeTeam) {
 
 			// 2*2*2 魔方
@@ -298,6 +301,7 @@ public class CubeController : MonoBehaviour {
 						if (StartRotate == false && FinishRotate == false)
 							Left_CubeL_Setting ();
 						this.transform.parent = CubeLeader.transform;
+
 						StartRotate = true;
 					}
 				}

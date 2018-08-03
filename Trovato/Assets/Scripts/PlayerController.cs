@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	public GameObject Player;
 	private Vector3 MoveToTarget;
 	private Vector3 MoveDir;
 	private float MoveL;
@@ -13,18 +12,23 @@ public class PlayerController : MonoBehaviour {
 	private float TargetL;
 	private float TargetR;
 	GameObject Box;
+	GameObject Player;
 	float PushX;
 	float PushY;
 	float PushZ;
+	Vector3 NowPos;
+	Vector3 FixedHeight;
 
 	//private float MoveSpeed = 0.05f;
 
 	void Start () {
-		Player.transform.parent = null;
+		Player = Global.Player;
+		FixedHeight = new Vector3 (0, 1.3f, 0);
 	}
 	
 
 	void FixedUpdate () {
+		Player = Global.Player;
 		MoveToTarget = Global.BeTouchedObj.transform.position;
 		MoveL = -(MoveToTarget.z - Player.transform.position.z);
 		MoveR = -(MoveToTarget.x - Player.transform.position.x);
@@ -52,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 					PushZ = 1;
 					PushX = 0;
 				}
-			} else if(Mathf.Abs (MoveD) < 1.5f){
+			} else if(Mathf.Abs (MoveD) < 3f){
 				PlayerStop();
 			}
 
@@ -62,7 +66,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void PlayerStop(){
-		Player.transform.position = MoveToTarget + new Vector3(0,1.3f,0);
+		Player.transform.position = MoveToTarget + FixedHeight;
 		Global.PlayerMove = false;
 	}
 
@@ -85,6 +89,15 @@ public class PlayerController : MonoBehaviour {
 			Player.transform.position = new Vector3(4, 5.5f, 4);
 			Global.OnCubeNum = 1;
 		}
+		if (other.gameObject.layer == 10) {
+			print ("Floor: " + other.gameObject.name);
+			NowPos = other.gameObject.transform.position;
+		}
+		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") {
+			Global.PlayerMove = false;
+			Player.transform.position = NowPos + FixedHeight;
+		}
+
 
 
 	}

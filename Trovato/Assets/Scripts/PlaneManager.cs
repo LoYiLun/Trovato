@@ -14,14 +14,15 @@ public class PlaneManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        TreePos = new Vector3(transform.position.x, 7.12f, transform.position.z);
-        StonePos = new Vector3(transform.position.x + 2.55f, -3.2f, transform.position.z - 1.92f);
-        Type = 0;
+		// TreePos = new Vector3(transform.position.x, 7.12f, transform.position.z);
+        // StonePos = new Vector3(transform.position.x + 2.55f, -3.2f, transform.position.z - 1.92f);
+		Type = 0;
     }
 
     // Update is called once per frame
-    void Update()
-    {
+	void Update(){
+		TreePos = new Vector3(transform.position.x, transform.position.y + 2.4f, transform.position.z);
+		StonePos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         /*if (ChangeCreateMode.Clear&& !IsEmpty)
         {
                 Destroy(transform.GetChild(0).gameObject);

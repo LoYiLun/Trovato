@@ -26,11 +26,13 @@ public class TouchController : MonoBehaviour {
 
 
 
-		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10)) {
+		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true) {
 			Debug.DrawLine (Camera.main.transform.position, hitInfo.transform.position, Color.yellow, 0.1f, true);
 			Global.BeTouchedObj = hitInfo.collider.gameObject;
-			Global.PlayerMove = true;
-
+			if (Global.Player.activeSelf) 
+			{
+				Global.PlayerMove = true;
+			}
 		} 
 
 		if (Input.GetMouseButton (1) && Physics.Raycast (ray, out hitInfo, 500, 1 << 9)) {
