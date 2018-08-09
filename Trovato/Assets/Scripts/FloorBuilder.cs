@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FloorBuilder : MonoBehaviour {
 
+	// CubeMode為魔方層數
+	// FloorMode為一魔方格的邊長數
 	public GameObject Floor;
 	private GameObject FloorClone;
 	private int Count = 0;
@@ -13,31 +15,16 @@ public class FloorBuilder : MonoBehaviour {
 
 
 	void Start () {
-
-		/*
-			for (int i = 0; i < 9; i++) {
-				for (int j = 0; j < 9; j++) {
-					FloorClone = Instantiate (Floor, Floor.transform.position + new Vector3 (-i, 0, -j), Quaternion.identity);
-					Count++;
-					FloorClone.name = ("Floor_" + Count);
-				}
-			}*/
-		//Floor.SetActive (false);
-
 		BuildFloor ();
 
-
-	
 	}
 	
 
 	void Update () {
 
-
 	}
 
 	public void BuildFloor(){
-		//Floor = GameObject.Find ("Floor_Origin");
 		FloorRange = CubeMode * FloorMode;
 		for (int i = 0; i < FloorRange; i++) {
 			for (int j = 0; j < FloorRange; j++) {
@@ -47,7 +34,6 @@ public class FloorBuilder : MonoBehaviour {
 
 			}
 		}
-		//Floor.SetActive (false);
 	}
 
 }

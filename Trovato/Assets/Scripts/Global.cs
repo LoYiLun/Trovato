@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Global : MonoBehaviour {
 
 	public int P_RotateNum;
 	public GameObject GetPlayer;
 	public static GameObject Player; 
+
+	// Obj的是左鍵，Cube的是右鍵
 	public static GameObject BeTouchedObj;
 	public static GameObject BeTouchedCube;
 	public static GameObject BePointedObj;
@@ -24,16 +27,26 @@ public class Global : MonoBehaviour {
 	public static bool PlayerMoveBtn;
 	public static bool StopTouch;
 
+	public static Material YellowSkin;
+	public Text GetStatus;
+	public static Text Status;
 
-	void Start () {
+	void Awake(){
 		Player = GetPlayer;
 		Player.transform.parent = null;
-		BeTouchedObj = GameObject.Find ("Floor_Origin_V3");
+		BeTouchedObj = Player;
 		OnCubeNum = 1;
+		YellowSkin =  Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+		Status = GetStatus;
+	}
+
+	void Start () {
+
 	}
 	
 
 	void Update () {
+		Status = GetStatus;
 
 		if (Player.activeSelf) 
 		{

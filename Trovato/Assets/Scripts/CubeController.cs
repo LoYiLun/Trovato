@@ -5,27 +5,37 @@ using UnityEngine.UI;
 
 public class CubeController : MonoBehaviour {
 
+	// 以最接近玩家的方塊為原點，LRD分別為左/右/下
 	public int ID;
 	public int CubeL;
 	public int CubeR;
 	public int CubeD;
+
+	// CubeMode代表魔方的層數
+	public int CubeMode;
+	public GameObject CubeHome;
+	public GameObject CubeLeader;
+	private GameObject Player;
+
+	// DX~DZ調整魔方轉動方向
+	// TA~TK為調整方塊LRD座標的暫存值
 	private int DX, DY, DZ, TA, TB, TK;
 	private float RotateSpeed = 30f;
 	private float RotateTo90;
 	private bool SetTeam;
 	private bool StartRotate;
 	private bool FinishRotate;
-	public GameObject CubeHome;
-	public GameObject CubeLeader;
-	public int CubeMode;
-	private GameObject Player;
+
+	// ExtraChild為處理Player等不隸屬於魔方單位的修正值
 	private int ExtraChild;
 	private float FixedP = 0.3f;
 
+	//GameObject EnemyGroup_01;
 
 
 
 	void Start () {
+		//EnemyGroup_01 = GameObject.Find ("EnemyGroup_01");
 
 		if (CubeMode == 2) {
 			RotateSpeed = 60;
@@ -40,6 +50,7 @@ public class CubeController : MonoBehaviour {
 		if (Global.SetCubeTeam) {
 
 			// 2*2*2 魔方
+			// 依順時針分為 -1 ~ -12 的方向
 			if (CubeMode == 2) {
 				if (this.CubeL == 1 && Global.RotateNum == -1) {
 					if (Global.PlayerZ >= 5 - FixedP && Global.PlayerZ <= 7 + FixedP) {
@@ -174,7 +185,9 @@ public class CubeController : MonoBehaviour {
 				}
 			}
 
+
 			// 3*3*3 魔方
+			// 依順時針分為 1 ~ 18 的方向
 			if (CubeMode == 3) {
 				if (this.CubeL == 2 && Global.RotateNum == 1) {
 					if (Global.PlayerZ >= -4 - FixedP && Global.PlayerZ <= -2 + FixedP) {
@@ -214,6 +227,8 @@ public class CubeController : MonoBehaviour {
 					if (StartRotate == false && FinishRotate == false)
 						Right_CubeD_Setting ();
 					this.transform.parent = CubeLeader.transform;
+					//EnemyGroup_01.transform.parent = CubeLeader.transform;
+					//ExtraChild = 1;
 
 					if (Global.OnCubeNum == 1) {
 						Player.transform.parent = CubeLeader.transform;
@@ -327,6 +342,8 @@ public class CubeController : MonoBehaviour {
 					if (StartRotate == false && FinishRotate == false)
 						Left_CubeD_Setting ();
 					this.transform.parent = CubeLeader.transform;
+					//EnemyGroup_01.transform.parent = CubeLeader.transform;
+					//ExtraChild = 1;
 
 					if (Global.OnCubeNum == 1) {
 						Player.transform.parent = CubeLeader.transform;
@@ -377,12 +394,15 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		if (StartRotate) {
-
+		if (StartRotate) 
+		{
+			Global.Status.text = "轉動中";
 			Global.IsRotating = true;
 			Player.GetComponent<Rigidbody> ().useGravity = false;
-			if (CubeLeader.transform.childCount >= (CubeMode * CubeMode + ExtraChild)) {
 
+			// 等所有child集結到CubeLeader下後再旋轉魔方
+			if (CubeLeader.transform.childCount >= (CubeMode * CubeMode + ExtraChild)) 
+			{
 				Global.SetCubeTeam = false;
 				CubeLeader.transform.Rotate (new Vector3 (DX * RotateSpeed * Time.deltaTime, DY * RotateSpeed * Time.deltaTime, DZ * RotateSpeed * Time.deltaTime));
 			}
@@ -391,18 +411,26 @@ public class CubeController : MonoBehaviour {
 				Mathf.Abs (CubeLeader.transform.eulerAngles.y) +
 				Mathf.Abs (CubeLeader.transform.eulerAngles.z) - 180);
 
-			if (RotateTo90 >= 85 && RotateTo90 <= 95f) {
+			// 大約轉至定位時，用來精準校正位置
+			if (RotateTo90 >= 85 && RotateTo90 <= 95f) 
+			{
 				CubeLeader.transform.rotation = Quaternion.Euler (DX * 90, DY * 90, DZ * 90);
 				this.transform.parent = CubeHome.transform;
 				Player.transform.parent = null;
+				//EnemyGroup_01.transform.parent = null;
 				ExtraChild = 0;
 
-				if (CubeLeader.transform.childCount == 0 && FinishRotate == false) {
+				// 等所有child都解散後再進行後續處理
+				if (CubeLeader.transform.childCount == 0 && FinishRotate == false) 
+				{
 					FinishRotate = true;
 					StartRotate = false;
 				}
 			}
-		} else if (FinishRotate) {
+		} 
+		else if (FinishRotate) 
+		{
+			Global.Status.text = "正常";
 			CubeLeader.transform.rotation = Quaternion.Euler (0, 0, 0);
 			Global.IsRotating = false;
 			Global.RotateNum = 0;
@@ -412,9 +440,10 @@ public class CubeController : MonoBehaviour {
 	}
 		
 
-	// set cube's location
+	// 設置方塊轉動後座標
 	void Right_CubeL_Setting(){
-		if (CubeMode == 2) {
+		if (CubeMode == 2) 
+		{
 			TK = TA = this.CubeD;
 			TA = TB = this.CubeR;
 			TB = 1-TK;
@@ -425,7 +454,8 @@ public class CubeController : MonoBehaviour {
 			DZ = 1;
 		}
 
-		if (CubeMode == 3) {
+		if (CubeMode == 3) 
+		{
 			TK = TA = this.CubeD - 1;
 			TA = TB = this.CubeR - 1;
 			TB = -TK;
@@ -439,7 +469,8 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Right_CubeD_Setting(){
-		if (CubeMode == 2) {
+		if (CubeMode == 2) 
+		{
 			TK = TA = this.CubeL;
 			TA = TB = this.CubeR;
 			TB = 1-TK;
@@ -450,7 +481,8 @@ public class CubeController : MonoBehaviour {
 			DZ = 0;
 		}
 
-		if (CubeMode == 3) {
+		if (CubeMode == 3) 
+		{
 			TK = TA = this.CubeL - 1;
 			TA = TB = this.CubeR - 1;
 			TB = -TK;
@@ -463,7 +495,8 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Right_CubeR_Setting(){
-		if (CubeMode == 2) {
+		if (CubeMode == 2) 
+		{
 			TK = TA = this.CubeL;
 			TA = TB = this.CubeD;
 			TB = 1-TK;
@@ -474,7 +507,8 @@ public class CubeController : MonoBehaviour {
 			DZ = 0;
 		}
 
-		if (CubeMode == 3) {
+		if (CubeMode == 3) 
+		{
 			TK = TA = this.CubeL - 1;
 			TA = TB = this.CubeD - 1;
 			TB = -TK;
@@ -487,7 +521,8 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Left_CubeR_Setting(){
-		if (CubeMode == 2) {
+		if (CubeMode == 2) 
+		{
 			TK = TA = this.CubeD;
 			TA = TB = this.CubeL;
 			TB = 1-TK;
@@ -498,7 +533,8 @@ public class CubeController : MonoBehaviour {
 			DZ = 0;
 		}
 
-		if (CubeMode == 3) {
+		if (CubeMode == 3) 
+		{
 			TK = TA = this.CubeD - 1;
 			TA = TB = this.CubeL - 1;
 			TB = -TK;
@@ -511,7 +547,8 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Left_CubeL_Setting(){
-		if (CubeMode == 2) {
+		if (CubeMode == 2) 
+		{
 			TK = TA = this.CubeR;
 			TA = TB = this.CubeD;
 			TB = 1-TK;
@@ -522,7 +559,8 @@ public class CubeController : MonoBehaviour {
 			DZ = -1;
 		}
 
-		if (CubeMode == 3) {
+		if (CubeMode == 3) 
+		{
 			TK = TA = this.CubeR - 1;
 			TA = TB = this.CubeD - 1;
 			TB = -TK;
@@ -535,7 +573,8 @@ public class CubeController : MonoBehaviour {
 	}
 
 	void Left_CubeD_Setting(){
-		if (CubeMode == 2) {
+		if (CubeMode == 2) 
+		{
 			TK = TA = this.CubeR;
 			TA = TB = this.CubeL;
 			TB = 1-TK;
@@ -546,7 +585,8 @@ public class CubeController : MonoBehaviour {
 			DZ = 0;
 		}
 
-		if (CubeMode == 3) {
+		if (CubeMode == 3) 
+		{
 			TK = TA = this.CubeR - 1;
 			TA = TB = this.CubeL - 1;
 			TB = -TK;

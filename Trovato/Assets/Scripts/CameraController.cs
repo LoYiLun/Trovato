@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour {
 	public GameObject Player;
 	private Vector3 CamToPlayer;
 
+
 	// Use this for initialization
 	void Start () {
 		CamToPlayer = Cam.transform.position - Player.transform.position;
