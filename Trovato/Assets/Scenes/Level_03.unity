@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: "\u5C0F\u738B\u5B50"
-  nameColor: {r: 1, g: 1, b: 1, a: 1}
+  nameColor: {r: 0, g: 0, b: 0, a: 1}
   soundEffect: {fileID: 0}
   portraits: []
   portraitsFace: 0
@@ -3270,7 +3270,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100004, guid: 46a4826811a23474596f729cb872964b, type: 3}
+  - {fileID: 2100000, guid: 9bd335d3b618ffc49803460f4bb6ad0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3515,6 +3515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &267980211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4122,6 +4123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &341532641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4778,6 +4780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &416202242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7089,6 +7092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &569052986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8054,7 +8058,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100004, guid: 46a4826811a23474596f729cb872964b, type: 3}
+  - {fileID: 2100000, guid: 9bd335d3b618ffc49803460f4bb6ad0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9858,6 +9862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!1 &952919411
 GameObject:
   m_ObjectHideFlags: 0
@@ -9917,7 +9922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: "\u570B\u738B"
-  nameColor: {r: 1, g: 1, b: 1, a: 1}
+  nameColor: {r: 0, g: 0, b: 0, a: 1}
   soundEffect: {fileID: 0}
   portraits: []
   portraitsFace: 0
@@ -10820,7 +10825,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100004, guid: 46a4826811a23474596f729cb872964b, type: 3}
+  - {fileID: 2100000, guid: 9bd335d3b618ffc49803460f4bb6ad0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11159,6 +11164,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a76b5e05e9e71459545e8043e5e47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FadeInTime: 1
+  FadeOutTime: 1
+  FadeInColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+  FadeOutColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
 --- !u!81 &1073106548
 AudioListener:
   m_ObjectHideFlags: 0
@@ -11775,6 +11784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &1120808941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12971,6 +12981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &1270159626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14102,6 +14113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &1380419462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14850,6 +14862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!1 &1471107492
 GameObject:
   m_ObjectHideFlags: 0
@@ -16258,6 +16271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &1597970566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18605,6 +18619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &1793961439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18879,6 +18894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &1822912873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19247,6 +19263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &1863501422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19437,6 +19454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &1927982104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19648,7 +19666,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100004, guid: 46a4826811a23474596f729cb872964b, type: 3}
+  - {fileID: 2100000, guid: 9bd335d3b618ffc49803460f4bb6ad0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20771,6 +20789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!1 &2075636049
 GameObject:
   m_ObjectHideFlags: 0
@@ -21119,6 +21138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e2796969aa10194f9b938fb01868fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CamObj: {fileID: 1237292479}
 --- !u!114 &2093297520
 MonoBehaviour:
   m_ObjectHideFlags: 0
