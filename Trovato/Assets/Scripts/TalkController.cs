@@ -8,23 +8,23 @@ public class TalkController : MonoBehaviour {
     public static Flowchart Talk;
 	// Use this for initialization
 	void Start () {
-        King = GameObject.Find("Cube_King");
+        King = GameObject.Find("King");
         Talk = GameObject.Find("對話").GetComponent<Flowchart>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        
+
     }
-    public static bool FisrtTouchKing
+    public static bool FirstTouchKing
     {
-        get { return Talk.GetBooleanVariable("FisrtTouchKing"); }
+        get { return Talk.GetBooleanVariable("FirstTouchKing"); }
     }
     void OnCollisionEnter(UnityEngine.Collision other)
     {
-        if (!TalkController.FisrtTouchKing && other.transform.name == "Cube_King")
+        if (!TalkController.FirstTouchKing && other.transform.name == "King")
         {
-            Flowchart.BroadcastFungusMessage("FisrtTouchKing");
+            Flowchart.BroadcastFungusMessage("FirstTouchKing");
         }
     }
 }

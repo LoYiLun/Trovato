@@ -13,27 +13,47 @@ public class FloorBuilder : MonoBehaviour {
 	public int CubeMode;
 	public int FloorMode;
 
+	public int FloorID;
+	GameObject[] FloorGroup = new GameObject[81];
+
+
+	bool FinishBuilding;
 
 	void Start () {
 		BuildFloor ();
-
 	}
 	
 
-	void Update () {
+	void FixedUpdate () {
+		
 
+		if (FinishBuilding) {
+			if (Global.OnCubeNum == FloorID) {
+				for(int i = 0 ; i < FloorRange * FloorRange; i++) {
+					FloorGroup[i].GetComponent<Collider> ().enabled = true;
+				}
+			} else {
+				for(int i = 0 ; i < FloorRange * FloorRange; i++) {
+					FloorGroup[i].GetComponent<Collider> ().enabled = false;
+				}
+			}
+		}
 	}
 
-	public void BuildFloor(){
+	void BuildFloor(){
 		FloorRange = CubeMode * FloorMode;
 		for (int i = 0; i < FloorRange; i++) {
 			for (int j = 0; j < FloorRange; j++) {
-				FloorClone = Instantiate (Floor, Floor.transform.position + new Vector3 (-i, 0, -j), Quaternion.identity);
+				FloorClone= Instantiate (Floor, Floor.transform.position + new Vector3 (-i, 0, -j), Quaternion.identity);
+				FloorGroup [Count] = FloorClone;
 				Count++;
-				FloorClone.name = ("Floor_" + Count);
+				FloorClone.name = ("V" + CubeMode + "Floor_" + Count);
+
 
 			}
 		}
+		FinishBuilding = true;
+
 	}
 
 }

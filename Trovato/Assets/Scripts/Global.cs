@@ -26,10 +26,13 @@ public class Global : MonoBehaviour {
 
 	public static bool PlayerMoveBtn;
 	public static bool StopTouch;
+	public static bool IsCamCtrl;
 
 	public static Material YellowSkin;
 	public Text GetStatus;
 	public static Text Status;
+
+	public static GameObject NextTarget;
 
 	void Awake(){
 		Player = GetPlayer;

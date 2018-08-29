@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour {
 	private float TargetL;
 	private float TargetR;
 	GameObject Player;
-	GameObject Portal;
-	GameObject Portal2;
 	Vector3 NowPos;
 	Vector3 FixedHeight;
 
@@ -26,41 +24,76 @@ public class PlayerController : MonoBehaviour {
 	float PushZ;
 	//private float MoveSpeed = 0.05f;
 
+	private GameObject[] Obstacles;
+
+	//float MoveSpeed = 1f;
+
+	GameObject Portal;
+	GameObject Portal2;
+	bool PortalPower;
+
+	void Awake(){
+		
+	}
+
 	void Start () {
 		Player = Global.Player;
 		PlayerSetting();
 		FixedHeight = new Vector3 (0, 0.8f, 0);
-		Portal = GameObject.Find ("Portal");
-		Portal2 = GameObject.Find ("Portal2");
+
+
+		//Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
 	}
 	
 
 	void FixedUpdate () {
+		Portal = GameObject.Find ("Portal");
+		Portal2 = GameObject.Find ("Portal2");
+
+		if (Portal.transform.position.y > 6 && Portal2.transform.position.y > 4) {
+			PortalPower = true;
+			Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+			Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+		} else {
+			PortalPower = false;
+			Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
+			Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
+		}
+
+		if (Global.PlayerMove) {
+			//Player.transform.position = Vector3.MoveTowards (transform.position, Global.NextTarget.transform.position, MoveSpeed * Time.deltaTime);
+		}
+
 		Player = Global.Player;
 		MoveToTarget = Global.BeTouchedObj.transform.position;
 		MoveL = -(MoveToTarget.z - Player.transform.position.z);
 		MoveR = -(MoveToTarget.x - Player.transform.position.x);
 		MoveD = -(MoveToTarget.y - Player.transform.position.y);
 
+
 		// Player自動尋路功能
 		if (Global.PlayerMove && Global.IsRotating == false) {
 			if (Mathf.Abs (MoveR) > 0.11f) {
 				if (MoveR > 0) {
 					Player.transform.position += new Vector3 (-0.1f, 0, 0);
+					Player.transform.rotation = Quaternion.Euler (0, -90, 0);
 					PushX = -1;
 					PushZ = 0;
 				} else if (MoveR < 0) {
 					Player.transform.position += new Vector3 (0.1f, 0, 0);
+					Player.transform.rotation = Quaternion.Euler (0, 90, 0);
 					PushX = 1;
 					PushZ = 0;
 				}
 			} else if (Mathf.Abs (MoveL) > 0.11f) {
 				if (MoveL > 0) {
 					Player.transform.position += new Vector3 (0, 0, -0.1f);
+					Player.transform.rotation = Quaternion.Euler (0, 180, 0);
 					PushZ = -1;
 					PushX = 0;
 				} else if (MoveL < 0) {
 					Player.transform.position += new Vector3 (0, 0, 0.1f);
+					Player.transform.rotation = Quaternion.Euler (0, 0, 0);
 					PushZ = 1;
 					PushX = 0;
 				}
@@ -70,6 +103,22 @@ public class PlayerController : MonoBehaviour {
 
 
 		}
+
+
+		/* 隱藏鏡頭前的建築
+		for (int i = 0; i < Obstacles.Length; i++) {
+			float Distance;
+			Distance = Mathf.Abs (Obstacles [i].transform.position.x - Player.transform.position.x) + Mathf.Abs (Obstacles [i].transform.position.z - Player.transform.position.z) + Mathf.Abs (Obstacles [i].transform.position.y - Player.transform.position.y);
+
+			if (((Obstacles [i].transform.position.x > Player.transform.position.x) || (Obstacles [i].transform.position.z > Player.transform.position.z))
+				&& Distance <2) {
+				//Obstacles [i].GetComponent<Renderer> ().material.color = new Color{a = 0.2f};
+				//Obstacles [i].GetComponent<Renderer> ().material = Resources.Load ("Materials/Ghost", typeof(Material)) as Material;
+			} else {
+				//Obstacles [i].GetComponent<Renderer> ().material.color = new Color{a = 1f};
+				//Obstacles [i].GetComponent<Renderer> ().material = Resources.Load ("Materials/Dark", typeof(Material)) as Material;
+			}
+		}*/
 
 	}
 
@@ -88,6 +137,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
+		
+
 		if (other.gameObject.tag == "Mission") 
 		{
 			Global.MissionObj = other.gameObject;
@@ -99,19 +150,26 @@ public class PlayerController : MonoBehaviour {
 			PushMoveableObj ();
 		}
 
-		if (other.gameObject.name == "Portal") 
+		if (other.gameObject.name == "Portal" && PortalPower) 
 		{
+
 			Global.PlayerMove = false;
-			Player.transform.position = Portal2.transform.position + new Vector3(1, 0.2f, 0);
-			//Player.transform.position = new Vector3(-9,6,7);
+			//Player.transform.position = new Vector3(-15, 5.4f, 4.5f);
+			Player.transform.position = Portal2.transform.position + new Vector3(0,0.2f,0);
+			Player.transform.rotation = Portal2.transform.rotation;
+			Player.transform.Translate (0, 0, 1);
 			Global.OnCubeNum = 2;
 
 		}
 
-		if (other.gameObject.name == "Portal2") 
+		if (other.gameObject.name == "Portal2" && PortalPower) 
 		{
+
 			Global.PlayerMove = false;
-			Player.transform.position = Portal.transform.position + new Vector3(1, 0.2f, 0);
+			Player.transform.position = Portal.transform.position + new Vector3(0,0.2f,0);
+			Player.transform.rotation = Portal.transform.rotation;
+			Player.transform.Rotate (0, 90, 0);
+			Player.transform.Translate (0, 0, 2);
 			//Player.transform.position = new Vector3(4, 5.5f, 4);
 			Global.OnCubeNum = 1;
 		}
@@ -135,6 +193,7 @@ public class PlayerController : MonoBehaviour {
 	void PushMoveableObj(){
 		Box.transform.position += new Vector3 (PushX, PushY, PushZ);
 		PushX = 0;
+		PushY = 0;
 		PushZ = 0;
 	}
 

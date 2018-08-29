@@ -97,7 +97,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 1 && Global.RotateNum == -5) {
-					if (Global.PlayerX >= -11 - FixedP && Global.PlayerX <= -9 + FixedP) {
+					if (Global.PlayerX >= -15 - FixedP && Global.PlayerX <= -13 + FixedP) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -108,7 +108,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 0 && Global.RotateNum == -6) {
-					if (Global.PlayerX >= -8 - FixedP && Global.PlayerX <= -6 + FixedP) {
+					if (Global.PlayerX >= -12 - FixedP && Global.PlayerX <= -10 + FixedP) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -163,7 +163,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 0 && Global.RotateNum == -11) {
-					if (Global.PlayerX >= -8 - FixedP && Global.PlayerX <= -6 + FixedP) {
+					if (Global.PlayerX >= -12 - FixedP && Global.PlayerX <= -10 + FixedP) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -174,7 +174,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 1 && Global.RotateNum == -12) {
-					if (Global.PlayerX >= -11 - FixedP && Global.PlayerX <= -9 + FixedP) {
+					if (Global.PlayerX >= -15 - FixedP && Global.PlayerX <= -13 + FixedP) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -411,9 +411,18 @@ public class CubeController : MonoBehaviour {
 				Mathf.Abs (CubeLeader.transform.eulerAngles.y) +
 				Mathf.Abs (CubeLeader.transform.eulerAngles.z) - 180);
 
+			if (RotateTo90 >= 45 && RotateTo90 <= 135) {
+				RotateSpeed  *= 0.91f;
+			}
+
 			// 大約轉至定位時，用來精準校正位置
-			if (RotateTo90 >= 85 && RotateTo90 <= 95f) 
+			if (RotateTo90 >= 87 && RotateTo90 <= 93f) 
 			{
+				if (CubeMode == 2) {
+					RotateSpeed = 60;
+				} else if (CubeMode == 3) {
+					RotateSpeed = 30;
+				}
 				CubeLeader.transform.rotation = Quaternion.Euler (DX * 90, DY * 90, DZ * 90);
 				this.transform.parent = CubeHome.transform;
 				Player.transform.parent = null;

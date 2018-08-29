@@ -9,9 +9,11 @@ public class C_ScrewPlatform : MonoBehaviour {
 	float Height;
 	Vector2 VHeight;
 
+
 	void Start () 
 	{
 		//Rotation = gameObject.transform;
+
 
 
 
@@ -20,6 +22,7 @@ public class C_ScrewPlatform : MonoBehaviour {
 
 	void Update () 
 	{
+		
 		Height = gameObject.transform.localPosition.y;
 		if (Global.RotateNum == 3 && Height < 0) 
 		{

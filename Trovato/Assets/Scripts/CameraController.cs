@@ -11,26 +11,34 @@ public class CameraController : MonoBehaviour {
 	public GameObject Player;
 	private Vector3 CamToPlayer;
 
+	public static GameObject CurrentCam;
 
-	// Use this for initialization
-	void Start () {
+	void Awake(){
 		CamToPlayer = Cam.transform.position - Player.transform.position;
 		CamObj2.SetActive (false);
+		CurrentCam = Cam;
+	}
+
+	void Start () {
+
 	}
 	
-	// Update is called once per frame
+
 	void Update () {
 		Cam.transform.position = CamToPlayer + Player.transform.position;
+		//Cam.transform.LookAt (GameObject.Find ("ScreenHeart").transform);
 	}
 
 	public void BirdCam(){
 		CamObj.SetActive (false);
 		CamObj2.SetActive (true);
+		CurrentCam = Cam2;
 	}
 
 	public void StalkerCam(){
 		CamObj.SetActive (true);
 		CamObj2.SetActive (false);
+		CurrentCam = Cam;
 	}
 
 }

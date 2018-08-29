@@ -8,17 +8,115 @@ public class TouchController : MonoBehaviour {
 	private GameObject TemptCube;
 	private Material OriginMaterial;
 
+	public float mx;
+	public float my;
+	private GameObject Cam;
+	//private Vector3 ScreenHeart;
+	//private float CamRollSpeed = 3;
+	//private Vector3 ScreenX;
+	//private Vector3 ScreenY;
+
+	//public GameObject GuideBall;
+	//GameObject[] TemptGuideBall = new GameObject[256];
+	//int k = 0;
+
+
+
 	void Start () {
 		OriginMaterial = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+		//ScreenHeart = GameObject.Find ("ScreenHeart").transform.position;
+		Cam = CameraController.CurrentCam;
+		Cam.transform.LookAt (Vector3.zero);
 
+	}
+
+	void PathFinding(){
+
+
+		// Method A
+		/*
+		foreach (GameObject Balls in TemptGuideBall) {
+			Destroy (Balls);
+		}
+
+		TemptGuideBall = new GameObject[256];
+		k = 0;
+
+		for (int i = -8; i < 8; i++) {
+			for (int j = -8; j < 8; j++) {
+				TemptGuideBall[k] = Instantiate (GuideBall, Global.Player.transform.position + new Vector3(i,0,j), Quaternion.identity);
+				k++;
+			}
+		}*/
+
+		// Method B
+		/*
+		for(int i=0 ; i<4 ; i++){
+			TemptGuideBall[i] = Instantiate (GuideBall, Global.Player.transform.position, Quaternion.identity);
+			TemptGuideBall [i].transform.Rotate (0, i*90, 0);
+		}
+		Global.NextTarget = TemptGuideBall [0];
+		*/
 	}
 		
 	void Update () {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hitInfo;
 
+		mx = Input.GetAxis ("Mouse X") * 10 * Time.deltaTime;
+		my = Input.GetAxis ("Mouse Y") * 10;
+
+		Cam = CameraController.CurrentCam;
+		//Cam.transform.LookAt (ScreenHeart);
+
+
+		/*
+		if (Input.GetKey (KeyCode.W)) {
+			Cam.transform.RotateAround (Vector3.zero, ScreenX, CamRollSpeed);
+			Global.IsCamCtrl = true;
+		}
+
+		if (Input.GetKey (KeyCode.S)) {
+			Cam.transform.RotateAround (Vector3.zero, ScreenX, CamRollSpeed);
+			Global.IsCamCtrl = true;
+		}
+
+		if (Input.GetKey (KeyCode.A)) {
+			Cam.transform.RotateAround (Vector3.zero, ScreenY, CamRollSpeed);
+			Global.IsCamCtrl = true;
+		}
+
+		if (Input.GetKey (KeyCode.D)) {
+			Cam.transform.RotateAround (Vector3.zero, ScreenY, CamRollSpeed);
+			Global.IsCamCtrl = true;
+		}
+
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			Cam.transform.position = Cam.transform.parent.transform.position;
+			Cam.transform.LookAt (Vector3.zero);
+			Global.IsCamCtrl = false;
+		}*/
+
+		/*
+		if ((Input.GetMouseButton (0) || Input.GetMouseButton (1)) && Global.IsCamCtrl == true && Physics.Raycast (ray, out hitInfo, 500)) 
+		{
+
+
+			if (my > 0) 
+			{
+				
+				Cam.transform.Translate (0, 20 * Time.deltaTime, 0);
+			}
+
+			if (my < 0) 
+			{
+				Cam.transform.Translate (0, -20 * Time.deltaTime, 0);				
+			}
+		}*/
+
+
 		// 點選滑鼠左鍵，只偵測Layer10的Floor
-		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true) 
+		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true) 
 		{
 			Debug.DrawLine (Camera.main.transform.position, hitInfo.transform.position, Color.yellow, 0.1f, true);
 			if (Global.BeTouchedObj.tag == "Floor") 
@@ -29,6 +127,9 @@ public class TouchController : MonoBehaviour {
 			// 切換成新點選的物件
 			Global.BeTouchedObj = hitInfo.collider.gameObject;
 			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = true;
+
+			PathFinding ();
+
 			if (Global.Player.activeSelf) 
 			{
 				Global.PlayerMove = true;
@@ -37,7 +138,7 @@ public class TouchController : MonoBehaviour {
 		} 
 
 		// 按著滑鼠右鍵，只偵測Layer9的CubeFunction(轉動之壁)
-		if (Input.GetMouseButton (1) && Physics.Raycast (ray, out hitInfo, 500, 1 << 9)) {
+		if (Input.GetMouseButton (1) && Physics.Raycast (ray, out hitInfo, 500, 1 << 9) && Global.IsCamCtrl != true) {
 			Debug.DrawLine (Camera.main.transform.position, hitInfo.transform.position, Color.blue, 0.1f, true);
 			Global.BeTouchedCube = hitInfo.collider.gameObject;
 			Global.BePointedObj = hitInfo.collider.gameObject;
@@ -420,7 +521,7 @@ public class TouchController : MonoBehaviour {
 		}
 
 		// 點選滑鼠右鍵
-		if (Input.GetMouseButtonDown (1) && Global.IsRotating != true && Global.PlayerMove != true) 
+		if (Input.GetMouseButtonDown (1) && Global.IsRotating != true && Global.PlayerMove != true && Global.IsCamCtrl != true) 
 		{
 			if (Global.BeTouchedCube != null) 
 			{
