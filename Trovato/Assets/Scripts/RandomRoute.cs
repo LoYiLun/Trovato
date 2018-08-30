@@ -20,6 +20,8 @@ public class RandomRoute : MonoBehaviour {
 	public GameObject[] CubeV3Plane_D;
 	public GameObject[] CubeV3Plane_E;
 	public GameObject[] CubeV3Plane_F;
+	int Count = 0;
+	GameObject[] AllRoadBlocks = new GameObject[54];
 
 	public int[] V2PlaneA_ID = new int[4];
 	public int[] V2PlaneB_ID = new int[4];
@@ -40,65 +42,72 @@ public class RandomRoute : MonoBehaviour {
 	int j = 0;
 
 	void Awake(){
-		for (int i = 0; i < 4; i++) {
-			TemptV2[k] = Instantiate (RoadBlocks [V2PlaneA_ID[i]], CubeV2Plane_A [i].transform.position, Quaternion.Euler (0, 0, 0));
-			TemptV2[k].transform.parent = CubeV2Plane_A [i].transform;
-			k++;
+		
+	}
 
-			TemptV2[k] = Instantiate (RoadBlocks [V2PlaneB_ID[i]], CubeV2Plane_B [i].transform.position, Quaternion.Euler (0, 0, -90));
-			TemptV2[k].transform.parent = CubeV2Plane_B [i].transform;
-			k++;
+	void Start () {
+		if(Global.Level == "1" || Global.Level == "3"){
+			for (int i = 0; i < 4; i++) {
+				TemptV2 [k] = Instantiate (RoadBlocks [V2PlaneA_ID [i]], CubeV2Plane_A [i].transform.position, Quaternion.Euler (0, 0, 0));
+				TemptV2 [k].transform.parent = CubeV2Plane_A [i].transform;
+				k++;
 
-			TemptV2[k] = Instantiate (RoadBlocks [V2PlaneC_ID[i]], CubeV2Plane_C [i].transform.position, Quaternion.Euler (90, 0, 0));
-			TemptV2[k].transform.parent = CubeV2Plane_C [i].transform;
-			k++;
+				TemptV2 [k] = Instantiate (RoadBlocks [V2PlaneB_ID [i]], CubeV2Plane_B [i].transform.position, Quaternion.Euler (0, 0, -90));
+				TemptV2 [k].transform.parent = CubeV2Plane_B [i].transform;
+				k++;
 
-			TemptV2[k] = Instantiate (RoadBlocks [V2PlaneD_ID[i]], CubeV2Plane_D [i].transform.position, Quaternion.Euler (0, 0, 90));
-			TemptV2[k].transform.parent = CubeV2Plane_D [i].transform;
-			k++;
+				TemptV2 [k] = Instantiate (RoadBlocks [V2PlaneC_ID [i]], CubeV2Plane_C [i].transform.position, Quaternion.Euler (90, 0, 0));
+				TemptV2 [k].transform.parent = CubeV2Plane_C [i].transform;
+				k++;
 
-			TemptV2[k] = Instantiate (RoadBlocks [V2PlaneE_ID[i]], CubeV2Plane_E [i].transform.position, Quaternion.Euler (-90, 0, 0));
-			TemptV2[k].transform.parent = CubeV2Plane_E [i].transform;
-			k++;
+				TemptV2 [k] = Instantiate (RoadBlocks [V2PlaneD_ID [i]], CubeV2Plane_D [i].transform.position, Quaternion.Euler (0, 0, 90));
+				TemptV2 [k].transform.parent = CubeV2Plane_D [i].transform;
+				k++;
 
-			TemptV2[k] = Instantiate (RoadBlocks [V2PlaneF_ID[i]], CubeV2Plane_F [i].transform.position, Quaternion.Euler (180, 0, 0));
-			TemptV2[k].transform.parent = CubeV2Plane_F [i].transform;
-			k++;
+				TemptV2 [k] = Instantiate (RoadBlocks [V2PlaneE_ID [i]], CubeV2Plane_E [i].transform.position, Quaternion.Euler (-90, 0, 0));
+				TemptV2 [k].transform.parent = CubeV2Plane_E [i].transform;
+				k++;
 
+				TemptV2 [k] = Instantiate (RoadBlocks [V2PlaneF_ID [i]], CubeV2Plane_F [i].transform.position, Quaternion.Euler (180, 0, 0));
+				TemptV2 [k].transform.parent = CubeV2Plane_F [i].transform;
+				k++;
+			}
 		}
 
-		for (int i = 0; i < 9; i++) {
-			TemptV3[j] = Instantiate (RoadBlocks [PlaneA_ID[i]], CubeV3Plane_A [i].transform.position, Quaternion.Euler (0, 0, 0));
-			TemptV3[j].transform.parent = CubeV3Plane_A [i].transform;
-			j++;
+		if (Global.Level == "2" || Global.Level == "3") {
+			for (int i = 0; i < 9; i++) {
+				TemptV3 [j] = Instantiate (RoadBlocks [PlaneA_ID [i]], CubeV3Plane_A [i].transform.position, Quaternion.Euler (0, 0, 0));
+				TemptV3 [j].transform.parent = CubeV3Plane_A [i].transform;
+				j++;
 
-			TemptV3[j] = Instantiate (RoadBlocks [PlaneB_ID[i]], CubeV3Plane_B [i].transform.position, Quaternion.Euler (0, 0, -90));
-			TemptV3[j].transform.parent = CubeV3Plane_B [i].transform;
-			j++;
+				TemptV3 [j] = Instantiate (RoadBlocks [PlaneB_ID [i]], CubeV3Plane_B [i].transform.position, Quaternion.Euler (0, 0, -90));
+				TemptV3 [j].transform.parent = CubeV3Plane_B [i].transform;
+				j++;
 
-			TemptV3[j] = Instantiate (RoadBlocks [PlaneC_ID[i]], CubeV3Plane_C [i].transform.position, Quaternion.Euler (90, 0, 0));
-			TemptV3[j].transform.parent = CubeV3Plane_C [i].transform;
-			j++;
+				TemptV3 [j] = Instantiate (RoadBlocks [PlaneC_ID [i]], CubeV3Plane_C [i].transform.position, Quaternion.Euler (90, 0, 0));
+				TemptV3 [j].transform.parent = CubeV3Plane_C [i].transform;
+				j++;
 
-			TemptV3[j] = Instantiate (RoadBlocks [PlaneD_ID[i]], CubeV3Plane_D [i].transform.position, Quaternion.Euler (0, 0, 90));
-			TemptV3[j].transform.parent = CubeV3Plane_D [i].transform;
-			j++;
+				TemptV3 [j] = Instantiate (RoadBlocks [PlaneD_ID [i]], CubeV3Plane_D [i].transform.position, Quaternion.Euler (0, 0, 90));
+				TemptV3 [j].transform.parent = CubeV3Plane_D [i].transform;
+				j++;
 
-			TemptV3[j] = Instantiate (RoadBlocks [PlaneE_ID[i]], CubeV3Plane_E [i].transform.position, Quaternion.Euler (-90, 0, 0));
-			TemptV3[j].transform.parent = CubeV3Plane_E [i].transform;
-			j++;
+				TemptV3 [j] = Instantiate (RoadBlocks [PlaneE_ID [i]], CubeV3Plane_E [i].transform.position, Quaternion.Euler (-90, 0, 0));
+				TemptV3 [j].transform.parent = CubeV3Plane_E [i].transform;
+				j++;
 
-			TemptV3[j] = Instantiate (RoadBlocks [PlaneF_ID[i]], CubeV3Plane_F [i].transform.position, Quaternion.Euler (180, 0, 0));
-			TemptV3[j].transform.parent = CubeV3Plane_F [i].transform;
-			j++;
+				TemptV3 [j] = Instantiate (RoadBlocks [PlaneF_ID [i]], CubeV3Plane_F [i].transform.position, Quaternion.Euler (180, 0, 0));
+				TemptV3 [j].transform.parent = CubeV3Plane_F [i].transform;
+				j++;
+			}
 		}
+
+
 
 		DelOrigin ();
 
 
-	}
 
-	void Start () {
 
 		// 隨機生成迷宮
 		/*
@@ -144,6 +153,7 @@ public class RandomRoute : MonoBehaviour {
 
 	void Update () {
 		
+
 	}
 
 	void DelOrigin(){
@@ -156,14 +166,7 @@ public class RandomRoute : MonoBehaviour {
 
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 
-		/*
-		for (int j = 0; j < 54; j++) {
-			Destroy (AllRoadBlocks [j]);
-		}
 
-		Count = 0;
-		*/
-
-		}
+	}
 
 }

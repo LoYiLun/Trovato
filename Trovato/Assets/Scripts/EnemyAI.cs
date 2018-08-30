@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour {
 
-	//GameObject Player;
+	GameObject Player;
 	Vector3 CurrentPos;
 	Vector3 FixedHeight;
 	public float Speed = 2f;
@@ -16,7 +16,7 @@ public class EnemyAI : MonoBehaviour {
 	
 
 	void FixedUpdate () {
-		//Player = Global.Player;
+		Player = Global.Player;
 		if (Global.IsRotating == false) 
 		{
 			gameObject.transform.Translate (Speed * Time.deltaTime, 0, 0);

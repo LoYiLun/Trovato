@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class Btn_Function : MonoBehaviour {
 
 	bool IsShowing = true;
-	//bool IsHiding = false;
 	GameObject[] Names;
 	public Text Text_CamCtrl;
+	bool ShowBlock = true;
+	bool OneShot = true;
+	GameObject[] blocks;
+
 
 	void Start () {
-		Names = GameObject.FindGameObjectsWithTag ("Name");
-		ShowName ();
+		//Names = GameObject.FindGameObjectsWithTag ("Name");
+		//ShowName ();
+
 	}
 	
 
@@ -62,24 +67,38 @@ public class Btn_Function : MonoBehaviour {
 	}
 
 	public void HideRoadBlocks(){
-		
-
-		/*
-		if (IsHiding) {
-			for(int j = 0 ; j < Global.Blocks.Length ; j++){
-				Global.Blocks [j].SetActive (true);
-				//blocks.SetActive (false);
-				print(j);
+		if (OneShot) {
+			blocks = GameObject.FindGameObjectsWithTag ("RoadBlock");
+			OneShot = false;
+		}
+		if (ShowBlock) {
+			for (int i = 0; i < blocks.Length; i++) {
+				blocks [i].SetActive (false);
 			}
-				IsHiding = false;
-
+			ShowBlock = false;
 		} else {
-			for(int j = 0 ; j < Global.Blocks.Length ; j++){	
-				Global.Blocks [j].SetActive (false);
-				//blocks.SetActive (true);
+			for (int i = 0; i < blocks.Length; i++) {
+				blocks [i].SetActive (true);
 			}
-				IsHiding = true;
-			}
-		*/
+			ShowBlock = true;
+		}
+
+	
+	}
+
+	public void Rebuild(){
+
+		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+
+	}
+
+	public void ToLevel_01(){
+		SceneManager.LoadScene ("Level_01");
+	}
+	public void ToLevel_02(){
+		SceneManager.LoadScene ("Level_02");
+	}
+	public void ToLevel_03(){
+		SceneManager.LoadScene ("Level_03");
 	}
 }

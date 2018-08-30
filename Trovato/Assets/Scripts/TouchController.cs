@@ -11,20 +11,23 @@ public class TouchController : MonoBehaviour {
 	public float mx;
 	public float my;
 	private GameObject Cam;
-	//private Vector3 ScreenHeart;
-	//private float CamRollSpeed = 3;
-	//private Vector3 ScreenX;
-	//private Vector3 ScreenY;
+	private Vector3 ScreenHeart;
+	private float CamRollSpeed = 3;
+	private Vector3 ScreenX;
+	private Vector3 ScreenY;
 
-	//public GameObject GuideBall;
-	//GameObject[] TemptGuideBall = new GameObject[256];
-	//int k = 0;
+	public GameObject GuideBall;
+	GameObject[] TemptGuideBall = new GameObject[256];
+	int k = 0;
 
-
+	void Awake(){
+		ScreenX = GameObject.Find ("ScreenX").transform.position - GameObject.Find ("ScreenHeart").transform.position;
+		ScreenY = GameObject.Find ("ScreenY").transform.position - GameObject.Find ("ScreenHeart").transform.position;
+	}
 
 	void Start () {
 		OriginMaterial = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
-		//ScreenHeart = GameObject.Find ("ScreenHeart").transform.position;
+		ScreenHeart = GameObject.Find ("ScreenHeart").transform.position;
 		Cam = CameraController.CurrentCam;
 		Cam.transform.LookAt (Vector3.zero);
 
@@ -70,7 +73,7 @@ public class TouchController : MonoBehaviour {
 		//Cam.transform.LookAt (ScreenHeart);
 
 
-		/*
+
 		if (Input.GetKey (KeyCode.W)) {
 			Cam.transform.RotateAround (Vector3.zero, ScreenX, CamRollSpeed);
 			Global.IsCamCtrl = true;
@@ -95,7 +98,7 @@ public class TouchController : MonoBehaviour {
 			Cam.transform.position = Cam.transform.parent.transform.position;
 			Cam.transform.LookAt (Vector3.zero);
 			Global.IsCamCtrl = false;
-		}*/
+		}
 
 		/*
 		if ((Input.GetMouseButton (0) || Input.GetMouseButton (1)) && Global.IsCamCtrl == true && Physics.Raycast (ray, out hitInfo, 500)) 
@@ -526,6 +529,9 @@ public class TouchController : MonoBehaviour {
 			if (Global.BeTouchedCube != null) 
 			{
 				Arrow.transform.position = Global.BeTouchedCube.transform.position;
+				for (int i = 0; i < 4; i++) {
+					Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = true;
+				}
 				TemptCube = Global.BeTouchedCube;
 				Global.BeTouchedCube.GetComponent<Renderer> ().material = OriginMaterial;
 				Arrow.transform.rotation = Global.BeTouchedCube.transform.rotation;
@@ -537,6 +543,9 @@ public class TouchController : MonoBehaviour {
 		if (Input.GetMouseButtonUp (1)) 
 		{
 			Arrow.transform.position = new Vector3 (100, 100, 100);
+			for (int i = 0; i < 4; i++) {
+				Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = false;
+			}
 			Global.BeTouchedCube = GameObject.Find("VeryFarPosition");
 			if(Global.PlayerMove == false)
 				Global.Status.text = "正常";

@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 
 	private GameObject[] Obstacles;
 
-	//float MoveSpeed = 1f;
+	float MoveSpeed = 1f;
 
 	GameObject Portal;
 	GameObject Portal2;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		Player = Global.Player;
 		PlayerSetting();
-		FixedHeight = new Vector3 (0, 0.8f, 0);
+		FixedHeight = new Vector3 (0, 0.9f, 0);
 
 
 		//Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
@@ -47,17 +47,22 @@ public class PlayerController : MonoBehaviour {
 	
 
 	void FixedUpdate () {
-		Portal = GameObject.Find ("Portal");
-		Portal2 = GameObject.Find ("Portal2");
-
-		if (Portal.transform.position.y > 6 && Portal2.transform.position.y > 4) {
-			PortalPower = true;
-			Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
-			Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+		if (Global.Level == "1" || Global.Level == "2") {
+		
 		} else {
-			PortalPower = false;
-			Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
-			Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
+			Portal = GameObject.Find ("Portal");
+			Portal2 = GameObject.Find ("Portal2");
+		
+
+			if (Portal.transform.position.y > 6 && Portal2.transform.position.y > 4) {
+				PortalPower = true;
+				Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+			} else {
+				PortalPower = false;
+				Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
+				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
+			}
 		}
 
 		if (Global.PlayerMove) {
@@ -137,7 +142,6 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		
 
 		if (other.gameObject.tag == "Mission") 
 		{

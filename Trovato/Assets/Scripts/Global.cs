@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Global : MonoBehaviour {
 
+	public string GetLevel;
+	public static string Level;
+
 	public int P_RotateNum;
 	public GameObject GetPlayer;
 	public static GameObject Player; 
@@ -36,9 +39,19 @@ public class Global : MonoBehaviour {
 
 	void Awake(){
 		Player = GetPlayer;
+		Level = GetLevel;
 		Player.transform.parent = null;
 		BeTouchedObj = Player;
-		OnCubeNum = 1;
+		switch (Level) {
+		case"1":
+			OnCubeNum = 2;
+			break;
+
+		case"2":
+		case"3":
+			OnCubeNum = 1;
+			break;
+		}
 		YellowSkin =  Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
 		Status = GetStatus;
 	}

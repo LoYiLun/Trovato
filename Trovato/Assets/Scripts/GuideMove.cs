@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GuideMove : MonoBehaviour {
 
-	//Vector3 StartPos;
+	Vector3 StartPos;
 	Vector3 Path;
 	float Distance;
 	GameObject[] TemptGuideBall;
 	public GameObject GuideBall;
 
 	void Start () {
-		//StartPos = gameObject.transform.position;
+		StartPos = gameObject.transform.position;
 	}
 
 

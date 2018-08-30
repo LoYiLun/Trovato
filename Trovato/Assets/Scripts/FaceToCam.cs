@@ -13,7 +13,8 @@ public class FaceToCam : MonoBehaviour {
 	
 
 	void Update () {
-		CamPos = CamObj.transform.position * (-100);
+		//CamPos = CamObj.transform.position * (-100);
+		CamPos = CameraController.CurrentCam.transform.position * (-100);
 		this.transform.LookAt (CamPos);
 	}
 }
