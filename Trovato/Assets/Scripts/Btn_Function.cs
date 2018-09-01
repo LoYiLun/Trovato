@@ -13,6 +13,8 @@ public class Btn_Function : MonoBehaviour {
 	bool ShowBlock = true;
 	bool OneShot = true;
 	GameObject[] blocks;
+	public GameObject Explosion;
+	public GameObject Fire;
 
 
 	void Start () {
@@ -29,10 +31,13 @@ public class Btn_Function : MonoBehaviour {
 	// 開關Player移動功能
 	public void StopPlayerMove()
 	{
-		if (Global.StopTouch)
+		if (Global.StopTouch) {
 			Global.StopTouch = false;
-		else
+			Global.Status.text = "正常";
+		}else {
 			Global.StopTouch = true;
+			Global.Status.text = "禁止移動";
+		}
 	}
 
 	// 開關物件名稱顯示
@@ -91,6 +96,29 @@ public class Btn_Function : MonoBehaviour {
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 
 	}
+
+	public void Explode(){
+		GameObject[] Cubes;
+		GameObject[] Floors;
+		Cubes = GameObject.FindGameObjectsWithTag ("Cube");
+		Floors = GameObject.FindGameObjectsWithTag ("Floor");
+		Explosion.GetComponent<Collider> ().enabled = true;
+		foreach (GameObject cube in Cubes) {
+			cube.AddComponent<Rigidbody> ();
+		}
+		foreach (GameObject floor in Floors) {
+			floor.AddComponent<Rigidbody> ();
+		}
+		Fire.SetActive (true);
+		Global.Player.GetComponent<Collider> ().enabled = false;
+		Global.StopTouch = true;
+		Global.Status.text = "爆破完畢";
+		Destroy (GameObject.Find("Btn_PlayerMove"));
+		Destroy (GameObject.Find("Btn_Explode"));
+
+
+	}
+
 
 	public void ToLevel_01(){
 		SceneManager.LoadScene ("Level_01");

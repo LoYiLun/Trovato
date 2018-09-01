@@ -134,7 +134,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 1 && Global.RotateNum == -8) {
-					if (Global.PlayerZ >= -2.5f - FixedP + CubeHomeZ && Global.PlayerZ <= 0.5f + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= -2.5f - FixedP + CubeHomeZ && Global.PlayerZ <= -0.5f + FixedP + CubeHomeZ) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)

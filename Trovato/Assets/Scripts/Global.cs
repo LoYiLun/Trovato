@@ -37,6 +37,10 @@ public class Global : MonoBehaviour {
 
 	public static GameObject NextTarget;
 
+	public static GameObject RotatePlane;
+	public static GameObject RotateCube;
+	public static GameObject RotateArrow;
+
 	void Awake(){
 		Player = GetPlayer;
 		Level = GetLevel;

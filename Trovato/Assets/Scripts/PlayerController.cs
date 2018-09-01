@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour {
 	bool PortalPower;
 
 	void Awake(){
-		
+
 	}
 
 	void Start () {
@@ -186,6 +186,7 @@ public class PlayerController : MonoBehaviour {
 		// EnemyWall為敵人巡邏的折返牆
 		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
 		{
+
 			Global.PlayerMove = false;
 			if(Global.BeTouchedObj.tag == "Floor")
 				Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;

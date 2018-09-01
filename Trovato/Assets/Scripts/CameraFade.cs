@@ -3,8 +3,8 @@ using System.Collections;
 
 public class CameraFade : MonoBehaviour {
 
-	public float FadeInTime = 1;
-	public float FadeOutTime = 1;
+	public float FadeInTime = 1f;
+	public float FadeOutTime = 1f;
 	public Color FadeInColor = new Color(0.1F, 0.1F, 0.1F, 1);
 	public Color FadeOutColor = new Color(0.1F, 0.1F, 0.1F, 1);
 
@@ -50,7 +50,7 @@ public class CameraFade : MonoBehaviour {
 			}else{
 				FadeInIsStart = false;
 				FadeInIsDone = true;
-				Global.Status.text = "正常";
+				//Global.Status.text = "正常";
 			}
 		}
 
