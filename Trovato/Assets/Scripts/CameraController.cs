@@ -18,7 +18,6 @@ public class CameraController : MonoBehaviour {
 	float my;
 	float Close;
 	float Far;
-	float RotateX;
 	Vector3 Distance;
 	float Distance2;
 
@@ -37,12 +36,9 @@ public class CameraController : MonoBehaviour {
 	
 
 	void FixedUpdate () {
-		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit hitInfo;
 
 		mx = Input.GetAxis ("Mouse X") ;
 		my = Input.GetAxis ("Mouse Y") ;
-		RotateX = CurrentCam.transform.rotation.x;
 
 		Distance = CurrentCam.transform.position - ScreenHeart.transform.position;
 		Distance2 = Vector3.Distance (CurrentCam.transform.position, ScreenHeart.transform.position);

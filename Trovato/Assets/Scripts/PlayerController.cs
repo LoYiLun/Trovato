@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour {
 		MoveD = -(MoveToTarget.y - Player.transform.position.y);
 
 
+
 		// Player自動尋路功能
 		if (Global.PlayerMove && Global.IsRotating == false) {
 			if (Mathf.Abs (MoveR) > 0.11f) {
@@ -105,8 +106,6 @@ public class PlayerController : MonoBehaviour {
 			} else if(Mathf.Abs (MoveD) < 3f){
 				PlayerStop();
 			}
-
-
 		}
 
 

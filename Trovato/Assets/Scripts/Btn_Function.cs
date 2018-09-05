@@ -100,14 +100,19 @@ public class Btn_Function : MonoBehaviour {
 	public void Explode(){
 		GameObject[] Cubes;
 		GameObject[] Floors;
+		GameObject[] RotatePlanes;
 		Cubes = GameObject.FindGameObjectsWithTag ("Cube");
 		Floors = GameObject.FindGameObjectsWithTag ("Floor");
+		RotatePlanes = GameObject.FindGameObjectsWithTag ("RotatePlane");
 		Explosion.GetComponent<Collider> ().enabled = true;
 		foreach (GameObject cube in Cubes) {
 			cube.AddComponent<Rigidbody> ();
 		}
 		foreach (GameObject floor in Floors) {
 			floor.AddComponent<Rigidbody> ();
+		}
+		foreach (GameObject plane in RotatePlanes) {
+			plane.AddComponent<Rigidbody> ();
 		}
 		Fire.SetActive (true);
 		Global.Player.GetComponent<Collider> ().enabled = false;
