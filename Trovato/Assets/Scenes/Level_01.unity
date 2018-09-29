@@ -290,6 +290,7 @@ GameObject:
   - component: {fileID: 1059430633}
   - component: {fileID: 1059430632}
   - component: {fileID: 1059430631}
+  - component: {fileID: 1059430646}
   m_Layer: 0
   m_Name: MainFlowChart
   m_TagString: Untagged
@@ -326,6 +327,7 @@ MonoBehaviour:
   variables:
   - {fileID: 1059430622}
   - {fileID: 1059430629}
+  - {fileID: 1059430646}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -376,8 +378,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 77
-    y: 85
+    x: 73
+    y: 87
     width: 120
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -1251,6 +1253,20 @@ MonoBehaviour:
   - {fileID: 1059430634}
   - {fileID: 1059430635}
   - {fileID: 1059430631}
+--- !u!114 &1059430646
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1059430607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d02d9822eec54c98afe95bb497211b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 0
+  key: GiveBread
+  value: 0
 --- !u!1 &1246166439
 GameObject:
   m_ObjectHideFlags: 0
