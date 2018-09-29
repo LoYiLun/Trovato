@@ -7,17 +7,12 @@ public class TouchController : MonoBehaviour {
 	GameObject Arrow;
 	GameObject GuideBall;
 	GameObject TemptCube;
-	Material OriginMaterial;
-
-	private float CamRollSpeed = 3;
-
-	GameObject[] TemptGuideBall = new GameObject[256];
-	int k = 0;
-
+	GameObject TargetLight;
 	bool IsRightClick;
 
 	string[] RotateNumBox = new string[2];
 	string Box;
+
 
 	[SerializeField]
 	GameObject ArrowPrefab;
@@ -27,7 +22,6 @@ public class TouchController : MonoBehaviour {
 	}
 
 	void Start () {
-		OriginMaterial = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
 		Arrow = Instantiate (ArrowPrefab);
 		Global.IsCamCtrl = false;
 		Global.StopTouch = false;
@@ -41,8 +35,6 @@ public class TouchController : MonoBehaviour {
 		RaycastHit RotateHitInfo2;
 		RaycastHit hitInfo;
 
-
-
 		// 點選滑鼠左鍵，只偵測Layer10的Floor
 		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true && IsRightClick != true) 
 		{
@@ -50,30 +42,62 @@ public class TouchController : MonoBehaviour {
 			if (Global.BeTouchedObj.tag == "Floor") 
 			{
 				Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
+
 			}
 
 			// 切換成新點選的物件
 			Global.BeTouchedObj = hitInfo.collider.gameObject;
+			if(Global.BeTouchedObj.GetComponent<Renderer>() != null)
 			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = true;
+			Global.Targetlight.Stop ();
+			Global.Targetlight.transform.position = Global.BeTouchedObj.transform.position;
+			Global.Targetlight.Play ();
 
 			if (Global.Player.activeSelf) 
 			{
+				Global.Wait = true;
 				Global.PlayerMove = true;
 				Global.Status.text = "移動中";
 			}
 		} 
 
 
+
+		if (Input.GetMouseButtonDown (1) && Global.StopTouch != true && Global.IsCamCtrl != true && Global.IsRotating != true && Global.PlayerMove != true && Global.IsPushing != true) {
+
+			IsRightClick = true;
+			// BigPlane
+			if (Physics.Raycast (ray, out RotateHitInfo, 500, 1 << 9)) {
+				Global.RotatePlane = RotateHitInfo.collider.gameObject;
+				RotateNumBox [0] = Global.RotatePlane.name;
+				for (int i = 0; i < 4; i++)
+					Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = true;
+				Arrow.transform.position = Global.RotatePlane.transform.position;
+				Arrow.transform.rotation = Global.RotatePlane.transform.rotation;
+				Global.Status.text = "選擇轉動方向";
+			}
+
+			// Cube
+			if (Physics.Raycast (ray, out RotateHitInfo2, 500, 1 << 11)) {
+				Global.RotateCube = RotateHitInfo2.collider.gameObject;
+			}
+		} else {
+			if (Input.GetMouseButton (1) && Global.RotatePlane == null && Global.IsRotating == false) {
+				Global.IsCamCtrl = true;
+			} else {
+				Global.IsCamCtrl = false;
+			}
+		}
+
 		// 放開滑鼠右鍵
 		if (Input.GetMouseButtonUp (1) && Global.StopTouch != true) 
 		{
 			IsRightClick = false;
+			Global.RotatePlane = null;
 			Arrow.transform.position = new Vector3 (100, 100, 100);
-			//Global.RotateCube.GetComponent<Renderer> ().material = Resources.Load ("Materials/white", typeof(Material)) as Material;
 			for (int i = 0; i < 4; i++) {
 				Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = false;
 			}
-			Global.BeTouchedCube = GameObject.Find("VeryFarPosition");
 			if(Global.PlayerMove == false)
 				Global.Status.text = "正常";
 		}
@@ -83,7 +107,8 @@ public class TouchController : MonoBehaviour {
 
 
 		// Arrow
-		if(Input.GetMouseButton (1) && Global.StopTouch != true && Global.IsCamCtrl != true && Global.IsRotating != true && Global.PlayerMove != true){
+		if(Input.GetMouseButton (1) && Global.StopTouch != true && Global.IsCamCtrl != true && Global.IsRotating != true && Global.PlayerMove != true && Global.IsPushing != true){
+
 			if (Physics.Raycast (ray, out RotateHitInfo, 500, 1 << 12)) {
 				Global.RotateArrow = RotateHitInfo.collider.gameObject;
 				if (Global.RotateArrow.name == "a1")
@@ -100,27 +125,7 @@ public class TouchController : MonoBehaviour {
 		}
 
 
-		if (Input.GetMouseButtonDown (1) && Global.StopTouch != true && Global.IsCamCtrl != true && Global.IsRotating != true && Global.PlayerMove != true) {
 
-			IsRightClick = true;
-
-			// BigPlane
-			if (Physics.Raycast (ray, out RotateHitInfo, 500, 1 << 9)) {
-				Global.RotatePlane = RotateHitInfo.collider.gameObject;
-				RotateNumBox[0] = Global.RotatePlane.name;
-				for (int i = 0; i < 4; i++)
-					Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = true;
-				Arrow.transform.position = Global.RotatePlane.transform.position;
-				Arrow.transform.rotation = Global.RotatePlane.transform.rotation;
-				Global.Status.text = "選擇轉動方向";
-			}
-
-			// Cube
-			if (Physics.Raycast (ray, out RotateHitInfo2, 500, 1 << 11)) {
-				Global.RotateCube = RotateHitInfo2.collider.gameObject;
-				//Global.RotateCube.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
-			}
-		}
 	}
 
 	void SetRotateNum(){

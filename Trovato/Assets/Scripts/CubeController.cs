@@ -16,6 +16,8 @@ public class CubeController : MonoBehaviour {
 	public GameObject CubeHome;
 	public GameObject CubeLeader;
 	private GameObject Player;
+	public GameObject GhostWall_V2;
+	public GameObject GhostWall_V3;
 
 	// DX~DZ調整魔方轉動方向
 	// TA~TK為調整方塊LRD座標的暫存值
@@ -87,6 +89,10 @@ public class CubeController : MonoBehaviour {
 					if (Global.OnCubeNum == 2) {
 						Player.transform.parent = CubeLeader.transform;
 						ExtraChild = 1;
+						if (GhostWall_V2 != null) {
+							GhostWall_V2.transform.parent = CubeLeader.transform;
+							ExtraChild = 2;
+						}
 					}
 
 					StartRotate = true;
@@ -161,6 +167,10 @@ public class CubeController : MonoBehaviour {
 					if (Global.OnCubeNum == 2) {
 						Player.transform.parent = CubeLeader.transform;
 						ExtraChild = 1;
+						if (GhostWall_V2 != null) {
+							GhostWall_V2.transform.parent = CubeLeader.transform;
+							ExtraChild = 2;
+						}
 					}
 
 					StartRotate = true;
@@ -237,6 +247,10 @@ public class CubeController : MonoBehaviour {
 					if (Global.OnCubeNum == 1) {
 						Player.transform.parent = CubeLeader.transform;
 						ExtraChild = 1;
+						if (GhostWall_V3 != null) {
+							GhostWall_V3.transform.parent = CubeLeader.transform;
+							ExtraChild = 2;
+						}
 					}
 
 					StartRotate = true;
@@ -352,6 +366,10 @@ public class CubeController : MonoBehaviour {
 					if (Global.OnCubeNum == 1) {
 						Player.transform.parent = CubeLeader.transform;
 						ExtraChild = 1;
+						if (GhostWall_V3 != null) {
+							GhostWall_V3.transform.parent = CubeLeader.transform;
+							ExtraChild = 2;
+						}
 					}
 
 					StartRotate = true;
@@ -430,6 +448,10 @@ public class CubeController : MonoBehaviour {
 				CubeLeader.transform.rotation = Quaternion.Euler (DX * 90, DY * 90, DZ * 90);
 				this.transform.parent = CubeHome.transform;
 				Player.transform.parent = null;
+				if(GhostWall_V2 != null)
+					GhostWall_V2.transform.parent = GameObject.Find("CubeV2").transform;
+				if(GhostWall_V3 != null)
+					GhostWall_V3.transform.parent = GameObject.Find("CubeV3").transform;
 				//EnemyGroup_01.transform.parent = null;
 				ExtraChild = 0;
 

@@ -7,30 +7,35 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 MoveToTarget;
 	private Vector3 MoveDir;
 
-	// MoveL~MoveD為Player對於目的地的距離
+	// MoveL~MoveD為Player相對於目的地的距離
 	private float MoveL;
 	private float MoveR;
 	private float MoveD;
 	private float TargetL;
 	private float TargetR;
 	GameObject Player;
-	Vector3 NowPos;
 	Vector3 FixedHeight;
-
-	// 推箱子
-	GameObject Box;
-	float PushX;
-	float PushY;
-	float PushZ;
-	//private float MoveSpeed = 0.05f;
 
 	private GameObject[] Obstacles;
 
-	float MoveSpeed = 1f;
+	float MoveSpeed = 5f;
+	float RotateSpeed = 0.25f;
+	Quaternion RotateDir;
 
 	GameObject Portal;
 	GameObject Portal2;
 	bool PortalPower;
+
+	bool LockDirR = false;
+	bool LockDirL = false;
+	bool LockRotation;
+	string MovingDir;
+
+	Ray DownRay;
+	RaycastHit hitinfo;
+	public static GameObject CurrentFloor;
+
+	float D;
 
 	void Awake(){
 
@@ -39,20 +44,41 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		Player = Global.Player;
 		PlayerSetting();
-		FixedHeight = new Vector3 (0, 0.9f, 0);
+		FixedHeight = new Vector3 (0, 1f, 0);
+
 
 
 		//Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
 	}
-	
+
 
 	void FixedUpdate () {
-		if (Global.Level == "1" || Global.Level == "2") {
 		
-		} else {
-			Portal = GameObject.Find ("Portal");
-			Portal2 = GameObject.Find ("Portal2");
+
+
+
+			DownRay = new Ray (Global.Player.transform.position, Vector3.down);
+			if (Physics.Raycast (DownRay, out hitinfo, 5, 1 << 10)) {
+				CurrentFloor = hitinfo.collider.gameObject;
+
+		}
+
+		// 設定有無傳送門
+		if (Global.Level == "1") {
 		
+		} else if(Global.Level == "2") {
+			if (Vector3.Distance (GameObject.Find ("Wing1").transform.position, GameObject.Find ("BattleShip").transform.position) < 2.5f) {
+				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
+				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
+			} else {
+				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
+				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
+			}
+
+
+		} else if(Global.Level == "3") {
+			Portal = GameObject.Find ("Event_Portal(Clone)").transform.GetChild(0).gameObject;
+			Portal2 = GameObject.Find ("Event_Portal2(Clone)").transform.GetChild(0).gameObject;
 
 			if (Portal.transform.position.y > 6 && Portal2.transform.position.y > 4) {
 				PortalPower = true;
@@ -63,66 +89,95 @@ public class PlayerController : MonoBehaviour {
 				Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
 				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
 			}
+
+			if (Vector3.Distance (GameObject.Find ("Platform").transform.position, GameObject.Find ("Platform2").transform.position) < 3) {
+				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
+				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
+			} else {
+				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
+				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
+			}
+
+			// 傳送失敗時強制傳送
+			if (Global.OnCubeNum == 2 && CurrentFloor.transform.parent != GameObject.Find ("Floor_Origin_V2").transform) {
+				CancelMoving (Portal2.transform.position + new Vector3 (0, 0.2f, 0));
+				Player.transform.rotation = RotateDir = Portal2.transform.rotation;
+				Player.transform.Translate (0, 0, 1);
+				CameraController.SetCamPos = true;
+			}
 		}
 
-		if (Global.PlayerMove) {
-			//Player.transform.position = Vector3.MoveTowards (transform.position, Global.NextTarget.transform.position, MoveSpeed * Time.deltaTime);
-		}
-
+		// 計算至目標的距離
 		Player = Global.Player;
+
 		MoveToTarget = Global.BeTouchedObj.transform.position;
-		MoveL = -(MoveToTarget.z - Player.transform.position.z);
-		MoveR = -(MoveToTarget.x - Player.transform.position.x);
-		MoveD = -(MoveToTarget.y - Player.transform.position.y);
+			MoveL = -(MoveToTarget.z - Player.transform.position.z);
+			MoveR = -(MoveToTarget.x - Player.transform.position.x);
+			MoveD = -(MoveToTarget.y - Player.transform.position.y);
 
 
+		// Player陽春版自動尋路功能
 
-		// Player自動尋路功能
+		// 推箱子時角色不轉動方向
+		if (LockRotation == false && Global.IsPushing != true) {
+			transform.rotation = Quaternion.Lerp (transform.rotation, RotateDir, RotateSpeed);
+			if (Quaternion.Angle (Player.transform.rotation, RotateDir) < 10) {
+				transform.rotation = RotateDir;
+			}
+				
+		}
+
+		if (Global.IsRotating)
+			LockRotation = true;
+
+		// 取消推箱子模式
+		if(Input.GetMouseButtonDown(1) && Global.IsPushing && Global.PlayerMove == false){
+			LockDirR = LockDirL = false;
+			Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/White")as Material;
+			Global.BePushedObj.transform.parent = GameObject.Find ("MoveableGroup").transform;
+			Global.BePushedObj = null;
+			PlayerController.CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+			Global.IsPushing = false;
+		}
+
 		if (Global.PlayerMove && Global.IsRotating == false) {
-			if (Mathf.Abs (MoveR) > 0.11f) {
+
+			LockRotation = false;
+			if(Global.Wait && Global.IsPushing == false){
+				Player.transform.position = new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z);
+				Global.Wait = false;
+			}
+			if (Mathf.Abs (MoveR) > 0.05f && LockDirR == false) {
 				if (MoveR > 0) {
-					Player.transform.position += new Vector3 (-0.1f, 0, 0);
-					Player.transform.rotation = Quaternion.Euler (0, -90, 0);
-					PushX = -1;
-					PushZ = 0;
+					Player.transform.position += new Vector3 (-MoveSpeed * Time.deltaTime, 0, 0);
+					RotateDir = Quaternion.Euler (0, -90, 0);
+
 				} else if (MoveR < 0) {
-					Player.transform.position += new Vector3 (0.1f, 0, 0);
-					Player.transform.rotation = Quaternion.Euler (0, 90, 0);
-					PushX = 1;
-					PushZ = 0;
+					Player.transform.position += new Vector3 (MoveSpeed * Time.deltaTime, 0, 0);
+					RotateDir = Quaternion.Euler (0, 90, 0);
+
 				}
-			} else if (Mathf.Abs (MoveL) > 0.11f) {
+			} else if (Mathf.Abs (MoveL) > 0.05f && LockDirL == false) {
 				if (MoveL > 0) {
-					Player.transform.position += new Vector3 (0, 0, -0.1f);
-					Player.transform.rotation = Quaternion.Euler (0, 180, 0);
-					PushZ = -1;
-					PushX = 0;
+					Player.transform.position += new Vector3 (0, 0, -MoveSpeed * Time.deltaTime);
+					RotateDir = Quaternion.Euler (0, 180, 0);
+
 				} else if (MoveL < 0) {
-					Player.transform.position += new Vector3 (0, 0, 0.1f);
-					Player.transform.rotation = Quaternion.Euler (0, 0, 0);
-					PushZ = 1;
-					PushX = 0;
+					Player.transform.position += new Vector3 (0, 0, MoveSpeed * Time.deltaTime);
+					RotateDir = Quaternion.Euler (0, 0, 0);
+
 				}
 			} else if(Mathf.Abs (MoveD) < 3f){
-				PlayerStop();
+				if (Global.IsPushing) {
+					CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+				} else {
+					LockDirR = LockDirL = false;
+					PlayerStop ();
+				}
 			}
 		}
 
 
-		/* 隱藏鏡頭前的建築
-		for (int i = 0; i < Obstacles.Length; i++) {
-			float Distance;
-			Distance = Mathf.Abs (Obstacles [i].transform.position.x - Player.transform.position.x) + Mathf.Abs (Obstacles [i].transform.position.z - Player.transform.position.z) + Mathf.Abs (Obstacles [i].transform.position.y - Player.transform.position.y);
-
-			if (((Obstacles [i].transform.position.x > Player.transform.position.x) || (Obstacles [i].transform.position.z > Player.transform.position.z))
-				&& Distance <2) {
-				//Obstacles [i].GetComponent<Renderer> ().material.color = new Color{a = 0.2f};
-				//Obstacles [i].GetComponent<Renderer> ().material = Resources.Load ("Materials/Ghost", typeof(Material)) as Material;
-			} else {
-				//Obstacles [i].GetComponent<Renderer> ().material.color = new Color{a = 1f};
-				//Obstacles [i].GetComponent<Renderer> ().material = Resources.Load ("Materials/Dark", typeof(Material)) as Material;
-			}
-		}*/
 
 	}
 
@@ -131,13 +186,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void PlayerStop(){
-		Player.transform.position = MoveToTarget + FixedHeight;
-		if (Global.BeTouchedObj.tag == "Floor") 
-		{
-			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
-		}
-		Global.PlayerMove = false;
-		Global.Status.text = "正常";
+		CancelMoving (new Vector3(MoveToTarget.x, transform.position.y, MoveToTarget.z));
 	}
 
 	void OnCollisionEnter(Collision other){
@@ -149,58 +198,123 @@ public class PlayerController : MonoBehaviour {
 
 		if (other.gameObject.tag == "Moveable")
 		{
-			Box = other.gameObject;
-			PushMoveableObj ();
+			if (Global.BePushedObj == null) {
+				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+				Global.BePushedObj = other.gameObject;
+				Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Blue")as Material;
+				Global.IsPushing = true;
+				transform.rotation = RotateDir;
+				Global.BePushedObj.transform.parent = Player.transform;
+				if (RotateDir == Quaternion.Euler (0, 0, 0) || RotateDir == Quaternion.Euler (0, 180, 0)) {
+					LockDirR = true;
+					LockDirL = false;
+				} else if (RotateDir == Quaternion.Euler (0, 90, 0) || RotateDir == Quaternion.Euler (0, -90, 0)) {
+					LockDirR = false;
+					LockDirL = true;
+				}
+			} else {
+				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+
+			}
+
+
 		}
+
+
+
+
+		// EnemyWall為敵人巡邏的折返牆
+		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
+		{
+			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+		}
+
+
+	}
+
+	void OnCollisionStay(Collision other){
+		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
+		{
+			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+		}
+
+		if (other.gameObject.tag == "Moveable") {
+			if (Global.BePushedObj != null) {
+				CancelMoving (new Vector3 (CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+			}
+		}
+	}
+
+	void OnTriggerEnter(Collider other){
 
 		if (other.gameObject.name == "Portal" && PortalPower) 
 		{
+			Component[] colliders;
+			colliders = GameObject.Find ("Platform2").GetComponentsInChildren<Collider> ();
+			foreach (Collider c in colliders)
+				c.enabled = false;
 
-			Global.PlayerMove = false;
-			//Player.transform.position = new Vector3(-15, 5.4f, 4.5f);
-			Player.transform.position = Portal2.transform.position + new Vector3(0,0.2f,0);
-			Player.transform.rotation = Portal2.transform.rotation;
+			CancelMoving (Portal2.transform.position + new Vector3 (0, 0.2f, 0));
+			Global.Targetlight.Stop ();
+			//Player.transform.position = Portal2.transform.position + new Vector3(0,0.2f,0);
+			Player.transform.rotation = RotateDir = Portal2.transform.rotation;
 			Player.transform.Translate (0, 0, 1);
+			CameraController.SetCamPos = true;
 			Global.OnCubeNum = 2;
 
 		}
 
 		if (other.gameObject.name == "Portal2" && PortalPower) 
 		{
+			Component[] colliders;
+			colliders = GameObject.Find ("Platform2").GetComponentsInChildren<Collider> ();
+			foreach (Collider c in colliders)
+				c.enabled = true;
 
-			Global.PlayerMove = false;
-			Player.transform.position = Portal.transform.position + new Vector3(0,0.2f,0);
-			Player.transform.rotation = Portal.transform.rotation;
-			Player.transform.Rotate (0, 90, 0);
+			CancelMoving (Portal.transform.position + new Vector3 (0, 0.2f, 0));
+			Global.Targetlight.Stop ();
+			//Player.transform.position = Portal.transform.position + new Vector3(0,0.2f,0);
+			Player.transform.rotation = RotateDir = Portal.transform.rotation * Quaternion.Euler(0,90,0);
 			Player.transform.Translate (0, 0, 2);
-			//Player.transform.position = new Vector3(4, 5.5f, 4);
+			CameraController.SetCamPos = true;
+
 			Global.OnCubeNum = 1;
 		}
 
-		if (other.gameObject.layer == 10) 
-		{
-			NowPos = other.gameObject.transform.position;
+		if (other.gameObject.name == "sBlock") {
+			Component[] stationRenderer;
+			stationRenderer = GameObject.Find ("Station").GetComponentsInChildren<Renderer> ();
+			foreach (Renderer skin in stationRenderer) {
+				skin.material = Resources.Load ("Materials/Ghost")as Material;
+			}
 		}
 
-		// EnemyWall為敵人巡邏的折返牆
-		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
-		{
-
-			Global.PlayerMove = false;
-			if(Global.BeTouchedObj.tag == "Floor")
-				Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
-			Player.transform.position = NowPos + new Vector3(0, 0.9f, 0);
-			Global.Status.text = "正常";
+		if (other.gameObject.name == "Enemy") {
+			Global.IsPushing = false;
+			Global.Retry ();
 		}
 	}
 
-	void PushMoveableObj(){
-		Box.transform.position += new Vector3 (PushX, PushY, PushZ);
-		PushX = 0;
-		PushY = 0;
-		PushZ = 0;
+	void OnTriggerExit(Collider other){
+
+		if (other.gameObject.name == "sBlock") {
+			Component[] stationRenderer;
+			stationRenderer = GameObject.Find ("Station").GetComponentsInChildren<Renderer> ();
+			foreach (Renderer skin in stationRenderer) {
+				skin.material = Resources.Load ("Materials/Red")as Material;
+			}
+		}
 	}
 
+
+	public static void CancelMoving(Vector3 NewPosition){
+		Global.Player.transform.position = NewPosition;
+		Global.PlayerMove = false;
+		if(Global.BeTouchedObj.tag == "Floor")
+			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
+		Global.Status.text = "正常";
+		Global.Targetlight.Stop ();
+	}
 
 	/*
 	void StartMove(){

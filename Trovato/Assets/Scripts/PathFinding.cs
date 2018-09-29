@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PathFinding : MonoBehaviour {
 
-	Vector3 StartPos;
-	Vector3 Path;
+	float G_Cost;
+	float H_Cost;
+	float F_Cost;
+	Vector3 Position;
+	bool IsObstacle;
 
 	void Start () {
-		StartPos = transform.position;
-		transform.Translate (1, 0, 0);
-		Path = transform.position - StartPos;
-		SearchPath ();
+
 	}
 	
 
@@ -19,7 +19,4 @@ public class PathFinding : MonoBehaviour {
 		
 	}
 
-	void SearchPath(){
-
-	}
 }

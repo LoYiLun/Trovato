@@ -30,10 +30,12 @@ public class FloorBuilder : MonoBehaviour {
 		if (FinishBuilding) {
 			if (Global.OnCubeNum == FloorID) {
 				for(int i = 0 ; i < FloorRange * FloorRange; i++) {
+					FloorGroup [i].transform.parent = Floor.transform;
 					FloorGroup[i].GetComponent<Collider> ().enabled = true;
 				}
 			} else {
 				for(int i = 0 ; i < FloorRange * FloorRange; i++) {
+					FloorGroup [i].transform.parent = Floor.transform;
 					FloorGroup[i].GetComponent<Collider> ().enabled = false;
 				}
 			}

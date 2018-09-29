@@ -110,6 +110,7 @@ public class RandomRoute : MonoBehaviour {
 	}
 
 	public void Rebuild(){
+		Global.IsPushing = false;
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 

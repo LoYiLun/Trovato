@@ -41,6 +41,11 @@ public class Global : MonoBehaviour {
 	public static GameObject RotateCube;
 	public static GameObject RotateArrow;
 
+	public static ParticleSystem Targetlight;
+	public static bool IsPushing;
+	public static GameObject BePushedObj;
+	public static bool Wait;
+
 	void Awake(){
 		Player = GetPlayer;
 		Level = GetLevel;
@@ -58,6 +63,7 @@ public class Global : MonoBehaviour {
 		}
 		YellowSkin =  Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
 		Status = GetStatus;
+		Targetlight = GameObject.Find ("FireBall").GetComponent<ParticleSystem> ();
 	}
 
 	void Start () {

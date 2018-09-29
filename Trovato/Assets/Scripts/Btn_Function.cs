@@ -92,7 +92,7 @@ public class Btn_Function : MonoBehaviour {
 	}
 
 	public void Rebuild(){
-
+		Global.IsPushing = false;
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 
 	}
@@ -101,9 +101,11 @@ public class Btn_Function : MonoBehaviour {
 		GameObject[] Cubes;
 		GameObject[] Floors;
 		GameObject[] RotatePlanes;
+		GameObject[] GhostWalls;
 		Cubes = GameObject.FindGameObjectsWithTag ("Cube");
 		Floors = GameObject.FindGameObjectsWithTag ("Floor");
 		RotatePlanes = GameObject.FindGameObjectsWithTag ("RotatePlane");
+		GhostWalls = GameObject.FindGameObjectsWithTag ("GhostWall");
 		Explosion.GetComponent<Collider> ().enabled = true;
 		foreach (GameObject cube in Cubes) {
 			cube.AddComponent<Rigidbody> ();
@@ -113,6 +115,9 @@ public class Btn_Function : MonoBehaviour {
 		}
 		foreach (GameObject plane in RotatePlanes) {
 			plane.AddComponent<Rigidbody> ();
+		}
+		foreach (GameObject wall in GhostWalls) {
+			wall.AddComponent<Rigidbody> ();
 		}
 		Fire.SetActive (true);
 		Global.Player.GetComponent<Collider> ().enabled = false;
@@ -126,12 +131,15 @@ public class Btn_Function : MonoBehaviour {
 
 
 	public void ToLevel_01(){
+		Global.IsPushing = false;
 		SceneManager.LoadScene ("Level_01");
 	}
 	public void ToLevel_02(){
+		Global.IsPushing = false;
 		SceneManager.LoadScene ("Level_02");
 	}
 	public void ToLevel_03(){
+		Global.IsPushing = false;
 		SceneManager.LoadScene ("Level_03");
 	}
 }
