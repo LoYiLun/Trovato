@@ -77,10 +77,22 @@ public class Level01PlayerEvent : MonoBehaviour {
         {
             Flowchart.BroadcastFungusMessage("FindGP");
         }
-        /*if(Ship && Input.GetKeyDown(KeyCode.E)  && (other.transform.name == "Mt.SpaceShip2" || other.transform.name == "Mt.SpaceShip5" || other.transform.name == "Mt.SpaceShip6"))
+        if(!Ship && (other.transform.name == "Mt.SpaceShip2" || other.transform.name == "Mt.SpaceShip5" || other.transform.name == "Mt.SpaceShip6"))
         {
             Flowchart.BroadcastFungusMessage("GoShip");
-        }*/
+        }
+        if(other.transform.name == "Marley")
+        {
+            Flowchart.BroadcastFungusMessage("MarletTalk");
+        }
+        if (other.transform.name == "AnotherHouse4")
+        {
+            Flowchart.BroadcastFungusMessage("HouseTalk");
+        }
+        if (other.transform.name == "WareHouse")
+        {
+            Flowchart.BroadcastFungusMessage("WareHouseTalk");
+        }
     }
     public static bool Bread
     {
