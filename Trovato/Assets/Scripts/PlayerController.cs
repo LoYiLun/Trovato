@@ -130,8 +130,12 @@ public class PlayerController : MonoBehaviour {
 		if (Global.IsRotating)
 			LockRotation = true;
 
+		if (Global.IsPushing == false) {
+			LockDirR = LockDirL = false;
+		}
+
 		// 取消推箱子模式
-		if(Input.GetMouseButtonDown(1) && Global.IsPushing && Global.PlayerMove == false){
+		if(Input.GetMouseButtonDown(1) && Global.IsPushing && Global.PlayerMove == false && Global.BePushedObj != null){
 			LockDirR = LockDirL = false;
 			Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/White")as Material;
 			Global.BePushedObj.transform.parent = GameObject.Find ("MoveableGroup").transform;

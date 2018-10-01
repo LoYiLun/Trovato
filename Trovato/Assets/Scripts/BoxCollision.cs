@@ -25,6 +25,12 @@ public class BoxCollision : MonoBehaviour {
 	void OnCollisionEnter(Collision other){
 		if ((other.gameObject.tag == "Obstacle" || other.gameObject.tag == "Moveable") && gameObject.transform.parent == Global.Player.transform) {
 			PlayerController.CancelMoving (new Vector3(PlayerController.CurrentFloor.transform.position.x, Global.Player.transform.position.y, PlayerController.CurrentFloor.transform.position.z));
+
+			// 箱子推進焚化爐
+			if (other.gameObject.name == "IncinerationPlant4" || other.gameObject.name == "IncinerationPlant5" || other.gameObject.name == "IncinerationPlant6") {
+				Global.BePushedObj = null;
+				Global.IsPushing = false;
+			}
 		}
 	}
 
