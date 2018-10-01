@@ -5,9 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
 
 	public GameObject Cam;
-	public GameObject Cam2;
 	public GameObject CamObj;
-	public GameObject CamObj2;
 	public GameObject Player;
 	Vector3 CamToScreenHeart;
 	Vector3 LockPlayer;
@@ -16,7 +14,7 @@ public class CameraController : MonoBehaviour {
 
 	public static GameObject CurrentCam;
 	public static bool SetCamPos;
-	GameObject ScreenHeart;
+	public GameObject ScreenHeart;
 
 	float mx;
 	float my;
@@ -27,9 +25,7 @@ public class CameraController : MonoBehaviour {
 
 	void Awake(){
 		CurrentCam = Cam;
-		ScreenHeart = GameObject.Find("ScreenHeart1");
 		CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
-		CamObj2.SetActive (false);
 
 		//GhostBall = GameObject.Find ("GhostBall");
 
@@ -125,6 +121,7 @@ public class CameraController : MonoBehaviour {
 
 	}
 
+	/*
 	public void BirdCam(){
 		CamObj.SetActive (false);
 		CamObj2.SetActive (true);
@@ -135,6 +132,6 @@ public class CameraController : MonoBehaviour {
 		CamObj.SetActive (true);
 		CamObj2.SetActive (false);
 		CurrentCam = Cam;
-	}
+	}*/
 
 }

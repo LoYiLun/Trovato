@@ -28,7 +28,7 @@ public class FloorBuilder : MonoBehaviour {
 		
 
 		if (FinishBuilding) {
-			if (Global.OnCubeNum == FloorID) {
+			if (Global.OnCubeNum == FloorID || Global.OnCubeNum == 0) {
 				for(int i = 0 ; i < FloorRange * FloorRange; i++) {
 					FloorGroup [i].transform.parent = Floor.transform;
 					FloorGroup[i].GetComponent<Collider> ().enabled = true;

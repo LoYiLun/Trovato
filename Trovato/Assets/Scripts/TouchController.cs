@@ -35,29 +35,43 @@ public class TouchController : MonoBehaviour {
 		RaycastHit RotateHitInfo2;
 		RaycastHit hitInfo;
 
+		if (Global.Level == "0" && Physics.Raycast (ray, out hitInfo, 500, 1 << 10)) {
+			if (Global.BeTouchedObj != null) {
+				if (Global.BeTouchedObj.tag == "Floor")
+					Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
+			}
+
+			Global.BeTouchedObj = hitInfo.collider.gameObject;
+			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = true;
+
+		}
+
 		// 點選滑鼠左鍵，只偵測Layer10的Floor
 		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true && IsRightClick != true) 
 		{
 			Debug.DrawLine (Camera.main.transform.position, hitInfo.transform.position, Color.yellow, 0.1f, true);
-			if (Global.BeTouchedObj.tag == "Floor") 
+			if ( Global.BeTouchedObj != null && Global.OnCubeNum != 0) 
 			{
+				if(Global.BeTouchedObj.tag == "Floor" )
 				Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
 
 			}
 
 			// 切換成新點選的物件
 			Global.BeTouchedObj = hitInfo.collider.gameObject;
-			if(Global.BeTouchedObj.GetComponent<Renderer>() != null)
+			if(Global.BeTouchedObj.GetComponent<Renderer>() != null && Global.Level != "0")
 			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = true;
-			Global.Targetlight.Stop ();
-			Global.Targetlight.transform.position = Global.BeTouchedObj.transform.position;
-			Global.Targetlight.Play ();
+			if (Global.Targetlight != null) {
+				Global.Targetlight.Stop ();
+				Global.Targetlight.transform.position = Global.BeTouchedObj.transform.position;
+				Global.Targetlight.Play ();
+			}
 
-			if (Global.Player.activeSelf) 
-			{
+			if (Global.Player != null) {
 				Global.Wait = true;
 				Global.PlayerMove = true;
-				Global.Status.text = "移動中";
+			} else if(Global.Level != "0"){
+				Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
 			}
 		} 
 
@@ -74,7 +88,6 @@ public class TouchController : MonoBehaviour {
 					Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = true;
 				Arrow.transform.position = Global.RotatePlane.transform.position;
 				Arrow.transform.rotation = Global.RotatePlane.transform.rotation;
-				Global.Status.text = "選擇轉動方向";
 			}
 
 			// Cube
@@ -98,8 +111,6 @@ public class TouchController : MonoBehaviour {
 			for (int i = 0; i < 4; i++) {
 				Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = false;
 			}
-			if(Global.PlayerMove == false)
-				Global.Status.text = "正常";
 		}
 
 

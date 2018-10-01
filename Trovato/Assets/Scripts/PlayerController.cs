@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour {
 		//Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
 	}
 
+	void Update(){
+		
+	}
 
 	void FixedUpdate () {
 		
@@ -110,11 +113,12 @@ public class PlayerController : MonoBehaviour {
 		// 計算至目標的距離
 		Player = Global.Player;
 
-		MoveToTarget = Global.BeTouchedObj.transform.position;
+		if (Global.BeTouchedObj != null) {
+			MoveToTarget = Global.BeTouchedObj.transform.position;
 			MoveL = -(MoveToTarget.z - Player.transform.position.z);
 			MoveR = -(MoveToTarget.x - Player.transform.position.x);
 			MoveD = -(MoveToTarget.y - Player.transform.position.y);
-
+		}
 
 		// Player陽春版自動尋路功能
 
@@ -316,7 +320,6 @@ public class PlayerController : MonoBehaviour {
 		Global.PlayerMove = false;
 		if(Global.BeTouchedObj.tag == "Floor")
 			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
-		Global.Status.text = "正常";
 		Global.Targetlight.Stop ();
 	}
 

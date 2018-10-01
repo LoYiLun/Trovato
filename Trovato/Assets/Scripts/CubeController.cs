@@ -59,7 +59,7 @@ public class CubeController : MonoBehaviour {
 			// 依順時針分為 -1 ~ -12 的方向
 			if (CubeMode == 2) {
 				if (this.CubeL == 1 && Global.RotateNum == -1) {
-					if (Global.PlayerZ >= -2.5f - FixedP + CubeHomeZ && Global.PlayerZ <= -0.5f + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= -2.5f - FixedP + CubeHomeZ && Global.PlayerZ <= -0.5f + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -70,7 +70,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 0 && Global.RotateNum == -2) {
-					if (Global.PlayerZ >= 0.5f - FixedP + CubeHomeZ && Global.PlayerZ <= 2.5f + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= 0.5f - FixedP + CubeHomeZ && Global.PlayerZ <= 2.5f + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -107,7 +107,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 1 && Global.RotateNum == -5) {
-					if (Global.PlayerX >= -2.5f - FixedP + CubeHomeX && Global.PlayerX <= -0.5f + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= -2.5f - FixedP + CubeHomeX && Global.PlayerX <= -0.5f + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -118,7 +118,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 0 && Global.RotateNum == -6) {
-					if (Global.PlayerX >= 0.5f - FixedP + CubeHomeX && Global.PlayerX <= 2.5f + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= 0.5f - FixedP + CubeHomeX && Global.PlayerX <= 2.5f + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -129,7 +129,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 0 && Global.RotateNum == -7) {
-					if (Global.PlayerZ >= 0.5f - FixedP + CubeHomeZ && Global.PlayerZ <= 2.5f + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= 0.5f - FixedP + CubeHomeZ && Global.PlayerZ <= 2.5f + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -140,7 +140,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 1 && Global.RotateNum == -8) {
-					if (Global.PlayerZ >= -2.5f - FixedP + CubeHomeZ && Global.PlayerZ <= -0.5f + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= -2.5f - FixedP + CubeHomeZ && Global.PlayerZ <= -0.5f + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -177,7 +177,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 0 && Global.RotateNum == -11) {
-					if (Global.PlayerX >= 0.5f - FixedP + CubeHomeX && Global.PlayerX <= 2.5f + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= 0.5f - FixedP + CubeHomeX && Global.PlayerX <= 2.5f + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -188,7 +188,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 1 && Global.RotateNum == -12) {
-					if (Global.PlayerX >= -2.5f - FixedP + CubeHomeX && Global.PlayerX <= -0.5f + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= -2.5f - FixedP + CubeHomeX && Global.PlayerX <= -0.5f + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -204,7 +204,7 @@ public class CubeController : MonoBehaviour {
 			// 依順時針分為 1 ~ 18 的方向
 			if (CubeMode == 3) {
 				if (this.CubeL == 2 && Global.RotateNum == 1) {
-					if (Global.PlayerZ >= -4 - FixedP + CubeHomeZ && Global.PlayerZ <= -2 + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= -4 - FixedP + CubeHomeZ && Global.PlayerZ <= -2 + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -215,7 +215,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 1 && Global.RotateNum == 2) {
-					if (Global.PlayerZ >= -1 - FixedP + CubeHomeZ && Global.PlayerZ <= 1 + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= -1 - FixedP + CubeHomeZ && Global.PlayerZ <= 1 + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -226,7 +226,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 0 && Global.RotateNum == 3) {
-					if (Global.PlayerZ >= 2 - FixedP + CubeHomeZ && Global.PlayerZ <= 4 + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= 2 - FixedP + CubeHomeZ && Global.PlayerZ <= 4 + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -273,7 +273,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 2 && Global.RotateNum == 7) {
-					if (Global.PlayerX >= -4 - FixedP + CubeHomeX && Global.PlayerX <= -2 + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= -4 - FixedP + CubeHomeX && Global.PlayerX <= -2 + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -284,7 +284,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 1 && Global.RotateNum == 8) {
-					if (Global.PlayerX >= -1 - FixedP + CubeHomeX && Global.PlayerX <= 1 + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= -1 - FixedP + CubeHomeX && Global.PlayerX <= 1 + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -295,7 +295,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 0 && Global.RotateNum == 9) {
-					if (Global.PlayerX >= 2 - FixedP + CubeHomeX && Global.PlayerX <= 4 + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= 2 - FixedP + CubeHomeX && Global.PlayerX <= 4 + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -306,7 +306,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 0 && Global.RotateNum == 10) {
-					if (Global.PlayerZ >= 2 - FixedP + CubeHomeZ && Global.PlayerZ <= 4 + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= 2 - FixedP + CubeHomeZ && Global.PlayerZ <= 4 + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -317,7 +317,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 1 && Global.RotateNum == 11) {
-					if (Global.PlayerZ >= -1 - FixedP + CubeHomeZ && Global.PlayerZ <= 1 + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= -1 - FixedP + CubeHomeZ && Global.PlayerZ <= 1 + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -328,7 +328,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeL == 2 && Global.RotateNum == 12) {
-					if (Global.PlayerZ >= -4 - FixedP + CubeHomeZ && Global.PlayerZ <= -2 + FixedP + CubeHomeZ) {
+					if (Global.PlayerZ >= -4 - FixedP + CubeHomeZ && Global.PlayerZ <= -2 + FixedP + CubeHomeZ && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -376,7 +376,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 0 && Global.RotateNum == 16) {
-					if (Global.PlayerX >= 2 - FixedP + CubeHomeX && Global.PlayerX <= 4 + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= 2 - FixedP + CubeHomeX && Global.PlayerX <= 4 + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -387,7 +387,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 1 && Global.RotateNum == 17) {
-					if (Global.PlayerX >= -1 - FixedP + CubeHomeX && Global.PlayerX <= 1 + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= -1 - FixedP + CubeHomeX && Global.PlayerX <= 1 + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -398,7 +398,7 @@ public class CubeController : MonoBehaviour {
 				}
 
 				if (this.CubeR == 2 && Global.RotateNum == 18) {
-					if (Global.PlayerX >= -4 - FixedP + CubeHomeX && Global.PlayerX <= -2 + FixedP + CubeHomeX) {
+					if (Global.PlayerX >= -4 - FixedP + CubeHomeX && Global.PlayerX <= -2 + FixedP + CubeHomeX && Global.Player != null) {
 						Global.RotateNum = 0;
 					} else {
 						if (StartRotate == false && FinishRotate == false)
@@ -418,9 +418,9 @@ public class CubeController : MonoBehaviour {
 	void FixedUpdate(){
 		if (StartRotate) 
 		{
-			Global.Status.text = "轉動中";
 			Global.IsRotating = true;
-			Player.GetComponent<Rigidbody> ().useGravity = false;
+			if(Global.Player != null)
+				Global.Player.GetComponent<Rigidbody> ().useGravity = false;
 
 			// 等所有child集結到CubeLeader下後再旋轉魔方
 			if (CubeLeader.transform.childCount >= (CubeMode * CubeMode + ExtraChild)) 
@@ -447,7 +447,8 @@ public class CubeController : MonoBehaviour {
 				}
 				CubeLeader.transform.rotation = Quaternion.Euler (DX * 90, DY * 90, DZ * 90);
 				this.transform.parent = CubeHome.transform;
-				Player.transform.parent = null;
+				if(Global.Player != null)
+					Global.Player.transform.parent = null;
 				if(GhostWall_V2 != null)
 					GhostWall_V2.transform.parent = GameObject.Find("CubeV2").transform;
 				if(GhostWall_V3 != null)
@@ -465,11 +466,11 @@ public class CubeController : MonoBehaviour {
 		} 
 		else if (FinishRotate) 
 		{
-			Global.Status.text = "正常";
 			CubeLeader.transform.rotation = Quaternion.Euler (0, 0, 0);
 			Global.IsRotating = false;
 			Global.RotateNum = 0;
-			Player.GetComponent<Rigidbody> ().useGravity = true;
+			if(Global.Player != null)
+				Global.Player.GetComponent<Rigidbody> ().useGravity = true;
 			FinishRotate = false;
 		}
 	}

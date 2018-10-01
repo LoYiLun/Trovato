@@ -41,17 +41,25 @@ public class Global : MonoBehaviour {
 	public static GameObject RotateCube;
 	public static GameObject RotateArrow;
 
+	public GameObject GetTargetlight;
 	public static ParticleSystem Targetlight;
 	public static bool IsPushing;
 	public static GameObject BePushedObj;
 	public static bool Wait;
 
+
 	void Awake(){
-		Player = GetPlayer;
+		if(GetPlayer != null)
+			Player = GetPlayer;
 		Level = GetLevel;
-		Player.transform.parent = null;
-		BeTouchedObj = Player;
+		if(Player != null)
+			Player.transform.parent = null;
+		BeTouchedObj = null;
 		switch (Level) {
+		case"0":
+			OnCubeNum = 0;
+			break;
+
 		case"1":
 			OnCubeNum = 2;
 			break;
@@ -63,7 +71,8 @@ public class Global : MonoBehaviour {
 		}
 		YellowSkin =  Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
 		Status = GetStatus;
-		Targetlight = GameObject.Find ("FireBall").GetComponent<ParticleSystem> ();
+		if(GetTargetlight != null)
+			Targetlight = GetTargetlight.GetComponent<ParticleSystem> ();
 	}
 
 	void Start () {
@@ -74,7 +83,7 @@ public class Global : MonoBehaviour {
 	void Update () {
 		Status = GetStatus;
 
-		if (Player.activeSelf) 
+		if (Player != null) 
 		{
 			PlayerX = Player.transform.position.x;
 			PlayerY = Player.transform.position.y;
