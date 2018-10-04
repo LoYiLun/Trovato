@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 
 	private GameObject[] Obstacles;
 
-	float MoveSpeed = 5f;
+	float MoveSpeed = 3f;
 	float RotateSpeed = 0.25f;
 	Quaternion RotateDir;
 
@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour {
 	public static GameObject CurrentFloor;
 
 	float D;
+	Animation Walk;
 
 	void Awake(){
 
@@ -46,18 +47,11 @@ public class PlayerController : MonoBehaviour {
 		Player = Global.Player;
 		PlayerSetting();
 		FixedHeight = new Vector3 (0, 1f, 0);
-
-
-
+		Walk = GameObject.Find ("Player_Body").GetComponent<Animation> ();
 		//Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
 	}
 
-
 	void FixedUpdate () {
-		
-
-
-
 			DownRay = new Ray (Global.Player.transform.position, Vector3.down);
 			if (Physics.Raycast (DownRay, out hitinfo, 5, 1 << 10)) {
 				CurrentFloor = hitinfo.collider.gameObject;
@@ -83,12 +77,12 @@ public class PlayerController : MonoBehaviour {
 
 			if (Portal.transform.position.y > 6 && Portal2.transform.position.y > 4) {
 				PortalPower = true;
-				Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
-				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow", typeof(Material)) as Material;
+				Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Yellow", typeof(Material)) as Material;
+				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Yellow", typeof(Material)) as Material;
 			} else {
 				PortalPower = false;
-				Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
-				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Gray", typeof(Material)) as Material;
+				Portal.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Gray", typeof(Material)) as Material;
+				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Gray", typeof(Material)) as Material;
 			}
 
 			if (Vector3.Distance (GameObject.Find ("Platform").transform.position, GameObject.Find ("Platform2").transform.position) < 3) {
@@ -140,18 +134,21 @@ public class PlayerController : MonoBehaviour {
 		// 取消推箱子模式
 		if(Input.GetMouseButtonUp(1) && Global.IsPushing && Global.PlayerMove == false && Global.BePushedObj != null){
 			LockDirR = LockDirL = false;
-			Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/White")as Material;
+			StopWalkAnim ();
+			Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/White")as Material;
 			Global.BePushedObj.transform.parent = GameObject.Find ("MoveableGroup").transform;
 			Global.BePushedObj = null;
-			PlayerController.CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
 			Global.IsPushing = false;
 		}
 
 		if (Global.PlayerMove && Global.IsRotating == false) {
 
+			Walk.Play ();
+
 			LockRotation = false;
 			if(Global.Wait && Global.IsPushing == false){
-				Player.transform.position = new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z);
+				//Player.transform.position = new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z);
 				Global.Wait = false;
 			}
 			if (Mathf.Abs (MoveR) > 0.05f && LockDirR == false) {
@@ -180,6 +177,10 @@ public class PlayerController : MonoBehaviour {
 				} else {
 					LockDirR = LockDirL = false;
 					PlayerStop ();
+					Global.Oneshot = true;
+					StopWalkAnim ();
+
+
 				}
 			}
 		}
@@ -188,12 +189,20 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	void StopWalkAnim(){
+		Walk.Rewind ();
+		Walk.Play ();
+		Walk.Sample ();
+		Walk.Stop ();
+	}
+
 	void PlayerSetting(){
 		Player.transform.position += FixedHeight;
 	}
 
 	void PlayerStop(){
 		CancelMoving (new Vector3(MoveToTarget.x, transform.position.y, MoveToTarget.z));
+
 	}
 
 	void OnCollisionEnter(Collision other){
@@ -206,9 +215,10 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Moveable")
 		{
 			if (Global.BePushedObj == null) {
+				StopWalkAnim ();
 				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
 				Global.BePushedObj = other.gameObject;
-				Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Blue")as Material;
+				Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Blue")as Material;
 				Global.IsPushing = true;
 				transform.rotation = RotateDir;
 				Global.BePushedObj.transform.parent = Player.transform;
@@ -234,6 +244,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
 		{
 			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+			StopWalkAnim ();
 		}
 
 
@@ -243,6 +254,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
 		{
 			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+
 		}
 
 		if (other.gameObject.tag == "Moveable") {
@@ -291,8 +303,8 @@ public class PlayerController : MonoBehaviour {
 		// 進入太空站前準備
 		if (other.gameObject.name == "sBlock") {
 
-			GameObject.Find("Station_Bigroom").GetComponent<Renderer> ().material = Resources.Load("Materials/Ghost") as Material;
-			GameObject.Find("Station_Radar").GetComponent<Renderer> ().material = Resources.Load("Materials/Ghost") as Material;
+			GameObject.Find("Station_Bigroom").GetComponent<Renderer> ().material = Resources.Load("Materials/Global/Ghost") as Material;
+			GameObject.Find("Station_Radar").GetComponent<Renderer> ().material = Resources.Load("Materials/Global/Ghost") as Material;
 
 			/*
 			Component[] stationRenderer;

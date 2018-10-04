@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour {
 	public GameObject Player;
 	Vector3 CamToScreenHeart;
 	Vector3 LockPlayer;
+	Vector3 PosBeforeMove;
 	//GameObject Hit;
 	//GameObject GhostBall;
 
@@ -67,6 +68,32 @@ public class CameraController : MonoBehaviour {
 			Camera.main.fieldOfView -= 1;
 		}
 
+		// 控制攝影機平移
+		/*
+		if (Input.GetMouseButtonDown (2) && Global.IsCamCtrl != true && Global.StopTouch != true)
+			PosBeforeMove = CurrentCam.transform.position;
+
+		if (Input.GetMouseButton (2) && Global.IsCamCtrl != true && Global.StopTouch != true) {
+			if (mx > 0) {
+				CurrentCam.transform.Translate (-10 * Time.deltaTime, 0, 0);
+			}
+			if (mx < 0) {
+				CurrentCam.transform.Translate (10 * Time.deltaTime, 0, 0);
+			}
+
+			// 上下
+			if (my > 0 && Distance.y > -45) {
+				CurrentCam.transform.Translate (0, -10 * Time.deltaTime, 0);
+			}
+			if (my < 0 && Distance.y < 45) {
+				CurrentCam.transform.Translate (0, 10 * Time.deltaTime, 0);
+			}
+		}
+
+		if (Input.GetMouseButtonUp (2) && Global.IsCamCtrl != true && Global.StopTouch != true) {
+			CurrentCam.transform.position = PosBeforeMove;
+		}*/
+
 		// 控制攝影機旋轉視角
 		if ((Input.GetMouseButton (0) || Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true) {
 
@@ -120,18 +147,5 @@ public class CameraController : MonoBehaviour {
 		}
 
 	}
-
-	/*
-	public void BirdCam(){
-		CamObj.SetActive (false);
-		CamObj2.SetActive (true);
-		CurrentCam = Cam2;
-	}
-
-	public void StalkerCam(){
-		CamObj.SetActive (true);
-		CamObj2.SetActive (false);
-		CurrentCam = Cam;
-	}*/
 
 }

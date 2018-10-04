@@ -47,6 +47,7 @@ public class Global : MonoBehaviour {
 	public static GameObject BePushedObj;
 	public static bool Wait;
 
+	public static bool Oneshot;
 
 	void Awake(){
 		if(GetPlayer != null)

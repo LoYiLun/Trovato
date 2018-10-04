@@ -9,6 +9,7 @@ public class TouchController : MonoBehaviour {
 	GameObject TemptCube;
 	GameObject TargetLight;
 	bool IsRightClick;
+	bool IsFloorShining;
 
 	string[] RotateNumBox = new string[2];
 	string Box;
@@ -25,9 +26,30 @@ public class TouchController : MonoBehaviour {
 		Arrow = Instantiate (ArrowPrefab);
 		Global.IsCamCtrl = false;
 		Global.StopTouch = false;
+	}
+
+	IEnumerator TouchEffect(){
+		for (float i=0; i < 10f; i += Time.deltaTime) {
+			IsFloorShining = true;
+			Global.BeTouchedObj.GetComponent<Renderer>().material = Resources.Load("Materials/Materials/touch0")as Material;
+			yield return new WaitForSeconds(0.1f);
+			Global.BeTouchedObj.GetComponent<Renderer>().material = Resources.Load("Materials/Materials/touch1")as Material;
+			yield return new WaitForSeconds(0.2f);
+			Global.BeTouchedObj.GetComponent<Renderer>().material = Resources.Load("Materials/Materials/touch2")as Material;
+			yield return new WaitForSeconds(0.15f);
+
+
+			if (Global.PlayerMove == false) {
+				IsFloorShining = false;
+				yield break;
+			}
+		}
+			
+
 
 	}
 
+		
 		
 	void Update () {
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
@@ -46,6 +68,7 @@ public class TouchController : MonoBehaviour {
 
 		}
 
+
 		// 點選滑鼠左鍵，只偵測Layer10的Floor
 		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true && IsRightClick != true) 
 		{
@@ -61,6 +84,8 @@ public class TouchController : MonoBehaviour {
 			Global.BeTouchedObj = hitInfo.collider.gameObject;
 			if(Global.BeTouchedObj.GetComponent<Renderer>() != null && Global.Level != "0")
 			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = true;
+			if(IsFloorShining == false)
+			StartCoroutine (TouchEffect ());
 			if (Global.Targetlight != null) {
 				Global.Targetlight.Stop ();
 				Global.Targetlight.transform.position = Global.BeTouchedObj.transform.position;
