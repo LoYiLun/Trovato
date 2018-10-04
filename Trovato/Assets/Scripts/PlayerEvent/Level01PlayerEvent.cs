@@ -13,8 +13,7 @@ public class Level01PlayerEvent : MonoBehaviour {
     // Use this for initialization
     void Start () {
         main = GameObject.Find("MainFlowChart").GetComponent<Flowchart>();
-        Rose.GetComponent<MeshRenderer>().enabled = true;
-        Rose.GetComponent<SphereCollider>().enabled = true;
+        Rose.SetActive(true);
     }
 	
 	// Update is called once per frame
@@ -57,8 +56,7 @@ public class Level01PlayerEvent : MonoBehaviour {
         }
         if (GiveBread)
         {
-            Rose.GetComponent<MeshRenderer>().enabled = false;
-            Rose.GetComponent<SphereCollider>().enabled = false;
+            Rose.SetActive(false);
         }
     }
     void OnCollisionEnter(UnityEngine.Collision other)
@@ -68,7 +66,7 @@ public class Level01PlayerEvent : MonoBehaviour {
             Rose = GameObject.Find("Rose");
             Flowchart.BroadcastFungusMessage("GiveBread");
         }
-        if(other.transform.name == "PrinceHome6")
+        if(other.transform.name == "PrinceHome_Door")
         {
             Flowchart.BroadcastFungusMessage("RoseGoHome");
             Flowchart.BroadcastFungusMessage("SecGoHome");
@@ -89,7 +87,7 @@ public class Level01PlayerEvent : MonoBehaviour {
         {
             Flowchart.BroadcastFungusMessage("HouseTalk");
         }
-        if (other.transform.name == "WareHouse")
+        if (other.transform.name == "WareHouse_Door")
         {
             Flowchart.BroadcastFungusMessage("WareHouseTalk");
         }

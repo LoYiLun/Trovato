@@ -76,11 +76,14 @@ public class Global : MonoBehaviour {
 	}
 
 	void Start () {
-
+		
 	}
 	
 
 	void Update () {
+		if (Input.GetKeyDown (KeyCode.R))
+			Retry ();
+
 		Status = GetStatus;
 
 		if (Player != null) 
@@ -96,6 +99,15 @@ public class Global : MonoBehaviour {
 	}
 
 	public static void Retry(){
+		IsRotating = false;
+		IsCamCtrl = false;
+		IsPushing = false;
+		BeTouchedObj = null;
+		BeTouchedCube = null;
+		BePushedObj = null;
+		PlayerMove = false;
+		StopTouch = false;
+		Wait = false;
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 }

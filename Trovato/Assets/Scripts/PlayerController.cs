@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	private float TargetL;
 	private float TargetR;
 	GameObject Player;
+	Vector3 StartPos;
 	Vector3 FixedHeight;
 
 	private GameObject[] Obstacles;
@@ -51,9 +52,6 @@ public class PlayerController : MonoBehaviour {
 		//Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
 	}
 
-	void Update(){
-		
-	}
 
 	void FixedUpdate () {
 		
@@ -120,6 +118,7 @@ public class PlayerController : MonoBehaviour {
 			MoveD = -(MoveToTarget.y - Player.transform.position.y);
 		}
 
+
 		// Player陽春版自動尋路功能
 
 		// 推箱子時角色不轉動方向
@@ -139,7 +138,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		// 取消推箱子模式
-		if(Input.GetMouseButtonDown(1) && Global.IsPushing && Global.PlayerMove == false && Global.BePushedObj != null){
+		if(Input.GetMouseButtonUp(1) && Global.IsPushing && Global.PlayerMove == false && Global.BePushedObj != null){
 			LockDirR = LockDirL = false;
 			Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/White")as Material;
 			Global.BePushedObj.transform.parent = GameObject.Find ("MoveableGroup").transform;
@@ -289,12 +288,18 @@ public class PlayerController : MonoBehaviour {
 			Global.OnCubeNum = 1;
 		}
 
+		// 進入太空站前準備
 		if (other.gameObject.name == "sBlock") {
+
+			GameObject.Find("Station_Bigroom").GetComponent<Renderer> ().material = Resources.Load("Materials/Ghost") as Material;
+			GameObject.Find("Station_Radar").GetComponent<Renderer> ().material = Resources.Load("Materials/Ghost") as Material;
+
+			/*
 			Component[] stationRenderer;
 			stationRenderer = GameObject.Find ("Station").GetComponentsInChildren<Renderer> ();
 			foreach (Renderer skin in stationRenderer) {
 				skin.material = Resources.Load ("Materials/Ghost")as Material;
-			}
+			}*/
 		}
 
 		if (other.gameObject.name == "Enemy") {
@@ -306,11 +311,15 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerExit(Collider other){
 
 		if (other.gameObject.name == "sBlock") {
+			GameObject.Find("Station_Bigroom").GetComponent<Renderer> ().material = Resources.Load("Materials/Level_02/Materials/SSS-2") as Material;
+			GameObject.Find("Station_Radar").GetComponent<Renderer> ().material = Resources.Load("Materials/Level_02/Materials/SSS-1") as Material;
+
+			/*
 			Component[] stationRenderer;
 			stationRenderer = GameObject.Find ("Station").GetComponentsInChildren<Renderer> ();
 			foreach (Renderer skin in stationRenderer) {
 				skin.material = Resources.Load ("Materials/Red")as Material;
-			}
+			}*/
 		}
 	}
 
@@ -318,18 +327,10 @@ public class PlayerController : MonoBehaviour {
 	public static void CancelMoving(Vector3 NewPosition){
 		Global.Player.transform.position = NewPosition;
 		Global.PlayerMove = false;
-		if(Global.BeTouchedObj.tag == "Floor")
+		if(Global.BeTouchedObj != null && Global.BeTouchedObj.tag == "Floor")
 			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
 		Global.Targetlight.Stop ();
 	}
 
-	/*
-	void StartMove(){
-
-		MoveDir = MoveToTarget - Player.transform.position;
-		TargetL = MoveToTarget.z;
-		TargetR = MoveToTarget.x;
-		Player.transform.position = Vector3.MoveTowards (Player.transform.position, MoveToTarget+new Vector3(TargetR,1,0), MoveSpeed*Time.deltaTime);
-	}*/
 
 }

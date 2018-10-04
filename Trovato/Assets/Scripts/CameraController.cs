@@ -63,7 +63,7 @@ public class CameraController : MonoBehaviour {
 
 		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 25) {
 			Camera.main.fieldOfView += 1;
-		} else if (Input.GetAxis ("Mouse ScrollWheel") > 0 && Camera.main.fieldOfView > 15) {
+		} else if (Input.GetAxis ("Mouse ScrollWheel") > 0 && Camera.main.fieldOfView > 10) {
 			Camera.main.fieldOfView -= 1;
 		}
 
@@ -73,24 +73,24 @@ public class CameraController : MonoBehaviour {
 
 			// 左右
 			if (mx > 0) {
-				Cam.transform.Translate (-80 * Time.deltaTime, 0, 0);
+				Cam.transform.Translate (-120 * Time.deltaTime, 0, 0);
 				Cam.transform.position -= Vector3.forward * Time.deltaTime;
 				Cam.transform.LookAt (ScreenHeart.transform);
 			}
 			if (mx < 0) {
-				Cam.transform.Translate (80 * Time.deltaTime, 0, 0);
+				Cam.transform.Translate (120 * Time.deltaTime, 0, 0);
 				Cam.transform.position += Vector3.forward * Time.deltaTime;
 				Cam.transform.LookAt (ScreenHeart.transform);
 			}
 
 			// 上下
 			if (my > 0 && Distance.y > -45) {
-				Cam.transform.Translate (0, -80 * Time.deltaTime, 0);
+				Cam.transform.Translate (0, -120 * Time.deltaTime, 0);
 				Cam.transform.LookAt (ScreenHeart.transform);
 
 			}
 			if (my < 0 && Distance.y < 45) {
-				Cam.transform.Translate (0, 80 * Time.deltaTime, 0);
+				Cam.transform.Translate (0, 120 * Time.deltaTime, 0);
 				Cam.transform.LookAt (ScreenHeart.transform);
 			}
 

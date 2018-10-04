@@ -47,14 +47,16 @@ public class Btn_Function : MonoBehaviour {
 
 		if (IsShowing) {
 			for (int i = 0; i < Names.Length; i++) {
-				Names[i].GetComponent<Canvas> ().enabled = false;
+                if(Names[i].GetComponent<Canvas>() != null)
+			    	Names[i].GetComponent<Canvas> ().enabled = false;
 			}
 			IsShowing = false;
 		} 
 		else 
 		{
 			for (int i = 0; i < Names.Length; i++) {
-				Names[i].GetComponent<Canvas> ().enabled = true;
+                if (Names[i].GetComponent<Canvas>() != null)
+                    Names[i].GetComponent<Canvas> ().enabled = true;
 			}
 			IsShowing = true;
 		}
@@ -92,8 +94,7 @@ public class Btn_Function : MonoBehaviour {
 	}
 
 	public void Rebuild(){
-		Global.IsPushing = false;
-		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
+		Global.Retry ();
 
 	}
 
