@@ -87,7 +87,7 @@ public class CubeController : MonoBehaviour {
 					this.transform.parent = CubeLeader.transform;
 
 					if (Global.OnCubeNum == 2) {
-						Player.transform.parent = CubeLeader.transform;
+						Global.Player.transform.SetParent (CubeLeader.transform);
 						ExtraChild = 1;
 						if (GhostWall_V2 != null) {
 							GhostWall_V2.transform.parent = CubeLeader.transform;
@@ -165,7 +165,7 @@ public class CubeController : MonoBehaviour {
 					this.transform.parent = CubeLeader.transform;
 
 					if (Global.OnCubeNum == 2) {
-						Player.transform.parent = CubeLeader.transform;
+						Global.Player.transform.SetParent (CubeLeader.transform);
 						ExtraChild = 1;
 						if (GhostWall_V2 != null) {
 							GhostWall_V2.transform.parent = CubeLeader.transform;
@@ -245,7 +245,7 @@ public class CubeController : MonoBehaviour {
 					//ExtraChild = 1;
 
 					if (Global.OnCubeNum == 1) {
-						Player.transform.parent = CubeLeader.transform;
+						Global.Player.transform.SetParent (CubeLeader.transform);
 						ExtraChild = 1;
 						if (GhostWall_V3 != null) {
 							GhostWall_V3.transform.parent = CubeLeader.transform;
@@ -364,7 +364,7 @@ public class CubeController : MonoBehaviour {
 					//ExtraChild = 1;
 
 					if (Global.OnCubeNum == 1) {
-						Player.transform.parent = CubeLeader.transform;
+						Global.Player.transform.SetParent (CubeLeader.transform);
 						ExtraChild = 1;
 						if (GhostWall_V3 != null) {
 							GhostWall_V3.transform.parent = CubeLeader.transform;
@@ -447,8 +447,8 @@ public class CubeController : MonoBehaviour {
 				}
 				CubeLeader.transform.rotation = Quaternion.Euler (DX * 90, DY * 90, DZ * 90);
 				this.transform.parent = CubeHome.transform;
-				if(Global.Player != null)
-					Global.Player.transform.parent = null;
+				if (Global.Player != null)
+					Global.Player.transform.SetParent (GameObject.Find("PlayerHome").transform);
 				if(GhostWall_V2 != null)
 					GhostWall_V2.transform.parent = GameObject.Find("CubeV2").transform;
 				if(GhostWall_V3 != null)

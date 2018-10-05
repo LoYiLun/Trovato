@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour {
 	public static GameObject CurrentFloor;
 
 	float D;
-	Animation Walk;
+	Animation PlayerAnim;
 
 	void Awake(){
 
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour {
 		Player = Global.Player;
 		PlayerSetting();
 		FixedHeight = new Vector3 (0, 1f, 0);
-		Walk = GameObject.Find ("Player_Body").GetComponent<Animation> ();
+		PlayerAnim = GameObject.Find ("Player_Body").GetComponent<Animation> ();
 		//Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
 	}
 
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour {
 		// 取消推箱子模式
 		if(Input.GetMouseButtonUp(1) && Global.IsPushing && Global.PlayerMove == false && Global.BePushedObj != null){
 			LockDirR = LockDirL = false;
-			StopWalkAnim ();
+			PlayerAnim.Play ("Push_To_Stand");
 			Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/White")as Material;
 			Global.BePushedObj.transform.parent = GameObject.Find ("MoveableGroup").transform;
 			Global.BePushedObj = null;
@@ -144,41 +144,51 @@ public class PlayerController : MonoBehaviour {
 
 		if (Global.PlayerMove && Global.IsRotating == false) {
 
-			Walk.Play ();
-
+			if (Global.IsPushing) {
+				
+				PlayerAnim.Play ("Push_And_Move");
+			} else {
+				PlayerAnim.Play ("Walk");
+			}
 			LockRotation = false;
 			if(Global.Wait && Global.IsPushing == false){
-				//Player.transform.position = new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z);
+				Player.transform.position = new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z);
 				Global.Wait = false;
 			}
 			if (Mathf.Abs (MoveR) > 0.05f && LockDirR == false) {
 				if (MoveR > 0) {
 					Player.transform.position += new Vector3 (-MoveSpeed * Time.deltaTime, 0, 0);
+					if(!Global.IsPushing)
 					RotateDir = Quaternion.Euler (0, -90, 0);
 
 				} else if (MoveR < 0) {
 					Player.transform.position += new Vector3 (MoveSpeed * Time.deltaTime, 0, 0);
+					if(!Global.IsPushing)
 					RotateDir = Quaternion.Euler (0, 90, 0);
 
 				}
 			} else if (Mathf.Abs (MoveL) > 0.05f && LockDirL == false) {
 				if (MoveL > 0) {
 					Player.transform.position += new Vector3 (0, 0, -MoveSpeed * Time.deltaTime);
+					if(!Global.IsPushing)
 					RotateDir = Quaternion.Euler (0, 180, 0);
 
 				} else if (MoveL < 0) {
 					Player.transform.position += new Vector3 (0, 0, MoveSpeed * Time.deltaTime);
+					if(!Global.IsPushing)
 					RotateDir = Quaternion.Euler (0, 0, 0);
 
 				}
 			} else if(Mathf.Abs (MoveD) < 3f){
 				if (Global.IsPushing) {
 					CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+					PlayerAnim.Play ("Push_And_Stand");
 				} else {
 					LockDirR = LockDirL = false;
 					PlayerStop ();
 					Global.Oneshot = true;
-					StopWalkAnim ();
+						
+					StopPlayerAnim ();
 
 
 				}
@@ -189,11 +199,11 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	void StopWalkAnim(){
-		Walk.Rewind ();
-		Walk.Play ();
-		Walk.Sample ();
-		Walk.Stop ();
+	void StopPlayerAnim(){
+		PlayerAnim.Rewind ();
+		PlayerAnim.Play ();
+		PlayerAnim.Sample ();
+		PlayerAnim.Stop ();
 	}
 
 	void PlayerSetting(){
@@ -215,7 +225,8 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Moveable")
 		{
 			if (Global.BePushedObj == null) {
-				StopWalkAnim ();
+				StopPlayerAnim ();
+				PlayerAnim.Play ("Stand_To_Push");
 				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
 				Global.BePushedObj = other.gameObject;
 				Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Blue")as Material;
@@ -244,7 +255,7 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
 		{
 			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
-			StopWalkAnim ();
+			StopPlayerAnim ();
 		}
 
 
@@ -337,6 +348,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	public static void CancelMoving(Vector3 NewPosition){
+
 		Global.Player.transform.position = NewPosition;
 		Global.PlayerMove = false;
 		if(Global.BeTouchedObj != null && Global.BeTouchedObj.tag == "Floor")
