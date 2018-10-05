@@ -14,7 +14,7 @@ public class MainCreateController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        CreateMode = 0;
     }
 	
 	// Update is called once per frame
