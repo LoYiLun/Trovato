@@ -11,15 +11,13 @@ public class PlayerStatusImage : MonoBehaviour {
 	public Sprite text3;
 	public Sprite text4;
 	bool statusing;
-	float Dis;
 
 	void Start () {
 		
 	}
+	
 
 	void FixedUpdate () {
-
-
 		if (statusing != true) {
 			if (Status == "IsTalking") {
 				
@@ -31,7 +29,7 @@ public class PlayerStatusImage : MonoBehaviour {
 	}
 
 	IEnumerator IsTalking(){
-		for (float i = 0; i < 5f; i += Time.deltaTime) {
+		for (float i = 0; i < 10f; i += Time.deltaTime) {
 			statusing = true;
 			GetComponent<Image> ().sprite = text1;
 			yield return new WaitForSeconds (0.6f);
@@ -42,10 +40,9 @@ public class PlayerStatusImage : MonoBehaviour {
 			GetComponent<Image> ().sprite = text4;
 			yield return new WaitForSeconds (0.2f);
 
-			if (Status == null) {
+			if (Status == null || Global.PlayerMove) {
 				statusing = false;
 				GetComponent<Image> ().enabled = false;
-				Status = null;
 				yield break;
 			}
 

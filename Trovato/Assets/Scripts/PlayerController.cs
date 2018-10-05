@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
 
 	private GameObject[] Obstacles;
 
-	float MoveSpeed = 3f;
+	public static float MoveSpeed = 4f;
 	float RotateSpeed = 0.25f;
 	Quaternion RotateDir;
 
@@ -135,6 +135,8 @@ public class PlayerController : MonoBehaviour {
 		if(Input.GetMouseButtonUp(1) && Global.IsPushing && Global.PlayerMove == false && Global.BePushedObj != null){
 			LockDirR = LockDirL = false;
 			PlayerAnim.Play ("Push_To_Stand");
+			MoveSpeed = 4;
+
 			Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/White")as Material;
 			Global.BePushedObj.transform.parent = GameObject.Find ("MoveableGroup").transform;
 			Global.BePushedObj = null;
@@ -224,9 +226,12 @@ public class PlayerController : MonoBehaviour {
 
 		if (other.gameObject.tag == "Moveable")
 		{
+
 			if (Global.BePushedObj == null) {
 				StopPlayerAnim ();
 				PlayerAnim.Play ("Stand_To_Push");
+				MoveSpeed = 2;
+
 				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
 				Global.BePushedObj = other.gameObject;
 				Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Blue")as Material;
@@ -284,6 +289,7 @@ public class PlayerController : MonoBehaviour {
 			foreach (Collider c in colliders)
 				c.enabled = false;
 
+			StopPlayerAnim ();
 			CancelMoving (Portal2.transform.position + new Vector3 (0, 0.2f, 0));
 			Global.Targetlight.Stop ();
 			//Player.transform.position = Portal2.transform.position + new Vector3(0,0.2f,0);
@@ -301,6 +307,7 @@ public class PlayerController : MonoBehaviour {
 			foreach (Collider c in colliders)
 				c.enabled = true;
 
+			StopPlayerAnim ();
 			CancelMoving (Portal.transform.position + new Vector3 (0, 0.2f, 0));
 			Global.Targetlight.Stop ();
 			//Player.transform.position = Portal.transform.position + new Vector3(0,0.2f,0);

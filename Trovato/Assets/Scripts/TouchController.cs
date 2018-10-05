@@ -30,14 +30,15 @@ public class TouchController : MonoBehaviour {
 
 	IEnumerator TouchEffect(){
 		for (float i=0; i < 10f; i += Time.deltaTime) {
-			IsFloorShining = true;
-			Global.BeTouchedObj.GetComponent<Renderer>().material = Resources.Load("Materials/Materials/touch0")as Material;
-			yield return new WaitForSeconds(0.1f);
-			Global.BeTouchedObj.GetComponent<Renderer>().material = Resources.Load("Materials/Materials/touch1")as Material;
-			yield return new WaitForSeconds(0.2f);
-			Global.BeTouchedObj.GetComponent<Renderer>().material = Resources.Load("Materials/Materials/touch2")as Material;
-			yield return new WaitForSeconds(0.15f);
-
+			if (Global.BeTouchedObj.GetComponent<Renderer> () != null) {
+				IsFloorShining = true;
+				Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch0")as Material;
+				yield return new WaitForSeconds (0.1f);
+				Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch1")as Material;
+				yield return new WaitForSeconds (0.2f);
+				Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2")as Material;
+				yield return new WaitForSeconds (0.15f);
+			}
 
 			if (Global.PlayerMove == false) {
 				IsFloorShining = false;
@@ -52,6 +53,7 @@ public class TouchController : MonoBehaviour {
 		
 		
 	void Update () {
+
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit RotateHitInfo;
 		RaycastHit RotateHitInfo2;

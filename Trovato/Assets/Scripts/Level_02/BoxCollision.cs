@@ -30,12 +30,11 @@ public class BoxCollision : MonoBehaviour {
 			// 箱子推進焚化爐
 			if (other.gameObject.name == "IncinerationPlant4" || other.gameObject.name == "IncinerationPlant5" || other.gameObject.name == "IncinerationPlant6") {
 				GameObject.Find ("Player_Body").GetComponent<Animation> ().Play("Push_To_Stand");
+				PlayerController.MoveSpeed = 4;
 				gameObject.GetComponent<Renderer> ().enabled = false;
 				gameObject.GetComponent<Collider> ().enabled = false;
 				Global.BePushedObj = null;
 				Global.IsPushing = false;
-                Level02PlayerEvent.box++; //控制箱子完成回收對話
-                
 			}
 		}
 	}

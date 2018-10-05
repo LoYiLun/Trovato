@@ -8662,6 +8662,7 @@ GameObject:
   - component: {fileID: 223737125498062596}
   - component: {fileID: 114583317284817324}
   - component: {fileID: 114857713553709988}
+  - component: {fileID: 114463400091135408}
   m_Layer: 5
   m_Name: Canvas(Main)
   m_TagString: Untagged
@@ -10479,7 +10480,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1628681405960638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 4.9, z: 3}
+  m_LocalPosition: {x: 3, y: 5, z: 3}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4891914671764200}
@@ -18260,7 +18261,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7f43660897785f34da03ca7f600871fa, type: 2}
+  - {fileID: 2100000, guid: 4751d2a54f88d82439918ccfd343b70d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18770,7 +18771,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 59a1bec6a50116145b12c1b3110b3deb, type: 2}
+  - {fileID: 2100000, guid: 81bfa4311f359f546b96aabf58be062c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19960,7 +19961,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7f43660897785f34da03ca7f600871fa, type: 2}
+  - {fileID: 2100000, guid: 4751d2a54f88d82439918ccfd343b70d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20946,7 +20947,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0adfb00b0541c094b86f11058c84e1c0, type: 2}
+  - {fileID: 2100000, guid: 9e4c68306cfb89545b846f2ddaedcf3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28630,7 +28631,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0adfb00b0541c094b86f11058c84e1c0, type: 2}
+  - {fileID: 2100000, guid: 9e4c68306cfb89545b846f2ddaedcf3f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -30568,7 +30569,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: f67afcc8bf82d2e4f88137b2265b5090, type: 2}
+  - {fileID: 2100000, guid: d76a0cd96732ee345ab63e6839b9864f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -36996,6 +36997,18 @@ MonoBehaviour:
   CubeLeader: {fileID: 1855099956801980}
   GhostWall_V2: {fileID: 0}
   GhostWall_V3: {fileID: 1850588400712398}
+--- !u!114 &114463400091135408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1922621861436906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1452547141803c54e8277ddeaa3bd33f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tips_Box: {fileID: 0}
 --- !u!114 &114498440792694428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37449,10 +37462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level02main: {fileID: 0}
-  Box_1: {fileID: 0}
-  Box_2: {fileID: 0}
-  Box_3: {fileID: 0}
-  box: 0
+  RedLeaf: 0
 --- !u!114 &114683325670131050
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -109,6 +109,9 @@ public class Global : MonoBehaviour {
 		PlayerMove = false;
 		StopTouch = false;
 		Wait = false;
+		ImageFade.FadeIn = false;
+		ImageFade.FadeOut = false;
+		PlayerStatusImage.Status = null;
 		SceneManager.LoadScene (SceneManager.GetActiveScene().name);
 	}
 }

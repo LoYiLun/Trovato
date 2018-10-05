@@ -132,15 +132,48 @@ public class Btn_Function : MonoBehaviour {
 
 
 	public void ToLevel_01(){
+		Global.IsRotating = false;
+		Global.IsCamCtrl = false;
 		Global.IsPushing = false;
+		Global.BeTouchedObj = null;
+		Global.BeTouchedCube = null;
+		Global.BePushedObj = null;
+		Global.PlayerMove = false;
+		Global.StopTouch = false;
+		Global.Wait = false;
+		ImageFade.FadeIn = false;
+		ImageFade.FadeOut = false;
+		PlayerStatusImage.Status = null;
 		SceneManager.LoadScene ("Level_01");
 	}
 	public void ToLevel_02(){
+		Global.IsRotating = false;
+		Global.IsCamCtrl = false;
 		Global.IsPushing = false;
+		Global.BeTouchedObj = null;
+		Global.BeTouchedCube = null;
+		Global.BePushedObj = null;
+		Global.PlayerMove = false;
+		Global.StopTouch = false;
+		Global.Wait = false;
+		ImageFade.FadeIn = false;
+		ImageFade.FadeOut = false;
+		PlayerStatusImage.Status = null;
 		SceneManager.LoadScene ("Level_02");
 	}
 	public void ToLevel_03(){
+		Global.IsRotating = false;
+		Global.IsCamCtrl = false;
 		Global.IsPushing = false;
+		Global.BeTouchedObj = null;
+		Global.BeTouchedCube = null;
+		Global.BePushedObj = null;
+		Global.PlayerMove = false;
+		Global.StopTouch = false;
+		Global.Wait = false;
+		ImageFade.FadeIn = false;
+		ImageFade.FadeOut = false;
+		PlayerStatusImage.Status = null;
 		SceneManager.LoadScene ("Level_03");
 	}
 }
