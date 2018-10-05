@@ -34,6 +34,8 @@ public class BoxCollision : MonoBehaviour {
 				gameObject.GetComponent<Collider> ().enabled = false;
 				Global.BePushedObj = null;
 				Global.IsPushing = false;
+                Level02PlayerEvent.box++; //控制箱子完成回收對話
+                
 			}
 		}
 	}
