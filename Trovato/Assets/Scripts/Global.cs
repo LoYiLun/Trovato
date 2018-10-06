@@ -77,7 +77,8 @@ public class Global : MonoBehaviour {
 	}
 
 	void Start () {
-		
+
+
 	}
 	
 
