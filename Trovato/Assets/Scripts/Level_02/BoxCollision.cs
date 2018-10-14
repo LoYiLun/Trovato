@@ -39,12 +39,14 @@ public class BoxCollision : MonoBehaviour {
 		}
 	}
 
+	// 箱子碰撞障礙物或可移物
 	void OnCollisionStay(Collision other){
 		if ((other.gameObject.tag == "Obstacle" || other.gameObject.tag == "Moveable") && gameObject.transform.parent == Global.Player.transform) {
 			PlayerController.CancelMoving (new Vector3(PlayerController.CurrentFloor.transform.position.x, Global.Player.transform.position.y, PlayerController.CurrentFloor.transform.position.z));
 		}
 	}
 
+	// 箱子碰撞隱形牆
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "GhostWall" && gameObject.transform.parent == Global.Player.transform) {
 			PlayerController.CancelMoving (new Vector3(PlayerController.CurrentFloor.transform.position.x, Global.Player.transform.position.y, PlayerController.CurrentFloor.transform.position.z));

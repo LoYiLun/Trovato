@@ -7479,6 +7479,7 @@ GameObject:
   - component: {fileID: 4099147109160750}
   - component: {fileID: 114043388578789682}
   - component: {fileID: 114412892767432744}
+  - component: {fileID: 114758741221895044}
   - component: {fileID: 114547069666315522}
   m_Layer: 0
   m_Name: GlobalScripts
@@ -17031,7 +17032,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.3137255, g: 0.3137255, b: 0.3137255, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -23668,7 +23669,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: ba036ecbf443a3e47bdc74483fd1364f, type: 2}
+  - {fileID: 2100000, guid: d081db5f46b1d3a4e988b4dc2d4c1e25, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35372,7 +35373,7 @@ BoxCollider:
   m_GameObject: {fileID: 1054501459376546}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -36224,9 +36225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GetLevel: 2
-  P_RotateNum: 0
   GetPlayer: {fileID: 1628681405960638}
-  GetStatus: {fileID: 0}
   GetTargetlight: {fileID: 1594915987795416}
 --- !u!114 &114054930440781032
 MonoBehaviour:
@@ -37414,10 +37413,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -37437,7 +37436,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cam: {fileID: 1497655195339756}
   CamObj: {fileID: 1179962705780132}
-  Player: {fileID: 0}
   ScreenHeart: {fileID: 1873655286614640}
 --- !u!114 &114607217040317342
 MonoBehaviour:
@@ -37632,10 +37630,92 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32b9a962642d0d64d928f10ab93957ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Floor: {fileID: 1054501459376546}
   CubeMode: 3
   FloorMode: 3
   FloorID: 1
+  Floor: {fileID: 1054501459376546}
+  FloorGroup:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114715072033963410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37728,6 +37808,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fa46acd110d39404fa6034200f52bb58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114758741221895044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816126167258740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4dbb822798581246b432b8366e570c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114765538546952380
