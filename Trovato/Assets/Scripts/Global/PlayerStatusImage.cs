@@ -18,13 +18,16 @@ public class PlayerStatusImage : MonoBehaviour {
 	
 
 	void FixedUpdate () {
-		if (statusing != true) {
+		if (!statusing) {
 			if (Status == "IsTalking") {
 				
 				GetComponent<Image> ().enabled = true;
 				StartCoroutine (IsTalking ());
 
 			}
+		} else if(Status == null){
+			GetComponent<Image> ().enabled = false;
+			statusing = false;
 		}
 	}
 

@@ -21,7 +21,7 @@ public class EnemyMove : MonoBehaviour {
 	void FixedUpdate () {
 		
 
-		if (Global.IsRotating != true) {
+		if (!Global.IsRotating && !Global.StopTouch) {
 			transform.Translate (Speed, 0, 0);
 			Dis = Vector3.Distance (transform.position, Pos);
 			if (Dis >= 1) {

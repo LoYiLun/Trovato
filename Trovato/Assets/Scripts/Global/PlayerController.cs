@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 		if (Global.Level == "1") {
 		
 		} else if(Global.Level == "2") {
-			if (Vector3.Distance (GameObject.Find ("Wing").transform.position, GameObject.Find ("BattleShip").transform.position) < 2.5f) {
+			if (Vector3.Distance (GameObject.Find ("Wing_Skin").transform.position, GameObject.Find ("BattleShip").transform.position) < 2.5f) {
 				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
 				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
 			} else {
@@ -182,7 +182,6 @@ public class PlayerController : MonoBehaviour {
 					LockDirR = LockDirL = false;
 					PlayerStop ();
 					Global.Oneshot = true;
-					PlayerStatusImage.Status = null;
 					StopPlayerAnim ();
 
 
@@ -234,6 +233,8 @@ public class PlayerController : MonoBehaviour {
 				}
 			} else {
 				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+				if(Global.IsPushing)
+					PlayerAnim.Play ("Push_And_Stand");
 
 			}
 
@@ -248,6 +249,8 @@ public class PlayerController : MonoBehaviour {
 		{
 			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
 			StopPlayerAnim ();
+			if(Global.IsPushing)
+				PlayerAnim.Play ("Push_And_Stand");
 		}
 
 
@@ -342,7 +345,7 @@ public class PlayerController : MonoBehaviour {
 
 	// 停止主角移動，並設定位置
 	public static void CancelMoving(Vector3 NewPosition){
-
+		PlayerStatusImage.Status = null;
 		Global.Player.transform.position = NewPosition;
 		Global.PlayerMove = false;
 		if(Global.BeTouchedObj != null && Global.BeTouchedObj.tag == "Floor")

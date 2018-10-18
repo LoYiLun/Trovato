@@ -24,7 +24,6 @@ public class FaceToPlayer : MonoBehaviour {
 
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject == Global.Player) {
-			PlayerStatusImage.Status = "IsTalking";
 
 			if (Global.Player.transform.position.x > transform.position.x) {
 				RotateDir = Quaternion.Euler (0, 90, 0);

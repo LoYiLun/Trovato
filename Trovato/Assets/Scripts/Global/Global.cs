@@ -55,12 +55,15 @@ public class Global : MonoBehaviour {
 	public static bool Wait;
 	public static bool Oneshot;
 
+	public static GameObject LevelEnd;
+	public static int NextScene = 1;
 
 	public static bool StartFinding;
 
 	void Awake(){
-		ResetVar ();
+		ResetVar();
 
+		
 		if(GetPlayer != null)
 			Player = GetPlayer;
 		Level = GetLevel;
@@ -86,12 +89,17 @@ public class Global : MonoBehaviour {
 	}
 
 	void Start () {
-
+		
 
 	}
 	
 
 	void FixedUpdate () {
+
+		if (LevelEnd != null && LevelEnd.activeSelf) {
+			ToNextLevel (NextScene);
+		}
+
 		if (Input.GetKeyDown (KeyCode.R))
 			Retry ();
 
@@ -101,6 +109,11 @@ public class Global : MonoBehaviour {
 			PlayerY = Player.transform.position.y;
 			PlayerZ = Player.transform.position.z;
 		}
+	}
+
+	public static void ToNextLevel(int scene){
+		ResetVar ();
+		SceneManager.LoadScene (scene);
 	}
 
 	public static void ClickRotate(){
@@ -122,6 +135,10 @@ public class Global : MonoBehaviour {
 		ImageFade.FadeOut = false;
 		PlayerController.MoveSpeed = 4f;
 		PlayerStatusImage.Status = null;
+		CameraFade.FadeInIsStart = true;
+		CameraFade.FadeOutIsStart = false;
+		CameraFade.FadeInIsDone = false;
+		CameraFade.FadeOutIsDone = false;
 	}
 
 	public static void Retry(){

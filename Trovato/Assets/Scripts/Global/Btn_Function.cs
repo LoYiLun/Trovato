@@ -101,23 +101,23 @@ public class Btn_Function : MonoBehaviour {
 
 	// 選擇關卡
 	public void ToMenu(){
-		//Global.ResetVar ();
+		Global.ResetVar ();
 		SceneManager.LoadScene ("Menu");
 	}
 	public void ToLevel_00(){
-		//Global.ResetVar ();
+		Global.ResetVar ();
 		SceneManager.LoadScene ("Level_00");
 	}
 	public void ToLevel_01(){
-		//Global.ResetVar ();
+		Global.ResetVar ();
 		SceneManager.LoadScene ("Level_01");
 	}
 	public void ToLevel_02(){
-		//Global.ResetVar ();
+		Global.ResetVar ();
 		SceneManager.LoadScene ("Level_02");
 	}
 	public void ToLevel_03(){
-		//Global.ResetVar ();
+		Global.ResetVar ();
 		SceneManager.LoadScene ("Level_03");
 	}
 }

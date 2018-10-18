@@ -28,7 +28,6 @@ public class CameraController : MonoBehaviour {
 
 	void Awake(){
 		CurrentCam = Cam;
-		CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 
 		//GhostBall = GameObject.Find ("GhostBall");
 
@@ -36,6 +35,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void Start () {
+		CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 		CurrentCam.transform.LookAt (ScreenHeart.transform);
 	}
 	

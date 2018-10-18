@@ -58,7 +58,7 @@ public class Level02PlayerEvent : MonoBehaviour {
         {
             Flowchart.BroadcastFungusMessage("SiscoTalk01");
         }
-        if (other.transform.name == "SkyWell"|| other.transform.name == "SkyWell6"|| other.transform.name == "SkyWell14")
+		if ((other.transform.name == "Mt.SpaceShip_Door1" || other.transform.name == "Mt.SpaceShip_Door2" || other.transform.name == "Mt.SpaceShip_Door3"))
         {
             Flowchart.BroadcastFungusMessage("GO");
         }

@@ -148,7 +148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1031312017146894
 GameObject:
   m_ObjectHideFlags: 1
@@ -2282,7 +2282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1609416890011674
 GameObject:
   m_ObjectHideFlags: 1
@@ -5540,7 +5540,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1454540115770560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4554446899102454}
@@ -15857,8 +15857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a76b5e05e9e71459545e8043e5e47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FadeInTime: 1
-  FadeOutTime: 1
+  FadeInTime: 1.5
+  FadeOutTime: 3
   FadeInColor: {r: 0, g: 0, b: 0, a: 1}
   FadeOutColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
 --- !u!114 &114385346620715448
