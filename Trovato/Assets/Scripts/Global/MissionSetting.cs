@@ -5,20 +5,14 @@ using Fungus;
 
 public class MissionSetting : MonoBehaviour {
 	public static Flowchart FlowerChart;
+	public Flowchart GetFlowChart;
 	bool BlockOn;
 	bool Oneshot;
 	int NextLevel;
 
 	void Start () {
-		if (Global.Level == "1") {
-			FlowerChart = GameObject.Find("MainFlowChart").GetComponent<Flowchart>();
-		}
-		if (Global.Level == "2") {
-			FlowerChart = GameObject.Find("Level02Main").GetComponent<Flowchart>();
-		}
-		if (Global.Level == "3") {
-			FlowerChart = GameObject.Find("對話").GetComponent<Flowchart>();
-		}
+		if(GetFlowChart != null)
+		FlowerChart = GetFlowChart;
 
 
 	}

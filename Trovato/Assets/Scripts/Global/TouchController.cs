@@ -15,14 +15,14 @@ public class TouchController : MonoBehaviour {
 
 
 	[SerializeField]
-	GameObject ArrowPrefab;
+	//GameObject ArrowPrefab;
 
 	void Awake(){
 
 	}
 
 	void Start () {
-		Arrow = Instantiate (ArrowPrefab);
+		//Arrow = Instantiate (ArrowPrefab);
 		Global.IsCamCtrl = false;
 		Global.StopTouch = false;
 	}
@@ -74,7 +74,7 @@ public class TouchController : MonoBehaviour {
 
 
 		// 滑鼠左鍵：點選地板
-		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true && IsRightClick != true) 
+		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true && IsRightClick != true && !Global.IsRotating && !Global.IsPreRotating) 
 		{
 			Debug.DrawLine (Camera.main.transform.position, hitInfo.transform.position, Color.yellow, 0.1f, true);
 			if ( Global.BeTouchedObj != null && Global.OnCubeNum != 0) 
@@ -107,6 +107,7 @@ public class TouchController : MonoBehaviour {
 		} 
 
 
+		/*
 		// 滑鼠右鍵：定位箭頭
 		if (Input.GetMouseButtonDown (1) && Global.StopTouch != true && Global.IsCamCtrl != true && Global.IsRotating != true && Global.PlayerMove != true && Global.IsPushing != true) {
 
@@ -132,7 +133,9 @@ public class TouchController : MonoBehaviour {
 				Global.IsCamCtrl = false;
 			}
 		}
+		*/
 
+		/*
 		// 放開滑鼠右鍵
 		if (Input.GetMouseButtonUp (1) && Global.StopTouch != true) 
 		{
@@ -143,11 +146,11 @@ public class TouchController : MonoBehaviour {
 				Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = false;
 			}
 		}
+		*/
 
 
 
-
-
+		/*
 		// 按著滑鼠右鍵：指示轉動方向
 		if(Input.GetMouseButton (1) && Global.StopTouch != true && Global.IsCamCtrl != true && Global.IsRotating != true && Global.PlayerMove != true && Global.IsPushing != true){
 
@@ -165,11 +168,12 @@ public class TouchController : MonoBehaviour {
 				SetRotateNum ();
 			}
 		}
-
+		*/
 
 
 	}
 
+	/*
 	void SetRotateNum(){
 		Box = RotateNumBox [0] + RotateNumBox [1];
 
@@ -582,5 +586,5 @@ public class TouchController : MonoBehaviour {
 
 		Global.ClickRotate ();
 		Arrow.transform.position = new Vector3 (100, 100, 100);
-	}
+	}*/
 }

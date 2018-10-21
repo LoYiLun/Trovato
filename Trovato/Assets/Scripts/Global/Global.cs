@@ -21,6 +21,7 @@ public class Global : MonoBehaviour {
 	public static bool SetCubeTeam;
 	public static bool PlayerMove; // 主角是否能移動
 	public static bool IsRotating; // 魔方正在轉動
+	public static bool IsPreRotating;
 	public static int RotateNum; // 轉動面編號
 	public static int OnCubeNum; // 主角所在魔方編號
 

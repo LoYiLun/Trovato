@@ -13,10 +13,10 @@ public class BoxCollision : MonoBehaviour {
 	}
 
 
-	void FixedUpdate () {
+	void Update () {
 		// Find Cube
 			DownRay = new Ray (transform.position, Vector3.down);
-		if (Physics.Raycast (DownRay, out hitinfo, 5, 1<<11) && transform.parent != Global.Player.transform && Global.IsRotating != true) {
+		if (Physics.Raycast (DownRay, out hitinfo, 5, 1<<11) && transform.parent != Global.Player.transform && Global.IsRotating != true && !Global.IsPreRotating) {
 			Cube = hitinfo.collider.gameObject;
 			transform.parent = Cube.transform;
 		}

@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour {
 		if (Global.Level == "1") {
 		
 		} else if(Global.Level == "2") {
-			if (Vector3.Distance (GameObject.Find ("Wing_Skin").transform.position, GameObject.Find ("BattleShip").transform.position) < 2.5f) {
+			if (Vector3.Distance (GameObject.Find ("Wing_Skin").transform.position, GameObject.Find ("BattleShip").transform.position) < 3) {
 				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
 				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
 			} else {
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour {
 		// Player陽春版自動尋路功能
 
 		// 推箱子時角色不轉動方向
-		if (LockRotation == false && Global.IsPushing != true) {
+		if (LockRotation == false && Global.IsPushing != true && !Global.IsPreRotating) {
 			transform.rotation = Quaternion.Lerp (transform.rotation, RotateDir, RotateSpeed);
 			if (Quaternion.Angle (Global.Player.transform.rotation, RotateDir) < 10) {
 				transform.rotation = RotateDir;

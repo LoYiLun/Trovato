@@ -64,7 +64,7 @@ public class CameraController : MonoBehaviour {
 		Distance = CurrentCam.transform.position - ScreenHeart.transform.position;
 		Distance2 = Vector3.Distance (CurrentCam.transform.position, ScreenHeart.transform.position);
 
-		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 25) {
+		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 30) {
 			Camera.main.fieldOfView += 1;
 		} else if (Input.GetAxis ("Mouse ScrollWheel") > 0 && Camera.main.fieldOfView > 10) {
 			Camera.main.fieldOfView -= 1;
@@ -97,7 +97,7 @@ public class CameraController : MonoBehaviour {
 		}*/
 
 		// 控制攝影機旋轉視角
-		if ((Input.GetMouseButton (0) || Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true) {
+		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating) {
 
 
 			// 左右
@@ -124,7 +124,7 @@ public class CameraController : MonoBehaviour {
 			}
 
 		  // 紀錄攝影機旋轉完畢的新位置
-		} else if( (Input.GetMouseButtonUp (0) || Input.GetMouseButtonUp (1)) && Global.IsCamCtrl && Global.StopTouch != true){
+		} else if( (Input.GetMouseButtonUp (0) || Input.GetMouseButtonUp (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating){
 			CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 		}
 
