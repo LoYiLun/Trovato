@@ -33,7 +33,7 @@ public class CubeController_V2 : MonoBehaviour {
 
 
 	void Start () {
-		Global.IsCamCtrl = true;
+		//Global.IsCamCtrl = true;
 	}
 	
 
@@ -70,7 +70,7 @@ public class CubeController_V2 : MonoBehaviour {
 			Arrow.transform.rotation = RotatePlane.transform.rotation;
 
 		} else {
-			if (Input.GetMouseButton (1) && RotatePlane == null && Global.IsRotating == false && !PreRotate) {
+			if (Input.GetMouseButton (1) && RotatePlane == null && Global.IsRotating == false && !Global.IsPreRotating) {
 				Global.IsCamCtrl = true;
 			} else {
 				Global.IsCamCtrl = false;

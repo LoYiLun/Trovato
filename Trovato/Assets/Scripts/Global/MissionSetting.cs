@@ -39,7 +39,7 @@ public class MissionSetting : MonoBehaviour {
 		}
 
 		if (Global.Level == "2") {
-			if (FlowerChart.HasExecutingBlocks () && FlowerChart.SelectedBlock.BlockName == "閃人") {
+			if (FlowerChart.HasExecutingBlocks () && FlowerChart.SelectedBlock != null && FlowerChart.SelectedBlock.BlockName == "閃人") {
 				if (!Oneshot && FlowerChart.GetBooleanVariable ("PushBox01") && FlowerChart.GetBooleanVariable ("FindLeaf") && FlowerChart.GetBooleanVariable ("FindEngine") && FlowerChart.GetBooleanVariable ("FindKyder")) {
 					Oneshot = true;
 				}
@@ -58,10 +58,17 @@ public class MissionSetting : MonoBehaviour {
 			BlockOn = true;
 			Global.StopTouch = true;
 			PlayerStatusImage.Status = "IsTalking";
+
+			CameraController.OriginView = Camera.main.fieldOfView;
+			CameraController.CamView = 10;
+
 		} else if (!FlowerChart.HasExecutingBlocks () && BlockOn == true) {
 			BlockOn = false;
 			Global.StopTouch = false;
 			PlayerStatusImage.Status = null; 
+
+			CameraController.CamView = CameraController.OriginView;
+
 		}
 
 

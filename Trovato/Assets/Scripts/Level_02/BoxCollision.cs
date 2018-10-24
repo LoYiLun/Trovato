@@ -51,7 +51,14 @@ public class BoxCollision : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "GhostWall" && gameObject.transform.parent == Global.Player.transform) {
 			PlayerController.CancelMoving (new Vector3(PlayerController.CurrentFloor.transform.position.x, Global.Player.transform.position.y, PlayerController.CurrentFloor.transform.position.z));
-			
+			GameObject.Find ("Player_Body").GetComponent<Animation> ().Play("Push_And_Stand");
+		}
+	}
+
+	void OnTriggerStay(Collider other){
+		if (other.gameObject.tag == "GhostWall" && gameObject.transform.parent == Global.Player.transform) {
+			PlayerController.CancelMoving (new Vector3(PlayerController.CurrentFloor.transform.position.x, Global.Player.transform.position.y, PlayerController.CurrentFloor.transform.position.z));
+
 		}
 	}
 

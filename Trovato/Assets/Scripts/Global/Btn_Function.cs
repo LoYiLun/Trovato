@@ -53,11 +53,15 @@ public class Btn_Function : MonoBehaviour {
 		if (ShowBlock) {
 			for (int i = 0; i < blocks.Length; i++) {
 				blocks [i].SetActive (false);
+				//blocks [i].GetComponent<Collider> ().enabled = false;
+				//blocks [i].GetComponent<Renderer> ().enabled = false;
 			}
 			ShowBlock = false;
 		} else {
 			for (int i = 0; i < blocks.Length; i++) {
 				blocks [i].SetActive (true);
+				//blocks [i].GetComponent<Collider> ().enabled = true;
+				//blocks [i].GetComponent<Renderer> ().enabled = true;
 			}
 			ShowBlock = true;
 		}

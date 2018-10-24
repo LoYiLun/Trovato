@@ -25,6 +25,9 @@ public class CameraController : MonoBehaviour {
 	float Far;
 	Vector3 Distance;
 	float Distance2;
+	float ViewTime = 9;
+	public static float OriginView;
+	public static float CamView;
 
 	void Awake(){
 		CurrentCam = Cam;
@@ -37,10 +40,11 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 		CurrentCam.transform.LookAt (ScreenHeart.transform);
+		CamView = Camera.main.fieldOfView;
 	}
 	
 
-	void FixedUpdate () {
+	void Update () {
 
 
 
@@ -64,10 +68,20 @@ public class CameraController : MonoBehaviour {
 		Distance = CurrentCam.transform.position - ScreenHeart.transform.position;
 		Distance2 = Vector3.Distance (CurrentCam.transform.position, ScreenHeart.transform.position);
 
-		if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 30) {
-			Camera.main.fieldOfView += 1;
-		} else if (Input.GetAxis ("Mouse ScrollWheel") > 0 && Camera.main.fieldOfView > 10) {
-			Camera.main.fieldOfView -= 1;
+
+			Camera.main.fieldOfView -= (Camera.main.fieldOfView - CamView) / ViewTime;
+			if (Mathf.Abs (Camera.main.fieldOfView - CamView) <= 1f) {
+				//Camera.main.fieldOfView = CamView;
+			}
+
+		if (!Global.StopTouch) {
+			if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 25) {
+				CamView += 2f;
+				CamView = Mathf.Clamp (CamView, 5, 25);
+			} else if (Input.GetAxis ("Mouse ScrollWheel") > 0 && Camera.main.fieldOfView > 5) {
+				CamView -= 2f;
+				CamView = Mathf.Clamp (CamView, 5, 25);
+			}
 		}
 
 		// 控制攝影機平移
@@ -97,7 +111,7 @@ public class CameraController : MonoBehaviour {
 		}*/
 
 		// 控制攝影機旋轉視角
-		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating) {
+		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !PathController.FollowPath) {
 
 
 			// 左右

@@ -63,8 +63,9 @@ public class TouchController : MonoBehaviour {
 
 		if (Global.Level == "0" && Physics.Raycast (ray, out hitInfo, 500, 1 << 10)) {
 			if (Global.BeTouchedObj != null) {
-				if (Global.BeTouchedObj.tag == "Floor")
+				if (Global.BeTouchedObj.tag == "Floor") {
 					Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
+				}
 			}
 
 			Global.BeTouchedObj = hitInfo.collider.gameObject;
@@ -76,12 +77,11 @@ public class TouchController : MonoBehaviour {
 		// 滑鼠左鍵：點選地板
 		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true && IsRightClick != true && !Global.IsRotating && !Global.IsPreRotating) 
 		{
-			Debug.DrawLine (Camera.main.transform.position, hitInfo.transform.position, Color.yellow, 0.1f, true);
 			if ( Global.BeTouchedObj != null && Global.OnCubeNum != 0) 
 			{
-				if(Global.BeTouchedObj.tag == "Floor" )
-				Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
-
+				if (Global.BeTouchedObj.tag == "Floor") {
+					Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
+				}
 			}
 
 			// 切換成新點選的物件
@@ -89,15 +89,16 @@ public class TouchController : MonoBehaviour {
 			if(Global.BeTouchedObj.GetComponent<Renderer>() != null && Global.Level != "0")
 			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = true;
 
+			/*
 			if (Global.Targetlight != null) {
 				Global.Targetlight.Stop ();
 				Global.Targetlight.transform.position = Global.BeTouchedObj.transform.position;
 				Global.Targetlight.Play ();
-			}
+			}*/
 
-			if (Global.Player != null) {
-				Global.Wait = true;
-				Global.StartFinding = true;
+			if (Global.Player != null && Global.IsPushing) {
+				//Global.Wait = true;
+				//Global.StartFinding = true;
 
 				Global.PlayerMove = true;
 

@@ -20,7 +20,7 @@ public class ImageFade : MonoBehaviour {
 		Global.StopTouch = true;
 	}
 
-	void FixedUpdate () {
+	void Update () {
 
 		if (Tips_Box.enabled) {
 
@@ -48,6 +48,9 @@ public class ImageFade : MonoBehaviour {
 					b -= Time.deltaTime * 0.5f;
 					Tips_Box.color = new Color (255, 255, 255, b);
 				} else {
+					CameraController.CamView = CameraController.OriginView;
+					MissionSetting.FlowerChart.StopBlock("開頭對話");
+
 					Global.StopTouch = false;
 					Tips_Box.enabled = false;
 				}

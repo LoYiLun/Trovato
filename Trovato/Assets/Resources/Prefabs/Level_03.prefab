@@ -1605,6 +1605,7 @@ GameObject:
   - component: {fileID: 114711859483566818}
   - component: {fileID: 114265950159408896}
   - component: {fileID: 114880741888777808}
+  - component: {fileID: 114573377485186926}
   - component: {fileID: 114407451959611530}
   - component: {fileID: 114524747821700034}
   m_Layer: 0
@@ -1741,6 +1742,7 @@ GameObject:
   - component: {fileID: 33315070993301340}
   - component: {fileID: 65358492538508142}
   - component: {fileID: 23108592722196394}
+  - component: {fileID: 114459681502734692}
   m_Layer: 10
   m_Name: Floor_Origin_V3
   m_TagString: Floor
@@ -2802,6 +2804,7 @@ GameObject:
   - component: {fileID: 33617586419893408}
   - component: {fileID: 65064205550172964}
   - component: {fileID: 23180215574103796}
+  - component: {fileID: 114092800418343036}
   m_Layer: 10
   m_Name: Floor_Origin_V2
   m_TagString: Floor
@@ -3507,8 +3510,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1496704724601620}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 4.46, z: 4}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 4, y: 4.01, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4135922906281054}
   m_RootOrder: 2
@@ -4243,8 +4246,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1765421365515066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 2.96, z: 2.5}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 2.5, y: 2.51, z: 2.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4637571290097320}
   m_RootOrder: 1
@@ -11124,6 +11127,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114092800418343036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765421365515066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcab63ba4f3f3742a8bac4885d1a5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Obstacle: 0
 --- !u!114 &114102869840369288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11455,6 +11470,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c94aae41a34c104d9ae56ac569068f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114459681502734692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1496704724601620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcab63ba4f3f3742a8bac4885d1a5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Obstacle: 0
 --- !u!114 &114513350996266380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11754,6 +11781,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558152ba8beadff4d9287eaa68d8c4d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114573377485186926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455428754117688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1923050b427d540a497657c154f41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Openlist: []
+  Closelist: []
+  Pathlist: []
+  FloorA: {fileID: 0}
+  FloorB: {fileID: 0}
+  dis: 0
+  WalkDir: {x: 0, y: 0, z: 0}
+  FaceRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114594436048048428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11817,6 +11863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a94096db4abf444faf4b29f6d8e6d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LockRotation: 0
 --- !u!114 &114694406320888108
 MonoBehaviour:
   m_ObjectHideFlags: 1

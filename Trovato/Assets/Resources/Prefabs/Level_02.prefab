@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 33254025739336742}
   - component: {fileID: 65334353816809250}
   - component: {fileID: 23446821795081468}
+  - component: {fileID: 114709013081137398}
   m_Layer: 10
   m_Name: Floor_Origin_V3
   m_TagString: Floor
@@ -370,7 +371,7 @@ GameObject:
   - component: {fileID: 114633965794520348}
   - component: {fileID: 114715072033963410}
   - component: {fileID: 54725879273937368}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Box_2
   m_TagString: Moveable
   m_Icon: {fileID: 0}
@@ -492,7 +493,7 @@ GameObject:
   - component: {fileID: 33974218858051710}
   - component: {fileID: 65379093020850808}
   - component: {fileID: 23194550525991632}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Mt.SpaceShip_Door3
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -1515,7 +1516,7 @@ GameObject:
   - component: {fileID: 114877205563488386}
   - component: {fileID: 114720292228039578}
   - component: {fileID: 54535643717590604}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Box_1
   m_TagString: Moveable
   m_Icon: {fileID: 0}
@@ -1875,7 +1876,7 @@ GameObject:
   - component: {fileID: 114347942737677312}
   - component: {fileID: 114250072554599854}
   - component: {fileID: 54879041958606698}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Box_3
   m_TagString: Moveable
   m_Icon: {fileID: 0}
@@ -2043,7 +2044,7 @@ GameObject:
   - component: {fileID: 33856522019212054}
   - component: {fileID: 65299421224827204}
   - component: {fileID: 23495936248983792}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Mt.SpaceShip_Door1
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -2297,6 +2298,7 @@ GameObject:
   - component: {fileID: 114043388578789682}
   - component: {fileID: 114412892767432744}
   - component: {fileID: 114758741221895044}
+  - component: {fileID: 114761673044069956}
   - component: {fileID: 114547069666315522}
   m_Layer: 0
   m_Name: GlobalScripts
@@ -2789,7 +2791,7 @@ GameObject:
   - component: {fileID: 4341282441512488}
   - component: {fileID: 33769512935223006}
   - component: {fileID: 65805500984759824}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Mt.SpaceShip_Door2
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -3856,8 +3858,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054501459376546}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4, y: 4.46, z: 4}
-  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 4, y: 4.01, z: 4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4473957841283380}
   m_RootOrder: 2
@@ -4960,7 +4962,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 20
+  field of view: 15
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -10198,6 +10200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a94096db4abf444faf4b29f6d8e6d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LockRotation: 0
 --- !u!114 &114697045952671408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10295,6 +10298,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &114709013081137398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054501459376546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bcab63ba4f3f3742a8bac4885d1a5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Obstacle: 0
 --- !u!114 &114715072033963410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10381,6 +10396,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GetFlowChart: {fileID: 0}
+--- !u!114 &114761673044069956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1816126167258740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d1923050b427d540a497657c154f41d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Openlist: []
+  Closelist: []
+  Pathlist: []
+  FloorA: {fileID: 0}
+  FloorB: {fileID: 0}
+  dis: 0
+  WalkDir: {x: 0, y: 0, z: 0}
+  FaceRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &114765538546952380
 MonoBehaviour:
   m_ObjectHideFlags: 1
