@@ -29,7 +29,7 @@ public class CubeController_V2 : MonoBehaviour {
 	private int ExtraChild;
 	private bool IsOnRotatingCube;
 	private float RotateSpeed = 15f;
-
+	private bool IgnorePlayer;
 
 
 	void Start () {
@@ -38,6 +38,12 @@ public class CubeController_V2 : MonoBehaviour {
 	
 
 	void Update () {
+
+		if (Global.Level == "0") {
+			IgnorePlayer = true;
+		} else {
+			IgnorePlayer = false;
+		}
 
 		if (Global.Level != "777" && Global.OnCubeNum == CubeLeader.transform.transform.parent.GetComponent<FloorBuilder> ().FloorID)
 			IsOnRotatingCube = true;
@@ -63,14 +69,14 @@ public class CubeController_V2 : MonoBehaviour {
 
 		ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		// Layer 9 = RotatePlane.
-		if (Input.GetMouseButtonDown (1) && Physics.Raycast (ray, out hitinfo_Plane, 100, 1 << 9) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
+		if ((Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo_Plane, 100, 1 << 9) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
 			Debug.DrawLine (Camera.main.transform.position, hitinfo_Plane.transform.position, Color.yellow, 0.1f, true);
 			RotatePlane = hitinfo_Plane.collider.gameObject;
 			Arrow.transform.position = RotatePlane.transform.position;
 			Arrow.transform.rotation = RotatePlane.transform.rotation;
 
 		} else {
-			if (Input.GetMouseButton (1) && RotatePlane == null && Global.IsRotating == false && !Global.IsPreRotating) {
+			if ((Input.GetMouseButton (1) || Input.GetKey(KeyCode.Z)) && RotatePlane == null && Global.IsRotating == false && !Global.IsPreRotating) {
 				Global.IsCamCtrl = true;
 			} else {
 				Global.IsCamCtrl = false;
@@ -78,12 +84,12 @@ public class CubeController_V2 : MonoBehaviour {
 		}
 
 		// Layer 11 = Cube.
-		if (Input.GetMouseButtonDown (1) && Physics.Raycast (ray, out hitinfo_Cube, 100, 1 << 11) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
+		if ((Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo_Cube, 100, 1 << 11) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
 			RotateCube = hitinfo_Cube.collider.gameObject;
 		}
 
 		// Layer 12 = Arrow.
-		if (Input.GetMouseButton (1) && Physics.Raycast (ray, out hitinfo2, 100, 1 << 12) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
+		if ((Input.GetMouseButton (1) || Input.GetKey(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo2, 100, 1 << 12) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
 			if(hitinfo2.collider.name == "arrow1")
 				RotateDirection = "w";
 			if(hitinfo2.collider.name == "arrow2")
@@ -96,7 +102,7 @@ public class CubeController_V2 : MonoBehaviour {
 			Arrow.transform.position = new Vector3 (100, 100, 100);
 		}
 
-		if (!Input.GetMouseButton (1)) {
+		if (!Input.GetMouseButton (1) && !Input.GetKey(KeyCode.Z)) {
 			Arrow.transform.position = new Vector3 (100, 100, 100);
 		}
 
@@ -107,9 +113,9 @@ public class CubeController_V2 : MonoBehaviour {
 			Global.IsPreRotating = true;
 			Global.IsCamCtrl = false;
 
-			if (Input.GetMouseButton (1) && CubeLeader.transform.childCount == (FormationCount + ExtraChild) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
-				if(Global.Player !=null)
-				Global.Player.GetComponent<Rigidbody> ().useGravity = false;
+			if ((Input.GetMouseButton (1) || Input.GetKey(KeyCode.Z)) && CubeLeader.transform.childCount == (FormationCount + ExtraChild) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
+				if(Global.Player !=null && Global.Player.GetComponent<Rigidbody> () && !IgnorePlayer)
+					Global.Player.GetComponent<Rigidbody> ().useGravity = false;
 
 				// 判斷是否中途轉向
 				if(MouseY * my > 0)
@@ -190,7 +196,7 @@ public class CubeController_V2 : MonoBehaviour {
 			}
 
 			// 放開滑鼠之後的轉動
-			if (!Input.GetMouseButton (1) || Global.IsRotating) {
+			if (!Input.GetMouseButton (1) && !Input.GetKey(KeyCode.Z) || Global.IsRotating) {
 				Global.IsRotating = true;
 				CubeLeader.transform.rotation = Quaternion.Lerp (CubeLeader.transform.rotation, RotateTo90, 15f * Time.deltaTime);
 
@@ -216,7 +222,7 @@ public class CubeController_V2 : MonoBehaviour {
 					RotatePlane = null;
 					RotateDirection = null;
 					mx = my = RX = RY = RZ = 0;
-					if (Global.Player != null) {
+					if (Global.Player != null && GameObject.Find("PlayerHome") && Global.Player.GetComponent<Rigidbody> () && !IgnorePlayer) {
 						Global.Player.transform.SetParent (GameObject.Find ("PlayerHome").transform);
 						Global.Player.GetComponent<Rigidbody> ().useGravity = true;
 					}
@@ -251,7 +257,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2D04w":
 			case"V2F03s":
 			case"V2F04s":
-				if (Global.Player.transform.position.z > CubeLeader.transform.position.z) {
+				if (Global.Player.transform.position.z > CubeLeader.transform.position.z || IgnorePlayer) {
 					RotateCode = "V2R01";
 					RX = 0;
 					RY = 0;
@@ -267,7 +273,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2D02w":
 			case"V2F01s":
 			case"V2F02s":
-				if (Global.Player.transform.position.z < CubeLeader.transform.position.z) {
+				if (Global.Player.transform.position.z < CubeLeader.transform.position.z || IgnorePlayer) {
 					RotateCode = "V2R02";
 					RX = 0;
 					RY = 0;
@@ -283,12 +289,14 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2D03a":
 			case"V2E01s":
 			case"V2E03s":
-					RotateCode = "V2R03";
-					RX = 0;
-					RY = 1;
-					RZ = 0;
+				RotateCode = "V2R03";
+				RX = 0;
+				RY = 1;
+				RZ = 0;
+				if (!IgnorePlayer) {
 					Global.Player.transform.SetParent (CubeLeader.transform);
 					ExtraChild = 1;
+				}
 				break;
 
 			case"V2B02d":
@@ -313,7 +321,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2E04d":
 			case"V2F02a":
 			case"V2F04a":
-				if (Global.Player.transform.position.x > CubeLeader.transform.position.x) {
+				if (Global.Player.transform.position.x > CubeLeader.transform.position.x || IgnorePlayer) {
 					RotateCode = "V2R05";
 					RX = 1;
 					RY = 0;
@@ -329,7 +337,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2E02d":
 			case"V2F01a":
 			case"V2F03a":
-				if (Global.Player.transform.position.x < CubeLeader.transform.position.x) {
+				if (Global.Player.transform.position.x < CubeLeader.transform.position.x || IgnorePlayer) {
 					RotateCode = "V2R06";
 					RX = 1;
 					RY = 0;
@@ -345,7 +353,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2D02s":
 			case"V2F01w":
 			case"V2F02w":
-				if (Global.Player.transform.position.z < CubeLeader.transform.position.z) {
+				if (Global.Player.transform.position.z < CubeLeader.transform.position.z || IgnorePlayer) {
 					RotateCode = "V2R07";
 					RX = 0;
 					RY = 0;
@@ -361,7 +369,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2D04s":
 			case"V2F03w":
 			case"V2F04w":
-				if (Global.Player.transform.position.z > CubeLeader.transform.position.z) {
+				if (Global.Player.transform.position.z > CubeLeader.transform.position.z || IgnorePlayer) {
 					RotateCode = "V2R08";
 					RX = 0;
 					RY = 0;
@@ -396,8 +404,10 @@ public class CubeController_V2 : MonoBehaviour {
 					RX = 0;
 					RY = 1;
 					RZ = 0;
+				if (!IgnorePlayer) {
 					Global.Player.transform.SetParent (CubeLeader.transform);
 					ExtraChild = 1;
+				}
 				break;
 
 			case"V2A01a":
@@ -408,7 +418,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2E02a":
 			case"V2F01d":
 			case"V2F03d":
-				if (Global.Player.transform.position.x < CubeLeader.transform.position.x) {
+				if (Global.Player.transform.position.x < CubeLeader.transform.position.x || IgnorePlayer) {
 					RotateCode = "V2R11";
 					RX = -1;
 					RY = 0;
@@ -424,7 +434,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V2E04a":
 			case"V2F02d":
 			case"V2F04d":
-				if (Global.Player.transform.position.x > CubeLeader.transform.position.x) {
+				if (Global.Player.transform.position.x > CubeLeader.transform.position.x || IgnorePlayer) {
 					RotateCode = "V2R12";
 					RX = -1;
 					RY = 0;
@@ -445,7 +455,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F07s":
 			case"V3F08s":
 			case"V3F09s":
-				if (Global.Player.transform.position.z > CubeLeader.transform.position.z - 1.5f) {
+				if (Global.Player.transform.position.z > CubeLeader.transform.position.z - 1.5f || IgnorePlayer) {
 					RotateCode = "V3R01";
 					RX = 0;
 					RY = 0;
@@ -465,7 +475,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F04s":
 			case"V3F05s":
 			case"V3F06s":
-				if (Global.Player.transform.position.z < CubeLeader.transform.position.z - 1.5f || Global.Player.transform.position.z > CubeLeader.transform.position.z + 1.5f) {
+				if (Global.Player.transform.position.z < CubeLeader.transform.position.z - 1.5f || Global.Player.transform.position.z > CubeLeader.transform.position.z + 1.5f || IgnorePlayer) {
 					RotateCode = "V3R02";
 					RX = 0;
 					RY = 0;
@@ -485,7 +495,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F01s":
 			case"V3F02s":
 			case"V3F03s":
-				if (Global.Player.transform.position.z < CubeLeader.transform.position.z + 1.5f) {
+				if (Global.Player.transform.position.z < CubeLeader.transform.position.z + 1.5f || IgnorePlayer) {
 					RotateCode = "V3R03";
 					RX = 0;
 					RY = 0;
@@ -510,8 +520,10 @@ public class CubeController_V2 : MonoBehaviour {
 					RX = 0;
 					RY = 1;
 					RZ = 0;
+				if (!IgnorePlayer) {
 					Global.Player.transform.SetParent (CubeLeader.transform);
 					ExtraChild = 1;
+				}
 				break;
 
 			case"V3B02d":
@@ -562,7 +574,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F03a":
 			case"V3F06a":
 			case"V3F09a":
-				if (Global.Player.transform.position.x > CubeLeader.transform.position.x - 1.5f) {
+				if (Global.Player.transform.position.x > CubeLeader.transform.position.x - 1.5f || IgnorePlayer) {
 					RotateCode = "V3R07";
 					RX = 1;
 					RY = 0;
@@ -582,7 +594,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F02a":
 			case"V3F05a":
 			case"V3F08a":
-				if (Global.Player.transform.position.x < CubeLeader.transform.position.x - 1.5f || Global.Player.transform.position.x > CubeLeader.transform.position.x + 1.5f) {
+				if (Global.Player.transform.position.x < CubeLeader.transform.position.x - 1.5f || Global.Player.transform.position.x > CubeLeader.transform.position.x + 1.5f || IgnorePlayer) {
 					RotateCode = "V3R08";
 					RX = 1;
 					RY = 0;
@@ -602,7 +614,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F01a":
 			case"V3F04a":
 			case"V3F07a":
-				if (Global.Player.transform.position.x < CubeLeader.transform.position.x + 1.5f) {
+				if (Global.Player.transform.position.x < CubeLeader.transform.position.x + 1.5f || IgnorePlayer) {
 					RotateCode = "V3R09";
 					RX = 1;
 					RY = 0;
@@ -622,7 +634,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F01w":
 			case"V3F02w":
 			case"V3F03w":
-				if (Global.Player.transform.position.z < CubeLeader.transform.position.z + 1.5f) {
+				if (Global.Player.transform.position.z < CubeLeader.transform.position.z + 1.5f || IgnorePlayer) {
 					RotateCode = "V3R10";
 					RX = 0;
 					RY = 0;
@@ -642,7 +654,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F04w":
 			case"V3F05w":
 			case"V3F06w":
-				if (Global.Player.transform.position.z < CubeLeader.transform.position.z - 1.5f || Global.Player.transform.position.z > CubeLeader.transform.position.z + 1.5f) {
+				if (Global.Player.transform.position.z < CubeLeader.transform.position.z - 1.5f || Global.Player.transform.position.z > CubeLeader.transform.position.z + 1.5f || IgnorePlayer) {
 					RotateCode = "V3R11";
 					RX = 0;
 					RY = 0;
@@ -662,7 +674,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F07w":
 			case"V3F08w":
 			case"V3F09w":
-				if (Global.Player.transform.position.z > CubeLeader.transform.position.z - 1.5f) {
+				if (Global.Player.transform.position.z > CubeLeader.transform.position.z - 1.5f || IgnorePlayer) {
 					RotateCode = "V3R12";
 					RX = 0;
 					RY = 0;
@@ -723,8 +735,10 @@ public class CubeController_V2 : MonoBehaviour {
 					RX = 0;
 					RY = 1;
 					RZ = 0;
+				if (!IgnorePlayer) {
 					Global.Player.transform.SetParent (CubeLeader.transform);
 					ExtraChild = 1;
+				}
 				break;
 
 			case"V3A01a":
@@ -739,7 +753,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F01d":
 			case"V3F04d":
 			case"V3F07d":
-				if (Global.Player.transform.position.x < CubeLeader.transform.position.x + 1.5f) {
+				if (Global.Player.transform.position.x < CubeLeader.transform.position.x + 1.5f || IgnorePlayer) {
 					RotateCode = "V3R16";
 					RX = -1;
 					RY = 0;
@@ -759,7 +773,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F02d":
 			case"V3F05d":
 			case"V3F08d":
-				if (Global.Player.transform.position.x < CubeLeader.transform.position.x - 1.5f || Global.Player.transform.position.x > CubeLeader.transform.position.x + 1.5f) {
+				if (Global.Player.transform.position.x < CubeLeader.transform.position.x - 1.5f || Global.Player.transform.position.x > CubeLeader.transform.position.x + 1.5f || IgnorePlayer) {
 					RotateCode = "V3R17";
 					RX = -1;
 					RY = 0;
@@ -779,7 +793,7 @@ public class CubeController_V2 : MonoBehaviour {
 			case"V3F03d":
 			case"V3F06d":
 			case"V3F09d":
-				if (Global.Player.transform.position.x > CubeLeader.transform.position.x - 1.5f) {
+				if (Global.Player.transform.position.x > CubeLeader.transform.position.x - 1.5f || IgnorePlayer) {
 					RotateCode = "V3R18";
 					RX = -1;
 					RY = 0;

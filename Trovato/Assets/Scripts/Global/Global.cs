@@ -68,12 +68,12 @@ public class Global : MonoBehaviour {
 		if(GetPlayer != null)
 			Player = GetPlayer;
 		Level = GetLevel;
-		if (Player != null)
+		if (Player != null && GameObject.Find("PlayerHome"))
 			Player.transform.SetParent (GameObject.Find("PlayerHome").transform);
 		BeTouchedObj = null;
 		switch (Level) {
 		case"0":
-			OnCubeNum = 0;
+			OnCubeNum = 1;
 			break;
 
 		case"1":
