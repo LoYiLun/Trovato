@@ -6,7 +6,7 @@ using Fungus;
 public class MissionSetting : MonoBehaviour {
 	public static Flowchart FlowerChart;
 	public Flowchart GetFlowChart;
-	bool BlockOn;
+	public bool BlockOn;
 	bool Oneshot;
 	int NextLevel;
 
@@ -22,53 +22,57 @@ public class MissionSetting : MonoBehaviour {
 		if(Global.LevelEnd == null)
 			Global.LevelEnd = GameObject.Find("Bool_LevelEnd");
 
-		// 第一章結尾
-		if (Global.Level == "1") {
-			if (FlowerChart.HasExecutingBlocks () && FlowerChart.SelectedBlock.BlockName == "開飛船") {
-				if (Level01PlayerEvent.Ship && !Oneshot) {
-					Oneshot = true;
-				}
-			} else if (!Level01PlayerEvent.Ship && Oneshot) {
-				GameObject.Find ("SpaceShip_Anim").GetComponent<Animation> ().Play ("Fly");
-				CameraFade.FadeOut();
-				Global.Player.SetActive (false);
-				Global.NextScene = 3;
-				Oneshot = false;
+		if (FlowerChart != null) {
 
+			// 第一章結尾
+			if (Global.Level == "1") {
+				if (FlowerChart.HasExecutingBlocks () && FlowerChart.SelectedBlock.BlockName == "開飛船") {
+					if (Level01PlayerEvent.Ship && !Oneshot) {
+						Oneshot = true;
+					}
+				} else if (!Level01PlayerEvent.Ship && Oneshot) {
+					GameObject.Find ("SpaceShip_Anim").GetComponent<Animation> ().Play ("Fly");
+					CameraFade.FadeOut ();
+					Global.Player.SetActive (false);
+					Global.NextScene = 3;
+					Oneshot = false;
+
+				}
+			}
+
+			if (Global.Level == "2") {
+				if (FlowerChart.HasExecutingBlocks () && FlowerChart.SelectedBlock != null && FlowerChart.SelectedBlock.BlockName == "閃人") {
+					if (!Oneshot && FlowerChart.GetBooleanVariable ("PushBox01") && FlowerChart.GetBooleanVariable ("FindLeaf") && FlowerChart.GetBooleanVariable ("FindEngine") && FlowerChart.GetBooleanVariable ("FindKyder")) {
+						Oneshot = true;
+					}
+				} else if (Oneshot) {
+					GameObject.Find ("SpaceShip_Anim").GetComponent<Animation> ().Play ("Fly2");
+					CameraFade.FadeOut ();
+					Global.Player.SetActive (false);
+					Global.NextScene = 4;
+					Oneshot = false;
+				}
 			}
 		}
-
-		if (Global.Level == "2") {
-			if (FlowerChart.HasExecutingBlocks () && FlowerChart.SelectedBlock != null && FlowerChart.SelectedBlock.BlockName == "閃人") {
-				if (!Oneshot && FlowerChart.GetBooleanVariable ("PushBox01") && FlowerChart.GetBooleanVariable ("FindLeaf") && FlowerChart.GetBooleanVariable ("FindEngine") && FlowerChart.GetBooleanVariable ("FindKyder")) {
-					Oneshot = true;
-				}
-			} else if (Oneshot) {
-				GameObject.Find ("SpaceShip_Anim").GetComponent<Animation> ().Play ("Fly2");
-				CameraFade.FadeOut();
-				Global.Player.SetActive (false);
-				Global.NextScene = 4;
-				Oneshot = false;
-			}
-		}
-
 
 		// 對話時停止移動、轉動
-		if (FlowerChart.HasExecutingBlocks () && BlockOn == false) {
-			BlockOn = true;
-			Global.StopTouch = true;
-			PlayerStatusImage.Status = "IsTalking";
+		if (FlowerChart != null) {
+			if (FlowerChart.HasExecutingBlocks () && BlockOn == false) {
+				BlockOn = true;
+				Global.StopTouch = true;
+				PlayerStatusImage.Status = "IsTalking";
 
-			CameraController.OriginView = Camera.main.fieldOfView;
-			CameraController.CamView = 10;
+				CameraController.OriginView = Camera.main.fieldOfView;
+				CameraController.CamView = 10;
 
-		} else if (!FlowerChart.HasExecutingBlocks () && BlockOn == true) {
-			BlockOn = false;
-			Global.StopTouch = false;
-			PlayerStatusImage.Status = null; 
+			} else if (!FlowerChart.HasExecutingBlocks () && BlockOn == true) {
+				BlockOn = false;
+				Global.StopTouch = false;
+				PlayerStatusImage.Status = null; 
 
-			CameraController.CamView = CameraController.OriginView;
+				CameraController.CamView = CameraController.OriginView;
 
+			}
 		}
 
 

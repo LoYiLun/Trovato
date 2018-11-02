@@ -48,7 +48,7 @@ public class MapSetting : MonoBehaviour {
 
 
 
-		if(Global.Level == "1" || Global.Level == "3"){
+		if(Global.Level == "1" || Global.Level == "3" || Global.Level == "4"){
 			for (int i = 0; i < 4; i++) {
 				TemptV2 [k] = Instantiate (CubePrefabs [V2PlaneA_ID [i]], CubeV2Plane_A [i].transform.position, Quaternion.Euler (0, 0, 0));
 				TemptV2 [k].transform.parent = CubeV2Plane_A [i].transform;
@@ -76,7 +76,7 @@ public class MapSetting : MonoBehaviour {
 			}
 		}
 
-		if (Global.Level == "2" || Global.Level == "3") {
+		if (Global.Level == "2" || Global.Level == "3" || Global.Level == "4") {
 			for (int i = 0; i < 9; i++) {
 				TemptV3 [j] = Instantiate (CubePrefabs [PlaneA_ID [i]], CubeV3Plane_A [i].transform.position, Quaternion.Euler (0, 0, 0));
 				TemptV3 [j].transform.parent = CubeV3Plane_A [i].transform;

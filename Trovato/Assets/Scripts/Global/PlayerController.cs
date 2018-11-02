@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
 	Ray DownRay;
 	RaycastHit hitinfo;
 	public static GameObject CurrentFloor;
+	public static string MoveMode;
 
 	// 主角動畫
 	Animation PlayerAnim;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour {
 		PlayerSetting();
 		FixedHeight = new Vector3 (0, 1, 0);
 		PlayerAnim = GameObject.Find ("Player_Body").GetComponent<Animation> ();
+		MoveMode = "SmartWalk";
 	}
 
 	void Update(){
@@ -63,11 +65,11 @@ public class PlayerController : MonoBehaviour {
 
 		} else if(Global.Level == "2") {
 			if (Vector3.Distance (GameObject.Find ("Wing_Skin").transform.position, GameObject.Find ("BattleShip").transform.position) < 3) {
-				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
-				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
+				//GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
+				//GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
 			} else {
-				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
-				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
+				//GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
+				//GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
 			}
 
 
@@ -86,11 +88,11 @@ public class PlayerController : MonoBehaviour {
 			}
 
 			if (Vector3.Distance (GameObject.Find ("Platform").transform.position, GameObject.Find ("Platform2").transform.position) < 3) {
-				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
-				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
+				//GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
+				//GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
 			} else {
-				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
-				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
+				//GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
+				//GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
 			}
 
 			// 傳送失敗時強制傳送
@@ -197,8 +199,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}*/
 
-
-		if (Global.PlayerMove && Global.IsRotating == false && Global.IsPushing && !Global.IsPreRotating) {
+		if (Global.PlayerMove && !Global.IsRotating && !Global.IsPreRotating && Global.IsPushing) {
 
 			if (Global.IsPushing) {
 
@@ -244,6 +245,7 @@ public class PlayerController : MonoBehaviour {
 					PlayerStop ();
 					Global.Oneshot = true;
 					StopPlayerAnim ();
+					print("Cancel");
 
 
 				}
@@ -337,6 +339,10 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 
+		if (other.gameObject.name == "FoolWalkArea") {
+			MoveMode = "FoolWalk";
+			//print("Fool");
+		}
 
 		if (other.gameObject.name == "Portal" && PortalPower) 
 		{
@@ -396,6 +402,11 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerExit(Collider other){
 
+		if (other.gameObject.name == "FoolWalkArea") {
+			MoveMode = "SmartWalk";
+			//print("Smart");
+		}
+
 		if (other.gameObject.name == "sBlock") {
 			GameObject.Find("Station_Bigroom").GetComponent<Renderer> ().material = Resources.Load("Materials/Level_02/Materials/SSS-2") as Material;
 			GameObject.Find("Station_Radar").GetComponent<Renderer> ().material = Resources.Load("Materials/Level_02/Materials/SSS-1") as Material;
@@ -412,13 +423,15 @@ public class PlayerController : MonoBehaviour {
 	// 停止主角移動，並設定位置
 	public static void CancelMoving(Vector3 NewPosition){
 		
+
 		PlayerStatusImage.Status = null;
 		Global.Player.transform.position = NewPosition;
-		Global.PlayerMove = false;
 		PathController.FollowPath = false;
+		Global.PlayerMove = false;
 		//GameObject.Find ("GlobalScripts").GetComponent<PathController> ().Reset ();
-		if (Global.BeTouchedObj != null && Global.BeTouchedObj.tag == "Floor") {
-			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
+		GameObject[] AllFloors = GameObject.FindGameObjectsWithTag("Floor");
+		foreach(GameObject color in AllFloors){
+			color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 		}
 		Global.Targetlight.Stop ();
 	}

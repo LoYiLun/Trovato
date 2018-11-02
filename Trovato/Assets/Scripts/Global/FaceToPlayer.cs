@@ -14,8 +14,8 @@ public class FaceToPlayer : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (StartRotate) {
-			transform.rotation = Quaternion.Lerp (transform.rotation, RotateDir, 0.1f);
-			if (Quaternion.Angle (transform.rotation, RotateDir) < 10) {
+			transform.rotation = Quaternion.Lerp (transform.rotation, RotateDir, 0.15f);
+			if (Quaternion.Angle (transform.rotation, RotateDir) < 5) {
 				transform.rotation = RotateDir;
 				StartRotate = false;
 			}
@@ -23,19 +23,27 @@ public class FaceToPlayer : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		if (other.gameObject == Global.Player) {
 
-			if (Global.Player.transform.position.x > transform.position.x) {
+		/*
+		if (other.gameObject == Global.Player) {
+			transform.LookAt (other.transform.position);
+			}
+*/
+			
+		if (Global.Player.transform.position.x > transform.position.x && Mathf.Abs(Global.Player.transform.position.z - transform.position.z) <= 0.2f) {
 				RotateDir = Quaternion.Euler (0, 90, 0);
-			}else if (Global.Player.transform.position.x < transform.position.x) {
+			} 
+		if (Global.Player.transform.position.x < transform.position.x && Mathf.Abs(Global.Player.transform.position.z - transform.position.z) <= 0.2f) {
 				RotateDir = Quaternion.Euler (0, -90, 0);
-			}else if (Global.Player.transform.position.z > transform.position.z) {
+			} 
+		if (Global.Player.transform.position.z > transform.position.z && Mathf.Abs(Global.Player.transform.position.x - transform.position.x) <= 0.2f) {
 				RotateDir = Quaternion.Euler (0, 0, 0);
-			}else if (Global.Player.transform.position.z < transform.position.z) {
+			} 
+		if (Global.Player.transform.position.z < transform.position.z && Mathf.Abs(Global.Player.transform.position.x - transform.position.x) <= 0.2f) {
 				RotateDir = Quaternion.Euler (0, 180, 0);
 			}
 
 			StartRotate = true;
-		}
+
 	}
 }

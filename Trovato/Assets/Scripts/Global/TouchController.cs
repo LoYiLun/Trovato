@@ -23,7 +23,7 @@ public class TouchController : MonoBehaviour {
 
 	void Start () {
 		//Arrow = Instantiate (ArrowPrefab);
-		Global.IsCamCtrl = false;
+		//Global.IsCamCtrl = false;
 		Global.StopTouch = false;
 	}
 
@@ -61,40 +61,14 @@ public class TouchController : MonoBehaviour {
 		RaycastHit RotateHitInfo2;
 		RaycastHit hitInfo;
 
-		if (Global.Level == "0" && Physics.Raycast (ray, out hitInfo, 500, 1 << 10)) {
-			if (Global.BeTouchedObj != null) {
-				if (Global.BeTouchedObj.tag == "Floor") {
-					Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
-				}
-			}
-
-			Global.BeTouchedObj = hitInfo.collider.gameObject;
-			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = true;
-
-		}
-
-
+		/*
 		// 滑鼠左鍵：點選地板
-		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true && IsRightClick != true && !Global.IsRotating && !Global.IsPreRotating) 
+		if (Input.GetMouseButtonDown (0) && PlayerController.MoveMode == "FoolWalk" && Physics.Raycast (ray, out hitInfo, 500, 1 << 10) && Global.StopTouch != true && Global.IsCamCtrl != true && IsRightClick != true && !Global.IsRotating && !Global.IsPreRotating) 
 		{
-			if ( Global.BeTouchedObj != null && Global.OnCubeNum != 0) 
-			{
-				if (Global.BeTouchedObj.tag == "Floor") {
-					Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
-				}
-			}
-
 			// 切換成新點選的物件
 			Global.BeTouchedObj = hitInfo.collider.gameObject;
-			if(Global.BeTouchedObj.GetComponent<Renderer>() != null && Global.Level != "0")
-			Global.BeTouchedObj.GetComponent<Renderer> ().enabled = true;
+			Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
 
-			/*
-			if (Global.Targetlight != null) {
-				Global.Targetlight.Stop ();
-				Global.Targetlight.transform.position = Global.BeTouchedObj.transform.position;
-				Global.Targetlight.Play ();
-			}*/
 
 			if (Global.Player != null && Global.IsPushing) {
 				//Global.Wait = true;
@@ -102,78 +76,10 @@ public class TouchController : MonoBehaviour {
 
 				Global.PlayerMove = true;
 
-			} else if(Global.Level != "0"){
-				Global.BeTouchedObj.GetComponent<Renderer> ().enabled = false;
 			}
-		} 
-
-
-		/*
-		// 滑鼠右鍵：定位箭頭
-		if (Input.GetMouseButtonDown (1) && Global.StopTouch != true && Global.IsCamCtrl != true && Global.IsRotating != true && Global.PlayerMove != true && Global.IsPushing != true) {
-
-			IsRightClick = true;
-			// BigPlane
-			if (Physics.Raycast (ray, out RotateHitInfo, 500, 1 << 9)) {
-				Global.RotatePlane = RotateHitInfo.collider.gameObject;
-				RotateNumBox [0] = Global.RotatePlane.name;
-				for (int i = 0; i < 4; i++)
-					Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = true;
-				Arrow.transform.position = Global.RotatePlane.transform.position;
-				Arrow.transform.rotation = Global.RotatePlane.transform.rotation;
-			}
-
-			// Cube
-			if (Physics.Raycast (ray, out RotateHitInfo2, 500, 1 << 11)) {
-				Global.RotateCube = RotateHitInfo2.collider.gameObject;
-			}
-		} else {
-			if (Input.GetMouseButton (1) && Global.RotatePlane == null && Global.IsRotating == false) {
-				Global.IsCamCtrl = true;
-			} else {
-				Global.IsCamCtrl = false;
-			}
-		}
-		*/
-
-		/*
-		// 放開滑鼠右鍵
-		if (Input.GetMouseButtonUp (1) && Global.StopTouch != true) 
-		{
-			IsRightClick = false;
-			Global.RotatePlane = null;
-			Arrow.transform.position = new Vector3 (100, 100, 100);
-			for (int i = 0; i < 4; i++) {
-				Arrow.transform.GetChild (i).GetComponent<Renderer> ().enabled = false;
-			}
-		}
-		*/
-
-
-
-		/*
-		// 按著滑鼠右鍵：指示轉動方向
-		if(Input.GetMouseButton (1) && Global.StopTouch != true && Global.IsCamCtrl != true && Global.IsRotating != true && Global.PlayerMove != true && Global.IsPushing != true){
-
-			if (Physics.Raycast (ray, out RotateHitInfo, 500, 1 << 12)) {
-				Global.RotateArrow = RotateHitInfo.collider.gameObject;
-				if (Global.RotateArrow.name == "a1")
-					RotateNumBox [1] = "w";
-				if (Global.RotateArrow.name == "a2")
-					RotateNumBox [1] = "s";
-				if (Global.RotateArrow.name == "a3")
-					RotateNumBox [1] = "a";
-				if (Global.RotateArrow.name == "a4")
-					RotateNumBox [1] = "d";
-
-				SetRotateNum ();
-			}
-		}
-		*/
-
+		} */
 
 	}
-
 	/*
 	void SetRotateNum(){
 		Box = RotateNumBox [0] + RotateNumBox [1];

@@ -111,7 +111,7 @@ public class CameraController : MonoBehaviour {
 		}*/
 
 		// 控制攝影機旋轉視角
-		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !PathController.FollowPath) {
+		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove) {
 
 
 			// 左右

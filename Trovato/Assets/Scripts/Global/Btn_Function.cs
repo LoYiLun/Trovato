@@ -22,7 +22,8 @@ public class Btn_Function : MonoBehaviour {
 	void Start () {
 		//Names = GameObject.FindGameObjectsWithTag ("Name");
 		//ShowName ();
-
+		IsShowing = true;
+		ShowName();
 	}
 
 	// 開關物件名稱顯示
@@ -123,5 +124,9 @@ public class Btn_Function : MonoBehaviour {
 	public void ToLevel_03(){
 		Global.ResetVar ();
 		SceneManager.LoadScene ("Level_03");
+	}
+	public void ToLevel_04(){
+		Global.ResetVar ();
+		SceneManager.LoadScene ("Level_04");
 	}
 }

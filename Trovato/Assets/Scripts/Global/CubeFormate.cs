@@ -15,7 +15,7 @@ public class CubeFormate : MonoBehaviour {
 	
 
 	void Update () {
-		if (Global.Level == "3") {
+		if (Global.Level == "3" || Global.Level == "4") {
 			if (CubeController_V2.RotateCube != null && CubeController_V2.RotateCube.transform.parent == GameObject.Find ("CubeHome_V3").transform) {
 				CubeLeader = GameObject.Find ("CubeLeader_V3");
 				CubeHome = GameObject.Find ("CubeHome_V3");

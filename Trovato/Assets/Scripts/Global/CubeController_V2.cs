@@ -52,7 +52,7 @@ public class CubeController_V2 : MonoBehaviour {
 		else
 			IsOnRotatingCube = false;
 
-		if (Global.Level == "3") {
+		if (Global.Level == "3" || Global.Level == "4") {
 			if (RotateCube != null && RotateCube.transform.parent == GameObject.Find ("CubeHome_V3").transform) {
 				CubeLeader = GameObject.Find ("CubeLeader_V3");
 				CubeHome = GameObject.Find ("CubeHome_V3");
@@ -71,16 +71,22 @@ public class CubeController_V2 : MonoBehaviour {
 		// Layer 9 = RotatePlane.
 		if ((Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo_Plane, 100, 1 << 9) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
 			Debug.DrawLine (Camera.main.transform.position, hitinfo_Plane.transform.position, Color.yellow, 0.1f, true);
-			RotatePlane = hitinfo_Plane.collider.gameObject;
+			if (hitinfo_Plane.collider.gameObject != null) {
+				RotatePlane = hitinfo_Plane.collider.gameObject;
+			}
 			Arrow.transform.position = RotatePlane.transform.position;
 			Arrow.transform.rotation = RotatePlane.transform.rotation;
 
-		} else {
-			if ((Input.GetMouseButton (1) || Input.GetKey(KeyCode.Z)) && RotatePlane == null && Global.IsRotating == false && !Global.IsPreRotating) {
-				Global.IsCamCtrl = true;
-			} else {
-				Global.IsCamCtrl = false;
-			}
+
+		} 
+
+		if (Input.GetMouseButtonDown (1) && RotatePlane == null) {
+			Global.IsCamCtrl = true;
+		}
+
+		if (Input.GetMouseButtonUp (1)){
+			Global.IsCamCtrl = false;
+			RotatePlane = null;
 		}
 
 		// Layer 11 = Cube.

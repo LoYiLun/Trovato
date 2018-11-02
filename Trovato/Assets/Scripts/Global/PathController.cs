@@ -6,11 +6,13 @@ public class PathController : MonoBehaviour {
 
 	private Ray ray;
 	private Ray FourRay;
+	private Ray FourRay2;
 	private RaycastHit hitinfo;
 	private RaycastHit Fourinfo;
-	private GameObject BeTouchedFloor;
-	private GameObject NeighborFloor;
-	private bool Obstacle;
+	private RaycastHit Fourinfo2;
+	public GameObject BeTouchedFloor;
+	public GameObject NeighborFloor;
+	public bool Obstacle;
 	private Vector3[] Directions = new Vector3[4];
 
 	private bool NotInOpenlist = true;
@@ -34,7 +36,7 @@ public class PathController : MonoBehaviour {
 	public List<Floor> Openlist = new List<Floor>();
 	public List<Floor> Closelist = new List<Floor>();
 	public List<Floor> Pathlist = new List<Floor> ();
-	private GameObject[] AllFloors = new GameObject[100];
+	private GameObject[] AllFloors = new GameObject[144];
 
 	private float MinF;
 	private Floor NextHost;
@@ -55,19 +57,49 @@ public class PathController : MonoBehaviour {
 	public float dis;
 	public Vector3 WalkDir;
 	public Quaternion FaceRotation;
+
+
 	Vector3 fix = new Vector3(0, 1, 0);
+	float AngleX;
+	float AngleY;
+	float AngleZ;
+
+	Vector3 fixB;
+	float AngleXB;
+	float AngleYB;
+	float AngleZB;
+
 	Animation anim;
-	bool InFloorCenter;
 	bool ChangeGoal;
 	GameObject Origin;
 
+	public GameObject NeighborCollider;
+	public LayerMask Floorlayer;
+
+	private Ray Nray;
+	private RaycastHit Ninfo;
+	float StunTime;
+
 	void Start () {
 		FourRay = new Ray(Vector3.zero, Vector3.zero);
+		FourRay2 = new Ray(Vector3.zero, Vector3.zero);
 		Directions [0] = Vector3.forward;
 		Directions [1] = Vector3.right;
 		Directions [2] = Vector3.back;
 		Directions [3] = Vector3.left;
 		anim = GameObject.Find ("Player_Body").GetComponent<Animation> ();
+		BeTouchedFloor = null;
+		NotInOpenlist = true;
+		NotInCloselist = true;
+		PlayerMove = false;
+		ChangeGoal = false;
+		Origin = null;
+		floorindex = 0;
+		pathindex = 0;
+		tempt = 0;
+		dis = 0;
+		MinF = 0;
+		StunTime = 0;
 	}
 	void Stopanim(){
 		anim.Rewind ();
@@ -83,44 +115,62 @@ public class PathController : MonoBehaviour {
 
 		// 主角尋路系統
 		if (FollowPath && Closelist.Count <= AllFloors.Length && !Global.IsPushing && !Global.IsPreRotating) {
+			Global.PlayerMove = true;
 
 
-
-				dis = Vector3.Distance (Global.Player.transform.position, FloorB.transform.position + fix);
+			//dis = Vector3.Distance (Global.Player.transform.position, FloorB.transform.position + fix);
+			if ((FloorA != null) && (FloorB != null)) {
+				dis = Mathf.Abs (Global.Player.transform.position.x - FloorB.transform.position.x) +
+					Mathf.Abs (Global.Player.transform.position.z - FloorB.transform.position.z);
+			
 				anim.Play ("Walk");
 				Global.Player.GetComponent<PlayerController> ().LockRotation = false;
 				Global.Player.transform.position += (FloorB.transform.position - FloorA.transform.position + new Vector3 (0, 0.45f, 0)) * 3 * Time.deltaTime;
-
-
+			//print("dis: " + dis);
+			}
 
 
 
 			if (dis <= 0.1f) {
+
+				// 角色走到終點
 				if (PlayerController.CurrentFloor == BeTouchedFloor) {
 					PlayerController.CancelMoving (BeTouchedFloor.transform.position);
+					foreach (GameObject color in AllFloors) {
+						color.GetComponent<Renderer> ().enabled = false;
+						color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+					}
 					//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
 					Stopanim ();	
 					FollowPath = false;
 					Global.PlayerMove = false;
 				}
 
+
+
+
 				Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
 
 				if (!ChangeGoal) {
 					FloorA = FloorB;
 					FloorB = Pathlist.Find ((x) => x.Dad != null && x.Dad == PlayerController.CurrentFloor).Object;
-				} 
-				else{
+					if (FloorA != null)
+						FloorA.GetComponent<Renderer> ().material = Resources.Load ("Materials/Dark") as Material;
+				} else {
+					ChangeGoal = false;
 					FloorA = TemptFloorA;
 					FloorB = TemptFloorB;
-					ChangeGoal = false;
-						
-					}
-				InFloorCenter = true;
+					if (FloorA != null)
+						FloorA.GetComponent<Renderer> ().material = Resources.Load ("Materials/Dark") as Material;
 
-				
-			} else {
-				InFloorCenter = false;
+				}
+			} else if (dis >= 2) {
+				PlayerController.CancelMoving (PlayerController.CurrentFloor.transform.position + fix);
+				Stopanim ();
+				FollowPath = false;
+				FloorA = FloorB = null;
+				Global.PlayerMove = false;
+				print("oOO");
 			}
 
 			/*
@@ -142,6 +192,20 @@ public class PathController : MonoBehaviour {
 			*/
 		}
 
+		// 主角自轉系統：設定方向
+		if (FollowPath && Closelist.Count <= AllFloors.Length && FloorA != null && FloorB != null) {
+
+			WalkDir = FloorA.transform.position - FloorB.transform.position;
+			if (WalkDir.x > 0 && Mathf.Abs(WalkDir.z) <= 0.2f)
+				FaceRotation = Quaternion.Euler (0, -90, 0);
+			if (WalkDir.x < 0 && Mathf.Abs(WalkDir.z) <= 0.2f)
+				FaceRotation = Quaternion.Euler (0, 90, 0);
+			if (WalkDir.z > 0 && Mathf.Abs(WalkDir.x) <= 0.2f)
+				FaceRotation = Quaternion.Euler (0, 180, 0);
+			if (WalkDir.z < 0 && Mathf.Abs(WalkDir.x) <= 0.2f)
+				FaceRotation = Quaternion.Euler (0, 0, 0);
+		}
+
 		// 主角自轉系統：開始自轉
 		if (!Global.IsPreRotating && !Global.IsPushing && !Global.Player.GetComponent<PlayerController>().LockRotation) {
 			Global.Player.transform.rotation = Quaternion.Lerp (Global.Player.transform.rotation, FaceRotation, 0.25f);
@@ -151,29 +215,132 @@ public class PathController : MonoBehaviour {
 
 		}
 
-		// 主角自轉系統：設定方向
-		if (FollowPath && Closelist.Count <= AllFloors.Length && FloorA != null && FloorB != null) {
 
-			WalkDir = FloorA.transform.position - FloorB.transform.position;
-			if (WalkDir.x > 0 && WalkDir.z == 0)
-				FaceRotation = Quaternion.Euler (0, -90, 0);
-			if (WalkDir.x < 0 && WalkDir.z == 0)
-				FaceRotation = Quaternion.Euler (0, 90, 0);
-			if (WalkDir.z > 0 && WalkDir.x == 0)
-				FaceRotation = Quaternion.Euler (0, 180, 0);
-			if (WalkDir.z < 0 && WalkDir.x == 0)
-				FaceRotation = Quaternion.Euler (0, 0, 0);
+	}
+
+	IEnumerator DelayTouch(){
+		Global.StopTouch = true;
+		yield return new WaitForSeconds (0.2f);
+		if (GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> () != null && !GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().BlockOn) {
+			Global.StopTouch = false;
+		}
+
+		yield break;
+	}
+
+	void Update () {
+
+		if ((FloorA == FloorB) && (FloorA != null) && (FloorB != null)) {
+			StunTime += 0.01f;
+			if (StunTime > 0.05f) {
+				
+				FollowPath = false;
+				//FloorB = PlayerController.CurrentFloor;
+				PlayerController.CancelMoving (PlayerController.CurrentFloor.transform.position + fix);
+				FloorA = FloorB = null;
+				Stopanim ();
+				StunTime = 0;
+			}
+		} else {
+			StunTime = 0;
+		}
+
+		//print (PlayerController.CurrentFloor.transform.rotation.eulerAngles);
+
+		/*
+		if (PlayerController.CurrentFloor != null) {
+			AngleX = Mathf.Sin (PlayerController.CurrentFloor.transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
+			AngleY = Mathf.Cos (PlayerController.CurrentFloor.transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
+			AngleZ = Mathf.Sin (PlayerController.CurrentFloor.transform.rotation.eulerAngles.x * Mathf.Deg2Rad);
+			fix = new Vector3 (AngleX, AngleY, AngleZ);
+			//print ("fix: " + fix);
+		}*/
+
+		/*
+		if (FloorB != null) {
+			AngleXB = Mathf.Sin (FloorB.transform.rotation.eulerAngles.x * Mathf.Deg2Rad);
+			AngleYB = Mathf.Cos (FloorB.transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
+			AngleZB = Mathf.Sin (FloorB.transform.rotation.eulerAngles.z * Mathf.Deg2Rad);
+			fixB = new Vector3 (0, 0, AngleZB);
+			print ("fixB: " + fixB);
+		}*/
+
+
+		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		// FoolWalk Mode
+		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.StopTouch && Global.IsCamCtrl != true && !Global.IsRotating && !Global.IsPreRotating) 
+		{
+			// 切換成新點選的物件
+			Global.BeTouchedObj = hitinfo.collider.gameObject;
+			Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
+
+			if (Global.Player != null && Global.IsPushing) {
+				Global.PlayerMove = true;
+
+			}
+		} 
+
+		// SmartWalk Mode
+		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.IsCamCtrl && !Global.IsPreRotating && !Global.StopTouch) {
+			Debug.DrawLine (Camera.main.transform.position, hitinfo.transform.position, Color.yellow, 0.1f, true);
+
+			// 如果不是第一次點地板
+			if (BeTouchedFloor != null) {
+				BeTouchedFloor.GetComponent<Renderer> ().enabled = false;
+				BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+			}
+
+			Reset ();
+
+
+			if (FollowPath) {
+				ChangeGoal = true;
+			}
+
+			if (BeTouchedFloor != PlayerController.CurrentFloor) {
+				SearchMode = true;
+				CheckNeighbor ();
+			}
+
+			StartCoroutine (DelayTouch ());
 		}
 	}
 
 	public void Reset(){
+
+		NotInOpenlist = true;
+		NotInCloselist = true;
+		//FollowPath = false;
+		PlayerMove = false;
+		ChangeGoal = false;
+		//TemptFloorA = null;
+		//TemptFloorB = null;
+		//FloorA = null;
+		//FloorB = null;
+		Origin = null;
+		floorindex = 0;
+		pathindex = 0;
+		tempt = 0;
+		dis = 0;
+		MinF = 0;
+		StunTime = 0;
+
+		//---------------------
+
+		//Global.PlayerMove = true;
+		BeTouchedFloor = hitinfo.collider.gameObject;
+		//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Blue") as Material;
+
 		NeighborFloor = null;
 		AllFloors = GameObject.FindGameObjectsWithTag("Floor");
 		foreach(GameObject color in AllFloors){
-			//color.GetComponent<Renderer> ().enabled = true;
-			//color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+			
+			// 顯示全地板
+			color.GetComponent<Renderer> ().enabled = true;
+			color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 		}
-			//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
+		//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
 
 
 		Pathlist.Clear ();
@@ -196,122 +363,67 @@ public class PathController : MonoBehaviour {
 		Openlist.Add (Startfloor);
 	}
 
-	void Update () {
-		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.IsCamCtrl && !Global.IsPreRotating && !Global.StopTouch ) {
-			Debug.DrawLine (Camera.main.transform.position, hitinfo.transform.position, Color.yellow, 0.1f, true);
-			if (BeTouchedFloor != null) {
-				//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
-			}
-
-
-			Global.PlayerMove = true;
-			BeTouchedFloor = hitinfo.collider.gameObject;
-
-			Reset ();
-
-			if (FollowPath) {
-				ChangeGoal = true;
-			}
-
-			if (BeTouchedFloor != PlayerController.CurrentFloor) {
-				SearchMode = true;
-				CheckNeighbor ();
-			}
-		}
-
-
-		/*
-		if (Again) {
-			CheckNeighbor ();
-			if (Closelist.Count > 100) {
-				Again = false;
-				SearchMode = fa			lse;
-
-				print("No way!!");
-			}
-			//Again = false;
-		}*/
-
-
-
-
-		
-	}
-		
-
-	private void PathSetting(){
-		tempt = Closelist.Count;
-		Pathlist.Add (NextHost);
-		//Dadfloor.index = NextHost.index;
-		Dadfloor.Object = NextHost.Object;
-		Dadfloor.G_cost = NextHost.G_cost;
-		Dadfloor.H_cost = NextHost.H_cost;
-		Dadfloor.F_cost = NextHost.F_cost;
-		Dadfloor.ToDad = NextHost.ToDad;
-		Dadfloor.Dad = NextHost.Dad;
-		//Pathlist.Add (NextHost.Dad);
-		for (int i = 0; i < tempt; i++) {
-
-
-			foreach (Floor f in Closelist) {
-				if (Dadfloor.Dad != null && Dadfloor.Dad == f.Object) {
-
-					floorindex = Closelist.IndexOf (f);
-					Dadfloor.index = Pathlist.Count;
-					Dadfloor.Object = f.Object;
-					Dadfloor.G_cost = f.G_cost;
-					Dadfloor.H_cost = f.H_cost;
-					Dadfloor.F_cost = f.F_cost;
-					Dadfloor.ToDad = f.ToDad;
-					Dadfloor.Dad = f.Dad;
-
-				}
-			}
-			if (Closelist.Count >= floorindex && Dadfloor.Object != PlayerController.CurrentFloor) {
-				Closelist.RemoveAt (floorindex);
-				Pathlist.Add (Dadfloor);
-				//Dadfloor.Object.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
-			}
-		}
-		NeighborFloor = PlayerController.CurrentFloor;
-		if (!ChangeGoal) {
-			FloorA = PlayerController.CurrentFloor;
-			FloorB = Pathlist.Find ((x) => x.index == Pathlist.Count - 1).Object;
-		} else if (!Pathlist.Contains(Pathlist.Find ((k) => k.Object == FloorB))) {
-			TemptFloorA = FloorB;
-			TemptFloorB = Origin;
-		} else {
-			TemptFloorA = FloorA;
-			TemptFloorB = FloorB;
-		}
-		FollowPath = true;
-
-	}
-
-
-
 	private void CheckNeighbor(){
 		if (Closelist.Count > AllFloors.Length) {
 			Again = false;
 			SearchMode = false;
 			Stopanim ();
 			Global.PlayerMove = false;
-			//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
+			Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
+
+
 			print("<color=orange>No way!!</color>");
 		}
 
 		if(SearchMode && !Global.IsPushing){
 
 		for(int i=0 ; i<4 ; i++){
+				/*Directions [0] = Startfloor.Object.transform.forward;
+				Directions [1] = Startfloor.Object.transform.right;
+				Directions [2] = Startfloor.Object.transform.forward * -1;
+				Directions [3] = Startfloor.Object.transform.right * -1;*/
 				FourRay.origin = Startfloor.Object.transform.position;
 				FourRay.direction = Directions [i];
+				FourRay2.origin = Startfloor.Object.transform.position + Directions[i] + new Vector3(0,3,0);
+				FourRay2.direction = Vector3.down;
+				//FourRay.origin = Startfloor.Object.transform.position + Directions[i] + new Vector3(0,1,0);
+				//FourRay.direction = Vector3.down;
+				//Nray.origin = NeighborCollider.transform.position;
+				//Nray.direction = Vector3.down;
+
+
+				//NeighborCollider.transform.position = Startfloor.Object.transform.position + Directions [i] + new Vector3(0,3,0);
 
 				// 訪問鄰居
-				if (Physics.Raycast (FourRay, out Fourinfo, 1, 1 << 10)) {
-					if (Fourinfo.collider.gameObject != null) {
-						NeighborFloor = Fourinfo.collider.gameObject;
+				/*if(Physics.Raycast (Nray, out Ninfo, 5, 1 << 10)){
+					if (Ninfo.collider.gameObject != null) {
+						NeighborFloor = Ninfo.collider.gameObject;
+						print ("n " + NeighborFloor.name);
 						Obstacle = NeighborFloor.GetComponent<Floorinfos> ().Obstacle;
+				}*/
+					// 下括弧在下方
+
+
+
+				if (Physics.Raycast (FourRay2, out Fourinfo2, 10, 1 << 10)) {
+					if (Fourinfo2.collider.gameObject != null) {
+						if (Fourinfo2.collider.gameObject.GetComponent<Floorinfos> ().UpFloor != null) {
+							NeighborFloor = Fourinfo2.collider.gameObject.GetComponent<Floorinfos> ().UpFloor;
+							Obstacle = NeighborFloor.GetComponent<Floorinfos> ().Obstacle;
+						} else {
+							NeighborFloor = Fourinfo2.collider.gameObject;
+							Obstacle = NeighborFloor.GetComponent<Floorinfos> ().Obstacle;
+						}
+
+
+					}
+
+					for(int j=0 ; j < 4 ; j++){
+						FourRay.origin = Startfloor.Object.transform.position;
+						FourRay.direction = Directions [i];
+						if (Physics.Raycast (FourRay, out Fourinfo, 1, 1 << 21)) {
+							NeighborFloor = null;
+						}	
 					}
 
 
@@ -395,6 +507,7 @@ public class PathController : MonoBehaviour {
 
 							// 調查完畢後加入Openlist
 							Openlist.Add (floor);
+
 							//NeighborFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Blue") as Material;
 
 						}
@@ -413,15 +526,18 @@ public class PathController : MonoBehaviour {
 			Origin = PlayerController.CurrentFloor;
 		Openlist.Remove(Startfloor);
 		Closelist.Add (Startfloor);
-		//Startfloor.Object.GetComponent<Renderer> ().material = Resources.Load ("Materials/Dark") as Material;
+
+		// 起點
+		Startfloor.Object.GetComponent<Renderer> ().material = Resources.Load ("Materials/Dark") as Material;
 
 			if (Closelist.Contains(Startfloor)){
 				MinF = 10000;
 			} else {
 				MinF = Startfloor.F_cost;
 			}
+
 		BeTouchedFloor.GetComponent<Renderer> ().enabled = true;
-		BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Touch2") as Material;
+		BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
 
 
 		foreach (Floor neighbor in Openlist) {
@@ -440,6 +556,8 @@ public class PathController : MonoBehaviour {
 		}
 
 			//Startfloor.index = NextHost.index;
+			if(NextHost.Object == null)
+				print("No Next");
 			Startfloor.Object = NextHost.Object;
 			Startfloor.G_cost = NextHost.G_cost;
 			Startfloor.H_cost = NextHost.H_cost;
@@ -451,5 +569,56 @@ public class PathController : MonoBehaviour {
 			//if(SearchMode)
 			//Again = true;
 		}
+	}
+
+	private void PathSetting(){
+		tempt = Closelist.Count;
+		Pathlist.Add (NextHost);
+		//Dadfloor.index = NextHost.index;
+		Dadfloor.Object = NextHost.Object;
+		Dadfloor.G_cost = NextHost.G_cost;
+		Dadfloor.H_cost = NextHost.H_cost;
+		Dadfloor.F_cost = NextHost.F_cost;
+		Dadfloor.ToDad = NextHost.ToDad;
+		Dadfloor.Dad = NextHost.Dad;
+		//Pathlist.Add (NextHost.Dad);
+		for (int i = 0; i < tempt; i++) {
+
+
+			foreach (Floor f in Closelist) {
+				if (Dadfloor.Dad != null && Dadfloor.Dad == f.Object) {
+
+					floorindex = Closelist.IndexOf (f);
+					Dadfloor.index = Pathlist.Count;
+					Dadfloor.Object = f.Object;
+					Dadfloor.G_cost = f.G_cost;
+					Dadfloor.H_cost = f.H_cost;
+					Dadfloor.F_cost = f.F_cost;
+					Dadfloor.ToDad = f.ToDad;
+					Dadfloor.Dad = f.Dad;
+
+				}
+			}
+			if (Closelist.Count >= floorindex && Dadfloor.Object != PlayerController.CurrentFloor) {
+				Closelist.RemoveAt (floorindex);
+				Pathlist.Add (Dadfloor);
+
+				// 最短路徑
+				Dadfloor.Object.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
+			}
+		}
+		NeighborFloor = PlayerController.CurrentFloor;
+		if (!ChangeGoal) {
+			FloorA = PlayerController.CurrentFloor;
+			FloorB = Pathlist.Find ((x) => x.index == Pathlist.Count - 1).Object;
+		} else if (!Pathlist.Contains(Pathlist.Find ((k) => k.Object == FloorB))) {
+			TemptFloorA = FloorB;
+			TemptFloorB = Origin;
+		} else {
+			TemptFloorA = FloorA;
+			TemptFloorB = FloorB;
+		}
+		FollowPath = true;
+
 	}
 }

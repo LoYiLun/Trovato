@@ -82,6 +82,7 @@ public class Global : MonoBehaviour {
 
 		case"2":
 		case"3":
+		case"4":
 			OnCubeNum = 1;
 			break;
 		}
@@ -140,6 +141,8 @@ public class Global : MonoBehaviour {
 		CameraFade.FadeOutIsStart = false;
 		CameraFade.FadeInIsDone = false;
 		CameraFade.FadeOutIsDone = false;
+		PathController.FollowPath = false;
+		GameObject.Find("GlobalScripts").GetComponent<PathController> ().BeTouchedFloor = null;
 	}
 
 	public static void Retry(){
