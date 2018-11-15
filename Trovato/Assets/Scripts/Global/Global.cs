@@ -96,7 +96,7 @@ public class Global : MonoBehaviour {
 	}
 	
 
-	void FixedUpdate () {
+	void Update () {
 
 		if (LevelEnd != null && LevelEnd.activeSelf) {
 			ToNextLevel (NextScene);
@@ -141,8 +141,18 @@ public class Global : MonoBehaviour {
 		CameraFade.FadeOutIsStart = false;
 		CameraFade.FadeInIsDone = false;
 		CameraFade.FadeOutIsDone = false;
+		CameraController.SetCamPos = false;
 		PathController.FollowPath = false;
-		GameObject.Find("GlobalScripts").GetComponent<PathController> ().BeTouchedFloor = null;
+		MissionSetting.FlowerChart = null;
+		MissionSetting.BlockOn = false;
+		MissionSetting.CamIsMoving = false;
+		MissionSetting.CamIsMovingBack = false;
+		if (GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ()) {
+			GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().MissionTargets.Clear ();
+			GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().MissionArrows.Clear ();
+		}
+			GameObject.Find ("GlobalScripts").GetComponent<PathController> ().BeTouchedFloor = null;
+		
 	}
 
 	public static void Retry(){

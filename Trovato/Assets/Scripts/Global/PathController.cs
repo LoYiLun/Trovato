@@ -44,7 +44,6 @@ public class PathController : MonoBehaviour {
 	private int pathindex;
 
 	private bool SearchMode;
-	private bool Again;
 	public static bool FollowPath;
 
 	private bool PlayerMove;
@@ -170,7 +169,6 @@ public class PathController : MonoBehaviour {
 				FollowPath = false;
 				FloorA = FloorB = null;
 				Global.PlayerMove = false;
-				print("oOO");
 			}
 
 			/*
@@ -221,7 +219,7 @@ public class PathController : MonoBehaviour {
 	IEnumerator DelayTouch(){
 		Global.StopTouch = true;
 		yield return new WaitForSeconds (0.2f);
-		if (GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> () != null && !GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().BlockOn) {
+		if (GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> () != null && !MissionSetting.BlockOn) {
 			Global.StopTouch = false;
 		}
 
@@ -269,7 +267,7 @@ public class PathController : MonoBehaviour {
 		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 		// FoolWalk Mode
-		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.StopTouch && Global.IsCamCtrl != true && !Global.IsRotating && !Global.IsPreRotating) 
+		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.StopTouch && Global.IsCamCtrl != true && !Global.IsRotating && !Global.IsPreRotating && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) 
 		{
 			// 切換成新點選的物件
 			Global.BeTouchedObj = hitinfo.collider.gameObject;
@@ -337,8 +335,8 @@ public class PathController : MonoBehaviour {
 		foreach(GameObject color in AllFloors){
 			
 			// 顯示全地板
-			color.GetComponent<Renderer> ().enabled = true;
-			color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+			//color.GetComponent<Renderer> ().enabled = true;
+			//color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 		}
 		//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
 
@@ -365,7 +363,6 @@ public class PathController : MonoBehaviour {
 
 	private void CheckNeighbor(){
 		if (Closelist.Count > AllFloors.Length) {
-			Again = false;
 			SearchMode = false;
 			Stopanim ();
 			Global.PlayerMove = false;
@@ -536,7 +533,7 @@ public class PathController : MonoBehaviour {
 				MinF = Startfloor.F_cost;
 			}
 
-		BeTouchedFloor.GetComponent<Renderer> ().enabled = true;
+		//BeTouchedFloor.GetComponent<Renderer> ().enabled = true;
 		BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
 
 
@@ -549,7 +546,6 @@ public class PathController : MonoBehaviour {
 					MinF = neighbor.F_cost;
 					NextHost = neighbor;	
 				//print ("Finish Searching!");
-				Again = false;
 				SearchMode = false;
 					PathSetting ();
 			}
@@ -566,8 +562,6 @@ public class PathController : MonoBehaviour {
 			Startfloor.ToDad = NextHost.ToDad;
 			if(SearchMode)
 			CheckNeighbor ();
-			//if(SearchMode)
-			//Again = true;
 		}
 	}
 

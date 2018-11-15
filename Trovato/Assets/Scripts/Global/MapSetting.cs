@@ -36,6 +36,7 @@ public class MapSetting : MonoBehaviour {
 	GameObject[] TemptV3 = new GameObject[54];
 	int k = 0;
 	int j = 0;
+	private GameObject[] Names;
 
 	[SerializeField]
 	GameObject[] CubePrefabs;
@@ -103,6 +104,13 @@ public class MapSetting : MonoBehaviour {
 				j++;
 			}
 		}
+
+		Names = GameObject.FindGameObjectsWithTag ("Name");
+		for (int i = 0; i < Names.Length; i++) {
+			if(Names[i].GetComponent<Canvas>() != null)
+				Names[i].GetComponent<Canvas> ().enabled = false;
+		}
+
 	}
 		
 	void Update () {

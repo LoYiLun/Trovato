@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Btn_Function : MonoBehaviour {
 
-	bool IsShowing = true;
+	bool IsShowing;
 	bool ShowBlock = true;
 	bool OneShot = true;
 	GameObject[] Names;
@@ -22,8 +22,6 @@ public class Btn_Function : MonoBehaviour {
 	void Start () {
 		//Names = GameObject.FindGameObjectsWithTag ("Name");
 		//ShowName ();
-		IsShowing = true;
-		ShowName();
 	}
 
 	// 開關物件名稱顯示

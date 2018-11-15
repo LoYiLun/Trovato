@@ -21,7 +21,7 @@ public class EnemyMove : MonoBehaviour {
 	void FixedUpdate () {
 		
 
-		if (!Global.IsPreRotating && !Global.IsRotating && GameObject.Find("GlobalScripts").GetComponent<MissionSetting>() != null && !GameObject.Find("GlobalScripts").GetComponent<MissionSetting>().BlockOn) {
+		if (!Global.IsPreRotating && !Global.IsRotating && GameObject.Find("GlobalScripts").GetComponent<MissionSetting>() != null && !MissionSetting.BlockOn && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) {
 			transform.Translate (Speed, 0, 0);
 			Dis = Vector3.Distance (transform.position, Pos);
 			if (Dis >= 1) {

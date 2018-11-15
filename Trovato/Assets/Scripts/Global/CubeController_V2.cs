@@ -69,7 +69,7 @@ public class CubeController_V2 : MonoBehaviour {
 
 		ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		// Layer 9 = RotatePlane.
-		if ((Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo_Plane, 100, 1 << 9) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
+		if ((Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo_Plane, 100, 1 << 9) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) {
 			Debug.DrawLine (Camera.main.transform.position, hitinfo_Plane.transform.position, Color.yellow, 0.1f, true);
 			if (hitinfo_Plane.collider.gameObject != null) {
 				RotatePlane = hitinfo_Plane.collider.gameObject;
@@ -90,12 +90,12 @@ public class CubeController_V2 : MonoBehaviour {
 		}
 
 		// Layer 11 = Cube.
-		if ((Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo_Cube, 100, 1 << 11) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
+		if ((Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo_Cube, 100, 1 << 11) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) {
 			RotateCube = hitinfo_Cube.collider.gameObject;
 		}
 
 		// Layer 12 = Arrow.
-		if ((Input.GetMouseButton (1) || Input.GetKey(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo2, 100, 1 << 12) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
+		if ((Input.GetMouseButton (1) || Input.GetKey(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo2, 100, 1 << 12) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) {
 			if(hitinfo2.collider.name == "arrow1")
 				RotateDirection = "w";
 			if(hitinfo2.collider.name == "arrow2")
@@ -119,7 +119,7 @@ public class CubeController_V2 : MonoBehaviour {
 			Global.IsPreRotating = true;
 			Global.IsCamCtrl = false;
 
-			if ((Input.GetMouseButton (1) || Input.GetKey(KeyCode.Z)) && CubeLeader.transform.childCount == (FormationCount + ExtraChild) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch) {
+			if ((Input.GetMouseButton (1) || Input.GetKey(KeyCode.Z)) && CubeLeader.transform.childCount == (FormationCount + ExtraChild) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) {
 				if(Global.Player !=null && Global.Player.GetComponent<Rigidbody> () && !IgnorePlayer)
 					Global.Player.GetComponent<Rigidbody> ().useGravity = false;
 

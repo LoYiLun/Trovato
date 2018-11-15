@@ -8067,7 +8067,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1496704724601620}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -16273,6 +16273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cam: {fileID: 1961328020354398}
   CamObj: {fileID: 1444603906377398}
+  CamToScreenHeart: {x: 0, y: 0, z: 0}
   ScreenHeart: {fileID: 1014722071785992}
 --- !u!114 &114770907789190478
 MonoBehaviour:
@@ -16538,7 +16539,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GetFlowChart: {fileID: 0}
-  BlockOn: 0
+  Blocking: 
+  AllBlocks: []
+  MissionTargets: []
+  MissionArrows: []
 --- !u!114 &114887703086780776
 MonoBehaviour:
   m_ObjectHideFlags: 1
