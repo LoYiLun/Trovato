@@ -17,7 +17,7 @@ public class ImageFade : MonoBehaviour {
 		Tips_Box = GameObject.Find ("Tips_Box").GetComponent<Image> ();
 		//alpha = 0;
 		b = 1;
-		Global.StopTouch = true;
+		//Global.StopTouch = true;
 	}
 
 	void Update () {

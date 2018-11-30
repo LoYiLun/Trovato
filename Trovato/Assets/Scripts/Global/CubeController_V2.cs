@@ -80,6 +80,7 @@ public class CubeController_V2 : MonoBehaviour {
 
 		} 
 
+		/*
 		if (Input.GetMouseButtonDown (1) && RotatePlane == null) {
 			Global.IsCamCtrl = true;
 		}
@@ -87,7 +88,8 @@ public class CubeController_V2 : MonoBehaviour {
 		if (Input.GetMouseButtonUp (1)){
 			Global.IsCamCtrl = false;
 			RotatePlane = null;
-		}
+		}*/
+
 
 		// Layer 11 = Cube.
 		if ((Input.GetMouseButtonDown (1) || Input.GetKeyDown(KeyCode.Z)) && Physics.Raycast (ray, out hitinfo_Cube, 100, 1 << 11) && !Global.IsRotating && !Global.PlayerMove && !Global.IsPushing && !Global.IsCamCtrl && !Global.StopTouch && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) {

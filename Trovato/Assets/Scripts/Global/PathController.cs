@@ -126,6 +126,10 @@ public class PathController : MonoBehaviour {
 				Global.Player.GetComponent<PlayerController> ().LockRotation = false;
 				Global.Player.transform.position += (FloorB.transform.position - FloorA.transform.position + new Vector3 (0, 0.45f, 0)) * 3 * Time.deltaTime;
 			//print("dis: " + dis);
+			}else if((FloorA == null) && (FloorB == null)){
+				// 防止原地走動
+				Stopanim ();
+				FollowPath = false;
 			}
 
 
@@ -137,7 +141,7 @@ public class PathController : MonoBehaviour {
 					PlayerController.CancelMoving (BeTouchedFloor.transform.position);
 					foreach (GameObject color in AllFloors) {
 						color.GetComponent<Renderer> ().enabled = false;
-						color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+						//color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 					}
 					//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
 					Stopanim ();	
@@ -206,7 +210,7 @@ public class PathController : MonoBehaviour {
 
 		// 主角自轉系統：開始自轉
 		if (!Global.IsPreRotating && !Global.IsPushing && !Global.Player.GetComponent<PlayerController>().LockRotation) {
-			Global.Player.transform.rotation = Quaternion.Lerp (Global.Player.transform.rotation, FaceRotation, 0.25f);
+			Global.Player.transform.rotation = Quaternion.Lerp (Global.Player.transform.rotation, FaceRotation, 0.2f);
 			if (Quaternion.Angle (Global.Player.transform.rotation, FaceRotation) < 10) {
 				Global.Player.transform.rotation = FaceRotation;
 			}
@@ -267,11 +271,11 @@ public class PathController : MonoBehaviour {
 		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 		// FoolWalk Mode
-		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.StopTouch && Global.IsCamCtrl != true && !Global.IsRotating && !Global.IsPreRotating && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) 
+		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.StopTouch && CameraController.IsCamRotating != true && !Global.IsRotating && !Global.IsPreRotating && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) 
 		{
 			// 切換成新點選的物件
 			Global.BeTouchedObj = hitinfo.collider.gameObject;
-			Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
+			Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2") as Material;
 
 			if (Global.Player != null && Global.IsPushing) {
 				Global.PlayerMove = true;
@@ -280,13 +284,13 @@ public class PathController : MonoBehaviour {
 		} 
 
 		// SmartWalk Mode
-		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.IsCamCtrl && !Global.IsPreRotating && !Global.StopTouch) {
+		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.IsPreRotating && !Global.StopTouch && !CameraController.IsCamRotating) {
 			Debug.DrawLine (Camera.main.transform.position, hitinfo.transform.position, Color.yellow, 0.1f, true);
 
 			// 如果不是第一次點地板
 			if (BeTouchedFloor != null) {
 				BeTouchedFloor.GetComponent<Renderer> ().enabled = false;
-				BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+				//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 			}
 
 			Reset ();
@@ -362,12 +366,15 @@ public class PathController : MonoBehaviour {
 	}
 
 	private void CheckNeighbor(){
+
+		// 封路數量大於地板數量，表示無路可走
 		if (Closelist.Count > AllFloors.Length) {
 			SearchMode = false;
 			Stopanim ();
+			FollowPath = false;
 			Global.PlayerMove = false;
 			Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
-
+			BeTouchedFloor.GetComponent<Renderer> ().enabled = false;
 
 			print("<color=orange>No way!!</color>");
 		}
@@ -381,7 +388,7 @@ public class PathController : MonoBehaviour {
 				Directions [3] = Startfloor.Object.transform.right * -1;*/
 				FourRay.origin = Startfloor.Object.transform.position;
 				FourRay.direction = Directions [i];
-				FourRay2.origin = Startfloor.Object.transform.position + Directions[i] + new Vector3(0,3,0);
+				FourRay2.origin = Startfloor.Object.transform.position + Directions[i] + new Vector3(0, 2f, 0);
 				FourRay2.direction = Vector3.down;
 				//FourRay.origin = Startfloor.Object.transform.position + Directions[i] + new Vector3(0,1,0);
 				//FourRay.direction = Vector3.down;
@@ -402,7 +409,7 @@ public class PathController : MonoBehaviour {
 
 
 
-				if (Physics.Raycast (FourRay2, out Fourinfo2, 10, 1 << 10)) {
+				if (Physics.Raycast (FourRay2, out Fourinfo2, 3, 1 << 10)) {
 					if (Fourinfo2.collider.gameObject != null) {
 						if (Fourinfo2.collider.gameObject.GetComponent<Floorinfos> ().UpFloor != null) {
 							NeighborFloor = Fourinfo2.collider.gameObject.GetComponent<Floorinfos> ().UpFloor;
@@ -533,8 +540,8 @@ public class PathController : MonoBehaviour {
 				MinF = Startfloor.F_cost;
 			}
 
-		//BeTouchedFloor.GetComponent<Renderer> ().enabled = true;
-		BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
+		BeTouchedFloor.GetComponent<Renderer> ().enabled = true;
+		//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
 
 
 		foreach (Floor neighbor in Openlist) {
@@ -598,7 +605,8 @@ public class PathController : MonoBehaviour {
 				Pathlist.Add (Dadfloor);
 
 				// 最短路徑
-				Dadfloor.Object.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
+				//Dadfloor.Object.GetComponent<Renderer> ().enabled = true;
+				//Dadfloor.Object.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
 			}
 		}
 		NeighborFloor = PlayerController.CurrentFloor;

@@ -9,11 +9,13 @@ public class CameraController : MonoBehaviour {
 	public Vector3 CamToScreenHeart;
 	Vector3 LockPlayer;
 	Vector3 PosBeforeMove;
+
 	//GameObject Hit;
 	//GameObject GhostBall;
 
 	public GameObject ScreenHeart;
 	public static bool SetCamPos;
+	public static bool IsCamRotating;
 	public static GameObject CurrentCam;
 	public static GameObject CamTarget;
 
@@ -32,12 +34,13 @@ public class CameraController : MonoBehaviour {
 
 	bool LookAround;
 	bool IsLookingAround;
-	Vector3 CamOriginPos;
+	public static Vector3 CamOriginPos;
+	public static Quaternion CamOriginRot;
 
 	void Awake(){
 		CurrentCam = Cam;
-
-
+		CamOriginPos = CurrentCam.transform.position;
+		CamOriginRot = CurrentCam.transform.rotation;
 		//GhostBall = GameObject.Find ("GhostBall");
 
 
@@ -46,7 +49,6 @@ public class CameraController : MonoBehaviour {
 	void Start () {
 		CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 		CamTarget = ScreenHeart;
-		CamOriginPos = CurrentCam.transform.position;
 		CurrentCam.transform.LookAt (CamTarget.transform);
 		CamView = Camera.main.fieldOfView;
 
@@ -133,7 +135,8 @@ public class CameraController : MonoBehaviour {
 		}*/
 
 		// 控制攝影機旋轉視角
-		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack) {
+		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack ) {
+			IsCamRotating = true;
 
 				// 左右
 				if (mx > 0) {
@@ -161,6 +164,7 @@ public class CameraController : MonoBehaviour {
 
 		  // 紀錄攝影機旋轉完畢的新位置
 		} else if(Input.GetMouseButtonUp (1) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating){
+			IsCamRotating = false;
 			CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 		}
 

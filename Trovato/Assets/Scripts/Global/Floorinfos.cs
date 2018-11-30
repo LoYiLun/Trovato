@@ -23,19 +23,22 @@ public class Floorinfos : MonoBehaviour {
 			UpFloor = Upinfo2.collider.gameObject;
 			gameObject.GetComponent<Collider> ().enabled = false;
 			Obstacle = true;
-
+			gameObject.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2") as Material;
 		} else if (Physics.Raycast (Upray, out Upinfo, 2, 1 << 20)) {
 			UpFloor = null;
 			gameObject.GetComponent<Collider> ().enabled = true;
 			Obstacle = true;
+			gameObject.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2") as Material;
 		} else if (Physics.Raycast (Upray, out Upinfo2, 5, 1 << 10)) {
 			UpFloor = Upinfo2.collider.gameObject;
 			gameObject.GetComponent<Collider> ().enabled = false;
 			Obstacle = false;
+			gameObject.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2") as Material;
 		} else {
 			UpFloor = null;
 			gameObject.GetComponent<Collider> ().enabled = true;
 			Obstacle = false;
+			gameObject.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2") as Material;
 		}
 
 

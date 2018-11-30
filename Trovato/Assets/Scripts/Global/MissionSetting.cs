@@ -31,7 +31,6 @@ public class MissionSetting : MonoBehaviour {
 	public List<GameObject> MissionTargets = new List<GameObject> ();
 	public List<GameObject> MissionArrows = new List<GameObject> ();
 	private int TargetID = 0 ;
-	private float Heartdis;
 	private Vector3 MultiPos;
 
 
@@ -56,7 +55,7 @@ public class MissionSetting : MonoBehaviour {
 		ScreenHeart = _ScreenHeart;
 		FixedRot = Vector3.up;
 
-		PlayerStatusImage.Status = null; 
+		//PlayerStatusImage.Status = null; 
 
 		//MissionArrows.Clear ();
 		if (MissionTargets.LastIndexOf (Target) <= MissionTargets.Count && ArrowPos != Vector3.zero ) {
@@ -78,7 +77,6 @@ public class MissionSetting : MonoBehaviour {
 
 		ScreenHeart.transform.Translate (new Vector3 (1,1,1));
 		ScreenHeart.transform.position += (ScreenHeart.transform.position - Target.transform.position) * 20;
-		Heartdis = 1.5f;
 		NextCamPos = ScreenHeart.transform.position;
 
 		ScreenHeart.transform.position = Target.transform.position;
@@ -89,17 +87,7 @@ public class MissionSetting : MonoBehaviour {
 			ScreenHeart.transform.position = NextHeartPos;
 		else
 			ScreenHeart.transform.position = LastHeartPos;
-		/*if (Global.OnCubeNum == 1) {
-			ScreenHeart.transform.Translate (new Vector3 (0, 6, 0));
-			//print(Vector3.Distance(Target.transform.position, Vector3.zero)+1);
-			//ScreenHeart.transform.Translate (new Vector3 (0, Vector3.Distance(Target.transform.position, Vector3.zero) + 1, 0));
-			ScreenHeart.transform.position += (ScreenHeart.transform.position - Target.transform.position) * 5;
-			Heartdis = 1.5f;
-		}else if(Global.OnCubeNum == 2){
-			ScreenHeart.transform.Translate (new Vector3 (0, 3, 0));
-			ScreenHeart.transform.position += (ScreenHeart.transform.position - Target.transform.position) * 10;
-			Heartdis = 2;
-		}*/
+
 
 		//NextCamPos = ScreenHeart.transform.position;
 		//ScreenHeart.transform.position = ScreenHeart_Origin;
@@ -362,8 +350,6 @@ public class MissionSetting : MonoBehaviour {
 				
 
 				if (Vector3.Distance (CurrentCam.transform.position, NextCamPos) <= 0.2f) {
-					//ScreenHeart.transform.position = Vector3.Lerp (ScreenHeart.transform.position, Target.transform.position * Heartdis, 0.02f);
-					//ScreenHeart.transform.position = NextHeartPos;
 					MissionArrows [MissionArrows.Count-1].SetActive (true);
 					CamRotTarget = Quaternion.LookRotation (ScreenHeart.transform.position - CurrentCam.transform.position, Vector3.Lerp (CurrentCam.transform.up, Target.transform.up, 0.1f));
 					CurrentCam.transform.rotation = Quaternion.Slerp (CurrentCam.transform.rotation, CamRotTarget, 0.2f);
@@ -373,7 +359,6 @@ public class MissionSetting : MonoBehaviour {
 					}
 					if (Input.GetMouseButtonDown (0)) {
 						if (MissionTargets.LastIndexOf (Target) != MissionTargets.Count-1) {
-							print (MissionTargets.LastIndexOf (Target));
 							TargetID++;
 							CameraMove (MissionTargets[TargetID], CameraController.CurrentCam, CameraController.CamTarget, MultiPos);
 
@@ -387,6 +372,7 @@ public class MissionSetting : MonoBehaviour {
 					}
 
 					} else {
+					PlayerStatusImage.Status = null;
 					ScreenHeart.transform.position = Vector3.Lerp (ScreenHeart.transform.position, NextHeartPos, 0.03f);
 					CurrentCam.transform.position = Vector3.Lerp (CurrentCam.transform.position, NextCamPos, 0.03f);
 
@@ -400,7 +386,7 @@ public class MissionSetting : MonoBehaviour {
 
 						}
 				} else if (CurrentCam != null && ScreenHeart != null && Target != null && !CamIsMoving && CamIsMovingBack) {
-					if (Vector3.Distance (CurrentCam.transform.position, CurrentCam_Origin) <= 0.3f) {
+					if (Vector3.Distance (CurrentCam.transform.position, CurrentCam_Origin) <= 0.2f) {
 						
 						if (OS2) {
 							OS2 = false;
@@ -486,9 +472,11 @@ public class MissionSetting : MonoBehaviour {
 
 				} else if (!FlowerChart.HasExecutingBlocks () && BlockOn == true && !CamIsMoving) {
 					BlockOn = false;
-					if (!CamIsMovingBack)
-						Global.StopTouch = false;
-					PlayerStatusImage.Status = null; 
+				if (!CamIsMovingBack) {
+					Global.StopTouch = false;
+				}
+					PlayerStatusImage.Status = null;
+				
 
 					CameraController.CamView = CameraController.OriginView;
 

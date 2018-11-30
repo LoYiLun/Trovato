@@ -16,6 +16,7 @@ public class CameraFade : MonoBehaviour {
 	private Texture2D t2d;
 	private GUIStyle gs;
 
+
 	private static float a = 0;
 
 	void Awake (){
@@ -42,6 +43,7 @@ public class CameraFade : MonoBehaviour {
 	}
 
 	void Update () {
+
 		if(FadeInIsStart){
 			if (a > 0) {
 				a -= Time.deltaTime / FadeInTime;

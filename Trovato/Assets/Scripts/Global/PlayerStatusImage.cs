@@ -10,20 +10,25 @@ public class PlayerStatusImage : MonoBehaviour {
 	public Sprite text2;
 	public Sprite text3;
 	public Sprite text4;
+	public Sprite PressE;
 	bool statusing;
 
 	void Start () {
-		
+		//PressE = Resources.Load ("Images/PressE") as Sprite;
 	}
 	
 
-	void FixedUpdate () {
+	void Update () {
 		if (!statusing) {
-			if (Status == "IsTalking") {
+			if (Status == "IsTalking" && !statusing) {
 				
 				GetComponent<Image> ().enabled = true;
 				StartCoroutine (IsTalking ());
 
+			} else if (Status == "Interact?") {
+				statusing = true;
+				GetComponent<Image> ().enabled = true;
+				GetComponent<Image> ().sprite = PressE;
 			}
 		} else if(Status == null){
 			GetComponent<Image> ().enabled = false;

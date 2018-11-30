@@ -34,7 +34,7 @@ public class Global : MonoBehaviour {
 	public static bool StopTouch;
 
 	// 鏡頭控制開關
-	public static bool IsCamCtrl;
+	public static bool IsCamCtrl = true;
 
 	// 目的地
 	public static GameObject NextTarget;
@@ -124,7 +124,7 @@ public class Global : MonoBehaviour {
 
 	public static void ResetVar(){
 		IsRotating = false;
-		IsCamCtrl = false;
+		IsCamCtrl = true;
 		IsPushing = false;
 		BeTouchedObj = null;
 		BeTouchedCube = null;

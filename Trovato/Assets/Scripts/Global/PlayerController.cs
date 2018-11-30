@@ -55,21 +55,17 @@ public class PlayerController : MonoBehaviour {
 			CurrentFloor = hitinfo.collider.gameObject;
 
 		}
-	}
-
-	void FixedUpdate () {
-
 
 		// 設定有無傳送門
 		if (Global.Level == "1") {
 
 		} else if(Global.Level == "2") {
-			if (Vector3.Distance (GameObject.Find ("Wing_Skin").transform.position, GameObject.Find ("BattleShip").transform.position) < 3) {
-				//GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
-				//GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
+			if (Vector3.Distance (GameObject.Find ("BattleShipWing_Skin").transform.position, GameObject.Find ("BattleShip_Skin").transform.position) < 2) {
+				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
+				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
 			} else {
-				//GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
-				//GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
+				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
+				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
 			}
 
 
@@ -87,12 +83,12 @@ public class PlayerController : MonoBehaviour {
 				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Gray", typeof(Material)) as Material;
 			}
 
-			if (Vector3.Distance (GameObject.Find ("Platform").transform.position, GameObject.Find ("Platform2").transform.position) < 3) {
-				//GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
-				//GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
+			if (Vector3.Distance (GameObject.Find ("iBlockDoor1").transform.position, GameObject.Find ("iBlockDoor2").transform.position) < 1) {
+				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
+				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
 			} else {
-				//GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
-				//GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
+				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
+				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
 			}
 
 			// 傳送失敗時強制傳送
@@ -103,6 +99,11 @@ public class PlayerController : MonoBehaviour {
 				CameraController.SetCamPos = true;
 			}
 		}
+	}
+
+	void FixedUpdate () {
+
+
 
 		// 計算至目標的距離
 		if (Global.BeTouchedObj != null) {
@@ -424,14 +425,15 @@ public class PlayerController : MonoBehaviour {
 	public static void CancelMoving(Vector3 NewPosition){
 		
 
-		PlayerStatusImage.Status = null;
+		//PlayerStatusImage.Status = null;
 		Global.Player.transform.position = NewPosition;
 		PathController.FollowPath = false;
 		Global.PlayerMove = false;
 		//GameObject.Find ("GlobalScripts").GetComponent<PathController> ().Reset ();
 		GameObject[] AllFloors = GameObject.FindGameObjectsWithTag("Floor");
 		foreach(GameObject color in AllFloors){
-			color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+			GameObject.Find("GlobalScripts").GetComponent<PathController>().BeTouchedFloor.GetComponent<Renderer>().enabled = false;
+			//color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 		}
 		Global.Targetlight.Stop ();
 	}

@@ -5,53 +5,47 @@ using Fungus;
 
 public class Level01PlayerEvent : MonoBehaviour {
     public static Flowchart main;
-    public GameObject Shop;
+	public GameObject Shop{get{return GameObject.Find("Shop_Door1"); }}
     public GameObject Rose;
-    public GameObject MtShip1;
-    public GameObject MtShip2;
-    public GameObject MtShip3;
+	public GameObject MtShip1{get{return GameObject.Find("Mt.SpaceShip_Door1"); }}
     // Use this for initialization
+
     void Start () {
         main = GameObject.Find("MainFlowChart").GetComponent<Flowchart>();
         Rose.SetActive(true);
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.E))
+		if (!Global.StopTouch && Shop != null && MtShip1 != null)
         {
-            Shop = GameObject.Find("Shop_Door1");
-            MtShip1 = GameObject.Find("Mt.SpaceShip_Door1");
-            MtShip2 = GameObject.Find("Mt.SpaceShip_Door2");
-            MtShip3 = GameObject.Find("Mt.SpaceShip_Door3");
-            if ((Mathf.Abs(Shop.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs(Shop.transform.position.z - transform.position.z) < 1.5f))
+
+			if ((Mathf.Abs (Shop.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs (Shop.transform.position.z - transform.position.z) < 1.5f)) 
+			{
+				if (Bread) {
+					PlayerStatusImage.Status = "Interact?";
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("BuyBread");
+						PlayerStatusImage.Status = null;
+					}
+				}
+			}
+
+			else if ((Mathf.Abs(MtShip1.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs(MtShip1.transform.position.y - transform.position.y) < 0.5f && Mathf.Abs(MtShip1.transform.position.z - transform.position.z) < 1.5f))
             {
-                if (Bread)
-                {
-                    Flowchart.BroadcastFungusMessage("BuyBread");
-                }
-            }
-            if ((Mathf.Abs(MtShip1.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs(MtShip1.transform.position.z - transform.position.z) < 1.5f))
-            {
-                if (Ship)
-                {
-                    Flowchart.BroadcastFungusMessage("GoShip");
-                }
-            }
-            if ((Mathf.Abs(MtShip2.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs(MtShip2.transform.position.z - transform.position.z) < 1.5f))
-            {
-                if (Ship)
-                {
-                    Flowchart.BroadcastFungusMessage("GoShip");
-                }
-            }
-            if ((Mathf.Abs(MtShip3.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs(MtShip3.transform.position.z - transform.position.z) < 1.5f))
-            {
-                if (Ship)
-                {
-                    Flowchart.BroadcastFungusMessage("GoShip");
-                }
-            }
+				if (Ship) {
+					PlayerStatusImage.Status = "Interact?";
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("GoShip");
+						PlayerStatusImage.Status = null;
+					}
+				}
+			}
+			else 
+			{
+				PlayerStatusImage.Status = null;
+			}
 
         }
         if (GiveBread)
