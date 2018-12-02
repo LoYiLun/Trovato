@@ -20,37 +20,30 @@ public class Level01PlayerEvent : MonoBehaviour {
 	void Update () {
 		if (!Global.StopTouch && Shop != null && MtShip1 != null)
         {
-
-			if ((Mathf.Abs (Shop.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs (Shop.transform.position.z - transform.position.z) < 1.5f)) 
+			if ( Bread &&(Mathf.Abs (Shop.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs (Shop.transform.position.z - transform.position.z) < 1.5f)) 
 			{
-				if (Bread) {
-					PlayerStatusImage.Status = "Interact?";
-					if (Input.GetKeyDown (KeyCode.E)) {
-						Flowchart.BroadcastFungusMessage ("BuyBread");
-						PlayerStatusImage.Status = null;
-					}
+				PlayerStatusImage.GetStatus ("Interact?");
+				if (Input.GetKeyDown (KeyCode.E)) {
+					Flowchart.BroadcastFungusMessage ("BuyBread");
 				}
 			}
 
-			else if ((Mathf.Abs(MtShip1.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs(MtShip1.transform.position.y - transform.position.y) < 0.5f && Mathf.Abs(MtShip1.transform.position.z - transform.position.z) < 1.5f))
+			else if ( Ship &&(Mathf.Abs(MtShip1.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs(MtShip1.transform.position.y - transform.position.y) < 0.5f && Mathf.Abs(MtShip1.transform.position.z - transform.position.z) < 1.5f))
             {
-				if (Ship) {
-					PlayerStatusImage.Status = "Interact?";
-					if (Input.GetKeyDown (KeyCode.E)) {
-						Flowchart.BroadcastFungusMessage ("GoShip");
-						PlayerStatusImage.Status = null;
-					}
+				PlayerStatusImage.GetStatus ("Interact?");
+				if (Input.GetKeyDown (KeyCode.E)) {
+					Flowchart.BroadcastFungusMessage ("GoShip");
 				}
 			}
 			else 
 			{
-				PlayerStatusImage.Status = null;
+				PlayerStatusImage.GetStatus ("None");
 			}
 
         }
         if (GiveBread)
         {
-            Rose.SetActive(false);
+            //Rose.SetActive(false);
         }
     }
     void OnCollisionEnter(UnityEngine.Collision other)

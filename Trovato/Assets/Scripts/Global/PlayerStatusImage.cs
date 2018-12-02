@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerStatusImage : MonoBehaviour {
 
+	public static PlayerStatusImage instance;
 	public static string Status;
+	public static Image StatusImage;
 	public Sprite text1;
 	public Sprite text2;
 	public Sprite text3;
@@ -13,30 +15,49 @@ public class PlayerStatusImage : MonoBehaviour {
 	public Sprite PressE;
 	bool statusing;
 
+	void Awake(){
+		instance = this;
+		StatusImage = GetComponent<Image> ();
+	}
+
 	void Start () {
 		//PressE = Resources.Load ("Images/PressE") as Sprite;
+
 	}
-	
+	public static void GetStatus(string _Status){
+		Status = _Status;
+		instance.StatusPlay ();
+	}
 
-	void Update () {
-		if (!statusing) {
-			if (Status == "IsTalking" && !statusing) {
-				
-				GetComponent<Image> ().enabled = true;
-				StartCoroutine (IsTalking ());
+	void StatusPlay(){
 
-			} else if (Status == "Interact?") {
-				statusing = true;
-				GetComponent<Image> ().enabled = true;
-				GetComponent<Image> ().sprite = PressE;
-			}
-		} else if(Status == null){
-			GetComponent<Image> ().enabled = false;
-			statusing = false;
+		switch (Status) {
+		case"IsTalking":
+			//StatusImage.enabled = true;
+			//StartCoroutine (IsTalking ());
+			//Status = "None";
+
+			break;
+		case"Interact?":
+			//statusing = true;
+			StatusImage.enabled = true;
+			StatusImage.sprite = PressE;
+			Status = "None";
+			break;
+		case"None":
+			StatusImage.enabled = false;
+			break;
+		default:
+			StatusImage.enabled = false;
+			break;
 		}
 	}
 
-	IEnumerator IsTalking(){
+	void Update () {
+		
+	}
+
+	 IEnumerator IsTalking(){
 		for (float i = 0; i < 10f; i += Time.deltaTime) {
 			statusing = true;
 			GetComponent<Image> ().sprite = text1;

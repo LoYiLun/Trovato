@@ -33,6 +33,14 @@ public class MissionSetting : MonoBehaviour {
 	private int TargetID = 0 ;
 	private Vector3 MultiPos;
 
+	private bool Arrow_Lucas = true;
+	private bool Arrow_Soyna = true;
+	private bool Arrow_Sisco = true;
+	private bool Arrow_Riven = true;
+	private bool Arrow_Box = true;
+	private bool Arrow_RedLeaf = true;
+	private bool Arrow_Engine = true;
+	private bool Arrow_Kyder = true;
 
 	void Awake(){
 		MissionArrow = Resources.Load("Prefabs/Global/MissionArrow") as GameObject;
@@ -47,7 +55,7 @@ public class MissionSetting : MonoBehaviour {
 	}
 
 
-	void CameraMove(GameObject _Target, GameObject _CurrentCam, GameObject _ScreenHeart, Vector3 ArrowPos){
+	void CameraMove(GameObject _Target, GameObject _CurrentCam, GameObject _ScreenHeart, Vector3 ArrowPos, bool NeedArrow){
 
 
 		Target = _Target;
@@ -55,10 +63,7 @@ public class MissionSetting : MonoBehaviour {
 		ScreenHeart = _ScreenHeart;
 		FixedRot = Vector3.up;
 
-		//PlayerStatusImage.Status = null; 
-
-		//MissionArrows.Clear ();
-		if (MissionTargets.LastIndexOf (Target) <= MissionTargets.Count && ArrowPos != Vector3.zero ) {
+		if (MissionTargets.LastIndexOf (Target) <= MissionTargets.Count && ArrowPos != Vector3.zero && NeedArrow ) {
 			MissionArrows.Add (Instantiate (MissionArrow, Target.transform.position, Target.transform.rotation, Target.transform));
 			MissionArrows [MissionArrows.Count - 1].transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
 			MissionArrows [MissionArrows.Count - 1].name = Target.name;
@@ -134,62 +139,78 @@ public class MissionSetting : MonoBehaviour {
 			case"開頭":
 
 				MissionTargets.Add (GameObject.Find ("Event_Shop(Clone)"));
-				CameraMove (GameObject.Find ("Event_Shop(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3(-0.5f, 5, -0.5f));
+				CameraMove (GameObject.Find ("Event_Shop(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3(-0.5f, 5, -0.5f), true);
 
 				Blocking = null;
 				break;
 			case"買麵包":
-				Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Shop(Clone)"))]);
-				MissionTargets.Clear ();
-				MissionArrows.Clear ();
-				MissionTargets.Add (GameObject.Find ("Event_Rose(Clone)"));
-				CameraMove (GameObject.Find ("Event_Rose(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3(0, 4, 0));
+				
+				if (FlowerChart.GetBooleanVariable ("Bread")) {
+					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Shop(Clone)"))]);
+					MissionTargets.Clear ();
+					MissionArrows.Clear ();
+					MissionTargets.Add (GameObject.Find ("Event_Rose(Clone)"));
+					CameraMove (GameObject.Find ("Event_Rose(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), true);
 
-				Blocking = null;
+					Blocking = null;
+				}
 				break;
 			case"給麵包":
-				Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Rose(Clone)"))]);
-				MissionTargets.Clear ();
-				MissionArrows.Clear ();
-				MissionTargets.Add (GameObject.Find ("Event_PrinceHome(Clone)"));
-				CameraMove (GameObject.Find ("Event_PrinceHome(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3(0, 5, 0));
+				
+				if (FlowerChart.GetBooleanVariable ("GetBread")) {
+					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Rose(Clone)"))]);
+					MissionTargets.Clear ();
+					MissionArrows.Clear ();
+					MissionTargets.Add (GameObject.Find ("Event_PrinceHome(Clone)"));
+					CameraMove (GameObject.Find ("Event_PrinceHome(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), true);
 
-				Blocking = null;
+					Blocking = null;
+				}
 				break;
 			case"帶玫瑰回家":
-				Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_PrinceHome(Clone)"))]);
-				MissionTargets.Clear ();
-				MissionArrows.Clear ();
-				MissionTargets.Add (GameObject.Find ("Event_GlassRepair(Clone)"));
-				CameraMove (GameObject.Find ("Event_GlassRepair(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3(0, 4, 1));
+				
+				if (FlowerChart.GetBooleanVariable ("GiveBread")) {
+					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_PrinceHome(Clone)"))]);
+					MissionTargets.Clear ();
+					MissionArrows.Clear ();
+					MissionTargets.Add (GameObject.Find ("Event_GlassRepair(Clone)"));
+					CameraMove (GameObject.Find ("Event_GlassRepair(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 1), true);
 
-				Blocking = null;
+					Blocking = null;
+				}
 				break;
 			case"找爺爺":
-				Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_GlassRepair(Clone)"))]);
-				MissionTargets.Clear ();
-				MissionArrows.Clear ();
-				MissionTargets.Add (GameObject.Find ("Event_PrinceHome(Clone)"));
-				CameraMove (GameObject.Find ("Event_PrinceHome(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3(0, 5, 0));
+				
+				if (FlowerChart.GetBooleanVariable ("FindGP")) {
+					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_GlassRepair(Clone)"))]);
+					MissionTargets.Clear ();
+					MissionArrows.Clear ();
+					MissionTargets.Add (GameObject.Find ("Event_PrinceHome(Clone)"));
+					CameraMove (GameObject.Find ("Event_PrinceHome(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), true);
 
-				Blocking = null;
+					Blocking = null;
+				}
 				break;
 			case"第二次回家":
-				Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_PrinceHome(Clone)"))]);
-				MissionTargets.Clear ();
-				MissionArrows.Clear ();
-				MissionTargets.Add (GameObject.Find ("Event_Mt.SpaceShip(Clone)"));
-				CameraMove (GameObject.Find ("Event_Mt.SpaceShip(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3(-0.5f, 5, -1));
+				
+				if (FlowerChart.GetBooleanVariable ("SecGoHome")) {
+					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_PrinceHome(Clone)"))]);
+					MissionTargets.Clear ();
+					MissionArrows.Clear ();
+					MissionTargets.Add (GameObject.Find ("Event_Mt.SpaceShip(Clone)"));
+					CameraMove (GameObject.Find ("Event_Mt.SpaceShip(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (-0.5f, 5, -1), true);
 
-				Blocking = null;
+					Blocking = null;
+				}
 				break;
 			case"開飛船":
 				if (FlowerChart.GetBooleanVariable ("Ship")) {
 					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Mt.SpaceShip(Clone)"))]);
 					MissionTargets.Clear ();
 					MissionArrows.Clear ();
+				
+					Blocking = null;
 				}
-				Blocking = null;
 				break;
 
 
@@ -199,7 +220,7 @@ public class MissionSetting : MonoBehaviour {
 					MissionTargets.Add (GameObject.Find ("Event_Soyna(Clone)"));
 					MissionTargets.Add (GameObject.Find ("Event_Riven(Clone)"));
 					MissionTargets.Add (GameObject.Find ("Event_Sisco(Clone)"));
-					CameraMove (MissionTargets [0], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0));
+					CameraMove (MissionTargets [0], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), true);
 					MultiPos = new Vector3 (0, 4, 0);
 					Blocking = null;
 				}
@@ -222,8 +243,11 @@ public class MissionSetting : MonoBehaviour {
 				CameraMove (MissionTargets[TargetID], CameraController.CurrentCam, CameraController.CamTarget, new Vector3(0, 4, 0));*/
 
 				if (FlowerChart.GetBooleanVariable ("PushBox01") == false && FlowerChart.GetBooleanVariable("GetTool01") == false) {
-					MissionTargets.Add (GameObject.Find ("Event_IncinerationPlant(Clone)"));
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0));
+					if (Arrow_Lucas) {
+						MissionTargets.Add (GameObject.Find ("Event_IncinerationPlant(Clone)"));
+						CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_Lucas);
+					}
+					Arrow_Lucas = false;
 				}
 				Blocking = null;
 				break;
@@ -240,15 +264,19 @@ public class MissionSetting : MonoBehaviour {
 				//MissionTargets.Add (GameObject.Find ("Event_Station(Clone)"));
 				//MissionTargets.Add (GameObject.Find ("Event_BattleShipWing(Clone)"));
 				if (FlowerChart.GetBooleanVariable ("FindLeaf") == false && FlowerChart.GetBooleanVariable("GetLeaf") == false) {
-					TargetID = MissionTargets.Count;
-					if(GameObject.Find ("Redleaf_A") != null)
-						MissionTargets.Add (GameObject.Find ("Redleaf_A"));
-					if(GameObject.Find ("Redleaf_B") != null)
-						MissionTargets.Add (GameObject.Find ("Redleaf_B"));
-					if(GameObject.Find ("Redleaf_C") != null)
-						MissionTargets.Add (GameObject.Find ("Redleaf_C"));
-					CameraMove (MissionTargets [TargetID], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 1, 0));
-					MultiPos = new Vector3 (0, 1, 0);
+						TargetID = MissionTargets.Count;
+
+					if (GameObject.Find ("Redleaf_A") != null && Arrow_Soyna)
+							MissionTargets.Add (GameObject.Find ("Redleaf_A"));
+					if (GameObject.Find ("Redleaf_B") != null && Arrow_Soyna)
+							MissionTargets.Add (GameObject.Find ("Redleaf_B"));
+					if (GameObject.Find ("Redleaf_C") != null && Arrow_Soyna)
+							MissionTargets.Add (GameObject.Find ("Redleaf_C"));
+					if (Arrow_Soyna) {
+						CameraMove (MissionTargets [TargetID], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 1, 0), Arrow_Soyna);
+						MultiPos = new Vector3 (0, 1, 0);
+					}
+					Arrow_Soyna = false;
 				}
 
 				Blocking = null;
@@ -263,8 +291,11 @@ public class MissionSetting : MonoBehaviour {
 					MissionTargets.Remove (GameObject.Find ("Event_Riven(Clone)"));
 				}
 				if (FlowerChart.GetBooleanVariable ("FindEngine") == false && FlowerChart.GetBooleanVariable("GetEngine") == false) {
-					MissionTargets.Add (GameObject.Find ("Engine"));
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 1, 0));
+					if (Arrow_Riven) {
+						MissionTargets.Add (GameObject.Find ("Engine"));
+						CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 1, 0), Arrow_Riven);
+					}
+					Arrow_Riven = false;
 				}
 				Blocking = null;
 				break;
@@ -278,8 +309,11 @@ public class MissionSetting : MonoBehaviour {
 					MissionTargets.Remove (GameObject.Find ("Event_Sisco(Clone)"));
 				}
 				if (FlowerChart.GetBooleanVariable ("FindKyder") == false && FlowerChart.GetBooleanVariable("GetKyder") == false) {
-					MissionTargets.Add (GameObject.Find ("Event_Station(Clone)"));
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0));
+					if (Arrow_Sisco) {
+						MissionTargets.Add (GameObject.Find ("Event_Station(Clone)"));
+						CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_Sisco);
+					}
+					Arrow_Sisco = false;
 				}
 				Blocking = null;
 				break;
@@ -296,8 +330,10 @@ public class MissionSetting : MonoBehaviour {
 				MissionTargets.Remove (GameObject.Find ("Box_3"));*/
 				if (MissionTargets.Contains(GameObject.Find ("Event_IncinerationPlant(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_IncinerationPlant(Clone)")) {
 					MissionTargets.Remove (GameObject.Find ("Event_IncinerationPlant(Clone)"));
-					MissionTargets.Add (GameObject.Find ("Event_Lucas(Clone)"));
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0));
+					if(Arrow_Box)
+						MissionTargets.Add (GameObject.Find ("Event_Lucas(Clone)"));
+					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_Box);
+					Arrow_Box = false;
 				}
 				Blocking = null;
 				break;
@@ -314,8 +350,10 @@ public class MissionSetting : MonoBehaviour {
 					MissionTargets.Remove (GameObject.Find ("Redleaf_B"));
 				if (MissionTargets.Contains(GameObject.Find ("Redleaf_C")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Redleaf_C")) {
 					MissionTargets.Remove (GameObject.Find ("Redleaf_C"));
-					MissionTargets.Add (GameObject.Find ("Event_Soyna(Clone)"));
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0));
+					if(Arrow_RedLeaf)
+						MissionTargets.Add (GameObject.Find ("Event_Soyna(Clone)"));
+					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_RedLeaf);
+					Arrow_RedLeaf = false;
 				}
 				Blocking = null;
 				break;
@@ -325,9 +363,11 @@ public class MissionSetting : MonoBehaviour {
 					Destroy (MissionArrows.Find((x) => x.name == "Event_Riven(Clone)_MA"));*/
 				if (MissionTargets.Contains(GameObject.Find ("Engine")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Engine")) {
 					MissionTargets.Remove (GameObject.Find ("Engine"));
-					MissionTargets.Add (GameObject.Find ("Event_Riven(Clone)"));
-				
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0));
+					if(Arrow_Engine)
+						MissionTargets.Add (GameObject.Find ("Event_Riven(Clone)"));
+					
+					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_Engine);
+					Arrow_Engine = false;
 				}
 				Blocking = null;
 				break;
@@ -337,9 +377,11 @@ public class MissionSetting : MonoBehaviour {
 					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Station(Clone)"))]);*/
 				if (MissionTargets.Contains(GameObject.Find ("Event_Station(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Station(Clone)")) {
 					MissionTargets.Remove (GameObject.Find ("Event_Station(Clone)"));
-					MissionTargets.Add (GameObject.Find ("Event_Sisco(Clone)"));
+					if(Arrow_Kyder)
+						MissionTargets.Add (GameObject.Find ("Event_Sisco(Clone)"));
 				
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0));
+					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_Kyder);
+					Arrow_Kyder = false;
 				}
 				Blocking = null;
 				break;
@@ -360,7 +402,7 @@ public class MissionSetting : MonoBehaviour {
 					if (Input.GetMouseButtonDown (0)) {
 						if (MissionTargets.LastIndexOf (Target) != MissionTargets.Count-1) {
 							TargetID++;
-							CameraMove (MissionTargets[TargetID], CameraController.CurrentCam, CameraController.CamTarget, MultiPos);
+							CameraMove (MissionTargets[TargetID], CameraController.CurrentCam, CameraController.CamTarget, MultiPos, true);
 
 						} else if (MissionTargets.LastIndexOf (Target) == MissionTargets.Count-1) {
 							TargetID++;
@@ -372,7 +414,7 @@ public class MissionSetting : MonoBehaviour {
 					}
 
 					} else {
-					PlayerStatusImage.Status = null;
+					PlayerStatusImage.GetStatus ("None");
 					ScreenHeart.transform.position = Vector3.Lerp (ScreenHeart.transform.position, NextHeartPos, 0.03f);
 					CurrentCam.transform.position = Vector3.Lerp (CurrentCam.transform.position, NextCamPos, 0.03f);
 
@@ -464,8 +506,7 @@ public class MissionSetting : MonoBehaviour {
 				if (FlowerChart.HasExecutingBlocks () && BlockOn == false) {
 					BlockOn = true;
 					Global.StopTouch = true;
-					PlayerStatusImage.Status = "IsTalking";
-
+					PlayerStatusImage.GetStatus ("IsTalking");
 
 					CameraController.OriginView = Camera.main.fieldOfView;
 					//CameraController.CamView = 10;
@@ -475,7 +516,7 @@ public class MissionSetting : MonoBehaviour {
 				if (!CamIsMovingBack) {
 					Global.StopTouch = false;
 				}
-					PlayerStatusImage.Status = null;
+				PlayerStatusImage.GetStatus ("None");
 				
 
 					CameraController.CamView = CameraController.OriginView;

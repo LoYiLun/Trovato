@@ -140,8 +140,10 @@ public class PathController : MonoBehaviour {
 				if (PlayerController.CurrentFloor == BeTouchedFloor) {
 					PlayerController.CancelMoving (BeTouchedFloor.transform.position);
 					foreach (GameObject color in AllFloors) {
+						if(Global.Level != "Astar")
 						color.GetComponent<Renderer> ().enabled = false;
-						//color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+						if(Global.Level == "Astar")
+						color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 					}
 					//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
 					Stopanim ();	
@@ -209,7 +211,7 @@ public class PathController : MonoBehaviour {
 		}
 
 		// 主角自轉系統：開始自轉
-		if (!Global.IsPreRotating && !Global.IsPushing && !Global.Player.GetComponent<PlayerController>().LockRotation) {
+		if (Global.Player != null && !Global.IsPreRotating && !Global.IsPushing && !Global.Player.GetComponent<PlayerController>().LockRotation) {
 			Global.Player.transform.rotation = Quaternion.Lerp (Global.Player.transform.rotation, FaceRotation, 0.2f);
 			if (Quaternion.Angle (Global.Player.transform.rotation, FaceRotation) < 10) {
 				Global.Player.transform.rotation = FaceRotation;
@@ -275,6 +277,7 @@ public class PathController : MonoBehaviour {
 		{
 			// 切換成新點選的物件
 			Global.BeTouchedObj = hitinfo.collider.gameObject;
+			if(Global.Level != "Astar")
 			Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2") as Material;
 
 			if (Global.Player != null && Global.IsPushing) {
@@ -289,8 +292,10 @@ public class PathController : MonoBehaviour {
 
 			// 如果不是第一次點地板
 			if (BeTouchedFloor != null) {
+				if(Global.Level != "Astar")
 				BeTouchedFloor.GetComponent<Renderer> ().enabled = false;
-				//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+				if(Global.Level == "Astar")
+				BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 			}
 
 			Reset ();
@@ -332,6 +337,7 @@ public class PathController : MonoBehaviour {
 
 		//Global.PlayerMove = true;
 		BeTouchedFloor = hitinfo.collider.gameObject;
+		//if(Global.Level == "Astar")
 		//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Blue") as Material;
 
 		NeighborFloor = null;
@@ -339,8 +345,10 @@ public class PathController : MonoBehaviour {
 		foreach(GameObject color in AllFloors){
 			
 			// 顯示全地板
-			//color.GetComponent<Renderer> ().enabled = true;
-			//color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+			if(Global.Level == "Astar"){
+			color.GetComponent<Renderer> ().enabled = true;
+			color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+			}
 		}
 		//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
 
@@ -374,6 +382,8 @@ public class PathController : MonoBehaviour {
 			FollowPath = false;
 			Global.PlayerMove = false;
 			Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
+
+			if(Global.Level != "Astar")
 			BeTouchedFloor.GetComponent<Renderer> ().enabled = false;
 
 			print("<color=orange>No way!!</color>");
@@ -512,7 +522,8 @@ public class PathController : MonoBehaviour {
 							// 調查完畢後加入Openlist
 							Openlist.Add (floor);
 
-							//NeighborFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Blue") as Material;
+							if(Global.Level == "Astar")
+							NeighborFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Green") as Material;
 
 						}
 						floorindex = -1;
@@ -541,7 +552,8 @@ public class PathController : MonoBehaviour {
 			}
 
 		BeTouchedFloor.GetComponent<Renderer> ().enabled = true;
-		//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
+		if(Global.Level == "Astar")
+			BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
 
 
 		foreach (Floor neighbor in Openlist) {
@@ -605,8 +617,10 @@ public class PathController : MonoBehaviour {
 				Pathlist.Add (Dadfloor);
 
 				// 最短路徑
-				//Dadfloor.Object.GetComponent<Renderer> ().enabled = true;
-				//Dadfloor.Object.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
+				if (Global.Level == "Astar") {
+					Dadfloor.Object.GetComponent<Renderer> ().enabled = true;
+					Dadfloor.Object.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
+				}
 			}
 		}
 		NeighborFloor = PlayerController.CurrentFloor;

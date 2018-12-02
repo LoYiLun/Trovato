@@ -136,7 +136,7 @@ public class Global : MonoBehaviour {
 		ImageFade.FadeIn = false;
 		ImageFade.FadeOut = false;
 		PlayerController.MoveSpeed = 4f;
-		PlayerStatusImage.Status = null;
+		PlayerStatusImage.GetStatus("None");
 		CameraFade.FadeInIsStart = true;
 		CameraFade.FadeOutIsStart = false;
 		CameraFade.FadeInIsDone = false;
@@ -147,11 +147,13 @@ public class Global : MonoBehaviour {
 		MissionSetting.BlockOn = false;
 		MissionSetting.CamIsMoving = false;
 		MissionSetting.CamIsMovingBack = false;
-		if (GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ()) {
+		if (GameObject.Find ("GlobalScripts") != null && GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ()) {
 			GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().MissionTargets.Clear ();
 			GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().MissionArrows.Clear ();
 		}
+		if (GameObject.Find ("GlobalScripts") != null) {
 			GameObject.Find ("GlobalScripts").GetComponent<PathController> ().BeTouchedFloor = null;
+		}
 		
 	}
 

@@ -37,6 +37,7 @@ public class CameraController : MonoBehaviour {
 	public static Vector3 CamOriginPos;
 	public static Quaternion CamOriginRot;
 
+
 	void Awake(){
 		CurrentCam = Cam;
 		CamOriginPos = CurrentCam.transform.position;
@@ -53,7 +54,6 @@ public class CameraController : MonoBehaviour {
 		CamView = Camera.main.fieldOfView;
 
 	}
-		
 
 	void Update () {
 
@@ -134,9 +134,12 @@ public class CameraController : MonoBehaviour {
 			CurrentCam.transform.position = PosBeforeMove;
 		}*/
 
+
+
 		// 控制攝影機旋轉視角
 		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack ) {
 			IsCamRotating = true;
+
 
 				// 左右
 				if (mx > 0) {

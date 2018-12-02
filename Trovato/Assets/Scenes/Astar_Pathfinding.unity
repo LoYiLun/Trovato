@@ -267,7 +267,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 9351476}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -338,6 +338,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &27352269
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +366,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 27352269}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -435,6 +437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &28219766
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +465,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 28219766}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -532,6 +536,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &55056501
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,7 +564,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 55056501}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -629,6 +635,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &60577211
 GameObject:
   m_ObjectHideFlags: 1
@@ -696,7 +704,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 68409226}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -749,7 +757,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 68409226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.5, z: -4.5}
+  m_LocalPosition: {x: -4.5, y: 3.5, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -767,6 +775,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &97260372
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +803,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 97260372}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -846,7 +856,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 97260372}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: 3.5}
+  m_LocalPosition: {x: 2.5, y: 9.5, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -864,6 +874,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &102081440
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +902,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 102081440}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -961,6 +973,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &114752974
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,7 +1001,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 114752974}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1040,7 +1054,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 114752974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: -3.5}
+  m_LocalPosition: {x: 0.5, y: 1.5, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -1058,6 +1072,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &122544446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,7 +1100,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 122544446}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1155,6 +1171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &128377819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1199,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 128377819}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1252,6 +1270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &132790424
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,7 +1298,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 132790424}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1349,6 +1369,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &150300372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,7 +1397,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 150300372}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1446,6 +1468,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &179136976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1472,7 +1496,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 179136976}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1525,7 +1549,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 179136976}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.5, z: -3.5}
+  m_LocalPosition: {x: 1.5, y: 1.5, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -1543,6 +1567,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &182289446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,7 +1595,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 182289446}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1622,7 +1648,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 182289446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: -3.5, y: 5.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -1640,6 +1666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &183052317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,7 +1694,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 183052317}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1737,6 +1765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &208103332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1763,7 +1793,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 208103332}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1834,6 +1864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &214840484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,7 +1884,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &214840485
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1860,7 +1892,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 214840484}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1913,7 +1945,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 214840484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: 2.5}
+  m_LocalPosition: {x: 2.5, y: 9.5, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -1931,6 +1963,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &251824371
 GameObject:
   m_ObjectHideFlags: 0
@@ -1957,7 +1991,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251824371}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2010,7 +2044,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 251824371}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: 1.5, y: 9.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -2028,6 +2062,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &264043920
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +2090,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 264043920}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2125,6 +2161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &266600281
 GameObject:
   m_ObjectHideFlags: 0
@@ -2151,7 +2189,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 266600281}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2222,6 +2260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &275959063
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,7 +2288,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275959063}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2301,7 +2341,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 275959063}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: -2.5}
+  m_LocalPosition: {x: 2.5, y: 9.5, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -2319,6 +2359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &344185870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,7 +2387,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 344185870}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2398,7 +2440,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 344185870}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0.5, z: -4.5}
+  m_LocalPosition: {x: -3.5, y: 2.5, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -2416,6 +2458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &354999361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,7 +2486,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 354999361}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2513,6 +2557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &358625206
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,7 +2585,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 358625206}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2610,6 +2656,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &381881208
 GameObject:
   m_ObjectHideFlags: 0
@@ -2636,7 +2684,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 381881208}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2707,6 +2755,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &402767705
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,7 +2783,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 402767705}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2804,6 +2854,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &474417474
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,7 +2882,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 474417474}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2901,6 +2953,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &494805696
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,7 +2981,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 494805696}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2998,6 +3052,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &520742647
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,7 +3080,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 520742647}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3077,7 +3133,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 520742647}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 2.5, y: 9.5, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -3095,6 +3151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &544404623
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,7 +3179,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 544404623}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3192,6 +3250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &575896096
 GameObject:
   m_ObjectHideFlags: 0
@@ -3218,7 +3278,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 575896096}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3271,7 +3331,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 575896096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: -2.5, y: 6.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -3289,6 +3349,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &618846574
 GameObject:
   m_ObjectHideFlags: 0
@@ -3315,7 +3377,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 618846574}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3386,6 +3448,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &626938460
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,7 +3476,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 626938460}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3465,7 +3529,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 626938460}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.5, z: -3.5}
+  m_LocalPosition: {x: -0.5, y: 1.5, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -3483,6 +3547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &627601840
 GameObject:
   m_ObjectHideFlags: 0
@@ -3509,7 +3575,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 627601840}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3580,6 +3646,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &636289185
 GameObject:
   m_ObjectHideFlags: 0
@@ -3606,7 +3674,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 636289185}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3677,6 +3745,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &643566753
 GameObject:
   m_ObjectHideFlags: 0
@@ -3695,7 +3765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &643566754
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3703,7 +3773,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 643566753}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3756,7 +3826,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 643566753}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: 1.5}
+  m_LocalPosition: {x: 2.5, y: 9.5, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -3774,6 +3844,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &661495358
 GameObject:
   m_ObjectHideFlags: 0
@@ -3800,7 +3872,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 661495358}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3871,6 +3943,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &686223867
 GameObject:
   m_ObjectHideFlags: 0
@@ -3897,7 +3971,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686223867}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -3968,6 +4042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &686336489
 GameObject:
   m_ObjectHideFlags: 0
@@ -3994,7 +4070,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686336489}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4065,6 +4141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &698243699
 GameObject:
   m_ObjectHideFlags: 0
@@ -4256,7 +4334,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 775961883}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4309,7 +4387,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 775961883}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.5, z: 3.5}
+  m_LocalPosition: {x: -4.5, y: 3.5, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -4327,6 +4405,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &808690501
 GameObject:
   m_ObjectHideFlags: 0
@@ -4353,7 +4433,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 808690501}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4424,6 +4504,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &831292735 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1076778296675884, guid: 3c40d7de39857b740b80dc5573b6ba23,
@@ -4455,7 +4537,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 834789006}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4526,6 +4608,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &840143854
 GameObject:
   m_ObjectHideFlags: 0
@@ -4552,7 +4636,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840143854}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4605,7 +4689,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 840143854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: -0.5}
+  m_LocalPosition: {x: 2.5, y: 9.5, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -4623,6 +4707,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &870935948
 GameObject:
   m_ObjectHideFlags: 0
@@ -4649,7 +4735,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 870935948}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4720,6 +4806,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &878777784
 GameObject:
   m_ObjectHideFlags: 0
@@ -4746,7 +4834,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 878777784}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4799,7 +4887,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 878777784}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: -4.5, y: 4.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -4817,6 +4905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &879060755
 GameObject:
   m_ObjectHideFlags: 0
@@ -4843,7 +4933,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 879060755}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4896,7 +4986,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 879060755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0.5, z: -4.5}
+  m_LocalPosition: {x: -2.5, y: 1.5, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -4914,6 +5004,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &918120062
 GameObject:
   m_ObjectHideFlags: 0
@@ -4940,7 +5032,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 918120062}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -4993,7 +5085,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 918120062}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: 0.5, y: 9.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -5011,6 +5103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &950952873
 GameObject:
   m_ObjectHideFlags: 0
@@ -5037,7 +5131,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 950952873}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5108,6 +5202,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &982238668
 GameObject:
   m_ObjectHideFlags: 0
@@ -5134,7 +5230,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 982238668}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5187,7 +5283,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 982238668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: -3.5}
+  m_LocalPosition: {x: 2.5, y: 1.5, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -5205,6 +5301,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &995207223
 GameObject:
   m_ObjectHideFlags: 0
@@ -5231,7 +5329,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 995207223}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5302,6 +5400,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1000496781
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,7 +5428,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1000496781}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5399,6 +5499,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1007329918
 GameObject:
   m_ObjectHideFlags: 0
@@ -5425,7 +5527,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1007329918}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5496,6 +5598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1001 &1009477127
 Prefab:
   m_ObjectHideFlags: 0
@@ -5503,6 +5607,36 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 23878126510029700, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23326476747826062, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23450846385440606, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23307863533858388, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23393449636088374, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23238287690617722, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4086826580692030, guid: 3c40d7de39857b740b80dc5573b6ba23, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5537,13 +5671,73 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4108609546807010, guid: 3c40d7de39857b740b80dc5573b6ba23, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: -7.5
       objectReference: {fileID: 0}
     - target: {fileID: 114990003070384362, guid: 3c40d7de39857b740b80dc5573b6ba23,
         type: 2}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 23878126510029700, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23326476747826062, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23450846385440606, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23307863533858388, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23393449636088374, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23238287690617722, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23878126510029700, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62a5aac78c8fc164484ec5e5d43f1c32, type: 2}
+    - target: {fileID: 23326476747826062, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62a5aac78c8fc164484ec5e5d43f1c32, type: 2}
+    - target: {fileID: 23450846385440606, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62a5aac78c8fc164484ec5e5d43f1c32, type: 2}
+    - target: {fileID: 23307863533858388, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62a5aac78c8fc164484ec5e5d43f1c32, type: 2}
+    - target: {fileID: 23393449636088374, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62a5aac78c8fc164484ec5e5d43f1c32, type: 2}
+    - target: {fileID: 23238287690617722, guid: 3c40d7de39857b740b80dc5573b6ba23,
+        type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62a5aac78c8fc164484ec5e5d43f1c32, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c40d7de39857b740b80dc5573b6ba23, type: 2}
   m_IsPrefabParent: 0
@@ -5573,7 +5767,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1025180968}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5626,7 +5820,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1025180968}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.5, z: -2.5}
+  m_LocalPosition: {x: -4.5, y: 1.5, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -5644,6 +5838,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1077875312
 GameObject:
   m_ObjectHideFlags: 0
@@ -5670,7 +5866,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1077875312}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5741,6 +5937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1133974374
 GameObject:
   m_ObjectHideFlags: 0
@@ -5767,7 +5965,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1133974374}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5838,6 +6036,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1152480818
 GameObject:
   m_ObjectHideFlags: 0
@@ -5864,7 +6064,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1152480818}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -5917,7 +6117,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1152480818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: -1.5}
+  m_LocalPosition: {x: 2.5, y: 9.5, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -5935,6 +6135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1158378614
 GameObject:
   m_ObjectHideFlags: 0
@@ -5961,7 +6163,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1158378614}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6032,6 +6234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1163024274
 GameObject:
   m_ObjectHideFlags: 0
@@ -6058,7 +6262,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1163024274}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6129,6 +6333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1174883594
 GameObject:
   m_ObjectHideFlags: 0
@@ -6155,7 +6361,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1174883594}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6208,7 +6414,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1174883594}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.5, z: -3.5}
+  m_LocalPosition: {x: -4.5, y: 2.5, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -6226,6 +6432,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1222501163
 GameObject:
   m_ObjectHideFlags: 0
@@ -6252,7 +6460,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1222501163}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6323,6 +6531,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1232815511
 GameObject:
   m_ObjectHideFlags: 0
@@ -6349,7 +6559,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1232815511}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6420,6 +6630,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1246171869
 GameObject:
   m_ObjectHideFlags: 0
@@ -6446,7 +6658,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1246171869}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6517,6 +6729,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1287159397
 GameObject:
   m_ObjectHideFlags: 0
@@ -6543,7 +6757,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1287159397}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6614,6 +6828,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1302728803
 GameObject:
   m_ObjectHideFlags: 0
@@ -6640,7 +6856,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1302728803}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6711,6 +6927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1310615321
 GameObject:
   m_ObjectHideFlags: 0
@@ -6737,7 +6955,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1310615321}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6808,6 +7026,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1344484584
 GameObject:
   m_ObjectHideFlags: 0
@@ -6834,7 +7054,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1344484584}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -6887,7 +7107,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1344484584}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: -0.5, y: 8.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -6905,6 +7125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1355954832
 GameObject:
   m_ObjectHideFlags: 0
@@ -6996,7 +7218,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1365127056}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7067,6 +7289,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 1
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1398167395
 GameObject:
   m_ObjectHideFlags: 0
@@ -7093,7 +7317,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1398167395}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7164,6 +7388,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1405371402
 GameObject:
   m_ObjectHideFlags: 0
@@ -7173,9 +7399,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1405371405}
   - component: {fileID: 1405371404}
+  - component: {fileID: 1405371406}
   - component: {fileID: 1405371403}
   m_Layer: 0
-  m_Name: Global
+  m_Name: GlobalScripts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7187,12 +7414,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1405371402}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c3ed4a11af52cf44b9be001faad0b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GetLevel: 999
+  GetLevel: Astar
   GetPlayer: {fileID: 831292735}
   GetTargetlight: {fileID: 0}
 --- !u!114 &1405371404
@@ -7206,6 +7433,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1923050b427d540a497657c154f41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BeTouchedFloor: {fileID: 0}
+  NeighborFloor: {fileID: 0}
+  Obstacle: 0
   Openlist: []
   Closelist: []
   Pathlist: []
@@ -7213,6 +7443,11 @@ MonoBehaviour:
   FloorB: {fileID: 0}
   dis: 0
   WalkDir: {x: 0, y: 0, z: 0}
+  FaceRotation: {x: 0, y: 0, z: 0, w: 0}
+  NeighborCollider: {fileID: 0}
+  Floorlayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!4 &1405371405
 Transform:
   m_ObjectHideFlags: 0
@@ -7226,6 +7461,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1405371406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1405371402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4dbb822798581246b432b8366e570c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GetFlowChart: {fileID: 0}
+  Blocking: 
+  AllBlocks: []
+  MissionTargets: []
+  MissionArrows: []
 --- !u!1 &1467829732
 GameObject:
   m_ObjectHideFlags: 0
@@ -7252,7 +7503,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1467829732}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7323,6 +7574,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1498233698
 GameObject:
   m_ObjectHideFlags: 0
@@ -7349,7 +7602,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1498233698}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7420,6 +7673,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1507463906
 GameObject:
   m_ObjectHideFlags: 0
@@ -7446,7 +7701,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507463906}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7517,6 +7772,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1518152709
 GameObject:
   m_ObjectHideFlags: 0
@@ -7543,7 +7800,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1518152709}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7614,6 +7871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1542182276
 GameObject:
   m_ObjectHideFlags: 0
@@ -7640,7 +7899,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1542182276}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7711,6 +7970,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1545143442
 GameObject:
   m_ObjectHideFlags: 0
@@ -7737,7 +7998,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1545143442}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7808,6 +8069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1624016316
 GameObject:
   m_ObjectHideFlags: 0
@@ -7834,7 +8097,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1624016316}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -7905,6 +8168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1629022919
 GameObject:
   m_ObjectHideFlags: 0
@@ -7931,7 +8196,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1629022919}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8002,6 +8267,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1664795437
 GameObject:
   m_ObjectHideFlags: 0
@@ -8028,7 +8295,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1664795437}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8099,6 +8366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1709623244
 GameObject:
   m_ObjectHideFlags: 0
@@ -8125,7 +8394,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709623244}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8196,6 +8465,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1737536589
 GameObject:
   m_ObjectHideFlags: 0
@@ -8222,7 +8493,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1737536589}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8293,6 +8564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1741781942
 GameObject:
   m_ObjectHideFlags: 0
@@ -8319,7 +8592,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1741781942}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8390,6 +8663,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1774662911
 GameObject:
   m_ObjectHideFlags: 0
@@ -8416,7 +8691,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1774662911}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8487,6 +8762,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1789220682
 GameObject:
   m_ObjectHideFlags: 0
@@ -8513,7 +8790,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1789220682}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8584,6 +8861,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1798122278
 GameObject:
   m_ObjectHideFlags: 0
@@ -8610,7 +8889,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1798122278}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8681,6 +8960,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1802511857
 GameObject:
   m_ObjectHideFlags: 0
@@ -8707,7 +8988,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1802511857}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8778,6 +9059,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1817387023
 GameObject:
   m_ObjectHideFlags: 0
@@ -8804,7 +9087,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1817387023}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8857,7 +9140,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1817387023}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: -1.5, y: 7.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -8875,6 +9158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1826934603
 GameObject:
   m_ObjectHideFlags: 0
@@ -8901,7 +9186,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1826934603}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -8954,7 +9239,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1826934603}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.5, z: 1.5}
+  m_LocalPosition: {x: -4.5, y: 1.5, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -8972,6 +9257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1829813363
 GameObject:
   m_ObjectHideFlags: 0
@@ -8998,7 +9285,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1829813363}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9069,6 +9356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1831525937
 GameObject:
   m_ObjectHideFlags: 0
@@ -9095,7 +9384,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1831525937}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9166,6 +9455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1839497448
 GameObject:
   m_ObjectHideFlags: 0
@@ -9184,7 +9475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &1839497449
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9192,7 +9483,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1839497448}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9263,6 +9554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1880121669
 GameObject:
   m_ObjectHideFlags: 0
@@ -9289,7 +9582,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1880121669}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9360,6 +9653,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1902794793
 GameObject:
   m_ObjectHideFlags: 0
@@ -9386,7 +9681,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1902794793}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9439,7 +9734,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1902794793}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.5, y: 0.5, z: -3.5}
+  m_LocalPosition: {x: -3.5, y: 1.5, z: -3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -9457,6 +9752,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1916525685
 GameObject:
   m_ObjectHideFlags: 0
@@ -9483,7 +9780,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1916525685}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9554,6 +9851,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1920623674
 GameObject:
   m_ObjectHideFlags: 0
@@ -9580,7 +9879,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1920623674}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9651,6 +9950,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1929533425
 GameObject:
   m_ObjectHideFlags: 0
@@ -9677,7 +9978,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1929533425}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9748,6 +10049,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1961661191
 GameObject:
   m_ObjectHideFlags: 0
@@ -9774,7 +10077,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1961661191}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9845,6 +10148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &1987168152
 GameObject:
   m_ObjectHideFlags: 0
@@ -9871,7 +10176,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1987168152}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -9942,6 +10247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &2057605700
 GameObject:
   m_ObjectHideFlags: 0
@@ -9968,7 +10275,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2057605700}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -10021,7 +10328,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2057605700}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0.5, z: 4.5}
+  m_LocalPosition: {x: 2.5, y: 9.5, z: 4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -10039,6 +10346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &2100202039
 GameObject:
   m_ObjectHideFlags: 0
@@ -10065,7 +10374,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2100202039}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -10118,7 +10427,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2100202039}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.5, y: 0.5, z: 2.5}
+  m_LocalPosition: {x: -4.5, y: 2.5, z: 2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 620170}
@@ -10136,6 +10445,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &2116963127
 GameObject:
   m_ObjectHideFlags: 0
@@ -10154,7 +10465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &2116963128
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10162,7 +10473,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2116963127}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -10233,6 +10544,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}
 --- !u!1 &2131639113
 GameObject:
   m_ObjectHideFlags: 0
@@ -10259,7 +10572,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2131639113}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -10330,3 +10643,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obstacle: 0
+  UpFloor: {fileID: 0}
+  DownFloor: {fileID: 0}

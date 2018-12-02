@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 33255391477423934}
   - component: {fileID: 135869442331370926}
   - component: {fileID: 114565367056414910}
+  - component: {fileID: 114652450010937430}
   m_Layer: 20
   m_Name: Rose
   m_TagString: Obstacle
@@ -512,8 +513,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.667, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_Children:
-  - {fileID: 224212123483620692}
   - {fileID: 4654509789017104}
+  - {fileID: 224212123483620692}
   m_Father: {fileID: 4048538581389186}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -560,7 +561,7 @@ Transform:
   - {fileID: 4240104229196878}
   - {fileID: 4556807178459704}
   m_Father: {fileID: 4557758415311426}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4684557894071338
 Transform:
@@ -1484,6 +1485,17 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114652450010937430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167020271997100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58b4230a4050b5448204e0184b53cf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114987016714851830
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1546,7 +1558,7 @@ RectTransform:
   m_Children:
   - {fileID: 224918209996636298}
   m_Father: {fileID: 4557758415311426}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

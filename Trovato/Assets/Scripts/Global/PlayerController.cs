@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void Update(){
-		DownRay = new Ray (Global.Player.transform.position, Vector3.down);
+		if(Global.Player != null)
+			DownRay = new Ray (Global.Player.transform.position, Vector3.down);
 		if (Physics.Raycast (DownRay, out hitinfo, 5, 1 << 10)) {
 			CurrentFloor = hitinfo.collider.gameObject;
 
@@ -265,7 +266,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void PlayerSetting(){
-		Global.Player.transform.position += FixedHeight;
+		if(Global.Player != null)
+			Global.Player.transform.position += FixedHeight;
 	}
 
 	void PlayerStop(){
@@ -425,17 +427,17 @@ public class PlayerController : MonoBehaviour {
 	public static void CancelMoving(Vector3 NewPosition){
 		
 
-		//PlayerStatusImage.Status = null;
 		Global.Player.transform.position = NewPosition;
 		PathController.FollowPath = false;
 		Global.PlayerMove = false;
 		//GameObject.Find ("GlobalScripts").GetComponent<PathController> ().Reset ();
 		GameObject[] AllFloors = GameObject.FindGameObjectsWithTag("Floor");
 		foreach(GameObject color in AllFloors){
+			if(Global.Level != "Astar")
 			GameObject.Find("GlobalScripts").GetComponent<PathController>().BeTouchedFloor.GetComponent<Renderer>().enabled = false;
 			//color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 		}
-		Global.Targetlight.Stop ();
+		//Global.Targetlight.Stop ();
 	}
 
 

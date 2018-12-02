@@ -37,7 +37,7 @@ public class ImageFade : MonoBehaviour {
 
 			if (Tips_Box.color.a < 0.1f && max) {
 				Global.StopTouch = false;
-				PlayerStatusImage.Status = null; 
+				PlayerStatusImage.GetStatus("None");
 			} else {
 				Global.StopTouch = true;
 			}
