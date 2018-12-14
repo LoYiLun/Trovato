@@ -42,6 +42,12 @@ public class MissionSetting : MonoBehaviour {
 	private bool Arrow_Engine = true;
 	private bool Arrow_Kyder = true;
 
+	// Active Area
+	private bool EisPressed;
+	private GameObject Rose{get{return GameObject.Find("Rose"); }}
+	private GameObject GlassRepair{get{return GameObject.Find("GlassRepair"); }}
+	private GameObject PrinceHome_Door{get{return GameObject.Find("PrinceHome_Door"); }}
+
 	void Awake(){
 		MissionArrow = Resources.Load("Prefabs/Global/MissionArrow") as GameObject;
 	}
@@ -105,34 +111,59 @@ public class MissionSetting : MonoBehaviour {
 
 	void Update ()
 	{
-
 		if (MissionTargets.Find ((x) => x.gameObject == null) == null && MissionTargets.IndexOf (MissionTargets.Find ((x) => x.gameObject == null)) != -1) {
 			MissionArrows.RemoveAt (MissionTargets.IndexOf (MissionTargets.Find ((x) => x.gameObject == null)));
 			MissionTargets.RemoveAt (MissionTargets.IndexOf (MissionTargets.Find ((x) => x.gameObject == null)));
 		}
 
 
-		/*
-		if (MissionCam != null && MissionTarget != null && !MissionCamSetting && !FlowerChart.HasExecutingBlocks()) {
-			print ("ok");
-			MissionCam.transform.rotation = MissionTarget.transform.rotation;
-			MissionCam.transform.position = Vector3.zero;
-			MissionCam.transform.Translate(new Vector3 ((MissionCam.transform.position.x - MissionTarget.transform.position.x) * 7, MissionTarget.transform.position.y * 7, (MissionCam.transform.position.z - MissionTarget.transform.position.z) * 7));
-			MissionCam.transform.LookAt (MissionTarget.transform);
-			MissionCamObj.SetActive (true);
-
-			if(Input.GetMouseButtonDown(0)){
-				MissionCamSetting = true;
-				MissionCamObj.SetActive (false);
-			}
-		}*/
-
-
 		if (Global.LevelEnd == null)
 			Global.LevelEnd = GameObject.Find ("Bool_LevelEnd");
 
 		if (FlowerChart != null) {
-			
+
+			if (Global.Level == "1") {
+
+				if (Vector3.Distance (Global.Player.transform.position, Rose.transform.position) <= 1f && FlowerChart.GetBooleanVariable ("GetBread")) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("GiveBread");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, GlassRepair.transform.position) <= 1f && FlowerChart.GetBooleanVariable ("FindGP")) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("FindGP");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, PrinceHome_Door.transform.position) <= 1f && FlowerChart.GetBooleanVariable ("GiveBread")) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("RoseGoHome");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, PrinceHome_Door.transform.position) <= 1f && FlowerChart.GetBooleanVariable ("SecGoHome")) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("SecGoHome");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				}
+			}
+
+
 
 
 			switch (Blocking) {
@@ -388,17 +419,13 @@ public class MissionSetting : MonoBehaviour {
 
 			}
 
-			if (CurrentCam != null && ScreenHeart != null && Target != null && !FlowerChart.HasExecutingBlocks () && CamIsMoving) {
+			if (CurrentCam != null && ScreenHeart != null && Target != null && !FlowerChart.HasExecutingBlocks () && CamIsMoving && !FlowerChart.GetBooleanVariable("LookAround")) {
 				
 
 				if (Vector3.Distance (CurrentCam.transform.position, NextCamPos) <= 0.2f) {
 					MissionArrows [MissionArrows.Count-1].SetActive (true);
 					CamRotTarget = Quaternion.LookRotation (ScreenHeart.transform.position - CurrentCam.transform.position, Vector3.Lerp (CurrentCam.transform.up, Target.transform.up, 0.1f));
 					CurrentCam.transform.rotation = Quaternion.Slerp (CurrentCam.transform.rotation, CamRotTarget, 0.2f);
-					if (OS2) {
-						//CurrentCam.transform.position = NextCamPos;
-						OS2 = false;
-					}
 					if (Input.GetMouseButtonDown (0)) {
 						if (MissionTargets.LastIndexOf (Target) != MissionTargets.Count-1) {
 							TargetID++;
@@ -417,29 +444,14 @@ public class MissionSetting : MonoBehaviour {
 					PlayerStatusImage.GetStatus ("None");
 					ScreenHeart.transform.position = Vector3.Lerp (ScreenHeart.transform.position, NextHeartPos, 0.03f);
 					CurrentCam.transform.position = Vector3.Lerp (CurrentCam.transform.position, NextCamPos, 0.03f);
-
-					//ScreenHeart.transform.position = Vector3.MoveTowards (ScreenHeart.transform.position, NextHeartPos, 0.3f);
-					//CurrentCam.transform.position = Vector3.MoveTowards (CurrentCam.transform.position, NextCamPos, 0.3f);
-
-					//FixedRot = Vector3.Lerp (FixedRot, Target.transform.up, 0.2f);
 					CamRotTarget = Quaternion.LookRotation (ScreenHeart.transform.position - CurrentCam.transform.position, Vector3.Lerp (CurrentCam.transform.up, Target.transform.up, 0.1f));
 					CurrentCam.transform.rotation = Quaternion.Slerp (CurrentCam.transform.rotation, CamRotTarget, 0.6f);
-						//CamRotTarget = Quaternion.LookRotation (Target.transform.position - CurrentCam.transform.position, FixedRot);
 
 						}
 				} else if (CurrentCam != null && ScreenHeart != null && Target != null && !CamIsMoving && CamIsMovingBack) {
 					if (Vector3.Distance (CurrentCam.transform.position, CurrentCam_Origin) <= 0.2f) {
-						
-						if (OS2) {
-							OS2 = false;
-						}
-						//MissionTargets.Clear();
-						//MissionArrows.Clear ();
-						
 						TargetID = 0;
-						//CurrentCam.transform.rotation = Quaternion.Slerp (CurrentCam.transform.rotation, CamRotTarget, 1f);
 						ScreenHeart.transform.position = ScreenHeart_Origin;
-						//CurrentCam.transform.position = CurrentCam_Origin;
 						ScreenHeart.transform.rotation = ScreenHeart_OriginRot;
 						CurrentCam = ScreenHeart = Target = null;
 						Global.StopTouch = false;
@@ -448,9 +460,6 @@ public class MissionSetting : MonoBehaviour {
 					} else {
 					ScreenHeart.transform.position = Vector3.Lerp (ScreenHeart.transform.position, ScreenHeart_Origin, 0.04f);
 					CurrentCam.transform.position = Vector3.Lerp (CurrentCam.transform.position, CurrentCam_Origin, 0.04f);
-						//ScreenHeart.transform.position = Vector3.MoveTowards (ScreenHeart.transform.position, ScreenHeart_Origin, 0.3f);
-						//CurrentCam.transform.position = Vector3.MoveTowards (CurrentCam.transform.position, CurrentCam_Origin, 0.3f);
-					//FixedRot = Vector3.Lerp (FixedRot, Vector3.up, 0.2f);
 					CamRotTarget = Quaternion.LookRotation (ScreenHeart.transform.position - CurrentCam.transform.position, Vector3.Lerp (CurrentCam.transform.up, Vector3.up, 0.075f));
 					CurrentCam.transform.rotation = Quaternion.Slerp (CurrentCam.transform.rotation, CamRotTarget, 0.8f);
 					}
@@ -516,6 +525,7 @@ public class MissionSetting : MonoBehaviour {
 				if (!CamIsMovingBack) {
 					Global.StopTouch = false;
 				}
+				EisPressed = false;
 				PlayerStatusImage.GetStatus ("None");
 				
 

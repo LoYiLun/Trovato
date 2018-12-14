@@ -98,6 +98,8 @@ public class Global : MonoBehaviour {
 
 	void Update () {
 
+
+
 		if (LevelEnd != null && LevelEnd.activeSelf) {
 			ToNextLevel (NextScene);
 		}
@@ -136,7 +138,7 @@ public class Global : MonoBehaviour {
 		ImageFade.FadeIn = false;
 		ImageFade.FadeOut = false;
 		PlayerController.MoveSpeed = 4f;
-		PlayerStatusImage.GetStatus("None");
+		//PlayerStatusImage.GetStatus("None");
 		CameraFade.FadeInIsStart = true;
 		CameraFade.FadeOutIsStart = false;
 		CameraFade.FadeInIsDone = false;

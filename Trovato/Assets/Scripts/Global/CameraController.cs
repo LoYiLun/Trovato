@@ -32,7 +32,8 @@ public class CameraController : MonoBehaviour {
 	public static float OriginView;
 	public static float CamView;
 
-	bool LookAround;
+	//bool LookAround;
+	bool LookAround{get{ return MissionSetting.FlowerChart != null ? MissionSetting.FlowerChart.GetBooleanVariable ("LookAround") : false ;}}
 	bool IsLookingAround;
 	public static Vector3 CamOriginPos;
 	public static Quaternion CamOriginRot;
@@ -58,7 +59,7 @@ public class CameraController : MonoBehaviour {
 	void Update () {
 
 		// 關卡開場時的環視魔方
-		LookAround = Input.GetKeyDown (KeyCode.Z) ? !LookAround : LookAround;
+		//LookAround = Input.GetKeyDown (KeyCode.Z) ? !LookAround : LookAround;
 		if (LookAround) {
 			Global.StopTouch = true;
 			CurrentCam.transform.RotateAround (ScreenHeart.transform.position, Vector3.up, Mathf.Clamp(0.2f + Vector3.Distance (CurrentCam.transform.position, CamOriginPos)/50,0 ,1.25f));
@@ -67,7 +68,9 @@ public class CameraController : MonoBehaviour {
 			} else if (Vector3.Distance (CurrentCam.transform.position, CamOriginPos) <= 0.5f && IsLookingAround) {
 				CurrentCam.transform.transform.position = CamOriginPos;
 				CurrentCam.transform.LookAt (CamTarget.transform);
-				Global.StopTouch = LookAround = IsLookingAround = false;
+				Global.StopTouch = IsLookingAround = false;
+				MissionSetting.FlowerChart.SetBooleanVariable ("LookAround", false);
+				//LookAround = false;
 			}
 		}
 
