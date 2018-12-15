@@ -43,10 +43,13 @@ public class MissionSetting : MonoBehaviour {
 	private bool Arrow_Kyder = true;
 
 	// Active Area
-	private bool EisPressed;
+	public bool EisPressed;
 	private GameObject Rose{get{return GameObject.Find("Rose"); }}
 	private GameObject GlassRepair{get{return GameObject.Find("GlassRepair"); }}
 	private GameObject PrinceHome_Door{get{return GameObject.Find("PrinceHome_Door"); }}
+	private GameObject Marley{get{return GameObject.Find("Marley"); }}
+	private GameObject AnotherHouse_Door2{get{return GameObject.Find("AnotherHouse_Door2"); }}
+	private GameObject WareHouse_Door{get{return GameObject.Find("WareHouse_Door"); }}
 
 	void Awake(){
 		MissionArrow = Resources.Load("Prefabs/Global/MissionArrow") as GameObject;
@@ -123,8 +126,7 @@ public class MissionSetting : MonoBehaviour {
 		if (FlowerChart != null) {
 
 			if (Global.Level == "1") {
-
-				if (Vector3.Distance (Global.Player.transform.position, Rose.transform.position) <= 1f && FlowerChart.GetBooleanVariable ("GetBread")) {
+				if (Vector3.Distance (Global.Player.transform.position, Rose.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("GetBread")) {
 					if (!EisPressed) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
@@ -133,7 +135,7 @@ public class MissionSetting : MonoBehaviour {
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
-				} else if (Vector3.Distance (Global.Player.transform.position, GlassRepair.transform.position) <= 1f && FlowerChart.GetBooleanVariable ("FindGP")) {
+				} else if (Vector3.Distance (Global.Player.transform.position, GlassRepair.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("FindGP")) {
 					if (!EisPressed) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
@@ -142,7 +144,7 @@ public class MissionSetting : MonoBehaviour {
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
-				} else if (Vector3.Distance (Global.Player.transform.position, PrinceHome_Door.transform.position) <= 1f && FlowerChart.GetBooleanVariable ("GiveBread")) {
+				} else if (Vector3.Distance (Global.Player.transform.position, PrinceHome_Door.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("GiveBread")) {
 					if (!EisPressed) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
@@ -151,12 +153,39 @@ public class MissionSetting : MonoBehaviour {
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
-				} else if (Vector3.Distance (Global.Player.transform.position, PrinceHome_Door.transform.position) <= 1f && FlowerChart.GetBooleanVariable ("SecGoHome")) {
+				} else if (Vector3.Distance (Global.Player.transform.position, PrinceHome_Door.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("SecGoHome")) {
 					if (!EisPressed) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
 						Flowchart.BroadcastFungusMessage ("SecGoHome");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, Marley.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("MarletTalk");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, AnotherHouse_Door2.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("HouseTalk");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, WareHouse_Door.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("WareHouseTalk");
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
@@ -422,7 +451,7 @@ public class MissionSetting : MonoBehaviour {
 			if (CurrentCam != null && ScreenHeart != null && Target != null && !FlowerChart.HasExecutingBlocks () && CamIsMoving && !FlowerChart.GetBooleanVariable("LookAround")) {
 				
 
-				if (Vector3.Distance (CurrentCam.transform.position, NextCamPos) <= 0.2f) {
+				if (Vector3.Distance (CurrentCam.transform.position, NextCamPos) <= 0.7f) {
 					MissionArrows [MissionArrows.Count-1].SetActive (true);
 					CamRotTarget = Quaternion.LookRotation (ScreenHeart.transform.position - CurrentCam.transform.position, Vector3.Lerp (CurrentCam.transform.up, Target.transform.up, 0.1f));
 					CurrentCam.transform.rotation = Quaternion.Slerp (CurrentCam.transform.rotation, CamRotTarget, 0.2f);
@@ -524,6 +553,7 @@ public class MissionSetting : MonoBehaviour {
 					BlockOn = false;
 				if (!CamIsMovingBack) {
 					Global.StopTouch = false;
+
 				}
 				EisPressed = false;
 				PlayerStatusImage.GetStatus ("None");

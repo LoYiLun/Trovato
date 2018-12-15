@@ -2081,7 +2081,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &552003675
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2107,7 +2107,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &552003676
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2134,7 +2134,7 @@ MonoBehaviour:
     stringVal: 
 --- !u!114 &552003677
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2161,7 +2161,7 @@ MonoBehaviour:
     stringVal: 
 --- !u!114 &552003678
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2174,7 +2174,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &552003679
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2278,7 +2278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
 --- !u!114 &552003693
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2335,7 +2335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c5622b8a80845c980954170295f292, type: 3}
 --- !u!114 &552003699
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2476,7 +2476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c5622b8a80845c980954170295f292, type: 3}
 --- !u!114 &552003731
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2489,7 +2489,7 @@ MonoBehaviour:
   indentLevel: 0
 --- !u!114 &552003738
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2515,7 +2515,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &552003739
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2542,7 +2542,7 @@ MonoBehaviour:
     stringVal: 
 --- !u!114 &552003740
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2598,7 +2598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c5622b8a80845c980954170295f292, type: 3}
 --- !u!114 &552003752
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 552003656}
@@ -2609,12 +2609,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 188
   indentLevel: 0
---- !u!114 &552003758 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114018413607256140, guid: 5e27c0c2dc76ed7458653c17616edf2f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1137523388}
-  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
 --- !u!114 &552003759 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114820204891647798, guid: 5e27c0c2dc76ed7458653c17616edf2f,
@@ -4991,7 +4985,7 @@ Prefab:
     - target: {fileID: 114263050807727440, guid: 5e27c0c2dc76ed7458653c17616edf2f,
         type: 2}
       propertyPath: selectedBlocks.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114263050807727440, guid: 5e27c0c2dc76ed7458653c17616edf2f,
         type: 2}
@@ -5259,7 +5253,7 @@ Prefab:
         type: 2}
       propertyPath: selectedBlocks.Array.data[0]
       value: 
-      objectReference: {fileID: 552003758}
+      objectReference: {fileID: 868024593}
     - target: {fileID: 114533433188688218, guid: 5e27c0c2dc76ed7458653c17616edf2f,
         type: 2}
       propertyPath: _duration.floatVal

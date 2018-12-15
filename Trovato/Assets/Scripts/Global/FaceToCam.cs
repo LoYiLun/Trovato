@@ -15,7 +15,7 @@ public class FaceToCam : MonoBehaviour {
 	void Update () {
 		if (CameraController.CurrentCam != null) {
 			CamPos = CameraController.CurrentCam.transform.position * (-100);
-			this.transform.LookAt (CamPos);
+			this.transform.LookAt (CamPos, GameObject.Find("Camera").transform.up);
 		}
 	}
 }

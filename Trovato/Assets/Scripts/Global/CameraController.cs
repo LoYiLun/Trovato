@@ -61,14 +61,14 @@ public class CameraController : MonoBehaviour {
 		// 關卡開場時的環視魔方
 		//LookAround = Input.GetKeyDown (KeyCode.Z) ? !LookAround : LookAround;
 		if (LookAround) {
-			Global.StopTouch = true;
+			//Global.StopTouch = true;
 			CurrentCam.transform.RotateAround (ScreenHeart.transform.position, Vector3.up, Mathf.Clamp(0.2f + Vector3.Distance (CurrentCam.transform.position, CamOriginPos)/50,0 ,1.25f));
 			if (Vector3.Distance (CurrentCam.transform.position, CamOriginPos) > 0.5f && !IsLookingAround) {
 				IsLookingAround = true;
 			} else if (Vector3.Distance (CurrentCam.transform.position, CamOriginPos) <= 0.5f && IsLookingAround) {
 				CurrentCam.transform.transform.position = CamOriginPos;
 				CurrentCam.transform.LookAt (CamTarget.transform);
-				Global.StopTouch = IsLookingAround = false;
+				IsLookingAround = false;
 				MissionSetting.FlowerChart.SetBooleanVariable ("LookAround", false);
 				//LookAround = false;
 			}

@@ -61,6 +61,8 @@ public class Global : MonoBehaviour {
 
 	public static bool StartFinding;
 
+	public static int LevelUnlockCount = 3;
+
 	void Awake(){
 		ResetVar();
 
@@ -153,7 +155,7 @@ public class Global : MonoBehaviour {
 			GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().MissionTargets.Clear ();
 			GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().MissionArrows.Clear ();
 		}
-		if (GameObject.Find ("GlobalScripts") != null) {
+		if (GameObject.Find ("GlobalScripts") != null && GameObject.Find ("GlobalScripts").GetComponent<PathController> ()) {
 			GameObject.Find ("GlobalScripts").GetComponent<PathController> ().BeTouchedFloor = null;
 		}
 		
