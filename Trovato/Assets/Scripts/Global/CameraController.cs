@@ -38,6 +38,7 @@ public class CameraController : MonoBehaviour {
 	public static Vector3 CamOriginPos;
 	public static Quaternion CamOriginRot;
 
+	public static bool StopWhell;
 
 	void Awake(){
 		CurrentCam = Cam;
@@ -101,7 +102,10 @@ public class CameraController : MonoBehaviour {
 				//Camera.main.fieldOfView = CamView;
 			}
 
-		if (!Global.StopTouch && !Global.IsPreRotating && !Global.IsRotating) {
+		if (Global.Level == "0" && StopWhell) {
+		  // none.
+		}
+		else if (!Global.StopTouch && !Global.IsPreRotating && !Global.IsRotating) {
 			if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 25) {
 				CamView += 2f;
 				CamView = Mathf.Clamp (CamView, 5, 25);

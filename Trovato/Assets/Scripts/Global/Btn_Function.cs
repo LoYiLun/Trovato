@@ -200,7 +200,7 @@ public class Btn_Function : MonoBehaviour {
 		
 		GameObject Text_BGM = GameObject.Find ("Text_BGM");
 		GameObject Slider_BGM = GameObject.Find("Slider_BGM");
-		GameObject AudioObj = GameObject.Find("Audio");
+		GameObject AudioObj = GameObject.Find("Audio Source");
 
 		Text_BGM.GetComponent<Text> ().text = Slider_BGM.GetComponent<Slider> ().value.ToString();
 		AudioObj.GetComponent<AudioSource> ().volume = Slider_BGM.GetComponent<Slider> ().value / 100;
@@ -228,7 +228,8 @@ public class Btn_Function : MonoBehaviour {
 	// 選擇關卡
 	public void ToMenu(){
 		Global.ResetVar ();
-		SceneManager.LoadScene ("Menu");
+		SceneManager.LoadScene ("Menu_VD");
+		//SceneManager.LoadScene ("Menu");
 		
 	}
 	public void ToLevel_00(){

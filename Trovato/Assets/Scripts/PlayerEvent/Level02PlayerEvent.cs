@@ -34,48 +34,58 @@ public class Level02PlayerEvent : MonoBehaviour {
         if(other.transform.name == "Lucas")
         {
             Flowchart.BroadcastFungusMessage("LucasTalk01");
+			PlayerStatusImage.GetStatus("None");
         }
         if (other.transform.name == "Soyna")
         {
-            Flowchart.BroadcastFungusMessage("SoynaTalk01");
+			Flowchart.BroadcastFungusMessage("SoynaTalk01");
+			PlayerStatusImage.GetStatus("None");
         }
         if (other.transform.name == "Riven")
         {
-            Flowchart.BroadcastFungusMessage("RivenTalk01");
+			Flowchart.BroadcastFungusMessage("RivenTalk01");
+			PlayerStatusImage.GetStatus("None");
         }
         if (other.transform.name == "Engine")
         {
-            Flowchart.BroadcastFungusMessage("GetEngine");
+			Flowchart.BroadcastFungusMessage("GetEngine");
+			PlayerStatusImage.GetStatus("None");
             Destroy(other.gameObject);
         }
         if (other.transform.name == "Redleaf_A"|| other.transform.name == "Redleaf_B"|| other.transform.name == "Redleaf_C")
         {
-            Destroy(other.gameObject);
+			Destroy(other.gameObject);
+			PlayerStatusImage.GetStatus("None");
             //print(RedLeaf);
             RedLeaf++;
         }
         if (other.transform.name == "Sisco")
         {
-            Flowchart.BroadcastFungusMessage("SiscoTalk01");
+			Flowchart.BroadcastFungusMessage("SiscoTalk01");
+			PlayerStatusImage.GetStatus("None");
         }
-		if ((other.transform.name == "Mt.SpaceShip_Door1" || other.transform.name == "Mt.SpaceShip_Door2" || other.transform.name == "Mt.SpaceShip_Door3"))
+		if ((other.transform.name == "SpaceShip_Door1" || other.transform.name == "SpaceShip_Door2" || other.transform.name == "SpaceShip_Door3") || other.transform.name == "SpaceShip_Door4")
         {
-            Flowchart.BroadcastFungusMessage("GO");
+			Flowchart.BroadcastFungusMessage("GO");
+			PlayerStatusImage.GetStatus("None");
         }
         if (other.transform.name == "Mike")
         {
-            Flowchart.BroadcastFungusMessage("MikeTalk01");
+			Flowchart.BroadcastFungusMessage("MikeTalk01");
+			PlayerStatusImage.GetStatus("None");
         }
         if (other.transform.name == "Bill")
         {
-            Flowchart.BroadcastFungusMessage("BillTalk01");
+			Flowchart.BroadcastFungusMessage("BillTalk01");
+			PlayerStatusImage.GetStatus("None");
         }
     }
     void OnTriggerEnter(Collider other)
     {
         if(other.transform.name == "Kyder")
         {
-            Flowchart.BroadcastFungusMessage("GetKyder");
+			Flowchart.BroadcastFungusMessage("GetKyder");
+			PlayerStatusImage.GetStatus("None");
         }
     }
 }

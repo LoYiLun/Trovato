@@ -11,6 +11,9 @@ public class RollingArrow : MonoBehaviour {
 	
 
 	void Update () {
-		transform.Rotate (0, 5, 0);
+		if(Global.Level == "Menu")
+			transform.Rotate (0, 2, 0);
+		else
+			transform.Rotate (0, 5, 0);
 	}
 }

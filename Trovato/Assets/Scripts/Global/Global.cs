@@ -106,9 +106,6 @@ public class Global : MonoBehaviour {
 			ToNextLevel (NextScene);
 		}
 
-		if (Input.GetKeyDown (KeyCode.R))
-			Retry ();
-
 		if (Player != null) 
 		{
 			PlayerX = Player.transform.position.x;
@@ -146,6 +143,7 @@ public class Global : MonoBehaviour {
 		CameraFade.FadeInIsDone = false;
 		CameraFade.FadeOutIsDone = false;
 		CameraController.SetCamPos = false;
+		CameraController.StopWhell = false;
 		PathController.FollowPath = false;
 		MissionSetting.FlowerChart = null;
 		MissionSetting.BlockOn = false;

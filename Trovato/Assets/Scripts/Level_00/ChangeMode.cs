@@ -34,16 +34,18 @@ public class ChangeMode : MonoBehaviour {
             RPD.SetActive(false);
             RPE.SetActive(false);
             RPF.SetActive(false);
+			CameraController.StopWhell = true;
         }
         else if(PlayMode == 1)
         {
-            Global.IsCamCtrl = false;
+            //Global.IsCamCtrl = false;
             RPA.SetActive(true);
             RPB.SetActive(true);
             RPC.SetActive(true);
             RPD.SetActive(true);
             RPE.SetActive(true);
             RPF.SetActive(true);
+			CameraController.StopWhell = false;
         }
     }
     public void ModeCH()

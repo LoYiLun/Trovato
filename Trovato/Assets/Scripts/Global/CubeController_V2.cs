@@ -81,15 +81,17 @@ public class CubeController_V2 : MonoBehaviour {
 
 		} 
 
-		/*
-		if (Input.GetMouseButtonDown (1) && RotatePlane == null) {
-			Global.IsCamCtrl = true;
-		}
 
-		if (Input.GetMouseButtonUp (1)){
-			Global.IsCamCtrl = false;
-			RotatePlane = null;
-		}*/
+		if (Global.Level == "0") {
+			if (Input.GetMouseButtonDown (1) && RotatePlane == null) {
+				Global.IsCamCtrl = true;
+			}
+
+			if (Input.GetMouseButtonUp (1)) {
+				Global.IsCamCtrl = false;
+				RotatePlane = null;
+			}
+		}
 
 
 		// Layer 11 = Cube.

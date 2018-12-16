@@ -51,32 +51,39 @@ public class Level01PlayerEvent : MonoBehaviour {
         if(GetBread && other.transform.name == "Rose")
         {
             Rose = GameObject.Find("Rose");
-            Flowchart.BroadcastFungusMessage("GiveBread");
+			Flowchart.BroadcastFungusMessage("GiveBread");
+			PlayerStatusImage.GetStatus("None");
         }
         if(other.transform.name == "PrinceHome_Door")
         {
             Flowchart.BroadcastFungusMessage("RoseGoHome");
-            Flowchart.BroadcastFungusMessage("SecGoHome");
+			Flowchart.BroadcastFungusMessage("SecGoHome");
+			PlayerStatusImage.GetStatus("None");
         }
         if(other.transform.name == "GlassRepair")
         {
-            Flowchart.BroadcastFungusMessage("FindGP");
+			Flowchart.BroadcastFungusMessage("FindGP");
+			PlayerStatusImage.GetStatus("None");
         }
         if(!Ship && (other.transform.name == "Mt.SpaceShip_Door1" || other.transform.name == "Mt.SpaceShip_Door2" || other.transform.name == "Mt.SpaceShip_Door3"))
         {
-            Flowchart.BroadcastFungusMessage("GoShip");
+			Flowchart.BroadcastFungusMessage("GoShip");
+			PlayerStatusImage.GetStatus("None");
         }
         if(other.transform.name == "Marley")
         {
-            Flowchart.BroadcastFungusMessage("MarletTalk");
+			Flowchart.BroadcastFungusMessage("MarletTalk");
+			PlayerStatusImage.GetStatus("None");
         }
 		if (other.transform.name == "AnotherHouse_Door1" || other.transform.name == "AnotherHouse_Door2" || other.transform.name == "AnotherHouse_Door3")
         {
-            Flowchart.BroadcastFungusMessage("HouseTalk");
+			Flowchart.BroadcastFungusMessage("HouseTalk");
+			PlayerStatusImage.GetStatus("None");
         }
         if (other.transform.name == "WareHouse_Door")
         {
-            Flowchart.BroadcastFungusMessage("WareHouseTalk");
+			Flowchart.BroadcastFungusMessage("WareHouseTalk");
+			PlayerStatusImage.GetStatus("None");
         }
     }
     public static bool Bread

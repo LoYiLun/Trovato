@@ -7,7 +7,7 @@ public class TeachController : MonoBehaviour {
 	private GameObject Spotlight;
 
 	void Awake(){
-		Spotlight = GameObject.Find ("Image_Spotlight");
+		//Spotlight = GameObject.Find ("Image_Spotlight");
 	}
 
 	void Start () {
@@ -16,6 +16,6 @@ public class TeachController : MonoBehaviour {
 	
 
 	void Update () {
-		Spotlight.transform.position = Input.mousePosition;
+		//Spotlight.transform.position = Input.mousePosition;
 	}
 }

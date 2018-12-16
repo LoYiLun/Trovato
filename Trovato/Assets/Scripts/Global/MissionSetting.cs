@@ -51,8 +51,27 @@ public class MissionSetting : MonoBehaviour {
 	private GameObject AnotherHouse_Door2{get{return GameObject.Find("AnotherHouse_Door2"); }}
 	private GameObject WareHouse_Door{get{return GameObject.Find("WareHouse_Door"); }}
 
+	private GameObject Lucas{get{return GameObject.Find("Lucas"); }}
+	private GameObject Soyna{get{return GameObject.Find("Soyna"); }}
+	private GameObject Sisco{get{return GameObject.Find("Sisco"); }}
+	private GameObject Riven{get{return GameObject.Find("Riven"); }}
+	private GameObject Mike{get{return GameObject.Find("Mike"); }}
+	private GameObject Bill{get{return GameObject.Find("Bill"); }}
+
+	private GameObject King{get{return GameObject.Find("King"); }}
+	private GameObject Warehouse2{get{return GameObject.Find("Warehouse2"); }}
+	private GameObject HouseKeeper{get{return GameObject.Find("HouseKeeper"); }}
+	private GameObject Servent{get{return GameObject.Find("Servent"); }}
+	private GameObject Maid{get{return GameObject.Find("Maid"); }}
+	private GameObject Cat{get{return GameObject.Find("Cat"); }}
+
+	GameObject PlayerBody;
+	GameObject SpaceShip;
+
 	void Awake(){
 		MissionArrow = Resources.Load("Prefabs/Global/MissionArrow") as GameObject;
+		PlayerBody = GameObject.Find ("Player_Body");
+		SpaceShip = GameObject.Find ("SpaceShip_Anim");
 	}
 
 	void Start () {
@@ -127,7 +146,7 @@ public class MissionSetting : MonoBehaviour {
 
 			if (Global.Level == "1") {
 				if (Vector3.Distance (Global.Player.transform.position, Rose.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("GetBread")) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -189,9 +208,121 @@ public class MissionSetting : MonoBehaviour {
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
-				}
+				} 
 			}
 
+			if (Global.Level == "2") {
+				// Landing
+				if (MissionSetting.FlowerChart.GetBooleanVariable ("Landing") && PlayerBody != null) {
+					SpaceShip.transform.position = Vector3.MoveTowards (SpaceShip.transform.position, new Vector3(SpaceShip.transform.position.x, Global.Player.transform.position.y, SpaceShip.transform.position.z), 0.025f);
+					if (Mathf.Abs (SpaceShip.transform.position.y - Global.Player.transform.position.y) < 0.05f) {
+						for (int i = 0; i < PlayerBody.transform.childCount; i++) {
+							PlayerBody.transform.GetChild (i).gameObject.GetComponent<Renderer> ().enabled = true;
+						}
+					}
+				}
+
+				if (Vector3.Distance (Global.Player.transform.position, Lucas.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("LucasTalk01");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, Sisco.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("SiscoTalk01");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, Riven.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("RivenTalk01");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, Soyna.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("SoynaTalk01");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, Mike.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("MikeTalk01");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, Bill.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("BillTalk01");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else {
+					PlayerStatusImage.GetStatus ("None");
+					EisPressed = true;
+				}
+
+			}
+
+			if (Global.Level == "3") {
+				// Landing
+				if (MissionSetting.FlowerChart.GetBooleanVariable ("Landing") && PlayerBody != null) {
+					SpaceShip.transform.position = Vector3.Lerp (SpaceShip.transform.position, new Vector3(SpaceShip.transform.position.x, Global.Player.transform.position.y, SpaceShip.transform.position.z), 0.1f);
+					if (Mathf.Abs (SpaceShip.transform.position.y - Global.Player.transform.position.y) < 0.05f) {
+						for (int i = 0; i < PlayerBody.transform.childCount; i++) {
+							PlayerBody.transform.GetChild (i).gameObject.GetComponent<Renderer> ().enabled = true;
+						}
+					}
+				}
+
+				if (Vector3.Distance (Global.Player.transform.position, King.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("FirstTouchKing");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, HouseKeeper.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("HouseKeeper");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				} else if (Vector3.Distance (Global.Player.transform.position, Warehouse2.transform.position) <= 1.2f) {
+					if (!EisPressed) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("Warehouse2");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
+				}
+			}
 
 
 
@@ -448,14 +579,17 @@ public class MissionSetting : MonoBehaviour {
 
 			}
 
-			if (CurrentCam != null && ScreenHeart != null && Target != null && !FlowerChart.HasExecutingBlocks () && CamIsMoving && !FlowerChart.GetBooleanVariable("LookAround")) {
-				
 
-				if (Vector3.Distance (CurrentCam.transform.position, NextCamPos) <= 0.7f) {
+			// Camera Move
+			if (CurrentCam != null && ScreenHeart != null && Target != null && !FlowerChart.HasExecutingBlocks () && CamIsMoving && !FlowerChart.GetBooleanVariable("LookAround")) {
+				if (Vector3.Distance (CurrentCam.transform.position, NextCamPos) <= 0.5f) {
 					MissionArrows [MissionArrows.Count-1].SetActive (true);
 					CamRotTarget = Quaternion.LookRotation (ScreenHeart.transform.position - CurrentCam.transform.position, Vector3.Lerp (CurrentCam.transform.up, Target.transform.up, 0.1f));
 					CurrentCam.transform.rotation = Quaternion.Slerp (CurrentCam.transform.rotation, CamRotTarget, 0.2f);
-					if (Input.GetMouseButtonDown (0)) {
+
+					ScreenHeart.transform.position = Vector3.Lerp (ScreenHeart.transform.position, NextHeartPos, 0.03f);
+					CurrentCam.transform.position = Vector3.Lerp (CurrentCam.transform.position, NextCamPos, 0.03f);
+					if (Input.GetMouseButtonDown (0) || Vector3.Distance (CurrentCam.transform.position, NextCamPos) <= 0.3f) {
 						if (MissionTargets.LastIndexOf (Target) != MissionTargets.Count-1) {
 							TargetID++;
 							CameraMove (MissionTargets[TargetID], CameraController.CurrentCam, CameraController.CamTarget, MultiPos, true);

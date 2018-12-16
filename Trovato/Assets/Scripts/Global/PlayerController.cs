@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour {
 			PlayerAnim.Play ("Push_To_Stand");
 			MoveSpeed = 4;
 
-			Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/White")as Material;
+			//Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/White")as Material;
 			Global.BePushedObj.transform.parent = GameObject.Find ("MoveableGroup").transform;
 			Global.BePushedObj.transform.position = new Vector3(Global.BePushedObj.transform.position.x, BoxPosY, Global.BePushedObj.transform.position.z);
 			Global.BePushedObj = null;
@@ -288,7 +288,7 @@ public class PlayerController : MonoBehaviour {
 
 				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y - 0.075f , CurrentFloor.transform.position.z));
 				Global.BePushedObj = other.gameObject;
-				Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Blue")as Material;
+				//Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Blue")as Material;
 				Global.IsPushing = true;
 				//transform.rotation = RotateDir;
 				BoxPosY = other.transform.position.y;
