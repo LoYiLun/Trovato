@@ -10,6 +10,12 @@ public class ChangeMode : MonoBehaviour {
     public GameObject SaveBtn;
     public GameObject LoadBtn;
     public GameObject DropDowmBtn;
+    public GameObject RPA;
+    public GameObject RPB;
+    public GameObject RPC;
+    public GameObject RPD;
+    public GameObject RPE;
+    public GameObject RPF;
     public  int PlayMode;
     // Use this for initialization
     void Start () {
@@ -22,10 +28,22 @@ public class ChangeMode : MonoBehaviour {
         if (PlayMode == 0)
         {
             Global.IsCamCtrl = true;
+            RPA.SetActive(false);
+            RPB.SetActive(false);
+            RPC.SetActive(false);
+            RPD.SetActive(false);
+            RPE.SetActive(false);
+            RPF.SetActive(false);
         }
         else if(PlayMode == 1)
         {
             Global.IsCamCtrl = false;
+            RPA.SetActive(true);
+            RPB.SetActive(true);
+            RPC.SetActive(true);
+            RPD.SetActive(true);
+            RPE.SetActive(true);
+            RPF.SetActive(true);
         }
     }
     public void ModeCH()

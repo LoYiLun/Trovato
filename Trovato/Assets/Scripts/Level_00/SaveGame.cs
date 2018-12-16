@@ -218,6 +218,390 @@ public class SaveGame : MonoBehaviour {
                     Plane[i].GetComponent<MainCreateController>().Type = 2;
                 }
             }
+            if (ObjectJson["NowType"][i] == 3)
+            {
+                if (Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    GameObject BushColCreate = Instantiate(Resources.Load("Prefabs/Level_00/BushC")) as GameObject;
+                    BushColCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //BushColCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    BushColCreate.transform.parent = Plane[i].transform;
+                    BushColCreate.transform.localScale = new Vector3(1f, 1f, 0.3f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 3;
+                }
+                else if (!Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    Destroy(Plane[i].transform.GetChild(0).gameObject);
+                    GameObject BushColCreate = Instantiate(Resources.Load("Prefabs/Level_00/BushC")) as GameObject;
+                    BushColCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //BushColCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    BushColCreate.transform.parent = Plane[i].transform;
+                    BushColCreate.transform.localScale = new Vector3(1f, 1f, 0.3f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        BushColCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 3;
+                }
+            }
+            if (ObjectJson["NowType"][i] == 4)
+            {
+                if (Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    GameObject BushRowCreate = Instantiate(Resources.Load("Prefabs/Level_00/BushR")) as GameObject;
+                    BushRowCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //BushRowCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    BushRowCreate.transform.parent = Plane[i].transform;
+                    BushRowCreate.transform.localScale = new Vector3(1f, 1f, 0.3f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(0, 90, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(0, -90, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(-90, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(90, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(0, 0, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(0, 180, 90);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 4;
+                }
+                else if (!Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    Destroy(Plane[i].transform.GetChild(0).gameObject);
+                    GameObject BushRowCreate = Instantiate(Resources.Load("Prefabs/Level_00/BushR")) as GameObject;
+                    BushRowCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //BushRowCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    BushRowCreate.transform.parent = Plane[i].transform;
+                    BushRowCreate.transform.localScale = new Vector3(1f, 1f, 0.3f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(0, 90, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(0, -90, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(-90, 90,0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(90, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(0, 0, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        BushRowCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
+                        BushRowCreate.transform.eulerAngles = new Vector3(0, 180, 90);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 4;
+                }
+            }
+            if (ObjectJson["NowType"][i] == 5)
+            {
+                if (Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    GameObject RailingColCreate = Instantiate(Resources.Load("Prefabs/Level_00/Railing")) as GameObject;
+                    RailingColCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //RailingColCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    RailingColCreate.transform.parent = Plane[i].transform;
+                    RailingColCreate.transform.localScale = new Vector3(3f, 3f, 0.9f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 5;
+                }
+                else if (!Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    Destroy(Plane[i].transform.GetChild(0).gameObject);
+                    GameObject RailingColCreate = Instantiate(Resources.Load("Prefabs/Level_00/Railing")) as GameObject;
+                    RailingColCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //RailingColCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    RailingColCreate.transform.parent = Plane[i].transform;
+                    RailingColCreate.transform.localScale = new Vector3(3f, 3f, 0.9f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        RailingColCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 5;
+                }
+            }
+            if (ObjectJson["NowType"][i] == 6)
+            {
+                if (Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    GameObject RailingRowCreate = Instantiate(Resources.Load("Prefabs/Level_00/Railing")) as GameObject;
+                    RailingRowCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //RailingRowCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    RailingRowCreate.transform.parent = Plane[i].transform;
+                    RailingRowCreate.transform.localScale = new Vector3(3f, 3f, 0.9f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(0, 90, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(0, -90, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(-90, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(90, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(0, 0, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(0, 180, 90);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 6;
+                }
+                else if (!Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    Destroy(Plane[i].transform.GetChild(0).gameObject);
+                    GameObject RailingRowCreate = Instantiate(Resources.Load("Prefabs/Level_00/Railing")) as GameObject;
+                    RailingRowCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //RailingRowCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    RailingRowCreate.transform.parent = Plane[i].transform;
+                    RailingRowCreate.transform.localScale = new Vector3(3f, 3f, 0.9f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(0, 90, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(0, -90, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(-90, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(90, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(0, 0, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        RailingRowCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
+                        RailingRowCreate.transform.eulerAngles = new Vector3(0, 180, 90);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 6;
+                }
+            }
+            if (ObjectJson["NowType"][i] == 7)
+            {
+                if (Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    GameObject WareHouseCreate = Instantiate(Resources.Load("Prefabs/Level_00/WareHouse")) as GameObject;
+                    WareHouseCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //WareHouseCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    WareHouseCreate.transform.parent = Plane[i].transform;
+                    WareHouseCreate.transform.localScale = new Vector3(1.8f, 0.54f, 1.8f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(0, 0, -90);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(0, 0, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(180, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 7;
+                }
+                else if (!Plane[i].GetComponent<MainCreateController>().IsEmpty)
+                {
+                    Destroy(Plane[i].transform.GetChild(0).gameObject);
+                    GameObject WareHouseCreate = Instantiate(Resources.Load("Prefabs/Level_00/WareHouse")) as GameObject;
+                    WareHouseCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
+                    //WareHouseCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
+                    WareHouseCreate.transform.parent = Plane[i].transform;
+                    WareHouseCreate.transform.localScale = new Vector3(1.8f, 0.54f, 1.8f);
+                    if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(0, 0, -90);
+                    }
+                    else if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x < 1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x > 1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(0, 0, 90);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y > -1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y < -1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.y - Plane[i].transform.position.y < 1.6 && Plane[i].transform.parent.position.y - Plane[i].transform.position.y > 1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(180, 90, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z > -1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z < -1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
+                    }
+                    else if (Plane[i].transform.parent.position.z - Plane[i].transform.position.z < 1.6 && Plane[i].transform.parent.position.z - Plane[i].transform.position.z > 1.4)
+                    {
+                        WareHouseCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
+                    }
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = false;
+                    Plane[i].GetComponent<MainCreateController>().Type = 7;
+                }
+            }
             if (ObjectJson["NowType"][i] == 0 && !Plane[i].GetComponent<MainCreateController>().IsEmpty)
             {
                 Destroy(Plane[i].transform.GetChild(0).gameObject);
