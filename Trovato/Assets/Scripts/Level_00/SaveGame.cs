@@ -26,7 +26,7 @@ public class SaveGame : MonoBehaviour {
         /*JSONArray rotationX = new JSONArray();
         JSONArray rotationY = new JSONArray();
         JSONArray rotationZ = new JSONArray();*/
-        for (int i = 0; i < 54; i++)
+        for (int i = 0; i < 94; i++)
         {
             NowType[i] = Plane[i].GetComponent<MainCreateController>().Type;
             TypeJson.Add(NowType[i]);
@@ -71,7 +71,7 @@ public class SaveGame : MonoBehaviour {
         string jsonString = File.ReadAllText(path);
         JSONObject ObjectJson = (JSONObject)JSON.Parse(jsonString);
         //設定值
-        for (int i = 0; i < 54; i++)
+        for (int i = 0; i < 94; i++)
         {
             if (ObjectJson["NowType"][i] == 1)
             {
@@ -82,6 +82,7 @@ public class SaveGame : MonoBehaviour {
                     TreeForCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
                     //TreeForCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
                     TreeForCreate.transform.parent = Plane[i].transform;
+                    TreeForCreate.transform.localScale = new Vector3(100,100,33);
                     if(Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
                     {
                         TreeForCreate.transform.rotation = Quaternion.Euler(0,90,0);

@@ -34,7 +34,7 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(7.1f, transform.position.y, transform.position.z);
+                    TreePos = new Vector3(5.37f, transform.position.y, transform.position.z);
                     GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
                     TreeForCreate.transform.position = TreePos;
@@ -44,7 +44,7 @@ public class MainCreateController : MonoBehaviour {
                 }
                 if (CreateMode == 2)
                 {
-                    KyderPos = new Vector3(5.5f, transform.position.y, transform.position.z);
+                    KyderPos = new Vector3(4.9f, transform.position.y, transform.position.z);
                     GameObject KyderForCreate = Instantiate(Resources.Load("Prefabs/Kyder")) as GameObject;
                     KyderForCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
                     KyderForCreate.transform.position = KyderPos;
@@ -57,7 +57,7 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(-7.1f, transform.position.y, transform.position.z);
+                    TreePos = new Vector3(-5.37f, transform.position.y, transform.position.z);
                     GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
                     TreeForCreate.transform.position = TreePos;
@@ -67,7 +67,7 @@ public class MainCreateController : MonoBehaviour {
                 }
                 if (CreateMode == 2)
                 {
-                    KyderPos = new Vector3(-5.5f, transform.position.y, transform.position.z);
+                    KyderPos = new Vector3(-4.9f, transform.position.y, transform.position.z);
                     GameObject KyderForCreate = Instantiate(Resources.Load("Prefabs/Kyder")) as GameObject;
                     KyderForCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
                     KyderForCreate.transform.position = KyderPos;
@@ -80,7 +80,7 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(transform.position.x, 7.1f, transform.position.z);
+                    TreePos = new Vector3(transform.position.x, 5.37f, transform.position.z);
                     GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
                     TreeForCreate.transform.position = TreePos;
@@ -90,7 +90,7 @@ public class MainCreateController : MonoBehaviour {
                 }
                 if (CreateMode == 2)
                 {
-                    KyderPos = new Vector3(transform.position.x, 5.5f, transform.position.z);
+                    KyderPos = new Vector3(transform.position.x, 4.9f, transform.position.z);
                     GameObject KyderForCreate = Instantiate(Resources.Load("Prefabs/Kyder")) as GameObject;
                     KyderForCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
                     KyderForCreate.transform.position = KyderPos;
@@ -103,7 +103,7 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(transform.position.x, -7.1f, transform.position.z);
+                    TreePos = new Vector3(transform.position.x, -5.37f, transform.position.z);
                     GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
                     TreeForCreate.transform.position = TreePos;
@@ -113,7 +113,7 @@ public class MainCreateController : MonoBehaviour {
                 }
                 if (CreateMode == 2)
                 {
-                    KyderPos = new Vector3(transform.position.x, -5.5f, transform.position.z);
+                    KyderPos = new Vector3(transform.position.x, -4.9f, transform.position.z);
                     GameObject KyderForCreate = Instantiate(Resources.Load("Prefabs/Kyder")) as GameObject;
                     KyderForCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
                     KyderForCreate.transform.position = KyderPos;
@@ -126,7 +126,7 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(transform.position.x, transform.position.y, 7.1f);
+                    TreePos = new Vector3(transform.position.x, transform.position.y, 5.37f);
                     GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
                     TreeForCreate.transform.position = TreePos;
@@ -136,7 +136,7 @@ public class MainCreateController : MonoBehaviour {
                 }
                 if (CreateMode == 2)
                 {
-                    KyderPos = new Vector3(transform.position.x, transform.position.y, 5.5f);
+                    KyderPos = new Vector3(transform.position.x, transform.position.y, 4.9f);
                     GameObject KyderForCreate = Instantiate(Resources.Load("Prefabs/Kyder")) as GameObject;
                     KyderForCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
                     KyderForCreate.transform.position = KyderPos;
@@ -149,7 +149,7 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(transform.position.x, transform.position.y, -7.1f);
+                    TreePos = new Vector3(transform.position.x, transform.position.y, -5.37f);
                     GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
                     TreeForCreate.transform.position = TreePos;
@@ -159,7 +159,7 @@ public class MainCreateController : MonoBehaviour {
                 }
                 if (CreateMode == 2)
                 {
-                    KyderPos = new Vector3(transform.position.x, transform.position.y, -5.5f);
+                    KyderPos = new Vector3(transform.position.x, transform.position.y, -4.9f);
                     GameObject KyderForCreate = Instantiate(Resources.Load("Prefabs/Kyder")) as GameObject;
                     KyderForCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
                     KyderForCreate.transform.position = KyderPos;
