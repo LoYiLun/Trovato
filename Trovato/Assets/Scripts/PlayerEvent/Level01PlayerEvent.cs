@@ -20,7 +20,7 @@ public class Level01PlayerEvent : MonoBehaviour {
 	void Update () {
 		if (!Global.StopTouch && Shop != null && MtShip1 != null)
         {
-			if ( Bread &&(Mathf.Abs (Shop.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs (Shop.transform.position.z - transform.position.z) < 1.5f)) 
+			if ( Bread && Vector3.Distance (Global.Player.transform.position, Shop.transform.position) <= 1.5f) 
 			{
 				PlayerStatusImage.GetStatus ("Interact?");
 				if (Input.GetKeyDown (KeyCode.E)) {
@@ -28,16 +28,12 @@ public class Level01PlayerEvent : MonoBehaviour {
 				}
 			}
 
-			else if ( Ship &&(Mathf.Abs(MtShip1.transform.position.x - transform.position.x) < 1.5f && Mathf.Abs(MtShip1.transform.position.y - transform.position.y) < 0.5f && Mathf.Abs(MtShip1.transform.position.z - transform.position.z) < 1.5f))
+			else if ( Ship &&Vector3.Distance (Global.Player.transform.position, MtShip1.transform.position) <= 1.5f)
             {
 				PlayerStatusImage.GetStatus ("Interact?");
 				if (Input.GetKeyDown (KeyCode.E)) {
 					Flowchart.BroadcastFungusMessage ("GoShip");
 				}
-			}
-			else 
-			{
-				PlayerStatusImage.GetStatus ("None");
 			}
 
         }

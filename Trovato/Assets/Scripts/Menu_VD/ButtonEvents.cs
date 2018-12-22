@@ -19,6 +19,8 @@ public class ButtonEvents : MonoBehaviour {
 		Panel_SelectMode = GameObject.Find ("Panel_SelectMode");
 		Group_SelectMode = GameObject.Find ("Group_SelectMode");
 		BigGroup = GameObject.Find ("BigGroup");*/
+
+
 	}
 
 	void Start () {
@@ -106,7 +108,7 @@ public class ButtonEvents : MonoBehaviour {
 		Panel_SelectMode.GetComponent<CanvasGroup> ().interactable = false;
 		Panel_SelectMode.GetComponent<CanvasGroup> ().blocksRaycasts = false;
 
-		Group_SelectMode.SetActive (false);
+		//Group_SelectMode.SetActive (false);
 		BigGroup.SetActive (false);
 
 		Global.ResetVar ();

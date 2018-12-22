@@ -50,11 +50,14 @@ public class Level02PlayerEvent : MonoBehaviour {
         {
 			Flowchart.BroadcastFungusMessage("GetEngine");
 			PlayerStatusImage.GetStatus("None");
-            Destroy(other.gameObject);
+			other.transform.GetChild (0).GetComponent<Renderer> ().enabled = false;
+			other.gameObject.GetComponent<Collider> ().enabled = false;
         }
         if (other.transform.name == "Redleaf_A"|| other.transform.name == "Redleaf_B"|| other.transform.name == "Redleaf_C")
         {
-			Destroy(other.gameObject);
+			other.transform.GetChild (0).GetComponent<Renderer> ().enabled = false;
+			other.gameObject.GetComponent<Collider> ().enabled = false;
+			Destroy (other.gameObject);
 			PlayerStatusImage.GetStatus("None");
             //print(RedLeaf);
             RedLeaf++;
@@ -84,6 +87,8 @@ public class Level02PlayerEvent : MonoBehaviour {
     {
         if(other.transform.name == "Kyder")
         {
+			other.transform.GetChild (0).GetComponent<Renderer> ().enabled = false;
+			other.gameObject.GetComponent<Collider> ().enabled = false;
 			Flowchart.BroadcastFungusMessage("GetKyder");
 			PlayerStatusImage.GetStatus("None");
         }

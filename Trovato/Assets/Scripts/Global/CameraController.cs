@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class CameraController : MonoBehaviour {
 
@@ -96,16 +98,18 @@ public class CameraController : MonoBehaviour {
 		Distance2 = Vector3.Distance (CurrentCam.transform.position, ScreenHeart.transform.position);
 
 
+
+
 			Camera.main.fieldOfView -= (Camera.main.fieldOfView - CamView) / ViewTime;
 
 			if (Mathf.Abs (Camera.main.fieldOfView - CamView) <= 1f) {
 				//Camera.main.fieldOfView = CamView;
 			}
 
-		if (Global.Level == "0" && StopWhell) {
+		/*if (Global.Level == "0" && StopWhell) {
 		  // none.
-		}
-		else if (!Global.StopTouch && !Global.IsPreRotating && !Global.IsRotating) {
+		}*/
+		if (!Global.StopTouch && !Global.IsPreRotating && !Global.IsRotating) {
 			if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 25) {
 				CamView += 2f;
 				CamView = Mathf.Clamp (CamView, 5, 25);

@@ -44,12 +44,14 @@ public class MissionSetting : MonoBehaviour {
 
 	// Active Area
 	public bool EisPressed;
+	private GameObject Shop_Door2{get{return GameObject.Find("Shop_Door2"); }}
 	private GameObject Rose{get{return GameObject.Find("Rose"); }}
 	private GameObject GlassRepair{get{return GameObject.Find("GlassRepair"); }}
 	private GameObject PrinceHome_Door{get{return GameObject.Find("PrinceHome_Door"); }}
 	private GameObject Marley{get{return GameObject.Find("Marley"); }}
 	private GameObject AnotherHouse_Door2{get{return GameObject.Find("AnotherHouse_Door2"); }}
 	private GameObject WareHouse_Door{get{return GameObject.Find("WareHouse_Door"); }}
+	private GameObject MtShip1{get{return GameObject.Find("Mt.SpaceShip_Door1"); }}
 
 	private GameObject Lucas{get{return GameObject.Find("Lucas"); }}
 	private GameObject Soyna{get{return GameObject.Find("Soyna"); }}
@@ -94,7 +96,7 @@ public class MissionSetting : MonoBehaviour {
 		if (MissionTargets.LastIndexOf (Target) <= MissionTargets.Count && ArrowPos != Vector3.zero && NeedArrow ) {
 			MissionArrows.Add (Instantiate (MissionArrow, Target.transform.position, Target.transform.rotation, Target.transform));
 			MissionArrows [MissionArrows.Count - 1].transform.localScale = new Vector3 (0.25f, 0.25f, 0.25f);
-			MissionArrows [MissionArrows.Count - 1].name = Target.name;
+			MissionArrows [MissionArrows.Count - 1].name = Target.name + "_Arrow";
 			MissionArrows [MissionArrows.Count - 1].transform.Translate (ArrowPos);
 			MissionArrows [MissionArrows.Count - 1].SetActive (false);
 		}
@@ -154,8 +156,17 @@ public class MissionSetting : MonoBehaviour {
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
+				} else if (Vector3.Distance (Global.Player.transform.position, Shop_Door2.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("Bread")) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("BuyBread");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
 				} else if (Vector3.Distance (Global.Player.transform.position, GlassRepair.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("FindGP")) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -164,7 +175,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, PrinceHome_Door.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("GiveBread")) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -173,7 +184,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, PrinceHome_Door.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("SecGoHome")) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -181,8 +192,17 @@ public class MissionSetting : MonoBehaviour {
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
+				} else if (Vector3.Distance (Global.Player.transform.position, MtShip1.transform.position) <= 1.2f && FlowerChart.GetBooleanVariable ("Ship")) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
+						PlayerStatusImage.GetStatus ("Interact?");
+					}
+					if (Input.GetKeyDown (KeyCode.E)) {
+						Flowchart.BroadcastFungusMessage ("GoShip");
+						PlayerStatusImage.GetStatus ("None");
+						EisPressed = true;
+					}
 				} else if (Vector3.Distance (Global.Player.transform.position, Marley.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -191,7 +211,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, AnotherHouse_Door2.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -200,7 +220,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, WareHouse_Door.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -208,7 +228,9 @@ public class MissionSetting : MonoBehaviour {
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
-				} 
+				}  else {
+					PlayerStatusImage.GetStatus ("None");
+				}
 			}
 
 			if (Global.Level == "2") {
@@ -223,7 +245,7 @@ public class MissionSetting : MonoBehaviour {
 				}
 
 				if (Vector3.Distance (Global.Player.transform.position, Lucas.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks ()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -232,7 +254,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, Sisco.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks ()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -241,7 +263,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, Riven.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks ()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -250,7 +272,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, Soyna.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks ()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -259,7 +281,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, Mike.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks ()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -268,7 +290,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, Bill.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks ()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -278,7 +300,6 @@ public class MissionSetting : MonoBehaviour {
 					}
 				} else {
 					PlayerStatusImage.GetStatus ("None");
-					EisPressed = true;
 				}
 
 			}
@@ -295,7 +316,7 @@ public class MissionSetting : MonoBehaviour {
 				}
 
 				if (Vector3.Distance (Global.Player.transform.position, King.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -304,7 +325,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, HouseKeeper.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -313,7 +334,7 @@ public class MissionSetting : MonoBehaviour {
 						EisPressed = true;
 					}
 				} else if (Vector3.Distance (Global.Player.transform.position, Warehouse2.transform.position) <= 1.2f) {
-					if (!EisPressed) {
+					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
@@ -321,6 +342,8 @@ public class MissionSetting : MonoBehaviour {
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
 					}
+				} else {
+					PlayerStatusImage.GetStatus ("None");
 				}
 			}
 
@@ -419,8 +442,8 @@ public class MissionSetting : MonoBehaviour {
 			case"盧卡斯第一次對話":
 				//Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Lucas(Clone)"))]);
 				//Destroy (MissionArrows.Find((x) => x.name == "Event_Lucas(Clone)_MA"));
-				if (MissionTargets.Contains(GameObject.Find ("Event_Lucas(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Lucas(Clone)")) {
-					MissionArrows.FindLast ((x) => x.name == "Event_Lucas(Clone)").SetActive (false);
+				if (MissionTargets.Contains(GameObject.Find ("Event_Lucas(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Lucas(Clone)_Arrow")) {
+					MissionArrows.FindLast ((x) => x.name == "Event_Lucas(Clone)_Arrow").SetActive (false);
 					MissionArrows.RemoveAt (MissionTargets.LastIndexOf (GameObject.Find ("Event_Lucas(Clone)")));
 				
 					MissionTargets.Remove (GameObject.Find ("Event_Lucas(Clone)"));
@@ -445,8 +468,8 @@ public class MissionSetting : MonoBehaviour {
 			case"索依娜第一次對話":
 				//Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Soyna(Clone)"))]);
 				//Destroy (MissionArrows.Find((x) => x.name == "Event_Soyna(Clone)_MA"));
-				if (MissionTargets.Contains(GameObject.Find ("Event_Soyna(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Soyna(Clone)")) {
-					MissionArrows.FindLast ((x) => x.name == "Event_Soyna(Clone)").SetActive (false);
+				if (MissionTargets.Contains(GameObject.Find ("Event_Soyna(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Soyna(Clone)_Arrow")) {
+					MissionArrows.FindLast ((x) => x.name == "Event_Soyna(Clone)_Arrow").SetActive (false);
 					MissionArrows.RemoveAt (MissionTargets.LastIndexOf (GameObject.Find ("Event_Soyna(Clone)")));
 				
 					MissionTargets.Remove (GameObject.Find ("Event_Soyna(Clone)"));
@@ -475,8 +498,8 @@ public class MissionSetting : MonoBehaviour {
 			case"瑞文第一次對話":
 				//Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Riven(Clone)"))]);
 				//Destroy (MissionArrows.Find((x) => x.name == "Event_Riven(Clone)_MA"));
-				if (MissionTargets.Contains(GameObject.Find ("Event_Riven(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Riven(Clone)")) {
-					MissionArrows.FindLast ((x) => x.name == "Event_Riven(Clone)").SetActive (false);
+				if (MissionTargets.Contains(GameObject.Find ("Event_Riven(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Riven(Clone)_Arrow")) {
+					MissionArrows.FindLast ((x) => x.name == "Event_Riven(Clone)_Arrow").SetActive (false);
 					MissionArrows.RemoveAt (MissionTargets.LastIndexOf (GameObject.Find ("Event_Riven(Clone)")));
 				
 					MissionTargets.Remove (GameObject.Find ("Event_Riven(Clone)"));
@@ -493,8 +516,8 @@ public class MissionSetting : MonoBehaviour {
 			case"西斯寇第一次對話":
 				//Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Sisco(Clone)"))]);
 				//Destroy (MissionArrows.Find((x) => x.name == "Event_Sisco(Clone)_MA"));
-				if (MissionTargets.Contains(GameObject.Find ("Event_Sisco(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Sisco(Clone)")) {
-					MissionArrows.FindLast ((x) => x.name == "Event_Sisco(Clone)").SetActive (false);
+				if (MissionTargets.Contains(GameObject.Find ("Event_Sisco(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Sisco(Clone)_Arrow")) {
+					MissionArrows.FindLast ((x) => x.name == "Event_Sisco(Clone)_Arrow").SetActive (false);
 					MissionArrows.RemoveAt (MissionTargets.LastIndexOf (GameObject.Find ("Event_Sisco(Clone)")));
 				
 					MissionTargets.Remove (GameObject.Find ("Event_Sisco(Clone)"));
@@ -519,8 +542,10 @@ public class MissionSetting : MonoBehaviour {
 				/*MissionTargets.Remove (GameObject.Find ("Box_1"));
 				MissionTargets.Remove (GameObject.Find ("Box_2"));
 				MissionTargets.Remove (GameObject.Find ("Box_3"));*/
-				if (MissionTargets.Contains(GameObject.Find ("Event_IncinerationPlant(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_IncinerationPlant(Clone)")) {
+				if (MissionTargets.Contains(GameObject.Find ("Event_IncinerationPlant(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_IncinerationPlant(Clone)_Arrow")) {
 					MissionTargets.Remove (GameObject.Find ("Event_IncinerationPlant(Clone)"));
+					MissionArrows.FindLast ((x) => x.name == "Event_IncinerationPlant(Clone)_Arrow").SetActive (false);
+					MissionArrows.Remove (GameObject.Find ("Event_IncinerationPlant(Clone)_Arrow"));
 					if(Arrow_Box)
 						MissionTargets.Add (GameObject.Find ("Event_Lucas(Clone)"));
 					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_Box);
@@ -535,12 +560,23 @@ public class MissionSetting : MonoBehaviour {
 					Destroy (MissionArrows.Find((x) => x.name == "Event_Station(Clone)_MA"));
 				if(MissionArrows.Contains(GameObject.Find ("Event_BattleShipWing(Clone)_MA")))
 					Destroy (MissionArrows.Find((x) => x.name == "Event_BattleShipWing(Clone)_MA"));*/
-				if (MissionTargets.Contains(GameObject.Find ("Redleaf_A")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Redleaf_A"))
+				if (MissionTargets.Contains (GameObject.Find ("Redleaf_A")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Redleaf_A_Arrow")) {
 					MissionTargets.Remove (GameObject.Find ("Redleaf_A"));
-				if (MissionTargets.Contains(GameObject.Find ("Redleaf_B")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Redleaf_B"))
+					MissionArrows.FindLast ((x) => x.name == "Redleaf_A_Arrow").SetActive (false);
+					MissionArrows.Remove (GameObject.Find ("Redleaf_A_Arrow"));
+				}
+				if (MissionTargets.Contains (GameObject.Find ("Redleaf_B")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Redleaf_B_Arrow")) {
 					MissionTargets.Remove (GameObject.Find ("Redleaf_B"));
-				if (MissionTargets.Contains(GameObject.Find ("Redleaf_C")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Redleaf_C")) {
+					MissionArrows.FindLast ((x) => x.name == "Redleaf_B_Arrow").SetActive (false);
+					MissionArrows.Remove (GameObject.Find ("Redleaf_B_Arrow"));
+				}
+				if (MissionTargets.Contains (GameObject.Find ("Redleaf_C")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Redleaf_C_Arrow")) {
 					MissionTargets.Remove (GameObject.Find ("Redleaf_C"));
+					MissionArrows.FindLast ((x) => x.name == "Redleaf_C_Arrow").SetActive (false);
+					MissionArrows.Remove (GameObject.Find ("Redleaf_C_Arrow"));
+				}
+				if((MissionTargets.Contains (GameObject.Find ("Redleaf_A")) || MissionTargets.Contains (GameObject.Find ("Redleaf_B")) || MissionTargets.Contains (GameObject.Find ("Redleaf_C")))
+						&& MissionArrows.FindLast ((x) => x.gameObject != null && (x.name == "Redleaf_A_Arrow" || x.name == "Redleaf_B_Arrow" || x.name == "Redleaf_C_Arrow") )){
 					if(Arrow_RedLeaf)
 						MissionTargets.Add (GameObject.Find ("Event_Soyna(Clone)"));
 					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_RedLeaf);
@@ -552,8 +588,11 @@ public class MissionSetting : MonoBehaviour {
 
 				/*if(MissionArrows.Contains(GameObject.Find ("Event_Riven(Clone)_MA")))
 					Destroy (MissionArrows.Find((x) => x.name == "Event_Riven(Clone)_MA"));*/
-				if (MissionTargets.Contains(GameObject.Find ("Engine")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Engine")) {
+				if (MissionTargets.Contains(GameObject.Find ("Engine")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Engine_Arrow")) {
 					MissionTargets.Remove (GameObject.Find ("Engine"));
+					MissionArrows.FindLast ((x) => x.name == "Engine_Arrow").SetActive (false);
+					MissionArrows.Remove (GameObject.Find ("Engine_Arrow"));
+
 					if(Arrow_Engine)
 						MissionTargets.Add (GameObject.Find ("Event_Riven(Clone)"));
 					
@@ -566,8 +605,10 @@ public class MissionSetting : MonoBehaviour {
 
 				/*if(MissionArrows.Contains(GameObject.Find ("Event_Station(Clone)_MA")))
 					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Station(Clone)"))]);*/
-				if (MissionTargets.Contains(GameObject.Find ("Event_Station(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Station(Clone)")) {
+				if (MissionTargets.Contains(GameObject.Find ("Event_Station(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Station(Clone)_Arrow")) {
 					MissionTargets.Remove (GameObject.Find ("Event_Station(Clone)"));
+					MissionArrows.FindLast ((x) => x.name == "Event_Station(Clone)_Arrow").SetActive (false);
+					MissionArrows.Remove (GameObject.Find ("Event_Station(Clone)_Arrow"));
 					if(Arrow_Kyder)
 						MissionTargets.Add (GameObject.Find ("Event_Sisco(Clone)"));
 				
@@ -665,7 +706,7 @@ public class MissionSetting : MonoBehaviour {
 						GameObject.Find ("SpaceShip_Anim").GetComponent<Animation> ().Play ("Fly2");
 						CameraFade.FadeOut ();
 						Global.Player.SetActive (false);
-						Global.NextScene = 4;
+						Global.NextScene = 2; // oooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 						Oneshot = false;
 					}
 				}
