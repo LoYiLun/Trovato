@@ -33,5 +33,9 @@ public class Level03PlayerEvent : MonoBehaviour {
         {
             Flowchart.BroadcastFungusMessage("Warehouse2");
         }
+        if (other.transform.name == "Maid")
+        {
+            Flowchart.BroadcastFungusMessage("SubMission01");
+        }
     }
 }
