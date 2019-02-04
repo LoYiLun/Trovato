@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 4548420438136532}
   - component: {fileID: 33640525013801174}
   - component: {fileID: 65512144804092578}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GhostWall 3
   m_TagString: GhostWall
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 4702505203060860}
   - component: {fileID: 33317576498326504}
   - component: {fileID: 65792376199659188}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GhostWall 1
   m_TagString: GhostWall
   m_Icon: {fileID: 0}
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 4457120400391906}
   - component: {fileID: 33294977525310072}
   - component: {fileID: 65694239695299408}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GhostWall 1
   m_TagString: GhostWall
   m_Icon: {fileID: 0}
@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 4001084487294008}
   - component: {fileID: 33470264994304662}
   - component: {fileID: 65447440871125014}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GhostWall 4
   m_TagString: GhostWall
   m_Icon: {fileID: 0}
@@ -955,7 +955,7 @@ GameObject:
   - component: {fileID: 4827399511051188}
   - component: {fileID: 33880116261129260}
   - component: {fileID: 65211486678712772}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GhostWall 2
   m_TagString: GhostWall
   m_Icon: {fileID: 0}
@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 4238674080834742}
   - component: {fileID: 33154415185337248}
   - component: {fileID: 65811992075053134}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GhostWall 2
   m_TagString: GhostWall
   m_Icon: {fileID: 0}
@@ -1661,7 +1661,7 @@ GameObject:
   - component: {fileID: 4744004362857054}
   - component: {fileID: 33766025267261788}
   - component: {fileID: 65678656858311156}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GhostWall 4
   m_TagString: GhostWall
   m_Icon: {fileID: 0}
@@ -3088,7 +3088,7 @@ GameObject:
   - component: {fileID: 4270730961703872}
   - component: {fileID: 33949176791578468}
   - component: {fileID: 65696763368568678}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GhostWall 3
   m_TagString: GhostWall
   m_Icon: {fileID: 0}
@@ -3718,7 +3718,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1986562415980518}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 5, z: 3}
+  m_LocalPosition: {x: 0, y: 5, z: 2}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4067251483532636}
@@ -9030,7 +9030,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1986562415980518}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -10971,6 +10971,7 @@ MonoBehaviour:
   AllBlocks: []
   MissionTargets: []
   MissionArrows: []
+  EisPressed: 0
 --- !u!114 &114033102314629098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11164,7 +11165,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755667790548942}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba559b755669e134691a5115077d6955, type: 3}
   m_Name: 
@@ -18531,7 +18532,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 30, y: 30}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224263363386408576
 RectTransform:

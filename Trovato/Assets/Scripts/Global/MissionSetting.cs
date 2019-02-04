@@ -388,7 +388,7 @@ public class MissionSetting : MonoBehaviour {
 					MissionTargets.Clear ();
 					MissionArrows.Clear ();
 					MissionTargets.Add (GameObject.Find ("Event_GlassRepair(Clone)"));
-					CameraMove (GameObject.Find ("Event_GlassRepair(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 1), true);
+					CameraMove (GameObject.Find ("Event_GlassRepair(Clone)"), CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 1), true);
 
 					Blocking = null;
 				}
@@ -434,8 +434,8 @@ public class MissionSetting : MonoBehaviour {
 					MissionTargets.Add (GameObject.Find ("Event_Soyna(Clone)"));
 					MissionTargets.Add (GameObject.Find ("Event_Riven(Clone)"));
 					MissionTargets.Add (GameObject.Find ("Event_Sisco(Clone)"));
-					CameraMove (MissionTargets [0], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), true);
-					MultiPos = new Vector3 (0, 4, 0);
+					CameraMove (MissionTargets [0], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), true);
+					MultiPos = new Vector3 (0, 5, 0);
 					Blocking = null;
 				}
 				break;
@@ -548,7 +548,7 @@ public class MissionSetting : MonoBehaviour {
 					MissionArrows.Remove (GameObject.Find ("Event_IncinerationPlant(Clone)_Arrow"));
 					if(Arrow_Box)
 						MissionTargets.Add (GameObject.Find ("Event_Lucas(Clone)"));
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_Box);
+					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_Box);
 					Arrow_Box = false;
 				}
 				Blocking = null;
@@ -579,7 +579,7 @@ public class MissionSetting : MonoBehaviour {
 						&& MissionArrows.FindLast ((x) => x.gameObject != null && (x.name == "Redleaf_A_Arrow" || x.name == "Redleaf_B_Arrow" || x.name == "Redleaf_C_Arrow") )){
 					if(Arrow_RedLeaf)
 						MissionTargets.Add (GameObject.Find ("Event_Soyna(Clone)"));
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_RedLeaf);
+					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_RedLeaf);
 					Arrow_RedLeaf = false;
 				}
 				Blocking = null;
@@ -596,7 +596,7 @@ public class MissionSetting : MonoBehaviour {
 					if(Arrow_Engine)
 						MissionTargets.Add (GameObject.Find ("Event_Riven(Clone)"));
 					
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_Engine);
+					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_Engine);
 					Arrow_Engine = false;
 				}
 				Blocking = null;
@@ -612,7 +612,7 @@ public class MissionSetting : MonoBehaviour {
 					if(Arrow_Kyder)
 						MissionTargets.Add (GameObject.Find ("Event_Sisco(Clone)"));
 				
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 4, 0), Arrow_Kyder);
+					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_Kyder);
 					Arrow_Kyder = false;
 				}
 				Blocking = null;

@@ -7,7 +7,7 @@ public class PathController : MonoBehaviour {
 	private Ray ray;
 	private Ray FourRay;
 	private Ray FourRay2;
-	private RaycastHit hitinfo;
+	public RaycastHit hitinfo;
 	private RaycastHit Fourinfo;
 	private RaycastHit Fourinfo2;
 	public GameObject BeTouchedFloor;
@@ -288,14 +288,14 @@ public class PathController : MonoBehaviour {
 
 		// SmartWalk Mode
 		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.IsPreRotating && !Global.StopTouch && !CameraController.IsCamRotating) {
-			Debug.DrawLine (Camera.main.transform.position, hitinfo.transform.position, Color.yellow, 0.1f, true);
+			//Debug.DrawLine (Camera.main.transform.position, hitinfo.transform.position, Color.yellow, 0.1f, true);
 
 			// 如果不是第一次點地板
 			if (BeTouchedFloor != null) {
 				if(Global.Level != "Astar")
-				BeTouchedFloor.GetComponent<Renderer> ().enabled = false;
+					BeTouchedFloor.GetComponent<Renderer> ().enabled = false;
 				if(Global.Level == "Astar")
-				BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+					BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 			}
 
 			Reset ();
@@ -313,6 +313,7 @@ public class PathController : MonoBehaviour {
 			StartCoroutine (DelayTouch ());
 		}
 	}
+		
 
 	public void Reset(){
 
@@ -336,7 +337,13 @@ public class PathController : MonoBehaviour {
 		//---------------------
 
 		//Global.PlayerMove = true;
-		BeTouchedFloor = hitinfo.collider.gameObject;
+		if (ShowName.IsPointing && GameObject.Find ("Image_Name").GetComponent<ShowName> ().Floor != null) {
+			BeTouchedFloor = GameObject.Find ("Image_Name").GetComponent<ShowName> ().Floor;
+			GameObject.Find ("Image_Name").GetComponent<ShowName> ().Floor = null;
+		} else {
+			BeTouchedFloor = hitinfo.collider.gameObject;
+		}
+
 		//if(Global.Level == "Astar")
 		//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Blue") as Material;
 

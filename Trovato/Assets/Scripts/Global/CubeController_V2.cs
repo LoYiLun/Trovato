@@ -91,6 +91,15 @@ public class CubeController_V2 : MonoBehaviour {
 				Global.IsCamCtrl = false;
 				RotatePlane = null;
 			}
+		} else {
+			if (Input.GetMouseButtonDown (1) && RotatePlane == null) {
+				Global.IsCamCtrl = true;
+			}
+
+			else if (Input.GetMouseButtonUp (1)) {
+				Global.IsCamCtrl = false;
+				RotatePlane = null;
+			}
 		}
 
 

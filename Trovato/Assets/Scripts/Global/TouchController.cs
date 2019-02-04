@@ -59,13 +59,13 @@ public class TouchController : MonoBehaviour {
 		
 	void Update () {
 
-
+		/*
 		if (Input.GetMouseButton (0)) {
 			Cursor.SetCursor (Hand2, Vector2.zero, CursorMode.Auto);
 		} else {
 			Cursor.SetCursor (Hand1, Vector2.zero, CursorMode.Auto);
 		}
-
+*/
 
 		if (Input.GetMouseButtonDown (0)) {
 			foreach (GameObject allstars in stars) {

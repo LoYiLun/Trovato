@@ -38,6 +38,10 @@ public class PlayerController : MonoBehaviour {
 
 	float BoxPosY;
 
+	GameObject PortalLight;
+	GameObject PortalLight_1{get{ return GameObject.Find ("PortalLight_1");}}
+	GameObject PortalLight_2{get{ return GameObject.Find ("PortalLight_2");}}
+
 	void Awake(){
 
 	}
@@ -258,7 +262,7 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	void StopPlayerAnim(){
+	public void StopPlayerAnim(){
 		PlayerAnim.Rewind ();
 		PlayerAnim.Play ();
 		PlayerAnim.Sample ();
@@ -276,9 +280,14 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision other){
-		if (other.gameObject.tag == "Moveable")
-		{
 
+		if (other.gameObject.name == "Bush") {
+			other.gameObject.transform.GetChild (0).GetComponent<Animation> ().Stop ();
+			other.gameObject.transform.GetChild(0).GetComponent<Animation> ().Play ("BushSwing");
+		}
+
+		switch (other.gameObject.tag) {
+		case "Moveable":
 			if (Global.BePushedObj == null) {
 				StopPlayerAnim ();
 				PlayerAnim.Play ("Stand_To_Push");
@@ -286,9 +295,8 @@ public class PlayerController : MonoBehaviour {
 				Global.Player.transform.rotation = GameObject.Find ("GlobalScripts").GetComponent<PathController> ().FaceRotation;
 				RotateDir = Global.Player.transform.rotation;
 
-				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y - 0.075f , CurrentFloor.transform.position.z));
+				CancelMoving (new Vector3 (CurrentFloor.transform.position.x, transform.position.y - 0.075f, CurrentFloor.transform.position.z));
 				Global.BePushedObj = other.gameObject;
-				//Global.BePushedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Blue")as Material;
 				Global.IsPushing = true;
 				//transform.rotation = RotateDir;
 				BoxPosY = other.transform.position.y;
@@ -302,27 +310,24 @@ public class PlayerController : MonoBehaviour {
 					LockDirL = true;
 				}
 			} else {
-				CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
-				if(Global.IsPushing)
+				CancelMoving (new Vector3 (CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
+				if (Global.IsPushing)
 					PlayerAnim.Play ("Push_And_Stand");
-
 			}
+			break;
 
-
-		}
-
-
-
-
-		// EnemyWall為敵人巡邏的折返牆
-		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
-		{
+		case "Obstacle":
+		case "EnemyWall":
+		case "Bush":
 			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
 			StopPlayerAnim ();
 			if(Global.IsPushing)
 				PlayerAnim.Play ("Push_And_Stand");
-		}
+			break;
 
+		default:
+			break;
+		}
 
 	}
 
@@ -346,6 +351,34 @@ public class PlayerController : MonoBehaviour {
 			MoveMode = "FoolWalk";
 			//print("Fool");
 		}
+
+		if (other.gameObject.name == "SuperCube") {
+			/*if (PortalLight_1 != null && PortalLight_2 != null) {
+				PortalLight_1.SetActive (true);
+				PortalLight_2.SetActive (true);
+			}*/
+
+			Component[] PS;
+
+			PortalLight = Instantiate ((Resources.Load ("Prefabs/Global/PortalLight")) as GameObject);
+			PortalLight.transform.position = other.gameObject.transform.position + new Vector3(0, 0.5f, 0);
+			PS = PortalLight.GetComponentsInChildren<ParticleSystem> ();
+			foreach (ParticleSystem ps in PS) {
+				ps.Stop ();
+			}
+
+			other.gameObject.GetComponent<Renderer> ().material.color = Color.black;
+			StopPlayerAnim ();
+			CancelMoving (new Vector3 (1.5f, 3.5f, -0.5f));
+
+			PortalLight = Instantiate ((Resources.Load ("Prefabs/Global/PortalLight")) as GameObject);
+			PortalLight.transform.position = Global.Player.transform.position - new Vector3 (0, 0.5f, 0);
+			PS = PortalLight.GetComponentsInChildren<ParticleSystem> ();
+			foreach (ParticleSystem ps in PS) {
+				ps.Stop ();
+			}
+		}
+
 
 		if (other.gameObject.name == "Portal" && PortalPower) 
 		{

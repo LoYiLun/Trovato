@@ -47,6 +47,7 @@ public class Btn_Function : MonoBehaviour {
 	}
 
 	void Update(){
+
 		if (Paneling != null && Paneling.transform.localScale.x < 1 && Paneling.GetComponent<CanvasGroup> ().interactable == true) {
 			Paneling.GetComponent<CanvasGroup> ().alpha += 0.05f;
 			Paneling.transform.localScale += new Vector3 (0.025f, 0.025f, 0.025f);
@@ -63,6 +64,8 @@ public class Btn_Function : MonoBehaviour {
 				Panel_Bottom.GetComponent<CanvasGroup> ().alpha = 0.8f;
 				//Panel_TopLeft.GetComponent<CanvasGroup> ().interactable = false;
 				Panel_Bottom.GetComponent<CanvasGroup> ().blocksRaycasts = false;
+
+
 			} else {
 				Panel_TopLeft.GetComponent<CanvasGroup> ().alpha = 1;
 				//Panel_TopLeft.GetComponent<CanvasGroup> ().interactable = true;

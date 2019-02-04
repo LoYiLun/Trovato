@@ -177,7 +177,7 @@ public class CameraController : MonoBehaviour {
 
 
 		  // 紀錄攝影機旋轉完畢的新位置
-		} else if(Input.GetMouseButtonUp (1) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating){
+		} else if(!Input.GetMouseButton(1) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating){
 			IsCamRotating = false;
 			CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 		}
