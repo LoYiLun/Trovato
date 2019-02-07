@@ -31,11 +31,10 @@ public class CubeController_V2 : MonoBehaviour {
 	private float RotateSpeed = 15f;
 	private bool IgnorePlayer;
 
-
 	void Start () {
 		//Global.IsCamCtrl = true;
 	}
-	
+
 
 	void Update () {
 

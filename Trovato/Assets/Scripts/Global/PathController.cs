@@ -290,6 +290,8 @@ public class PathController : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.IsPreRotating && !Global.StopTouch && !CameraController.IsCamRotating) {
 			//Debug.DrawLine (Camera.main.transform.position, hitinfo.transform.position, Color.yellow, 0.1f, true);
 
+
+
 			// 如果不是第一次點地板
 			if (BeTouchedFloor != null) {
 				if(Global.Level != "Astar")
@@ -297,7 +299,7 @@ public class PathController : MonoBehaviour {
 				if(Global.Level == "Astar")
 					BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 			}
-
+			BeTouchedFloor = hitinfo.collider.gameObject;
 			Reset ();
 
 
@@ -336,13 +338,6 @@ public class PathController : MonoBehaviour {
 
 		//---------------------
 
-		//Global.PlayerMove = true;
-		if (ShowName.IsPointing && GameObject.Find ("Image_Name").GetComponent<ShowName> ().Floor != null) {
-			BeTouchedFloor = GameObject.Find ("Image_Name").GetComponent<ShowName> ().Floor;
-			GameObject.Find ("Image_Name").GetComponent<ShowName> ().Floor = null;
-		} else {
-			BeTouchedFloor = hitinfo.collider.gameObject;
-		}
 
 		//if(Global.Level == "Astar")
 		//BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Blue") as Material;
@@ -363,8 +358,6 @@ public class PathController : MonoBehaviour {
 		Pathlist.Clear ();
 		Openlist.Clear();
 		Closelist.Clear();
-
-
 
 		// 初始化起點
 		Startfloor.index = 0;
