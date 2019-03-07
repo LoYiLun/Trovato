@@ -151,7 +151,6 @@ public class CameraController : MonoBehaviour {
 		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack ) {
 			IsCamRotating = true;
 
-
 				// 左右
 				if (mx > 0) {
 					Cam.transform.Translate (-120 * Time.deltaTime, 0, 0);
@@ -177,7 +176,7 @@ public class CameraController : MonoBehaviour {
 
 
 		  // 紀錄攝影機旋轉完畢的新位置
-		} else if(!Input.GetMouseButton(1) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating){
+		} else if(!Input.GetMouseButton(1) && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating){
 			IsCamRotating = false;
 			CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 		}

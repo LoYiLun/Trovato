@@ -4,14 +4,40 @@ using UnityEngine;
 
 public class FaceToPlayer : MonoBehaviour {
 
-	Quaternion RotateDir;
-	bool StartRotate;
+	private Quaternion RotateDir;
+	private bool StartRotate;
+
+	// Look at Player.
+	public GameObject Head;
+	private Vector3 SightDirection;
+	private Ray SightRay;
+	private RaycastHit SightInfo;
+	private GameObject Target;
+	private bool ResetHead;
+
+	int count;
+
+	void Awake(){
+
+	}
 
 	void Start () {
 		RotateDir = transform.rotation;
 	}
 
 	void Update(){
+
+
+		if (Head != null) {
+			/*
+			SightRay.origin = gameObject.transform.position;
+			SightRay.direction = gameObject.transform.forward + new Vector3(Mathf.PingPong(count*3, 90)-45, -1, 0);
+			count++;*/
+
+		}
+
+
+
 		if (Input.GetKeyDown (KeyCode.E) && Vector3.Distance(Global.Player.transform.position, transform.position) < 1.2f && PathController.FollowPath == false) {
 			if (Global.Player.transform.position.x > transform.position.x && Mathf.Abs (Global.Player.transform.position.z - transform.position.z) <= 0.2f) {
 				RotateDir = Quaternion.Euler (0, 90, 0);

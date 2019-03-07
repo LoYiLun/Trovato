@@ -5,18 +5,12 @@ using UnityEngine;
 public class Level_Ring : MonoBehaviour {
 
 	// 滑鼠座標
-	float mx;
-	float my;
-	float CamView = 15;
-	float ViewTime = 60;
-
+	float MouseX;
 	int PlanetsCount = 4;
 
-	GameObject Cam;
 	GameObject Ring;
 	GameObject SelectLight;
 	public GameObject CurrentLevel;
-	GameObject PlanetTarget;
 	GameObject[] Planets = new GameObject[4];
 
 	Quaternion RingDirection;
@@ -25,11 +19,9 @@ public class Level_Ring : MonoBehaviour {
 
 	void Awake(){
 
-		Cam = GameObject.Find ("Camera");
 		Ring = GameObject.Find("Ring_of_Levels");
 		SelectLight = GameObject.Find ("SelectLight");
 		CurrentLevel = GameObject.Find ("Level_01");
-		PlanetTarget = GameObject.Find ("PlanetTarget");
 		RingDirection = Quaternion.Euler (0, -20, 0);
 	}
 
@@ -43,14 +35,11 @@ public class Level_Ring : MonoBehaviour {
 	void Update () {
 
 		// 滑鼠區 ----------------------
-		mx = Input.GetAxis ("Mouse X") ;
-		my = Input.GetAxis ("Mouse Y") ;
+		MouseX = Input.GetAxis ("Mouse X") ;
 
 		if (Input.GetMouseButton (1)) {
-			Ring.transform.Rotate (0, -10 * mx, 0);
-			//CamView = 25;
+			Ring.transform.Rotate (0, -10 * MouseX, 0);
 		} else if (Input.GetMouseButtonUp (1)) {
-			//CamView = 17;
 			switch (CurrentLevel.name) {
 			case"Level_01":
 				RingDirection = Quaternion.Euler (0, -20, 0);
@@ -72,12 +61,9 @@ public class Level_Ring : MonoBehaviour {
 
 		// 偵測區 ----------------------
 		foreach(GameObject planet in Planets){
-			//Camera.main.fieldOfView -= (Camera.main.fieldOfView - CamView) / ViewTime;
-
 			if (Vector3.Distance (planet.transform.position, SelectLight.transform.position) < 30) {
 				CurrentLevel = planet;
 			}
 		}
-
 	}
 }

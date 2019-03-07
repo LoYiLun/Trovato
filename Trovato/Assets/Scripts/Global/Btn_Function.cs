@@ -16,21 +16,10 @@ public class Btn_Function : MonoBehaviour {
 	GameObject[] blocks;
 	public Text Text_CamCtrl;
 
-	// 自爆模式
-	public GameObject Explosion;
-	public GameObject Fire;
-
-
 	GameObject Paneling;
-	GameObject Panel_TopLeft{
-		get{return GameObject.Find ("Panel_TopLeft");}
-	}
-	GameObject Panel_TopRight{
-		get{return GameObject.Find ("Panel_TopRight");}
-	}
-	GameObject Panel_Bottom{
-		get{return GameObject.Find ("Panel_Bottom");}
-	}
+	GameObject Panel_TopLeft{ get{return GameObject.Find ("Panel_TopLeft");}}
+	GameObject Panel_TopRight{ get{return GameObject.Find ("Panel_TopRight");}}
+	GameObject Panel_Bottom{ get{return GameObject.Find ("Panel_Bottom");}}
 
 
 	void Start () {
@@ -125,36 +114,6 @@ public class Btn_Function : MonoBehaviour {
 	// 重新來過
 	public void Rebuild(){
 		Global.Retry ();
-	}
-
-	// 自爆模式
-	public void Explode(){
-		GameObject[] Cubes;
-		GameObject[] Floors;
-		GameObject[] RotatePlanes;
-		GameObject[] GhostWalls;
-		Cubes = GameObject.FindGameObjectsWithTag ("Cube");
-		Floors = GameObject.FindGameObjectsWithTag ("Floor");
-		RotatePlanes = GameObject.FindGameObjectsWithTag ("RotatePlane");
-		GhostWalls = GameObject.FindGameObjectsWithTag ("GhostWall");
-		Explosion.GetComponent<Collider> ().enabled = true;
-		foreach (GameObject cube in Cubes) {
-			cube.AddComponent<Rigidbody> ();
-		}
-		foreach (GameObject floor in Floors) {
-			floor.AddComponent<Rigidbody> ();
-		}
-		foreach (GameObject plane in RotatePlanes) {
-			plane.AddComponent<Rigidbody> ();
-		}
-		foreach (GameObject wall in GhostWalls) {
-			wall.AddComponent<Rigidbody> ();
-		}
-		Fire.SetActive (true);
-		Global.Player.GetComponent<Collider> ().enabled = false;
-		Global.StopTouch = true;
-		Destroy (GameObject.Find("Btn_PlayerMove"));
-		Destroy (GameObject.Find("Btn_Explode"));
 	}
 
 	public void SwitchPanel(string PanelName){

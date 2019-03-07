@@ -8,14 +8,13 @@ public class ShowName : MonoBehaviour {
 	public static bool IsPointing;
 	public GameObject BePointedObj;
 	private Text Name{get { return gameObject.transform.GetChild (0).gameObject.GetComponent<Text>();}}
-	public Vector3 FixedMove = new Vector3(150, -50, 0);
+	public Vector3 FixedMove;
 	private Ray ray;
-	private Ray downray;
 	private RaycastHit Eventinfo;
 	public RaycastHit Downinfo;
 
 	void Awake(){
-		downray.direction = Vector3.down;
+		
 	}
 
 	void Start () {
@@ -24,6 +23,7 @@ public class ShowName : MonoBehaviour {
 	
 
 	void Update () {
+		FixedMove = new Vector3 (Screen.width / 1920 * 150, Screen.height / 1080 * (-50), 0);
 
 		ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		gameObject.transform.position = Input.mousePosition + FixedMove;

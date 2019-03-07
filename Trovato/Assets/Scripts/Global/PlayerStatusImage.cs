@@ -13,7 +13,6 @@ public class PlayerStatusImage : MonoBehaviour {
 	public Sprite text3;
 	public Sprite text4;
 	public Sprite PressE;
-	bool statusing;
 
 	void Awake(){
 		instance = this;
@@ -39,7 +38,6 @@ public class PlayerStatusImage : MonoBehaviour {
 
 			break;
 		case"Interact?":
-			//statusing = true;
 			StatusImage.enabled = true;
 			StatusImage.sprite = PressE;
 			Status = "None";
@@ -59,7 +57,6 @@ public class PlayerStatusImage : MonoBehaviour {
 
 	 IEnumerator IsTalking(){
 		for (float i = 0; i < 10f; i += Time.deltaTime) {
-			statusing = true;
 			GetComponent<Image> ().sprite = text1;
 			yield return new WaitForSeconds (0.6f);
 			GetComponent<Image> ().sprite = text2;
@@ -70,7 +67,6 @@ public class PlayerStatusImage : MonoBehaviour {
 			yield return new WaitForSeconds (0.2f);
 
 			if (Status == null || Global.PlayerMove) {
-				statusing = false;
 				GetComponent<Image> ().enabled = false;
 				yield break;
 			}

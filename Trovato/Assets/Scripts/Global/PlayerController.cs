@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour {
 	GameObject PortalLight_2{get{ return GameObject.Find ("PortalLight_2");}}
 
 	void Awake(){
-
+		
 	}
 
 	void Start () {

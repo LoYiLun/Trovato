@@ -41,7 +41,6 @@ public class PathController : MonoBehaviour {
 	private float MinF;
 	private Floor NextHost;
 	private int floorindex;
-	private int pathindex;
 
 	private bool SearchMode;
 	public static bool FollowPath;
@@ -94,7 +93,6 @@ public class PathController : MonoBehaviour {
 		ChangeGoal = false;
 		Origin = null;
 		floorindex = 0;
-		pathindex = 0;
 		tempt = 0;
 		dis = 0;
 		MinF = 0;
@@ -330,7 +328,6 @@ public class PathController : MonoBehaviour {
 		//FloorB = null;
 		Origin = null;
 		floorindex = 0;
-		pathindex = 0;
 		tempt = 0;
 		dis = 0;
 		MinF = 0;

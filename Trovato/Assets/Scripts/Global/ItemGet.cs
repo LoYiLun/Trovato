@@ -30,7 +30,7 @@ public class ItemGet : MonoBehaviour {
 		if (MissionSetting.FlowerChart != null) {
 
 			// Light
-			if(MissionSetting.FlowerChart.GetIntegerVariable("ItemLight") != null && Spotlight != null){
+			if(Spotlight != null){
 				switch (MissionSetting.FlowerChart.GetIntegerVariable ("ItemLight")) {
 				case 0:
 					Spotlight.GetComponent<Image> ().enabled = false;

@@ -10,7 +10,7 @@ public class MissionSetting : MonoBehaviour {
 	bool Oneshot;
 	bool AnotherOneshot;
 	int NextLevel;
-	public string Blocking;
+	public static string Blocking;
 	private GameObject MissionArrow;
 
 	private GameObject Target;
@@ -24,8 +24,6 @@ public class MissionSetting : MonoBehaviour {
 	private Vector3 LastHeartPos;
 	public static bool CamIsMoving;
 	public static bool CamIsMovingBack;
-	private bool OS2;
-	private Vector3 FixedRot;
 	private Quaternion CamRotTarget;
 	public List<Block> AllBlocks = new List<Block>();
 	public List<GameObject> MissionTargets = new List<GameObject> ();
@@ -91,7 +89,6 @@ public class MissionSetting : MonoBehaviour {
 		Target = _Target;
 		CurrentCam = _CurrentCam;
 		ScreenHeart = _ScreenHeart;
-		FixedRot = Vector3.up;
 
 		if (MissionTargets.LastIndexOf (Target) <= MissionTargets.Count && ArrowPos != Vector3.zero && NeedArrow ) {
 			MissionArrows.Add (Instantiate (MissionArrow, Target.transform.position, Target.transform.rotation, Target.transform));
@@ -128,7 +125,6 @@ public class MissionSetting : MonoBehaviour {
 		//ScreenHeart.transform.position = ScreenHeart_Origin;
 		Global.StopTouch = true;
 		CamIsMoving = true;
-		OS2 = true;
 		return;
 
 	}
@@ -640,7 +636,6 @@ public class MissionSetting : MonoBehaviour {
 							CamIsMoving = false;
 							CamIsMovingBack = true;
 							Global.StopTouch = true;
-							OS2 = true;
 						}
 					}
 

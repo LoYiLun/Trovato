@@ -11,7 +11,6 @@ public class ImageFade : MonoBehaviour {
 	public static bool FadeOut;
 	//float alpha;
 	float b;
-	bool max;
 
 	void Start () {
 		Tips_Box = GameObject.Find ("Tips_Box").GetComponent<Image> ();
@@ -29,20 +28,6 @@ public class ImageFade : MonoBehaviour {
 					FadeOut = true;
 				}
 			}
-
-			if (Tips_Box.color.a == 1f) {
-				max = true;
-
-			}
-
-			/*
-			if (Tips_Box.color.a < 0.1f && max) {
-				Global.StopTouch = false;
-				PlayerStatusImage.GetStatus("None");
-			} else {
-				Global.StopTouch = true;
-			}*/
-
 
 			if (FadeOut) {
 				if (b > 0) {

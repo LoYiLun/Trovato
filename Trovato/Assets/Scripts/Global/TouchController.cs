@@ -8,11 +8,7 @@ public class TouchController : MonoBehaviour {
 	GameObject Arrow;
 	GameObject TargetLight;
 	bool IsRightClick;
-	bool IsFloorShining;
 	bool TouchOnce;
-
-	string[] RotateNumBox = new string[2];
-	string Box;
 
 	public GameObject Star;
 	GameObject[] stars = new GameObject[8];
@@ -38,7 +34,6 @@ public class TouchController : MonoBehaviour {
 	IEnumerator TouchEffect(GameObject TheFloor){
 		for (float i=0; i < 10f; i += Time.deltaTime) {
 			if (TheFloor.GetComponent<Renderer> () != null) {
-				IsFloorShining = true;
 				TheFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch0")as Material;
 				yield return new WaitForSeconds (0.1f);
 				TheFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch1")as Material;
@@ -48,7 +43,6 @@ public class TouchController : MonoBehaviour {
 			}
 
 			if (Global.PlayerMove == false) {
-				IsFloorShining = false;
 				yield break;
 			}
 		}
