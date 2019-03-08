@@ -98,4 +98,5 @@ public class Level01PlayerEvent : MonoBehaviour {
     {
         get { return main.GetBooleanVariable("Ship"); }
     }
+
 }

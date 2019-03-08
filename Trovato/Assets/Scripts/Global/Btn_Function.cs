@@ -20,13 +20,14 @@ public class Btn_Function : MonoBehaviour {
 	GameObject Panel_TopLeft{ get{return GameObject.Find ("Panel_TopLeft");}}
 	GameObject Panel_TopRight{ get{return GameObject.Find ("Panel_TopRight");}}
 	GameObject Panel_Bottom{ get{return GameObject.Find ("Panel_Bottom");}}
+    public GameObject ForShowGoalHint;
 
 
-	void Start () {
-		//Names = GameObject.FindGameObjectsWithTag ("Name");
-		//ShowName ();
-
-		if (Global.Level != "0") {
+    void Start () {
+        //Names = GameObject.FindGameObjectsWithTag ("Name");
+        //ShowName ();
+        ForShowGoalHint.SetActive(false);
+        if (Global.Level != "0") {
 			if (Screen.width == 1280) {
 				Panel_TopLeft.transform.position = new Vector3 (Panel_TopLeft.transform.position.x, Screen.height - 40, Panel_TopLeft.transform.position.z);
 				Panel_TopRight.transform.position = new Vector3 (Panel_TopRight.transform.position.x, Screen.height - 40, Panel_TopRight.transform.position.z);
@@ -186,9 +187,19 @@ public class Btn_Function : MonoBehaviour {
 		CameraController.CurrentCam.transform.LookAt (GameObject.Find("CamScript").GetComponent<CameraController> ().ScreenHeart.transform);
 	}
 
+    public void ShowGoalHint()
+    {
+        if (ForShowGoalHint.activeSelf)
+        {
+            ForShowGoalHint.SetActive(false);
+        }
+        else
+            ForShowGoalHint.SetActive(true);
+    }
 
-	// 選擇關卡
-	public void ToMenu(){
+
+    // 選擇關卡
+    public void ToMenu(){
 		Global.ResetVar ();
 		SceneManager.LoadScene ("Menu_VD");
 		//SceneManager.LoadScene ("Menu");
