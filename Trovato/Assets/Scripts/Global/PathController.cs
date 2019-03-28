@@ -78,6 +78,16 @@ public class PathController : MonoBehaviour {
 	private RaycastHit Ninfo;
 	float StunTime;
 
+	private float walkSpeed;
+	/*
+	public GameObject trueHead;
+	public GameObject walkingHead;
+	private GameObject nextTwoFloor;
+	private GameObject headFloor;
+	private GameObject targetFloor;
+	private Quaternion headRotation;
+	private bool setHeadFloor;*/
+
 	void Start () {
 		FourRay = new Ray(Vector3.zero, Vector3.zero);
 		FourRay2 = new Ray(Vector3.zero, Vector3.zero);
@@ -105,6 +115,40 @@ public class PathController : MonoBehaviour {
 		anim.Stop ();
 	}
 
+	/*
+	public void setHeadRotation(){
+		if (FaceRotation.y == 0 && targetFloor.transform.position.x > walkingHead.transform.position.x) {
+			headRotation = Quaternion.Euler (-90, 90, 90);
+		}
+
+		if (FaceRotation.y == 0 && targetFloor.transform.position.x < walkingHead.transform.position.x) {
+			headRotation = Quaternion.Euler (-90, -90, 90);
+		}
+
+		if (FaceRotation.y == 90 && targetFloor.transform.position.z > walkingHead.transform.position.z) {
+			headRotation = Quaternion.Euler (-90, 0, 90);
+		}
+
+		if (FaceRotation.y == 90 && targetFloor.transform.position.z < walkingHead.transform.position.z) {
+			headRotation = Quaternion.Euler (-90, 180, 90);
+		}
+
+		if (FaceRotation.y == 180 && targetFloor.transform.position.x > walkingHead.transform.position.x) {
+			headRotation = Quaternion.Euler (-90, 90, 90);
+		}
+
+		if (FaceRotation.y == 180 && targetFloor.transform.position.x < walkingHead.transform.position.x) {
+			headRotation = Quaternion.Euler (-90, -90, 90);
+		}
+
+		if (FaceRotation.y == -90 && targetFloor.transform.position.z > walkingHead.transform.position.z) {
+			headRotation = Quaternion.Euler (-90, 0, 90);
+		}
+
+		if (FaceRotation.y == -90 && targetFloor.transform.position.z < walkingHead.transform.position.z) {
+			headRotation = Quaternion.Euler (-90, 180, 90);
+		}
+	}*/
 
 	void FixedUpdate(){
 
@@ -119,15 +163,28 @@ public class PathController : MonoBehaviour {
 			if ((FloorA != null) && (FloorB != null)) {
 				dis = Mathf.Abs (Global.Player.transform.position.x - FloorB.transform.position.x) +
 					Mathf.Abs (Global.Player.transform.position.z - FloorB.transform.position.z);
-			
+				
 				anim.Play ("Walk");
+				if (FloorB != BeTouchedFloor) {
+					walkSpeed = Mathf.Clamp (walkSpeed + 0.2f, 0.5f, 3);
+					anim ["Walk"].speed = walkSpeed / 3;
+				} else {
+					walkSpeed = Mathf.Clamp (walkSpeed - 0.1f, 2f, 3);
+					anim ["Walk"].speed = walkSpeed / 3;
+				}
+					
 				Global.Player.GetComponent<PlayerController> ().LockRotation = false;
-				Global.Player.transform.position += (FloorB.transform.position - FloorA.transform.position + new Vector3 (0, 0.45f, 0)) * 3 * Time.deltaTime;
+				Global.Player.transform.position += (FloorB.transform.position - FloorA.transform.position + new Vector3 (0, 0.45f, 0)) * walkSpeed * Time.deltaTime;
+				//Global.Player.transform.position += (FloorB.transform.position - FloorA.transform.position + new Vector3 (0, 0.45f, 0)) * 3 * Time.deltaTime;
+
+
+
 			//print("dis: " + dis);
 			}else if((FloorA == null) && (FloorB == null)){
 				// 防止原地走動
 				Stopanim ();
 				FollowPath = false;
+
 			}
 
 
@@ -144,7 +201,10 @@ public class PathController : MonoBehaviour {
 						color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 					}
 					//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
-					Stopanim ();	
+					Stopanim ();
+
+					walkSpeed = 0;
+					anim ["Walk"].speed = 1;
 					FollowPath = false;
 					Global.PlayerMove = false;
 				}
@@ -165,6 +225,7 @@ public class PathController : MonoBehaviour {
 					FloorB = TemptFloorB;
 					if (FloorA != null)
 						FloorA.GetComponent<Renderer> ().material = Resources.Load ("Materials/Dark") as Material;
+
 
 				}
 			} else if (dis >= 2) {
@@ -210,7 +271,7 @@ public class PathController : MonoBehaviour {
 
 		// 主角自轉系統：開始自轉
 		if (Global.Player != null && !Global.IsPreRotating && !Global.IsPushing && !Global.Player.GetComponent<PlayerController>().LockRotation) {
-			Global.Player.transform.rotation = Quaternion.Lerp (Global.Player.transform.rotation, FaceRotation, 0.2f);
+			Global.Player.transform.rotation = Quaternion.Lerp (Global.Player.transform.rotation, FaceRotation, 0.1f);
 			if (Quaternion.Angle (Global.Player.transform.rotation, FaceRotation) < 10) {
 				Global.Player.transform.rotation = FaceRotation;
 			}
@@ -383,7 +444,7 @@ public class PathController : MonoBehaviour {
 			if(Global.Level != "Astar")
 			BeTouchedFloor.GetComponent<Renderer> ().enabled = false;
 
-			print("<color=orange>No way!!</color>");
+			print("<color=red>No way!!</color>");
 		}
 
 		if(SearchMode && !Global.IsPushing){

@@ -56,7 +56,6 @@ public class CameraController : MonoBehaviour {
 		CamTarget = ScreenHeart;
 		CurrentCam.transform.LookAt (CamTarget.transform);
 		CamView = Camera.main.fieldOfView;
-
 	}
 
 	void Update () {

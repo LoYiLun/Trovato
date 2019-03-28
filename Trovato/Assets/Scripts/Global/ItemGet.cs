@@ -19,6 +19,9 @@ public class ItemGet : MonoBehaviour {
 
 	void Awake(){
 		MidScreen = new Vector3 (Screen.width / 2, Screen.height / 2, 0);
+		Item_1.transform.rotation = Quaternion.Euler (0, 90, 0);
+		Item_2.transform.rotation = Quaternion.Euler (0, 90, 0);
+		Item_3.transform.rotation = Quaternion.Euler (0, 90, 0);
 	}
 
 	void Start () {
@@ -38,27 +41,36 @@ public class ItemGet : MonoBehaviour {
 					break;
 				case 1:
 					Spotlight.GetComponent<Image> ().enabled = true;
-					Spotlight.transform.position = Vector3.Lerp (Spotlight.transform.position, Item_1.transform.position, 5*Time.deltaTime);
+					Spotlight.transform.position = Vector3.Lerp (Spotlight.transform.position, Item_1.transform.position, 5 * Time.deltaTime);
+					if(Item_1.transform.rotation != Quaternion.Euler(0, 0, 0))
+						Item_1.transform.rotation *= Quaternion.Euler (0, -100 * Time.deltaTime, 0);
 					Item_1.GetComponent<Image> ().color = new Color (255, 255, 255, 1);
 					Item_2.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
 					Item_3.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
 					break;
 				case 2:
 					Spotlight.GetComponent<Image> ().enabled = true;
-					Spotlight.transform.position = Vector3.Lerp (Spotlight.transform.position, Item_2.transform.position, 5*Time.deltaTime);
+					Spotlight.transform.position = Vector3.Lerp (Spotlight.transform.position, Item_2.transform.position, 5 * Time.deltaTime);
+					Item_1.transform.rotation = Quaternion.Euler (0, 0, 0);
+					if(Item_2.transform.rotation != Quaternion.Euler(0, 0, 0))
+						Item_2.transform.rotation *= Quaternion.Euler (0, -100 * Time.deltaTime, 0);
 					Item_1.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
 					Item_2.GetComponent<Image> ().color = new Color (255, 255, 255, 1);
 					Item_3.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
 					break;
 				case 3:
 					Spotlight.GetComponent<Image> ().enabled = true;
-					Spotlight.transform.position = Vector3.Lerp (Spotlight.transform.position, Item_3.transform.position, 5*Time.deltaTime);
+					Spotlight.transform.position = Vector3.Lerp (Spotlight.transform.position, Item_3.transform.position, 5 * Time.deltaTime);
+					Item_2.transform.rotation = Quaternion.Euler (0, 0, 0);
+					if(Item_3.transform.rotation != Quaternion.Euler(0, 0, 0))
+						Item_3.transform.rotation *= Quaternion.Euler (0, -100 * Time.deltaTime, 0);
 					Item_1.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
 					Item_2.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
 					Item_3.GetComponent<Image> ().color = new Color (255, 255, 255, 1);
 					break;
 				case 4:
 					Spotlight.GetComponent<Image> ().enabled = true;
+					Item_3.transform.rotation = Quaternion.Euler (0, 0, 0);
 					Item_1.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
 					Item_2.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
 					Item_3.GetComponent<Image> ().color = new Color (255, 255, 255, 0.3f);
@@ -100,11 +112,12 @@ public class ItemGet : MonoBehaviour {
 				}
 
 				if (MissionSetting.FlowerChart.GetBooleanVariable ("TakeFire")) {
-					FireBottle.GetComponent<Renderer> ().enabled = true;
+					//FireBottle.GetComponent<Renderer> ().enabled = true;
+					showRenderer(FireBottle, true);
 					PlayerStatusImage.GetStatus ("None");
 					FireBottle.transform.position = Vector3.MoveTowards (FireBottle.transform.position, Global.Player.transform.position + new Vector3 (0, 1, 0), 0.02f);
 					if (Vector3.Distance (FireBottle.transform.position, Global.Player.transform.position + new Vector3 (0, 1, 0)) < 0.01f) {
-						FireBottle.GetComponent<Renderer> ().enabled = false;
+						showRenderer (FireBottle, false);
 						Item_2.GetComponent<Image> ().color = new Color (255, 255, 255, 1);
 					}
 				}
@@ -119,6 +132,15 @@ public class ItemGet : MonoBehaviour {
 				
 			}
 
+		}
+	}
+
+	public void showRenderer(GameObject item, bool status){
+		if (item.transform.childCount == 0) {
+			item.GetComponent<Renderer> ().enabled = status;
+		} else {
+			for (int i = 0; i < item.transform.childCount - 1; i++)
+				item.transform.GetChild (i).GetComponent<Renderer> ().enabled = status;
 		}
 	}
 }
