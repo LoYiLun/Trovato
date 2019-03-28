@@ -279,11 +279,45 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
+	public void setPlayerStatus(string _name){
+		switch (_name) {
+		case "King":
+		case "Bookroom5":
+		case "HouseKeeper":
+		case "Warehouse2":
+		case "Maid":
+		case "Servent":
+		case "Cat":
+		case "Cat2":
+		case "OldMan":
+			PlayerStatusImage.GetStatus ("None");
+			break;
+		}
+	}
+
 	void OnCollisionEnter(Collision other){
+
+		if(other.transform.name != null)
+			setPlayerStatus (other.transform.name);
 
 		if (other.gameObject.name == "Bush") {
 			other.gameObject.transform.GetChild (0).GetComponent<Animation> ().Stop ();
 			other.gameObject.transform.GetChild(0).GetComponent<Animation> ().Play ("BushSwing");
+		}
+
+		if (other.gameObject.name == "Cat") {
+			GameObject cat;
+			GameObject cat2;
+			cat = GameObject.Find ("Cat");
+			cat2 = GameObject.Find("Cat2");
+			cat.SetActive(false);
+			cat2.GetComponent<Collider> ().enabled = true;
+			cat2.transform.GetChild (0).gameObject.SetActive (true);
+		}
+
+		if (!Global.IsPreRotating && !Global.IsRotating && other.gameObject.name == "Cat2") {
+			MissionSetting.FlowerChart.SetBooleanVariable ("Cat", true);
+			other.gameObject.SetActive (false);
 		}
 
 		switch (other.gameObject.tag) {
