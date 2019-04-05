@@ -41,6 +41,7 @@ public class MissionSetting : MonoBehaviour {
 	private bool Arrow_Kyder = true;
 
 	// Active Area
+	// Chapter 01
 	public bool EisPressed;
 	private GameObject Shop_Door2{get{return GameObject.Find("Shop_Door2"); }}
 	private GameObject Rose{get{return GameObject.Find("Rose"); }}
@@ -51,6 +52,7 @@ public class MissionSetting : MonoBehaviour {
 	private GameObject WareHouse_Door{get{return GameObject.Find("WareHouse_Door"); }}
 	private GameObject MtShip1{get{return GameObject.Find("Mt.SpaceShip_Door1"); }}
 
+	// Chapter 02
 	private GameObject Lucas{get{return GameObject.Find("Lucas"); }}
 	private GameObject Soyna{get{return GameObject.Find("Soyna"); }}
 	private GameObject Sisco{get{return GameObject.Find("Sisco"); }}
@@ -58,6 +60,7 @@ public class MissionSetting : MonoBehaviour {
 	private GameObject Mike{get{return GameObject.Find("Mike"); }}
 	private GameObject Bill{get{return GameObject.Find("Bill"); }}
 
+	// Chapter 03
 	private GameObject King{get{return GameObject.Find("King"); }}
 	private GameObject Warehouse2{get{return GameObject.Find("Warehouse2"); }}
 	private GameObject HouseKeeper{get{return GameObject.Find("HouseKeeper"); }}
@@ -76,16 +79,15 @@ public class MissionSetting : MonoBehaviour {
 
 	void Start () {
 		if(GetFlowChart != null)
-		FlowerChart = GetFlowChart;
-
-		
-
+			FlowerChart = GetFlowChart;
+		if (Global.Level == "2" || Global.Level == "3") {
+			foreach (Component skin in PlayerBody.GetComponentsInChildren<FadeObject>())
+				skin.GetComponent<FadeObject> ().PlayerFadeOut ();
+		}
 	}
 
 
 	void CameraMove(GameObject _Target, GameObject _CurrentCam, GameObject _ScreenHeart, Vector3 ArrowPos, bool NeedArrow){
-
-
 		Target = _Target;
 		CurrentCam = _CurrentCam;
 		ScreenHeart = _ScreenHeart;
@@ -99,6 +101,7 @@ public class MissionSetting : MonoBehaviour {
 		}
 		if (TargetID == 0) {
 			CurrentCam_Origin = CurrentCam.transform.position;
+			//ScreenHeart.transform.position = CameraControllerV2.currentHeart.transform.position; // For Camera track.
 			ScreenHeart_Origin = ScreenHeart.transform.position;
 			ScreenHeart_OriginRot = ScreenHeart.transform.rotation;
 		}
@@ -236,7 +239,11 @@ public class MissionSetting : MonoBehaviour {
 					if (Mathf.Abs (SpaceShip.transform.position.y - Global.Player.transform.position.y) < 0.05f) {
 						for (int i = 0; i < PlayerBody.transform.childCount; i++) {
 							PlayerBody.transform.GetChild (i).gameObject.GetComponent<Renderer> ().enabled = true;
+							PlayerBody.transform.GetChild (i).gameObject.GetComponent<FadeObject> ().PlayerFadeIn ();
+
 						}
+						if(PlayerBody.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.color.a >= 0.5f && this.GetComponent<PathController>().BeTouchedFloor == null)
+							this.GetComponent<PathController> ().WalkOrder ("V3Floor_10");
 					}
 				}
 
@@ -307,7 +314,11 @@ public class MissionSetting : MonoBehaviour {
 					if (Mathf.Abs (SpaceShip.transform.position.y - Global.Player.transform.position.y) < 0.05f) {
 						for (int i = 0; i < PlayerBody.transform.childCount; i++) {
 							PlayerBody.transform.GetChild (i).gameObject.GetComponent<Renderer> ().enabled = true;
+							PlayerBody.transform.GetChild (i).gameObject.GetComponent<FadeObject> ().PlayerFadeIn ();
+
 						}
+						if(PlayerBody.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.color.a >= 0.5f && this.GetComponent<PathController>().BeTouchedFloor == null)
+							this.GetComponent<PathController> ().WalkOrder ("V3Floor_2");
 					}
 				}
 
@@ -640,6 +651,7 @@ public class MissionSetting : MonoBehaviour {
 					}
 
 					} else {
+					// Camera is moving.
 					PlayerStatusImage.GetStatus ("None");
 					ScreenHeart.transform.position = Vector3.Lerp (ScreenHeart.transform.position, NextHeartPos, 0.03f);
 					CurrentCam.transform.position = Vector3.Lerp (CurrentCam.transform.position, NextCamPos, 0.03f);
@@ -648,7 +660,7 @@ public class MissionSetting : MonoBehaviour {
 
 						}
 				} else if (CurrentCam != null && ScreenHeart != null && Target != null && !CamIsMoving && CamIsMovingBack) {
-					if (Vector3.Distance (CurrentCam.transform.position, CurrentCam_Origin) <= 0.2f) {
+					if (Vector3.Distance (CurrentCam.transform.position, CurrentCam_Origin) <= 0.1f) {
 						TargetID = 0;
 						ScreenHeart.transform.position = ScreenHeart_Origin;
 						ScreenHeart.transform.rotation = ScreenHeart_OriginRot;
@@ -657,10 +669,12 @@ public class MissionSetting : MonoBehaviour {
 						CamIsMovingBack = false;
 
 					} else {
+					// Camera is moving back.
 					ScreenHeart.transform.position = Vector3.Lerp (ScreenHeart.transform.position, ScreenHeart_Origin, 0.04f);
 					CurrentCam.transform.position = Vector3.Lerp (CurrentCam.transform.position, CurrentCam_Origin, 0.04f);
 					CamRotTarget = Quaternion.LookRotation (ScreenHeart.transform.position - CurrentCam.transform.position, Vector3.Lerp (CurrentCam.transform.up, Vector3.up, 0.075f));
 					CurrentCam.transform.rotation = Quaternion.Slerp (CurrentCam.transform.rotation, CamRotTarget, 0.8f);
+
 					}
 				}
 
@@ -686,7 +700,7 @@ public class MissionSetting : MonoBehaviour {
 						GameObject.Find ("SpaceShip_Anim").GetComponent<Animation> ().Play ("Fly");
 						CameraFade.FadeOut ();
 						Global.Player.SetActive (false);
-						Global.NextScene = 3;
+						Global.NextScene = 3; // To Chapter 02
 						Oneshot = false;
 
 					}
@@ -701,7 +715,7 @@ public class MissionSetting : MonoBehaviour {
 						GameObject.Find ("SpaceShip_Anim").GetComponent<Animation> ().Play ("Fly2");
 						CameraFade.FadeOut ();
 						Global.Player.SetActive (false);
-						Global.NextScene = 2; // oooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+						Global.NextScene = 4; // To Chapter 03
 						Oneshot = false;
 					}
 				}

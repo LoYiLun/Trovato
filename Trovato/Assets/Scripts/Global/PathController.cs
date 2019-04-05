@@ -79,6 +79,8 @@ public class PathController : MonoBehaviour {
 	float StunTime;
 
 	private float walkSpeed;
+	private bool isWalkingOrder;
+
 	/*
 	public GameObject trueHead;
 	public GameObject walkingHead;
@@ -151,13 +153,9 @@ public class PathController : MonoBehaviour {
 	}*/
 
 	void FixedUpdate(){
-
-
-
 		// 主角尋路系統
 		if (FollowPath && Closelist.Count <= AllFloors.Length && !Global.IsPushing && !Global.IsPreRotating) {
 			Global.PlayerMove = true;
-
 
 			//dis = Vector3.Distance (Global.Player.transform.position, FloorB.transform.position + fix);
 			if ((FloorA != null) && (FloorB != null)) {
@@ -196,24 +194,19 @@ public class PathController : MonoBehaviour {
 					PlayerController.CancelMoving (BeTouchedFloor.transform.position);
 					foreach (GameObject color in AllFloors) {
 						if(Global.Level != "Astar")
-						color.GetComponent<Renderer> ().enabled = false;
+							color.GetComponent<Renderer> ().enabled = false;
 						if(Global.Level == "Astar")
-						color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
+							color.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/Gray2") as Material;
 					}
 					//Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
 					Stopanim ();
-
+					isWalkingOrder = false;
 					walkSpeed = 0;
 					anim ["Walk"].speed = 1;
 					FollowPath = false;
 					Global.PlayerMove = false;
 				}
-
-
-
-
 				Global.Player.transform.position = PlayerController.CurrentFloor.transform.position + fix;
-
 				if (!ChangeGoal) {
 					FloorA = FloorB;
 					FloorB = Pathlist.Find ((x) => x.Dad != null && x.Dad == PlayerController.CurrentFloor).Object;
@@ -225,8 +218,6 @@ public class PathController : MonoBehaviour {
 					FloorB = TemptFloorB;
 					if (FloorA != null)
 						FloorA.GetComponent<Renderer> ().material = Resources.Load ("Materials/Dark") as Material;
-
-
 				}
 			} else if (dis >= 2) {
 				PlayerController.CancelMoving (PlayerController.CurrentFloor.transform.position + fix);
@@ -257,7 +248,6 @@ public class PathController : MonoBehaviour {
 
 		// 主角自轉系統：設定方向
 		if (FollowPath && Closelist.Count <= AllFloors.Length && FloorA != null && FloorB != null) {
-
 			WalkDir = FloorA.transform.position - FloorB.transform.position;
 			if (WalkDir.x > 0 && Mathf.Abs(WalkDir.z) <= 0.2f)
 				FaceRotation = Quaternion.Euler (0, -90, 0);
@@ -271,14 +261,11 @@ public class PathController : MonoBehaviour {
 
 		// 主角自轉系統：開始自轉
 		if (Global.Player != null && !Global.IsPreRotating && !Global.IsPushing && !Global.Player.GetComponent<PlayerController>().LockRotation) {
-			Global.Player.transform.rotation = Quaternion.Lerp (Global.Player.transform.rotation, FaceRotation, 0.1f);
+			Global.Player.transform.rotation = Quaternion.Lerp (Global.Player.transform.rotation, FaceRotation, 0.2f);
 			if (Quaternion.Angle (Global.Player.transform.rotation, FaceRotation) < 10) {
 				Global.Player.transform.rotation = FaceRotation;
 			}
-
 		}
-
-
 	}
 
 	IEnumerator DelayTouch(){
@@ -327,8 +314,7 @@ public class PathController : MonoBehaviour {
 			fixB = new Vector3 (0, 0, AngleZB);
 			print ("fixB: " + fixB);
 		}*/
-
-
+			
 		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 		// FoolWalk Mode
@@ -337,20 +323,14 @@ public class PathController : MonoBehaviour {
 			// 切換成新點選的物件
 			Global.BeTouchedObj = hitinfo.collider.gameObject;
 			if(Global.Level != "Astar")
-			Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2") as Material;
-
+				Global.BeTouchedObj.GetComponent<Renderer> ().material = Resources.Load ("Materials/Materials/touch2") as Material;
 			if (Global.Player != null && Global.IsPushing) {
 				Global.PlayerMove = true;
-
 			}
 		} 
 
 		// SmartWalk Mode
 		if (Input.GetMouseButtonDown (0) && Physics.Raycast (ray, out hitinfo, 500, 1 << 10) && !Global.IsPreRotating && !Global.StopTouch && !CameraController.IsCamRotating) {
-			//Debug.DrawLine (Camera.main.transform.position, hitinfo.transform.position, Color.yellow, 0.1f, true);
-
-
-
 			// 如果不是第一次點地板
 			if (BeTouchedFloor != null) {
 				if(Global.Level != "Astar")
@@ -361,16 +341,12 @@ public class PathController : MonoBehaviour {
 			BeTouchedFloor = hitinfo.collider.gameObject;
 			Reset ();
 
-
-			if (FollowPath) {
+			if (FollowPath)
 				ChangeGoal = true;
-			}
-
 			if (BeTouchedFloor != PlayerController.CurrentFloor) {
 				SearchMode = true;
 				CheckNeighbor ();
 			}
-
 			StartCoroutine (DelayTouch ());
 		}
 	}
@@ -609,7 +585,8 @@ public class PathController : MonoBehaviour {
 				MinF = Startfloor.F_cost;
 			}
 
-		BeTouchedFloor.GetComponent<Renderer> ().enabled = true;
+		if(!isWalkingOrder)
+			BeTouchedFloor.GetComponent<Renderer> ().enabled = true;
 		if(Global.Level == "Astar")
 			BeTouchedFloor.GetComponent<Renderer> ().material = Resources.Load ("Materials/Yellow") as Material;
 
@@ -694,5 +671,20 @@ public class PathController : MonoBehaviour {
 		}
 		FollowPath = true;
 
+	}
+
+	public void WalkOrder(string FloorName){
+		isWalkingOrder = true;
+
+		BeTouchedFloor = GameObject.Find (FloorName);
+		Reset ();
+
+		if (FollowPath)
+			ChangeGoal = true;
+		if (BeTouchedFloor != PlayerController.CurrentFloor) {
+			SearchMode = true;
+			CheckNeighbor ();
+		}
+		StartCoroutine (DelayTouch ());
 	}
 }

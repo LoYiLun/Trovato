@@ -39,7 +39,7 @@ public class CubeController_V2 : MonoBehaviour {
 	void Update () {
 
 
-		if (Global.Level == "0") {
+		if (Global.Level == "0" && Global.Player == null) {
 			IgnorePlayer = true;
 		} else {
 			IgnorePlayer = false;

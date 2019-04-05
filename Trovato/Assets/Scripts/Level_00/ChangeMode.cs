@@ -17,6 +17,7 @@ public class ChangeMode : MonoBehaviour {
     public GameObject RPE;
     public GameObject RPF;
     public  int PlayMode;
+	public bool FinishPlayerSetting;
     // Use this for initialization
     void Start () {
         PlayMode = 0;
@@ -25,7 +26,10 @@ public class ChangeMode : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (PlayMode == 0)
+		if (FinishPlayerSetting == false && Global.Player != null)
+			Global.Player.GetComponent<PlayerController> ().EditorSetting (gameObject, PlayMode);
+    
+		if (PlayMode == 0)
         {
             Global.IsCamCtrl = true;
             RPA.SetActive(false);
@@ -34,7 +38,6 @@ public class ChangeMode : MonoBehaviour {
             RPD.SetActive(false);
             RPE.SetActive(false);
             RPF.SetActive(false);
-			CameraController.StopWhell = true;
         }
         else if(PlayMode == 1)
         {
@@ -45,7 +48,6 @@ public class ChangeMode : MonoBehaviour {
             RPD.SetActive(true);
             RPE.SetActive(true);
             RPF.SetActive(true);
-			CameraController.StopWhell = false;
         }
     }
     public void ModeCH()
@@ -70,4 +72,5 @@ public class ChangeMode : MonoBehaviour {
         DropDowmBtn.GetComponent<Dropdown>().enabled = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+		
 }

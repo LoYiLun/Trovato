@@ -53,16 +53,32 @@ public class PlayerController : MonoBehaviour {
 		MoveMode = "SmartWalk";
 	}
 
+	public void EditorSetting(GameObject _ScriptObj, int _PlayMode){
+		if (_PlayMode == 0) {
+			GameObject.Find ("GlobalScripts").GetComponent<PathController> ().enabled = false;
+			GameObject[] Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
+			foreach (GameObject obj in Obstacles)
+				obj.GetComponent<Collider> ().enabled = false;
+		} else if (_PlayMode == 1) {
+			GameObject.Find ("GlobalScripts").GetComponent<PathController> ().enabled = true;
+			GameObject[] Obstacles = GameObject.FindGameObjectsWithTag ("Obstacle");
+			foreach (GameObject obj in Obstacles)
+				obj.GetComponent<Collider> ().enabled = true;
+			_ScriptObj.GetComponent<ChangeMode>().FinishPlayerSetting = true;
+		}
+	}
+
 	void Update(){
 		if(Global.Player != null)
 			DownRay = new Ray (Global.Player.transform.position, Vector3.down);
 		if (Physics.Raycast (DownRay, out hitinfo, 5, 1 << 10)) {
 			CurrentFloor = hitinfo.collider.gameObject;
-
 		}
+			
+		if (Global.Level == "0") {
+			
 
-		// 設定有無傳送門
-		if (Global.Level == "1") {
+		} else if (Global.Level == "1") {
 
 		} else if(Global.Level == "2") {
 			if (Vector3.Distance (GameObject.Find ("BattleShipWing_Skin").transform.position, GameObject.Find ("BattleShip_Skin").transform.position) < 2) {
@@ -444,7 +460,7 @@ public class PlayerController : MonoBehaviour {
 			Global.Targetlight.Stop ();
 			//Player.transform.position = Portal.transform.position + new Vector3(0,0.2f,0);
 			Global.Player.transform.rotation = RotateDir = Portal.transform.rotation * Quaternion.Euler(0,90,0);
-			Global.Player.transform.Translate (0, 0, 2);
+			Global.Player.transform.Translate (0, 0, 1);
 			CameraController.SetCamPos = true;
 
 			Global.OnCubeNum = 1;

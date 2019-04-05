@@ -99,9 +99,6 @@ public class Global : MonoBehaviour {
 	
 
 	void Update () {
-
-
-
 		if (LevelEnd != null && LevelEnd.activeSelf) {
 			ToNextLevel (NextScene);
 		}
@@ -143,7 +140,6 @@ public class Global : MonoBehaviour {
 		CameraFade.FadeInIsDone = false;
 		CameraFade.FadeOutIsDone = false;
 		CameraController.SetCamPos = false;
-		CameraController.StopWhell = false;
 		PathController.FollowPath = false;
 		MissionSetting.FlowerChart = null;
 		MissionSetting.BlockOn = false;

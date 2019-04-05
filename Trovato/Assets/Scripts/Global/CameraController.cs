@@ -9,11 +9,6 @@ public class CameraController : MonoBehaviour {
 	public GameObject Cam;
 	public GameObject CamObj;
 	public Vector3 CamToScreenHeart;
-	Vector3 LockPlayer;
-	Vector3 PosBeforeMove;
-
-	//GameObject Hit;
-	//GameObject GhostBall;
 
 	public GameObject ScreenHeart;
 	public static bool SetCamPos;
@@ -22,31 +17,29 @@ public class CameraController : MonoBehaviour {
 	public static GameObject CamTarget;
 
 	// 滑鼠座標
-	float mx;
-	float my;
+	private float mx;
+	private float my;
 
 	// 鏡頭距離
-	float Close;
-	float Far;
-	Vector3 Distance;
-	float Distance2;
-	float ViewTime = 9;
+	private float Close;
+	private float Far;
+	private Vector3 Distance;
+	private float Distance2;
+	private float ViewTime = 9;
+
 	public static float OriginView;
 	public static float CamView;
 
 	//bool LookAround;
-	bool LookAround{get{ return MissionSetting.FlowerChart != null ? MissionSetting.FlowerChart.GetBooleanVariable ("LookAround") : false ;}}
-	bool IsLookingAround;
+	private bool LookAround{get{ return MissionSetting.FlowerChart != null ? MissionSetting.FlowerChart.GetBooleanVariable ("LookAround") : false ;}}
+	private bool IsLookingAround;
 	public static Vector3 CamOriginPos;
 	public static Quaternion CamOriginRot;
-
-	public static bool StopWhell;
 
 	void Awake(){
 		CurrentCam = Cam;
 		CamOriginPos = CurrentCam.transform.position;
 		CamOriginRot = CurrentCam.transform.rotation;
-		//GhostBall = GameObject.Find ("GhostBall");
 
 
 	}
@@ -76,20 +69,6 @@ public class CameraController : MonoBehaviour {
 			}
 		}
 
-		// 路障透明工程
-		/*
-		LockPlayer = Player.transform.position - CurrentCam.transform.position - FixedPos;
-		Ray ray = new Ray (CurrentCam.transform.position, LockPlayer);
-		RaycastHit hitinfo;
-		if (Physics.Raycast (ray, out hitinfo, 500)) {
-			Debug.DrawLine (Camera.main.transform.position, hitinfo.transform.position, Color.white, 0.1f, true);
-			Hit = hitinfo.collider.gameObject;
-			if (Hit.GetComponent<Renderer> () != null && Hit.tag == "Obstacle") {
-				GhostBall.transform.position = Hit.transform.position;
-				Hit.GetComponent<Renderer> ().material = Resources.Load ("Materials/Ghost") as Material;
-			}
-		}*/
-
 		mx = Input.GetAxis ("Mouse X") ;
 		my = Input.GetAxis ("Mouse Y") ;
 
@@ -105,9 +84,6 @@ public class CameraController : MonoBehaviour {
 				//Camera.main.fieldOfView = CamView;
 			}
 
-		/*if (Global.Level == "0" && StopWhell) {
-		  // none.
-		}*/
 		if (!Global.StopTouch && !Global.IsPreRotating && !Global.IsRotating) {
 			if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 25) {
 				CamView += 2f;
@@ -117,34 +93,6 @@ public class CameraController : MonoBehaviour {
 				CamView = Mathf.Clamp (CamView, 5, 25);
 			}
 		}
-
-		// 控制攝影機平移
-		/*
-		if (Input.GetMouseButtonDown (2) && Global.IsCamCtrl != true && Global.StopTouch != true)
-			PosBeforeMove = CurrentCam.transform.position;
-
-		if (Input.GetMouseButton (2) && Global.IsCamCtrl != true && Global.StopTouch != true) {
-			if (mx > 0) {
-				CurrentCam.transform.Translate (-10 * Time.deltaTime, 0, 0);
-			}
-			if (mx < 0) {
-				CurrentCam.transform.Translate (10 * Time.deltaTime, 0, 0);
-			}
-
-			// 上下
-			if (my > 0 && Distance.y > -45) {
-				CurrentCam.transform.Translate (0, -10 * Time.deltaTime, 0);
-			}
-			if (my < 0 && Distance.y < 45) {
-				CurrentCam.transform.Translate (0, 10 * Time.deltaTime, 0);
-			}
-		}
-
-		if (Input.GetMouseButtonUp (2) && Global.IsCamCtrl != true && Global.StopTouch != true) {
-			CurrentCam.transform.position = PosBeforeMove;
-		}*/
-
-
 
 		// 控制攝影機旋轉視角
 		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack ) {
