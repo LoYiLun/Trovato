@@ -323,14 +323,15 @@ public class MissionSetting : MonoBehaviour {
 				}
 
 				if (Vector3.Distance (Global.Player.transform.position, King.transform.position) <= 1.2f) {
-					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
+					// 室內場景不適用
+					/*if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");
 					}
 					if (Input.GetKeyDown (KeyCode.E)) {
 						Flowchart.BroadcastFungusMessage ("FirstTouchKing");
 						PlayerStatusImage.GetStatus ("None");
 						EisPressed = true;
-					}
+					}*/
 				} else if (Vector3.Distance (Global.Player.transform.position, HouseKeeper.transform.position) <= 1.2f) {
 					if (!EisPressed && !FlowerChart.HasExecutingBlocks()) {
 						PlayerStatusImage.GetStatus ("Interact?");

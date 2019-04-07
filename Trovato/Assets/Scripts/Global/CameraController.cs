@@ -84,7 +84,7 @@ public class CameraController : MonoBehaviour {
 				//Camera.main.fieldOfView = CamView;
 			}
 
-		if (!Global.StopTouch && !Global.IsPreRotating && !Global.IsRotating) {
+		if (!Global.StopTouch && !Global.IsPreRotating && !Global.IsRotating && !Global.PlayerMove && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack && !PlayerController.isInside) {
 			if (Input.GetAxis ("Mouse ScrollWheel") < 0 && Camera.main.fieldOfView < 25) {
 				CamView += 2f;
 				CamView = Mathf.Clamp (CamView, 5, 25);
@@ -95,7 +95,7 @@ public class CameraController : MonoBehaviour {
 		}
 
 		// 控制攝影機旋轉視角
-		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack ) {
+		if ((Input.GetMouseButton (1)) && Global.IsCamCtrl && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !Global.PlayerMove && !MissionSetting.CamIsMoving && !MissionSetting.CamIsMovingBack && !PlayerController.isInside) {
 			IsCamRotating = true;
 
 				// 左右
@@ -123,13 +123,13 @@ public class CameraController : MonoBehaviour {
 
 
 		  // 紀錄攝影機旋轉完畢的新位置
-		} else if(!Input.GetMouseButton(1) && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating){
+		} else if(!Input.GetMouseButton(1) && Global.StopTouch != true && !Global.IsRotating && !Global.IsPreRotating && !PlayerController.isInside){
 			IsCamRotating = false;
 			CamToScreenHeart = CurrentCam.transform.position - ScreenHeart.transform.position;
 		}
 
 		// 抵銷攝影機旋轉的離心力
-		if ((Input.GetMouseButton (1)) && Distance2 > 50) {
+		if ((Input.GetMouseButton (1)) && Distance2 > 50 && !PlayerController.isInside) {
 			Cam.transform.position = Vector3.Lerp (Cam.transform.position, ScreenHeart.transform.position, 0.01f);
 		}
 

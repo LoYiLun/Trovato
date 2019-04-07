@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour {
 	GameObject PortalLight_1{get{ return GameObject.Find ("PortalLight_1");}}
 	GameObject PortalLight_2{get{ return GameObject.Find ("PortalLight_2");}}
 
+	private InsideMode inside;
+	public static bool isInside;
+
 	void Awake(){
 		
 	}
@@ -52,6 +55,8 @@ public class PlayerController : MonoBehaviour {
 		PlayerAnim = GameObject.Find ("Player_Body").GetComponent<Animation> ();
 		MoveMode = "SmartWalk";
 	}
+
+
 
 	public void EditorSetting(GameObject _ScriptObj, int _PlayMode){
 		if (_PlayMode == 0) {
@@ -336,6 +341,8 @@ public class PlayerController : MonoBehaviour {
 			other.gameObject.SetActive (false);
 		}
 
+
+
 		switch (other.gameObject.tag) {
 		case "Moveable":
 			if (Global.BePushedObj == null) {
@@ -483,6 +490,24 @@ public class PlayerController : MonoBehaviour {
 		if (other.gameObject.name == "Enemy") {
 			Global.IsPushing = false;
 			Global.Retry ();
+		}
+	}
+
+	void OnTriggerStay(Collider other){
+		// Go into Palace.
+		if(other.transform.name == "Palace"){
+			//inside = other.transform.GetComponent<InsideMode>();
+			inside = GameObject.Find("Event_Palace(open)").GetComponent<InsideMode>();
+			inside.enabled = true;
+			inside.reset();
+			isInside = true;
+		}
+		if(other.transform.tag == "Exit"){
+			inside.setCamera(CameraController.CurrentCam, inside.getOldCamPosition(), inside.getOldCamView(), CameraController.CamTarget);
+			inside.setPlayer(Global.Player, inside.getOldPlayerPosition(), 1, false);
+			inside.enabled = false;
+			inside = null;
+			isInside = false;
 		}
 	}
 

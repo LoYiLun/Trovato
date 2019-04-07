@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class Global : MonoBehaviour {
 
+	public static GameObject GlobalObj;
+
 	// 目前的關卡
 	public string GetLevel;
 	public static string Level;
@@ -121,6 +123,7 @@ public class Global : MonoBehaviour {
 	}
 
 	public static void ResetVar(){
+		GlobalObj = GameObject.Find("GlobalScripts");
 		IsRotating = false;
 		IsCamCtrl = true;
 		IsPushing = false;
@@ -145,12 +148,12 @@ public class Global : MonoBehaviour {
 		MissionSetting.BlockOn = false;
 		MissionSetting.CamIsMoving = false;
 		MissionSetting.CamIsMovingBack = false;
-		if (GameObject.Find ("GlobalScripts") != null && GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ()) {
-			GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().MissionTargets.Clear ();
-			GameObject.Find ("GlobalScripts").GetComponent<MissionSetting> ().MissionArrows.Clear ();
+		if (GlobalObj != null && GlobalObj.GetComponent<MissionSetting> ()) {
+			GlobalObj.GetComponent<MissionSetting> ().MissionTargets.Clear ();
+			GlobalObj.GetComponent<MissionSetting> ().MissionArrows.Clear ();
 		}
-		if (GameObject.Find ("GlobalScripts") != null && GameObject.Find ("GlobalScripts").GetComponent<PathController> ()) {
-			GameObject.Find ("GlobalScripts").GetComponent<PathController> ().BeTouchedFloor = null;
+		if (GlobalObj != null && GlobalObj.GetComponent<PathController> ()) {
+			GlobalObj.GetComponent<PathController> ().BeTouchedFloor = null;
 		}
 		
 	}

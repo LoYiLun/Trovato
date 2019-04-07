@@ -47,8 +47,6 @@ public class MapSetting : MonoBehaviour {
 
 	void Start () {
 
-
-
 		if(Global.Level == "1" || Global.Level == "3" || Global.Level == "4"){
 			for (int i = 0; i < 4; i++) {
 				TemptV2 [k] = Instantiate (CubePrefabs [V2PlaneA_ID [i]], CubeV2Plane_A [i].transform.position, Quaternion.Euler (0, 0, 0));
