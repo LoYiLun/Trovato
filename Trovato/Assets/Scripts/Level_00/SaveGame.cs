@@ -538,7 +538,7 @@ public class SaveGame : MonoBehaviour {
                     WareHouseCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
                     //WareHouseCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
                     WareHouseCreate.transform.parent = Plane[i].transform;
-                    WareHouseCreate.transform.localScale = new Vector3(1.8f, 0.54f, 1.8f);
+                    //WareHouseCreate.transform.localScale = new Vector3(1.8f, 0.54f, 1.8f);
                     if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
                     {
                         WareHouseCreate.transform.rotation = Quaternion.Euler(0, 0, -90);
@@ -573,7 +573,7 @@ public class SaveGame : MonoBehaviour {
                     WareHouseCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
                     //WareHouseCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
                     WareHouseCreate.transform.parent = Plane[i].transform;
-                    WareHouseCreate.transform.localScale = new Vector3(1.8f, 0.54f, 1.8f);
+                    //WareHouseCreate.transform.localScale = new Vector3(1.8f, 0.54f, 1.8f);
                     if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
                     {
                         WareHouseCreate.transform.rotation = Quaternion.Euler(0, 0, -90);
