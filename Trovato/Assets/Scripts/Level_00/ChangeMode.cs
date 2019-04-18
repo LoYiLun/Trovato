@@ -16,6 +16,11 @@ public class ChangeMode : MonoBehaviour {
     public GameObject RPD;
     public GameObject RPE;
     public GameObject RPF;
+    public GameObject list;
+    public GameObject save;
+    public GameObject load;
+    public GameObject play;
+    public GameObject imageP;
     public  int PlayMode;
 	public bool FinishPlayerSetting;
     // Use this for initialization
@@ -62,6 +67,11 @@ public class ChangeMode : MonoBehaviour {
         LoadBtn.GetComponent<Button>().enabled = false;
         DropDowmBtn.GetComponent<Dropdown>().enabled = false;
         MainCreateController.CreateMode = 0;
+        list.SetActive(false);
+        save.SetActive(false);
+        load.SetActive(false);
+        play.SetActive(false);
+        imageP.SetActive(false);
     }
     public void ChangeToEditMode()
     {
@@ -71,6 +81,11 @@ public class ChangeMode : MonoBehaviour {
         LoadBtn.GetComponent<Button>().enabled = true;
         DropDowmBtn.GetComponent<Dropdown>().enabled = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        list.SetActive(true);
+        save.SetActive(true);
+        load.SetActive(true);
+        play.SetActive(true);
+        imageP.SetActive(true);
     }
 		
 }

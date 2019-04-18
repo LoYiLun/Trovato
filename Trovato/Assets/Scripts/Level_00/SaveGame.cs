@@ -90,11 +90,11 @@ public class SaveGame : MonoBehaviour {
                 if (Plane[i].GetComponent<MainCreateController>().IsEmpty)
                 {
 
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE1")) as GameObject;
                     TreeForCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
                     //TreeForCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
                     TreeForCreate.transform.parent = Plane[i].transform;
-                    TreeForCreate.transform.localScale = new Vector3(100,100,33);
+                    TreeForCreate.transform.localScale = new Vector3(1.5f,1.5f,0.5f);
                     if(Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
                     {
                         TreeForCreate.transform.rotation = Quaternion.Euler(0,90,0);
@@ -125,11 +125,11 @@ public class SaveGame : MonoBehaviour {
                 else if (!Plane[i].GetComponent<MainCreateController>().IsEmpty)
                 {
                     Destroy(Plane[i].transform.GetChild(0).gameObject);
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE1")) as GameObject;
                     TreeForCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
                     //TreeForCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
                     TreeForCreate.transform.parent = Plane[i].transform;
-                    TreeForCreate.transform.localScale = new Vector3(100, 100, 33);
+                    TreeForCreate.transform.localScale = new Vector3(1.5f, 1.5f, 0.5f);
                     if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
                     {
                         TreeForCreate.transform.rotation = Quaternion.Euler(0, 90, 0);

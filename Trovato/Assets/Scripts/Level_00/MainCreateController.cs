@@ -5,7 +5,8 @@ using System.IO;
 using SimpleJSON;
 using UnityEngine.UI;
 
-public class MainCreateController : MonoBehaviour {
+public class MainCreateController : MonoBehaviour
+{
     private Vector3 TreePos;
     private Vector3 KyderPos;
     private Vector3 BushRowPos;
@@ -17,21 +18,23 @@ public class MainCreateController : MonoBehaviour {
     public bool IsEmpty = true;
     public int Type;
     public static int CreateMode;
-    
+
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         CreateMode = 0;
-        
-    }
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     void OnMouseDown()
     {
-        
+
         if (IsEmpty)
         {
             /*print(transform.name + " " + transform.position);
@@ -42,8 +45,8 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(5.37f, transform.position.y, transform.position.z);
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE002")) as GameObject;
+                    TreePos = new Vector3(5f, transform.position.y, transform.position.z);
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE1")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
                     TreeForCreate.transform.position = TreePos;
                     TreeForCreate.transform.parent = transform;
@@ -89,7 +92,7 @@ public class MainCreateController : MonoBehaviour {
                     RailingColCreate.transform.position = RailingColPos;
                     RailingColCreate.transform.parent = transform;
                     IsEmpty = false;
-                    Type =5;
+                    Type = 5;
                 }
                 if (CreateMode == 6)
                 {
@@ -117,8 +120,8 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(-5.37f, transform.position.y, transform.position.z);
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
+                    TreePos = new Vector3(-5f, transform.position.y, transform.position.z);
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE1")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, -90, 0);
                     TreeForCreate.transform.position = TreePos;
                     TreeForCreate.transform.parent = transform;
@@ -192,8 +195,8 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(transform.position.x, 5.37f, transform.position.z);
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
+                    TreePos = new Vector3(transform.position.x, 5f, transform.position.z);
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE1")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(-90, 0, 0);
                     TreeForCreate.transform.position = TreePos;
                     TreeForCreate.transform.parent = transform;
@@ -267,8 +270,8 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(transform.position.x, -5.37f, transform.position.z);
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
+                    TreePos = new Vector3(transform.position.x, -5f, transform.position.z);
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE1")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(90, 0, 0);
                     TreeForCreate.transform.position = TreePos;
                     TreeForCreate.transform.parent = transform;
@@ -342,8 +345,8 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(transform.position.x, transform.position.y, 5.37f);
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
+                    TreePos = new Vector3(transform.position.x, transform.position.y, 5f);
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE1")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
                     TreeForCreate.transform.position = TreePos;
                     TreeForCreate.transform.parent = transform;
@@ -372,7 +375,7 @@ public class MainCreateController : MonoBehaviour {
                 }
                 if (CreateMode == 4)
                 {
-                    BushRowPos = new Vector3(transform.position.x,transform.position.y, 4.5f);
+                    BushRowPos = new Vector3(transform.position.x, transform.position.y, 4.5f);
                     GameObject BushRowCreate = Instantiate(Resources.Load("Prefabs/Level_00/BushR")) as GameObject;
                     BushRowCreate.transform.rotation = Quaternion.Euler(0, 0, 0);
                     BushRowCreate.transform.eulerAngles = new Vector3(0, 0, 90);
@@ -417,8 +420,8 @@ public class MainCreateController : MonoBehaviour {
             {
                 if (CreateMode == 1)
                 {
-                    TreePos = new Vector3(transform.position.x, transform.position.y, -5.37f);
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
+                    TreePos = new Vector3(transform.position.x, transform.position.y, -5f);
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE1")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, 180, 0);
                     TreeForCreate.transform.position = TreePos;
                     TreeForCreate.transform.parent = transform;
