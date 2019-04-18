@@ -28,7 +28,7 @@ public class Btn_Function : MonoBehaviour {
 		//ShowName ();
 
 		if(ForShowGoalHint != null)
-			ForShowGoalHint.SetActive(false);
+			ForShowGoalHint.SetActive(true);
 		if (Global.Level != "0") {
 			if (Screen.width == 1280) {
 				Panel_TopLeft.transform.position = new Vector3 (Panel_TopLeft.transform.position.x, Screen.height - 40, Panel_TopLeft.transform.position.z);

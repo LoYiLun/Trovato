@@ -43,7 +43,7 @@ public class MainCreateController : MonoBehaviour {
                 if (CreateMode == 1)
                 {
                     TreePos = new Vector3(5.37f, transform.position.y, transform.position.z);
-                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Tree")) as GameObject;
+                    GameObject TreeForCreate = Instantiate(Resources.Load("Prefabs/Level_00/TREE002")) as GameObject;
                     TreeForCreate.transform.rotation = Quaternion.Euler(0, 90, 0);
                     TreeForCreate.transform.position = TreePos;
                     TreeForCreate.transform.parent = transform;
