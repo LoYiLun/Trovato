@@ -6,7 +6,7 @@ public class WalkEffect : MonoBehaviour {
 
 	public GameObject WalkDust;
 
-	Ray DownRay;
+	Ray DownRay = new Ray();
 	RaycastHit Downinfo;
 
 	GameObject CurrentFloor;

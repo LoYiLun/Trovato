@@ -19,6 +19,8 @@ public class LoadingAnim : MonoBehaviour {
 	
 
 	void Update () {
+
+		// 模擬Loading動畫
 		if(Time.timeSinceLevelLoad % 1.5f <= 0.5f){
 			Text_Loading.text = "Loading.";
 		}else if(Time.timeSinceLevelLoad % 1.5f <= 1){

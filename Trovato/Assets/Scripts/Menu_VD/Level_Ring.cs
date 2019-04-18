@@ -37,6 +37,7 @@ public class Level_Ring : MonoBehaviour {
 		// 滑鼠區 ----------------------
 		MouseX = Input.GetAxis ("Mouse X") ;
 
+		// 滑鼠右鍵旋轉關卡環
 		if (Input.GetMouseButton (1)) {
 			Ring.transform.Rotate (0, -10 * MouseX, 0);
 		} else if (Input.GetMouseButtonUp (1)) {

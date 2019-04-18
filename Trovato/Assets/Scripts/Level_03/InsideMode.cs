@@ -45,7 +45,7 @@ public class InsideMode : MonoBehaviour {
 	}
 
 	public void setCamera(GameObject _cam, Vector3 _newPosition, float _camView, GameObject _camTarget){
-		if(_cam != null && _newPosition != null){
+		if(_cam != null){
 			CameraController.CamView = _camView;
 			_cam.transform.position = _newPosition;
 			_cam.transform.rotation = Quaternion.LookRotation(_camTarget.transform.position - _newPosition, _camTarget.transform.up);
@@ -54,7 +54,7 @@ public class InsideMode : MonoBehaviour {
 	}
 
 	public void setPlayer(GameObject _player, Vector3 _newPosition, int index, bool goInside){
-		if(_player != null && _newPosition != null){
+		if(_player != null){
 			_player.transform.position = _newPosition;
 			if(index >= 0){
 				if(goInside){

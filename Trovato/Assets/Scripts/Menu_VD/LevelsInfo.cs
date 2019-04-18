@@ -2,37 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelsInfo : MonoBehaviour {
 
 	public int LevelNumber;
-	public bool IsUnlock;
-	GameObject Ring;
+	private GameObject Ring;
+	private GameObject BlackSide;
+	private bool FadeOut;
+	private string Name;
 
 	void Awake(){
-		Ring = GameObject.Find("Ring_of_Levels");
-	}
-
-	void Start () {
-
+		BlackSide = GameObject.Find("Image_Black");
 	}
 	
 	void OnMouseDown(){
-		Global.ResetVar ();
-		SceneManager.LoadScene (gameObject.name);
+		if(GameObject.Find("Group_Levels").activeSelf){
+			Global.ResetVar ();
+			Name = gameObject.name;
+			BlackSide.GetComponent<Image>().enabled = true;
+			FadeOut = true;
+		}
+
+
 	}
 
-
-	void Update () {
-		if (LevelNumber > Global.LevelUnlockCount) {
-			IsUnlock = false;
-			gameObject.GetComponent<Renderer> ().material.color = Color.black;
-		} else {
-			IsUnlock = true;
-			if(Ring.GetComponent<Level_Ring>().CurrentLevel == gameObject)
-				gameObject.GetComponent<Renderer> ().material.color = Color.yellow;
-			else
-				gameObject.GetComponent<Renderer> ().material.color = Color.gray;
+	void Update(){
+		if(FadeOut){
+			BlackSide.GetComponent<Image>().color += new Color(0, 0, 0, 0.04f);
+			if(BlackSide.GetComponent<Image>().color.a >= 1){
+				if(gameObject.name == "Chapter01")
+					SceneManager.LoadScene ("Level_01");
+				if(gameObject.name == "Chapter02")
+					SceneManager.LoadScene ("Level_02");
+				if(gameObject.name == "Chapter03")
+					SceneManager.LoadScene ("Level_03");
+			}
 		}
 	}
 }

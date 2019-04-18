@@ -18,7 +18,7 @@ public class CameraControllerV2 : MonoBehaviour {
 	private Vector3 camToScreenHeartOrigin;
 	private Vector3 camToScreenHeart;
 	private Vector3 camOriginPos;
-	private Quaternion camOriginRot;
+	//private Quaternion camOriginRot;
 	private int viewTime = 9;
 	private float mouseX, mouseY;
 	private float distance;
@@ -37,7 +37,7 @@ public class CameraControllerV2 : MonoBehaviour {
 		rotateGoal.transform.position = cam.transform.position;
 		cam.transform.rotation = Quaternion.LookRotation (camObj.transform.position - camToScreenHeartOrigin - cam.transform.position, screenHeart.transform.up);
 		camOriginPos = cam.transform.position;
-		camOriginRot = cam.transform.rotation;
+		//camOriginRot = cam.transform.rotation;
 	}
 	
 

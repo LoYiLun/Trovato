@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 	float MoveL;
 	float MoveR;
 	float MoveD;
-	float RotateSpeed = 0.25f;
+	//float RotateSpeed = 0.25f;
 	Quaternion RotateDir;
 	Vector3 FixedHeight;
 	Vector3 MoveToTarget;

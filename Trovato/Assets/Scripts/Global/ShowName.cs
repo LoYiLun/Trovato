@@ -13,6 +13,8 @@ public class ShowName : MonoBehaviour {
 	private RaycastHit Eventinfo;
 	public RaycastHit Downinfo;
 
+	private float StartTime;
+
 	void Awake(){
 		
 	}
@@ -47,6 +49,8 @@ public class ShowName : MonoBehaviour {
 		gameObject.GetComponent<Image> ().enabled = true;
 		Name.enabled = true;
 		Name.text = _Name;
+		
+		EditName("DoNothing");
 	}
 
 	public void HideNameText(string _Name){
@@ -219,11 +223,14 @@ public class ShowName : MonoBehaviour {
 		//------------------
 
 		case "SuperCube":
-			ShowNameText ("傳送點");
+			ShowNameText ("超級方塊");
 			break;
 
 		case "Bush":
 			HideNameText ("null");
+			break;
+
+		case "DoNothing":
 			break;
 
 		default:

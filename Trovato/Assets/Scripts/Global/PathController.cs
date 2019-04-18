@@ -45,7 +45,7 @@ public class PathController : MonoBehaviour {
 	private bool SearchMode;
 	public static bool FollowPath;
 
-	private bool PlayerMove;
+	//private bool PlayerMove;
 	private int tempt;
 
 	GameObject TemptFloorA;
@@ -101,7 +101,7 @@ public class PathController : MonoBehaviour {
 		BeTouchedFloor = null;
 		NotInOpenlist = true;
 		NotInCloselist = true;
-		PlayerMove = false;
+		//PlayerMove = false;
 		ChangeGoal = false;
 		Origin = null;
 		floorindex = 0;
@@ -357,7 +357,7 @@ public class PathController : MonoBehaviour {
 		NotInOpenlist = true;
 		NotInCloselist = true;
 		//FollowPath = false;
-		PlayerMove = false;
+		//PlayerMove = false;
 		ChangeGoal = false;
 		//TemptFloorA = null;
 		//TemptFloorB = null;

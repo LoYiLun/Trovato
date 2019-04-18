@@ -35,7 +35,6 @@ public class TalkRecorder : MonoBehaviour {
 			allBlocks = flowchart.GetExecutingBlocks ();
 			lastCommand = allBlocks [allBlocks.Count - 1].ActiveCommand;
 			setLastText ();
-
 		}
 
 		if (Input.GetKeyDown (KeyCode.D)) {

@@ -18,11 +18,12 @@ public class JustTest : MonoBehaviour {
 
 	void Update () {
 		
+		// 物體浮空旋轉
 		transform.parent.transform.localPosition = new Vector3 (0, Mathf.Sin(Time.time)/2 + 3, 0);
 		transform.parent.transform.Rotate (0, 0, 10*Time.deltaTime);
 
+		// 調整發光材質閃爍
 		emission = Mathf.PingPong (30f * Time.time, 50.0f);
-		//emission = Mathf.Cos (3 * Time.time) * 20;
 		plane.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", _color * Mathf.LinearToGammaSpace(emission));
 	}
 }

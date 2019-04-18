@@ -10,7 +10,6 @@ public class GoalHint : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        Main =
         Main = GameObject.Find("MainFlowChart").GetComponent<Flowchart>();
     }
     string BreadStr = "Bread";

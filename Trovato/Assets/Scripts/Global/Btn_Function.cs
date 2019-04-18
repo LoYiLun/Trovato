@@ -114,7 +114,7 @@ public class Btn_Function : MonoBehaviour {
 		}
 	}
 
-	// 重新來過
+	// 勝敗乃兵家常事，請大俠吃漢堡包
 	public void Rebuild(){
 		Global.Retry ();
 	}
@@ -183,12 +183,14 @@ public class Btn_Function : MonoBehaviour {
 		}
 	}
 
+	// 重置視角
 	public void CamReset(){
 		CameraController.CurrentCam.transform.position = CameraController.CamOriginPos;
 		CameraController.CurrentCam.transform.rotation = CameraController.CamOriginRot;
 		CameraController.CurrentCam.transform.LookAt (GameObject.Find("CamScript").GetComponent<CameraController> ().ScreenHeart.transform);
 	}
 
+	// 顯示提示
 	public void ShowGoalHint()
 	{
 		if (ForShowGoalHint.activeSelf)
