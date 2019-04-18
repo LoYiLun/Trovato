@@ -13,13 +13,16 @@ public class MainCreateController : MonoBehaviour {
     private Vector3 RailingColPos;
     private Vector3 RailingRowPos;
     private Vector3 WareHousePos;
+    private Vector3 PlayerPos;
     public bool IsEmpty = true;
     public int Type;
     public static int CreateMode;
+    
 
     // Use this for initialization
     void Start () {
         CreateMode = 0;
+        
     }
 	
 	// Update is called once per frame

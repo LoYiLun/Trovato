@@ -48,18 +48,30 @@ public class SaveGame : MonoBehaviour {
             }
             if (!Plane[i].GetComponent<MainCreateController>().IsEmpty)
             {
-                positionX.Add(Plane[i].transform.GetChild(0).position.x);
-                positionY.Add(Plane[i].transform.GetChild(0).position.y);
-                positionZ.Add(Plane[i].transform.GetChild(0).position.z);
-                /*rotationX.Add(Plane[i].transform.GetChild(0).rotation.x);
-                rotationY.Add(Plane[i].transform.GetChild(0).rotation.y);
-                rotationZ.Add(Plane[i].transform.GetChild(0).rotation.z);*/
-                ObjectJson.Add("PositionX", positionX);
-                ObjectJson.Add("PositionY", positionY);
-                ObjectJson.Add("PositionZ", positionZ);
-                /*ObjectJson.Add("RotationX", rotationX);
-                ObjectJson.Add("RotationY", rotationY);
-                ObjectJson.Add("RotationZ", rotationZ);*/
+                /*if(i == 61)
+                {
+                    positionX.Add(0);
+                    positionY.Add(0);
+                    positionZ.Add(0);
+                    ObjectJson.Add("PositionX", positionX);
+                    ObjectJson.Add("PositionY", positionY);
+                    ObjectJson.Add("PositionZ", positionZ);
+                }*/
+                //else
+                //{
+                    positionX.Add(Plane[i].transform.GetChild(0).position.x);
+                    positionY.Add(Plane[i].transform.GetChild(0).position.y);
+                    positionZ.Add(Plane[i].transform.GetChild(0).position.z);
+                    /*rotationX.Add(Plane[i].transform.GetChild(0).rotation.x);
+                    rotationY.Add(Plane[i].transform.GetChild(0).rotation.y);
+                    rotationZ.Add(Plane[i].transform.GetChild(0).rotation.z);*/
+                    ObjectJson.Add("PositionX", positionX);
+                    ObjectJson.Add("PositionY", positionY);
+                    ObjectJson.Add("PositionZ", positionZ);
+                    /*ObjectJson.Add("RotationX", rotationX);
+                    ObjectJson.Add("RotationY", rotationY);
+                    ObjectJson.Add("RotationZ", rotationZ);*/
+                //}
             }
         }
         string path = Application.dataPath + "/PlayerSave.json";
@@ -538,7 +550,7 @@ public class SaveGame : MonoBehaviour {
                     WareHouseCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
                     //WareHouseCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
                     WareHouseCreate.transform.parent = Plane[i].transform;
-                    //WareHouseCreate.transform.localScale = new Vector3(1.8f, 0.54f, 1.8f);
+                    WareHouseCreate.transform.localScale = new Vector3(9.9f, 2.97f, 9.9f);
                     if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
                     {
                         WareHouseCreate.transform.rotation = Quaternion.Euler(0, 0, -90);
@@ -573,7 +585,7 @@ public class SaveGame : MonoBehaviour {
                     WareHouseCreate.transform.position = new Vector3(ObjectJson["PositionX"][i], ObjectJson["PositionY"][i], ObjectJson["PositionZ"][i]);
                     //WareHouseCreate.transform.rotation = Quaternion.Euler(ObjectJson["RotationX"][i], ObjectJson["RotationY"][i], ObjectJson["RotationZ"][i]);
                     WareHouseCreate.transform.parent = Plane[i].transform;
-                    //WareHouseCreate.transform.localScale = new Vector3(1.8f, 0.54f, 1.8f);
+                    WareHouseCreate.transform.localScale = new Vector3(9.9f, 2.97f, 9.9f);
                     if (Plane[i].transform.parent.position.x - Plane[i].transform.position.x > -1.6 && Plane[i].transform.parent.position.x - Plane[i].transform.position.x < -1.4)
                     {
                         WareHouseCreate.transform.rotation = Quaternion.Euler(0, 0, -90);
@@ -604,9 +616,12 @@ public class SaveGame : MonoBehaviour {
             }
             if (ObjectJson["NowType"][i] == 0 && !Plane[i].GetComponent<MainCreateController>().IsEmpty)
             {
-                Destroy(Plane[i].transform.GetChild(0).gameObject);
-                Plane[i].GetComponent<MainCreateController>().IsEmpty = true;
-                Plane[i].GetComponent<MainCreateController>().Type = 0;
+                //if(i != 61)
+                //{
+                    Destroy(Plane[i].transform.GetChild(0).gameObject);
+                    Plane[i].GetComponent<MainCreateController>().IsEmpty = true;
+                    Plane[i].GetComponent<MainCreateController>().Type = 0;
+                //}
             }
         }
     }
