@@ -10,8 +10,9 @@ public class RoseMove : MonoBehaviour {
 	GameObject Prince{ get{ return GameObject.Find ("Player"); }}
 	GameObject PrinceHome{ get{ return GameObject.Find ("PrinceHome_Door"); }}
 
+
 	void Start () {
-		
+
 	}
 
 
@@ -22,6 +23,9 @@ public class RoseMove : MonoBehaviour {
 
 			if (Go && MissionSetting.FlowerChart.FindBlock ("給麵包").IsExecuting ()) {
 				this.GetComponent<Collider> ().enabled = false;
+
+				// 玫瑰移動
+				
 				this.transform.position = Vector3.MoveTowards (this.transform.position, Prince.transform.position, 0.03f);
 				this.transform.LookAt (Prince.transform.position);
 				if (Vector3.Distance (this.transform.position, Prince.transform.position) < 0.01f) {
@@ -30,6 +34,8 @@ public class RoseMove : MonoBehaviour {
 					//this.transform.GetChild (1).gameObject.SetActive (false);
 					this.transform.position = new Vector3(10000, 10000, 10000);
 				}
+
+
 			} else if (Go && MissionSetting.FlowerChart.FindBlock ("帶玫瑰回家").IsExecuting ()) {
 
 				if (count != 1) {

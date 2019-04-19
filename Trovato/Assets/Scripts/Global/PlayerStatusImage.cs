@@ -38,6 +38,7 @@ public class PlayerStatusImage : MonoBehaviour {
 
 			break;
 		case"Interact?":
+			//StatusImage.enabled = false; // 隱藏提示E
 			StatusImage.enabled = true;
 			StatusImage.sprite = PressE;
 			Status = "None";

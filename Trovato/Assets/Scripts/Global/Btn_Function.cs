@@ -20,6 +20,7 @@ public class Btn_Function : MonoBehaviour {
 	GameObject Panel_TopLeft{ get{return GameObject.Find ("Panel_TopLeft");}}
 	GameObject Panel_TopRight{ get{return GameObject.Find ("Panel_TopRight");}}
 	GameObject Panel_Bottom{ get{return GameObject.Find ("Panel_Bottom");}}
+	GameObject Image_BasicOperate_Teach{ get{return GameObject.Find("Image_BasicOperate_Teach");}}
 	public GameObject ForShowGoalHint;
 
 
@@ -39,6 +40,10 @@ public class Btn_Function : MonoBehaviour {
 	}
 
 	void Update(){
+
+		if(Input.GetKeyDown(KeyCode.W) && Input.GetKey(KeyCode.Space)){
+			TestMode();
+		}
 
 		if (Paneling != null && Paneling.transform.localScale.x < 1 && Paneling.GetComponent<CanvasGroup> ().interactable == true) {
 			Paneling.GetComponent<CanvasGroup> ().alpha += 0.05f;
@@ -227,5 +232,13 @@ public class Btn_Function : MonoBehaviour {
 	public void ToLevel_04(){
 		Global.ResetVar ();
 		SceneManager.LoadScene ("Level_04");
+	}
+
+
+	public void SwitchTeach(){
+		if(Image_BasicOperate_Teach.GetComponent<CanvasGroup>().alpha != 0)
+			Image_BasicOperate_Teach.GetComponent<CanvasGroup>().alpha = 0;
+		else
+			Image_BasicOperate_Teach.GetComponent<CanvasGroup>().alpha = 1;
 	}
 }

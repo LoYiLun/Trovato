@@ -19,9 +19,11 @@ public class ItemGet : MonoBehaviour {
 
 	void Awake(){
 		MidScreen = new Vector3 (Screen.width / 2, Screen.height / 2, 0);
-		Item_1.transform.rotation = Quaternion.Euler (0, 90, 0);
-		Item_2.transform.rotation = Quaternion.Euler (0, 90, 0);
-		Item_3.transform.rotation = Quaternion.Euler (0, 90, 0);
+		if(Global.Level != "1"){
+			Item_1.transform.rotation = Quaternion.Euler (0, 90, 0);
+			Item_2.transform.rotation = Quaternion.Euler (0, 90, 0);
+			Item_3.transform.rotation = Quaternion.Euler (0, 90, 0);
+		}
 	}
 
 	void Start () {

@@ -103,37 +103,41 @@ public class ButtonEvents : MonoBehaviour {
 
 	// 選擇故事模式
 	public void ToStory(){
-		//Panel_MainMenu.GetComponent<CanvasGroup> ().alpha = 0;
-		Panel_MainMenu.GetComponent<CanvasGroup> ().interactable = false;
-		Panel_MainMenu.GetComponent<CanvasGroup> ().blocksRaycasts = false;
+		if(Panel_MainMenu.GetComponent<CanvasGroup> ().alpha <= 0){
+			//Panel_MainMenu.GetComponent<CanvasGroup> ().alpha = 0;
+			Panel_MainMenu.GetComponent<CanvasGroup> ().interactable = false;
+			Panel_MainMenu.GetComponent<CanvasGroup> ().blocksRaycasts = false;
 
-		//Panel_SelectMode.GetComponent<CanvasGroup> ().alpha = 0;
-		Panel_SelectMode.GetComponent<CanvasGroup> ().interactable = false;
-		Panel_SelectMode.GetComponent<CanvasGroup> ().blocksRaycasts = false;
+			//Panel_SelectMode.GetComponent<CanvasGroup> ().alpha = 0;
+			Panel_SelectMode.GetComponent<CanvasGroup> ().interactable = false;
+			Panel_SelectMode.GetComponent<CanvasGroup> ().blocksRaycasts = false;
 
-		Group_SelectMode.SetActive (false);
-		//BigGroup.SetActive (true);
-		Group_Levels.SetActive(true);
+			Group_SelectMode.SetActive (false);
+			//BigGroup.SetActive (true);
+			Group_Levels.SetActive(true);
 
-		Panel_MainMenu.transform.parent.gameObject.SetActive(false);
+			Panel_MainMenu.transform.parent.gameObject.SetActive(false);
+		}
 
 	}
 
 	// 選擇編輯模式
 	public void ToMOD(){
-		//Panel_MainMenu.GetComponent<CanvasGroup> ().alpha = 0;
-		Panel_MainMenu.GetComponent<CanvasGroup> ().interactable = false;
-		Panel_MainMenu.GetComponent<CanvasGroup> ().blocksRaycasts = false;
+		if(Panel_MainMenu.GetComponent<CanvasGroup> ().alpha <= 0){
+			//Panel_MainMenu.GetComponent<CanvasGroup> ().alpha = 0;
+			Panel_MainMenu.GetComponent<CanvasGroup> ().interactable = false;
+			Panel_MainMenu.GetComponent<CanvasGroup> ().blocksRaycasts = false;
 
-		//Panel_SelectMode.GetComponent<CanvasGroup> ().alpha = 0;
-		Panel_SelectMode.GetComponent<CanvasGroup> ().interactable = false;
-		Panel_SelectMode.GetComponent<CanvasGroup> ().blocksRaycasts = false;
+			//Panel_SelectMode.GetComponent<CanvasGroup> ().alpha = 0;
+			Panel_SelectMode.GetComponent<CanvasGroup> ().interactable = false;
+			Panel_SelectMode.GetComponent<CanvasGroup> ().blocksRaycasts = false;
 
-		//Group_SelectMode.SetActive (false);
-		//BigGroup.SetActive (false);
+			//Group_SelectMode.SetActive (false);
+			//BigGroup.SetActive (false);
 
-		Global.ResetVar ();
-		SceneManager.LoadScene ("Level_00");
+			Global.ResetVar ();
+			SceneManager.LoadScene ("Level_00");
+		}
 
 	}
 

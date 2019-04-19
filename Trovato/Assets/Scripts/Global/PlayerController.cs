@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Fungus;
 
 public class PlayerController : MonoBehaviour {
 
@@ -316,7 +317,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collision other){
+	void OnCollisionEnter(UnityEngine.Collision other){
 
 		if(other.transform.name != null)
 			setPlayerStatus (other.transform.name);
@@ -388,7 +389,7 @@ public class PlayerController : MonoBehaviour {
 
 	}
 
-	void OnCollisionStay(Collision other){
+	void OnCollisionStay(UnityEngine.Collision other){
 		if (other.gameObject.tag == "Obstacle" || other.gameObject.tag == "EnemyWall") 
 		{
 			CancelMoving (new Vector3(CurrentFloor.transform.position.x, transform.position.y, CurrentFloor.transform.position.z));
@@ -502,6 +503,14 @@ public class PlayerController : MonoBehaviour {
 			inside.reset();
 			isInside = true;
 		}
+		if(other.transform.name == "Station"){
+			//inside = other.transform.GetComponent<InsideMode>();
+			inside = GameObject.Find("Event_Station(open)").GetComponent<InsideMode>();
+			inside.enabled = true;
+			inside.reset();
+			isInside = true;
+		}
+
 		if(other.transform.tag == "Exit"){
 			inside.setCamera(CameraController.CurrentCam, inside.getOldCamPosition(), inside.getOldCamView(), CameraController.CamTarget);
 			inside.setPlayer(Global.Player, inside.getOldPlayerPosition(), 1, false);

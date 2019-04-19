@@ -29,6 +29,8 @@ public class TalkRecorder : MonoBehaviour {
 	}
 
 	void Update () {
+		if(flowchart == null)
+			flowchart = MissionSetting.FlowerChart;
 		contentObj.transform.position = new Vector3(contentObj.transform.position.x, Mathf.Clamp (contentObj.transform.position.y, contentTop, contentBottom), contentObj.transform.position.z);
 
 		if (flowchart != null && flowchart.HasExecutingBlocks ()) {
@@ -37,9 +39,9 @@ public class TalkRecorder : MonoBehaviour {
 			setLastText ();
 		}
 
-		if (Input.GetKeyDown (KeyCode.D)) {
+		/*if (Input.GetKeyDown (KeyCode.D)) {
 			showDialog ();
-		}
+		}*/
 	}
 
 	public void setLastText(){

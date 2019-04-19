@@ -18,10 +18,12 @@ public class LevelsInfo : MonoBehaviour {
 	
 	void OnMouseDown(){
 		if(GameObject.Find("Group_Levels").activeSelf){
-			Global.ResetVar ();
-			Name = gameObject.name;
-			BlackSide.GetComponent<Image>().enabled = true;
-			FadeOut = true;
+			if(GameObject.Find("UIScripts").GetComponent<ButtonEvents>().Panel_SelectMode.GetComponent<CanvasGroup>().alpha <= 0){
+				Global.ResetVar ();
+				Name = gameObject.name;
+				BlackSide.GetComponent<Image>().enabled = true;
+				FadeOut = true;
+			}
 		}
 
 

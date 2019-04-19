@@ -24,7 +24,7 @@ public class FadeObject : MonoBehaviour {
 	void Update () {
 		
 		// 淡出效果
-		if (Input.GetKeyDown(KeyCode.Z) || FadeOut) {
+		if (FadeOut) {
 			FadeOut = true;
 			FadeIn = false;
 			mats [0] = FadeMat;
@@ -40,7 +40,7 @@ public class FadeObject : MonoBehaviour {
 		}
 
 		// 淡入效果
-		if (Input.GetKeyDown(KeyCode.X) || FadeIn) {
+		if (FadeIn) {
 			FadeOut = false;
 			FadeIn = true;
 			mats [0] = FadeMat;
