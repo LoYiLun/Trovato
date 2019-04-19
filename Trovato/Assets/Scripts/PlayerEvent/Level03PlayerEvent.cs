@@ -20,10 +20,7 @@ public class Level03PlayerEvent : MonoBehaviour {
         {
             Flowchart.BroadcastFungusMessage("FirstTouchKing");
         }
-        if (other.transform.name == "Bookroom5")
-        {
-            Flowchart.BroadcastFungusMessage("Bookroom");
-        }
+        
         if (other.transform.name == "HouseKeeper")
         {
             Flowchart.BroadcastFungusMessage("HouseKeeper");
