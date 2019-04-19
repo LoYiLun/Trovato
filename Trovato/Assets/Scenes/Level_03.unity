@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.46169567, g: 0.5124169, b: 0.5899334, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -873,7 +873,6 @@ GameObject:
   - component: {fileID: 83745457}
   - component: {fileID: 83745330}
   - component: {fileID: 83745456}
-  - component: {fileID: 83745455}
   - component: {fileID: 83745453}
   - component: {fileID: 83745450}
   - component: {fileID: 83745451}
@@ -885,6 +884,8 @@ GameObject:
   - component: {fileID: 83745448}
   - component: {fileID: 83745332}
   - component: {fileID: 83745449}
+  - component: {fileID: 83745478}
+  - component: {fileID: 83745455}
   m_Layer: 0
   m_Name: "\u5C0D\u8A71"
   m_TagString: Untagged
@@ -905,7 +906,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 633.9667, y: 137.60796}
+  scrollPos: {x: 282.96667, y: 107.607956}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 280
@@ -916,7 +917,8 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 83745301}
   selectedCommands: []
   variables:
   - {fileID: 83745278}
@@ -934,6 +936,7 @@ MonoBehaviour:
   - {fileID: 83745328}
   - {fileID: 83745327}
   - {fileID: 83745316}
+  - {fileID: 83745478}
   description: 
   stepPause: 0
   colorCommands: 1
@@ -4909,7 +4912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 383.47662
+    x: 384.47662
     y: 226.25803
     width: 120
     height: 40
@@ -5303,16 +5306,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c5622b8a80845c980954170295f292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: 307
+  itemId: 323
   indentLevel: 1
   compareOperator: 0
-  variable: {fileID: 83745327}
+  variable: {fileID: 83745478}
   booleanData:
     booleanRef: {fileID: 0}
-    booleanVal: 1
+    booleanVal: 0
   integerData:
     integerRef: {fileID: 0}
-    integerVal: 0
+    integerVal: 2
   floatData:
     floatRef: {fileID: 0}
     floatVal: 0
@@ -5371,14 +5374,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 303
   indentLevel: 1
-  compareOperator: 0
-  variable: {fileID: 83745327}
+  compareOperator: 1
+  variable: {fileID: 83745478}
   booleanData:
     booleanRef: {fileID: 0}
     booleanVal: 0
   integerData:
     integerRef: {fileID: 0}
-    integerVal: 0
+    integerVal: 2
   floatData:
     floatRef: {fileID: 0}
     floatVal: 0
@@ -5811,6 +5814,20 @@ MonoBehaviour:
   stringData:
     stringRef: {fileID: 0}
     stringVal: 
+--- !u!114 &83745478
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 83745271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb91b566ceda411bad1e9d3c3243ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: 1
+  key: BoxDestory
+  value: 0
 --- !u!1 &154070066
 GameObject:
   m_ObjectHideFlags: 0
@@ -6909,6 +6926,12 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 616486840}
+--- !u!114 &617063225 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114949246063254690, guid: b750f0460378b074c8b9a41753c18278,
+    type: 2}
+  m_PrefabInternal: {fileID: 858752549}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &617424215
 GameObject:
   m_ObjectHideFlags: 0
@@ -7726,9 +7749,10 @@ Prefab:
     - target: {fileID: 224663924500455730, guid: b750f0460378b074c8b9a41753c18278,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 44
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114762687570845864, guid: b750f0460378b074c8b9a41753c18278, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b750f0460378b074c8b9a41753c18278, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &863313886
@@ -10382,6 +10406,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114843449906932962, guid: 08d353cca684e95438c834bc36b78a5c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1019475678}
+    - target: {fileID: 114843449906932962, guid: 08d353cca684e95438c834bc36b78a5c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ShowGoalHint
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08d353cca684e95438c834bc36b78a5c, type: 2}
   m_IsPrefabParent: 0
@@ -11619,6 +11653,24 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1878893372}
+--- !u!1 &1893000098 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1552181705411100, guid: b750f0460378b074c8b9a41753c18278,
+    type: 2}
+  m_PrefabInternal: {fileID: 858752549}
+--- !u!114 &1893000101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1893000098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883516d457c6ef9479e9e3747e37bcfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoalText: {fileID: 617063225}
+  Main: {fileID: 0}
 --- !u!1 &1964601252
 GameObject:
   m_ObjectHideFlags: 0
