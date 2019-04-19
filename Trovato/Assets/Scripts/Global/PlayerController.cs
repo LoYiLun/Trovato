@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Fungus;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour {
 
@@ -45,6 +47,8 @@ public class PlayerController : MonoBehaviour {
 
 	private InsideMode inside;
 	public static bool isInside;
+
+	private float Stime;
 
 	void Awake(){
 		
@@ -97,6 +101,11 @@ public class PlayerController : MonoBehaviour {
 
 
 		} else if(Global.Level == "3") {
+
+			if(Stime != 0 && Time.time - Stime >= 2){
+				SceneManager.LoadScene ("Menu_VD");
+			}
+
 			Portal = GameObject.Find ("Event_Portal(Clone)").transform.GetChild(0).gameObject;
 			Portal2 = GameObject.Find ("Event_Portal2(Clone)").transform.GetChild(0).gameObject;
 
@@ -333,6 +342,13 @@ public class PlayerController : MonoBehaviour {
 				CameraFade.FadeOut ();
 				Global.Player.SetActive (false);
 				Global.NextScene = 4; // To Chapter 03
+			}
+		}
+
+		if(Global.Level == "3" && MissionSetting.FlowerChart.GetBooleanVariable("Findcalendar") && MissionSetting.FlowerChart.GetBooleanVariable("ServantDone") && MissionSetting.FlowerChart.GetBooleanVariable("ReturnKey")){
+			if(other.transform.name == "SpaceShip_Door1" || other.transform.name == "SpaceShip_Door2" || other.transform.name == "SpaceShip_Door3" || other.transform.name == "SpaceShip_Door4"){
+				SceneManager.LoadScene ("Menu_VD");
+
 			}
 		}
 

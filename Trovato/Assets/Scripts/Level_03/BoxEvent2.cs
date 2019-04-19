@@ -20,8 +20,8 @@ public class BoxEvent2 : MonoBehaviour
     {
         if (other.transform.name == "Palace")
         {
-            Destroy(gameObject);
-            Main.SetBooleanVariable("BoxDestory2", true);
+            //Destroy(gameObject);
+            //Main.SetBooleanVariable("BoxDestory2", true);
         }
     }
 }

@@ -42,9 +42,22 @@ public class BoxCollision : MonoBehaviour {
 				Level02PlayerEvent.box++;
 				finishPushing ();
 
-			} else if (other.gameObject.name == "Palace") {
+			}
+			
+			if (other.gameObject.name == "Palace") {
 				finishPushing ();
 
+			}
+
+			if(other.gameObject.name == "DestroyBox"){
+				finishPushing();
+				Global.Player.GetComponent<PlayerController>().StopPlayerAnim ();
+				if(MissionSetting.FlowerChart.GetIntegerVariable("BoxDestory") == 0){
+					MissionSetting.FlowerChart.SetIntegerVariable("BoxDestory", 1);
+				}
+				else if(MissionSetting.FlowerChart.GetIntegerVariable("BoxDestory") == 1){
+					MissionSetting.FlowerChart.SetIntegerVariable("BoxDestory", 2);
+				}
 			}
 		}
 	}

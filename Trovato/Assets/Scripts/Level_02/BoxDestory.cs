@@ -32,7 +32,7 @@ public class BoxDestory : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-        if (collision.transform.name == "DestroyBox")
+        if (collision.transform.name == "DestroyBox(stop)")
         {
             Destroy(gameObject);
             if(Main.GetIntegerVariable("BoxDestory") == 0)
