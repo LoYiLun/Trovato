@@ -132,7 +132,7 @@ public class MissionSetting : MonoBehaviour {
 
 	}
 
-	void Update ()
+	void FixedUpdate ()
 	{
 		if (MissionTargets.Find ((x) => x.gameObject == null) == null && MissionTargets.IndexOf (MissionTargets.Find ((x) => x.gameObject == null)) != -1) {
 			MissionArrows.RemoveAt (MissionTargets.IndexOf (MissionTargets.Find ((x) => x.gameObject == null)));
@@ -611,8 +611,7 @@ public class MissionSetting : MonoBehaviour {
 				break;
 			case"控制水晶變數":
 
-				/*if(MissionArrows.Contains(GameObject.Find ("Event_Station(Clone)_MA")))
-					Destroy (MissionArrows [MissionTargets.LastIndexOf (GameObject.Find ("Event_Station(Clone)"))]);*/
+				/*
 				if (MissionTargets.Contains(GameObject.Find ("Event_Station(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Station(Clone)_Arrow")) {
 					MissionTargets.Remove (GameObject.Find ("Event_Station(Clone)"));
 					MissionArrows.FindLast ((x) => x.name == "Event_Station(Clone)_Arrow").SetActive (false);
@@ -623,7 +622,7 @@ public class MissionSetting : MonoBehaviour {
 					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_Kyder);
 					Arrow_Kyder = false;
 				}
-				Blocking = null;
+				Blocking = null;*/
 				break;
 
 			}

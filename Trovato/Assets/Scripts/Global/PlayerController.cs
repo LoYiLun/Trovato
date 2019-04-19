@@ -497,14 +497,12 @@ public class PlayerController : MonoBehaviour {
 	void OnTriggerStay(Collider other){
 		// Go into Palace.
 		if(other.transform.name == "Palace"){
-			//inside = other.transform.GetComponent<InsideMode>();
 			inside = GameObject.Find("Event_Palace(open)").GetComponent<InsideMode>();
 			inside.enabled = true;
 			inside.reset();
 			isInside = true;
 		}
 		if(other.transform.name == "Station"){
-			//inside = other.transform.GetComponent<InsideMode>();
 			inside = GameObject.Find("Event_Station(open)").GetComponent<InsideMode>();
 			inside.enabled = true;
 			inside.reset();
