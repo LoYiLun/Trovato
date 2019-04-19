@@ -305,6 +305,12 @@ public class MissionSetting : MonoBehaviour {
 					PlayerStatusImage.GetStatus ("None");
 				}
 
+
+				// Exit Planet
+				if(FlowerChart.GetBooleanVariable("PushBox01") && FlowerChart.GetBooleanVariable("FindLeaf") && FlowerChart.GetBooleanVariable("FindEngine") && FlowerChart.GetBooleanVariable("FindKyder") && FlowerChart.GetBooleanVariable("Start")){
+					Flowchart.BroadcastFungusMessage("GO");
+				}
+
 			}
 
 			if (Global.Level == "3") {
@@ -611,7 +617,7 @@ public class MissionSetting : MonoBehaviour {
 				break;
 			case"控制水晶變數":
 
-				/*
+				
 				if (MissionTargets.Contains(GameObject.Find ("Event_Station(Clone)")) && MissionArrows.FindLast ((x) => x.gameObject != null && x.name == "Event_Station(Clone)_Arrow")) {
 					MissionTargets.Remove (GameObject.Find ("Event_Station(Clone)"));
 					MissionArrows.FindLast ((x) => x.name == "Event_Station(Clone)_Arrow").SetActive (false);
@@ -619,10 +625,10 @@ public class MissionSetting : MonoBehaviour {
 					if(Arrow_Kyder)
 						MissionTargets.Add (GameObject.Find ("Event_Sisco(Clone)"));
 				
-					CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_Kyder);
+					//CameraMove (MissionTargets [MissionTargets.Count - 1], CameraController.CurrentCam, CameraController.CamTarget, new Vector3 (0, 5, 0), Arrow_Kyder);
 					Arrow_Kyder = false;
 				}
-				Blocking = null;*/
+				Blocking = null;
 				break;
 
 			}

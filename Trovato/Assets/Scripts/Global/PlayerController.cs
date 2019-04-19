@@ -327,6 +327,15 @@ public class PlayerController : MonoBehaviour {
 			other.gameObject.transform.GetChild(0).GetComponent<Animation> ().Play ("BushSwing");
 		}
 
+		if(Global.Level == "2" && MissionSetting.FlowerChart.GetBooleanVariable("End")){
+			if(other.transform.name == "SpaceShip_Door1" || other.transform.name == "SpaceShip_Door2" || other.transform.name == "SpaceShip_Door3" || other.transform.name == "SpaceShip_Door4"){
+				GameObject.Find ("SpaceShip_Anim").GetComponent<Animation> ().Play ("Fly2");
+				CameraFade.FadeOut ();
+				Global.Player.SetActive (false);
+				Global.NextScene = 4; // To Chapter 03
+			}
+		}
+
 		if (other.gameObject.name == "Cat") {
 			GameObject cat;
 			GameObject cat2;

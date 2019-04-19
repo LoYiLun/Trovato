@@ -190,9 +190,11 @@ public class Btn_Function : MonoBehaviour {
 
 	// 重置視角
 	public void CamReset(){
-		CameraController.CurrentCam.transform.position = CameraController.CamOriginPos;
-		CameraController.CurrentCam.transform.rotation = CameraController.CamOriginRot;
-		CameraController.CurrentCam.transform.LookAt (GameObject.Find("CamScript").GetComponent<CameraController> ().ScreenHeart.transform);
+		if(PlayerController.isInside == false){
+			CameraController.CurrentCam.transform.position = CameraController.CamOriginPos;
+			CameraController.CurrentCam.transform.rotation = CameraController.CamOriginRot;
+			CameraController.CurrentCam.transform.LookAt (GameObject.Find("CamScript").GetComponent<CameraController> ().ScreenHeart.transform);
+		}
 	}
 
 	// 顯示提示
