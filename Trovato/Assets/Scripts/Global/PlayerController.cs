@@ -119,12 +119,14 @@ public class PlayerController : MonoBehaviour {
 				Portal2.GetComponent<Renderer> ().material = Resources.Load ("Materials/Global/Gray", typeof(Material)) as Material;
 			}
 
-			if (Vector3.Distance (GameObject.Find ("iBlockDoor1").transform.position, GameObject.Find ("iBlockDoor2").transform.position) < 1) {
-				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
-				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
-			} else {
-				GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
-				GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
+			if(!Global.IsPreRotating && !Global.IsRotating){
+				if (Vector3.Distance (GameObject.Find ("iBlockDoor1").transform.position, GameObject.Find ("iBlockDoor2").transform.position) < 1) {
+					GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = false;
+					GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = false;
+				} else {
+					GameObject.Find ("iBlockDoor1").GetComponent<Collider> ().enabled = true;
+					GameObject.Find ("iBlockDoor2").GetComponent<Collider> ().enabled = true;
+				}
 			}
 
 			// 傳送失敗時強制傳送

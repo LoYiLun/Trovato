@@ -6,11 +6,11 @@ public class JustTest : MonoBehaviour {
 
 	private GameObject plane;
 	private float emission;
-	private Color _color;
+	//private Color _color;
 
 	void Start () {
 		plane = gameObject;
-		_color = plane.GetComponent<Renderer> ().material.color;
+		//_color = plane.GetComponent<Renderer> ().material.color;
 
 
 	}
@@ -23,7 +23,7 @@ public class JustTest : MonoBehaviour {
 		transform.parent.transform.Rotate (0, 0, 10*Time.deltaTime);
 
 		// 調整發光材質閃爍
-		emission = Mathf.PingPong (30f * Time.time, 50.0f);
-		plane.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", _color * Mathf.LinearToGammaSpace(emission));
+		//emission = Mathf.PingPong (30f * Time.time, 50.0f);
+		//plane.GetComponent<Renderer> ().material.SetColor ("_EmissionColor", _color * Mathf.LinearToGammaSpace(emission));
 	}
 }
